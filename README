@@ -2,12 +2,13 @@
 ConnectomeViewer
 ================
 
-The ConnectomeViewer for Multi-Modal, Multi-Level Network Visualization and Analysis
+The ConnectomeViewer for the Visualization and Analysis of Multi-Modal Multi-Scale Network
+and Neuroimaging Data with Python
 
 The ConnectomeViewer is a extensible, scriptable, pythonic software tool for visualization
-and analysis in structural neuroimaging research on many spatial scales. Employing the
-Connectome File Format, diverse data such as networks, surfaces, volumes, tracks and metadata
-are handled and integrated. 
+and analysis in neuroimaging research on many spatial scales. Employing the Connectome File
+Format, diverse data such as networks, surfaces, volumes, tracks and metadata are handled
+and integrated.
 
 Copyright (C) 2009-2010, Ecole Polytechnique Fédérale de Lausanne (EPFL) and
 Hospital Center and University of Lausanne (UNIL-CHUV), Switzerland
@@ -20,24 +21,26 @@ Credits
 Author
 ------
 
-ConnectomeViewer was developed by Stephan Gerhard as part of his master thesis project.
+ConnectomeViewer was initially developed by Stephan Gerhard as part of his master thesis.
+He continues the development at EPFL and UNIL-CHUV.
 
-------------
-Contributors
-------------
+---------------------
+Contributors & Thanks
+---------------------
 * Patric Hagmann
 * Leila Cammoun
 * Jean-Philippe Thiran
 * Xavier Gigandet
 * Reto Meuli
-* Benjamin Thyreau - Compilation of the 64bit static libgiftiio.so library
+* Benjamin Thyreau (libgiftiio.so in 64bit)
 
 -------------
 External code
 -------------
+* Enthought Evisage. Application Framework. Enthought.
 * Mayavi2. Partly modified files. Prabhu Ramachandran and Gael Varoquaux.
-* IO ImageFormats. NIPY Developers.
-* (not yet) Diffusion in Python. Eleftherios Garyfallidis and Matthew Brett.
+* Neuroimaging in Python (NiPy). IO ImageFormats. NIPY Developers.
+* Diffusion in Python. Eleftherios Garyfallidis, Matthew Brett et al.
 
 
 =======
