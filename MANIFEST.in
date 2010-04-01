@@ -1,0 +1,5 @@
+recursive-include cviewer *.png *.ico *.gii *.ini *.so *.txt *.dll *.sql *.html *.csv
+include *.txt
+prune examples
+prune datasets
+prune doc

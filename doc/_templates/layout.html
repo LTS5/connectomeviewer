@@ -1,0 +1,22 @@
+{% extends "!layout.html" %}
+
+{% block extrahead %}
+  <meta name="keywords" content="connectome, viewer, python, network, analysis, ">
+{% endblock %}
+
+{% block rootrellink %}
+  <li><a href="http://www.connectomics.org/viewer">Home</a> |&nbsp;</li>
+  <li><a href="{{ pathto('index') }}">Documentation</a> |&nbsp;</li>
+{% endblock %}
+
+{% block relbar1 %}
+<div style="color: black;background-color: white; font-size: 3.2em; text-align: left; padding: 15px 10px 10px 15px">
+<a href="http://www.connectomics.org/viewer"><img src="{{pathto("_static/cviewer_about3.png", 1)}}" border="0" alt="ConnectomeViewer Documentation"/></a>
+</div>
+{{ super() }}
+{% endblock %}
+
+
+{% block sidebar1 %}{{ sidebar() }}{% endblock %}
+{% block sidebar2 %}{% endblock %}
+
