@@ -1,0 +1,9 @@
+This displays a slice of brain tissue from brainmaps.org.
+
+Idea
+----
+This could make a nice plugin for the ConnectomeViewer. An idea
+would be to extend the Connectome File Format to contain slices
+which are spatially located. At this location, a clickable box
+might be displayed that pop-us up according slices using
+PIL, matplotlib (os done here) or the web.

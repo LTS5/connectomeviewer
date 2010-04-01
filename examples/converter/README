@@ -1,0 +1,26 @@
+A set of converters written to produce data used for Connectome File Format
+---------------------------------------------------------------------------
+
+/matlab2graphml
+    Shows how a connectivity matrix of one subject might be
+    converted to GraphML. The input matrices - subject1.mat - is an
+    example output of the Connectome Mapping Pipeline as developed
+    at EPFL and UNIL-CHUV. See Publications in the Documentation.
+
+/sLORETA
+    Example datasets that are used in the tutorial to show the application of
+    the sLORETA Converter plugin to generate Connectome Files.
+    
+/ConnectomeWiki (to do)
+    Shows how to create files for import into the ConnectomeWiki by
+    the PyWikipedia Bot. Also exemplifies how to extract connectivity
+    data from the ConnectomeWiki and generate a GraphML file out of it.
+    
+/gifti (to do)
+    Shows how to create a valid Gifti File using a Python Script from
+    a set of Vertices and Triangles. Also an example of adding metadata,
+    labels and using the Gifti Library for doing data manipulation.
+
+/BlenderExporter (to do)
+    Development of an Exporter Interface for structural and functional
+    Voxeldata into Blender for Volume Rendering and Animation.
