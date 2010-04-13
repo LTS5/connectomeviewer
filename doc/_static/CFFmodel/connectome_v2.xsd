@@ -220,6 +220,14 @@
             </xsd:documentation>
           </xsd:annotation>
           </xs:element>
+          
+          <xs:element name="description" type="xs:string" minOccurs="0">
+            <xsd:annotation xml:lang="en">
+             <xsd:documentation>
+              Description of the network
+              </xsd:documentation>
+            </xsd:annotation>
+          </xs:element>
 
   </xs:all>
 </xs:complexType>
@@ -252,7 +260,7 @@
     </xsd:annotation>
     </xs:attribute>
     
-    <xs:attribute name="type" type="xs:string">
+    <xs:attribute name="dtype" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
       What type of surface does the Gifti file contain:
@@ -267,6 +275,8 @@
       Individual elements of the set are distinguished by the metadta tag AnatomicalStructureSecondary.
       The ConnectomeViewer creates a surface container in the Connectome File TreeView.
       The Gifti file contains information about the coordinate system used.
+      - type="surfaceset+label"
+      If the Gifti file contains data as described for both surfaceset and label above.
       </xsd:documentation>
     </xsd:annotation>
     </xs:attribute>
@@ -309,7 +319,7 @@
     </xsd:annotation>
     </xs:attribute>
     
-    <xs:attribute name="type" type="xs:string">
+    <xs:attribute name="dtype" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
       The Nifti file contains information about the coordinate system used.
