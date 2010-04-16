@@ -1,290 +1,79 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.connectome.ch/2009/Connectome/xmlns" xmlns="http://www.connectome.ch/2009/Connectome/xmlns" xmlns:graphml="http://www.connectome.ch/Network" xmlns:xlink="http://www.w3.org/1999/xlink" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  targetNamespace="http://www.connectomics.ch/2010/Connectome/xmlns" 
+  xmlns="http://www.connectomics.ch/2010/Connectome/xmlns" 
+  elementFormDefault="qualified">
 
 <xsd:annotation xml:lang="en">
     <xsd:documentation>
-    Stephan Gerhard, Version 1.0
+    Stephan Gerhard, Version 2.0
     </xsd:documentation>
 </xsd:annotation>
 
-<xs:complexType name="labelstype">
+<xs:element name="connectome">
+  <xs:complexType>
+    <xs:sequence>
+      
+      <!-- a flat style is adopted to store different data types within the connectome file,
+           listing networks, surfaces, volumes, tracks and metadata, and using the name attribute
+           to create references
+      // -->
+      
+      <xs:element name="connectome-meta" type="metadata" minOccurs="1" maxOccurs="1">
+      <xsd:annotation xml:lang="en">
+        <xsd:documentation>
+        Metadata about the connectome file
+        </xsd:documentation>
+      </xsd:annotation>
+      </xs:element>
+      
+      <xs:element name="connectome-network" type="networkstype" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation xml:lang="en">
+        <xsd:documentation>
+        A list of networks. They can reference volumes, surfaces and tracks. A network datasource is created in the ConnectomeViewer.
+        </xsd:documentation>
+      </xsd:annotation>
+      </xs:element>
+
+      <xs:element name="connectome-surface" type="surfacestype" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation xml:lang="en">
+        <xsd:documentation>
+        A list of surfaces. Surface sources are in Gifti format, and can define labels. A surface datasource is created in the ConnectomeViewer.
+        Networks can reference to the surface using the name attribute.
+        </xsd:documentation>
+      </xsd:annotation>
+      </xs:element>
+
+      <xs:element name="connectome-volume" type="volumestype" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation xml:lang="en">
+        <xsd:documentation>
+        A list of volumes. Volume sources are in Nifti format, and can also define segmentations. A volume datasource is created in the ConnectomeViewer.
+        Networks can reference to the volume using the name attribute.
+        </xsd:documentation>
+      </xsd:annotation>
+      </xs:element>
+
+      <xs:element name="connectome-track" type="trackstype" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation xml:lang="en">
+        <xsd:documentation>
+        A list of track files. Track sources are in TrackVis format, and can also contain data. A track datasource is created in the ConnectomeViewer.
+        Networks can reference to the track file using the name attribute.
+        </xsd:documentation>
+      </xsd:annotation>
+      </xs:element>        
+
+   </xs:sequence>
+  </xs:complexType>
   
-    <xs:attribute name="labelid" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      The labelid uniquely defining the set of vertices labels in the given Gifti file.
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-
-    <xs:attribute name="src" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      The source of the surface (in the zipped CFF file), including the relative pathname to the Gifti/ folder
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="fileformat" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      So far, only Gifit formats (ending .gii) are supported. Write here "gifti"
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-</xs:complexType>
-
-
-<xs:complexType name="surfacetype">
-
-    <xs:attribute name="name" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Descriptive name of the surface container, seen as a node in the Connectome Viewer TreeView
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-
-    <xs:attribute name="src" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      The source of the surface (in the zipped CFF file), including the relative pathname to the Gifti/ folder
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="fileformat" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      So far, only Gifit formats (ending .gii) are supported. Write here "gifti"
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-
-    <xs:attribute name="addatlas" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      This indicates, that an additional set of surfaces from this atlas is added
-      to each network, e.g. for standardized visualization. ConnectomeViewer has
-      the following atlases for species included:
-      Homo sapiens:
-      - template_atlas_homo_sapiens_01
-        Extracted atlas from Freesurfer using fsaverage mesh
-      - template_atlas_homo_sapiens_02 (not yet included)
-        Possibly the SPL_PNL_Brain_Atlas2008
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-
-
-  <xs:all>
-    <xs:element name="surface-label" type="labelstype" minOccurs="0">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Reference the to Gifti file containing the labels. In this Gifti file, the labelid for a particular NIFTI_INTENT_LABEL
-      should be the same as the labelid as attibute of this element for the ConnectomeViewer to parse correctly
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:element>
-  </xs:all>
-  
-</xs:complexType>
-
-<xs:complexType name="volumetype">
-    <xs:attribute name="name" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Name of the volume
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="src" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Including the relative pathname to the Nifti/ folder
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="fileformat" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Roughly with what we have it to do, coforms to filename ending.
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="segmentation" type="xs:boolean">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      If set to true, this means that the volume contains a segmentation labels, potentially used in conjuction with trackvis.
-      Otherwise, this could be any other volume information, like raw MRI data.
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-        
-  <xs:all>
-    <xs:element name="description" type="xs:string" minOccurs="0">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Description of the content of the file, for example wheter it is raw MRI data or a segmentation.
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:element>
-  </xs:all>
-</xs:complexType>
-
-<xs:complexType name="tracktype">
-
-<xs:complexType name="datakeyvaluetype">
-    <xs:attribute name="key" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      The key to be used later in the dictionary
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-</xs:complexType>
-
-    <xs:attribute name="name" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Name of the track
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="src" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Including the relative pathname to the Tracks/ folder
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="fileformat" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      So far, only track files from the TrackVis suite with ending .trk are supported
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-  <xs:all>
-    <xs:element name="description" type="xs:string" minOccurs="0">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Description of the content of the file, e.g tractography algorithms
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:element>
-    
-  </xs:all>
-</xs:complexType>
-<xs:complexType name="nwmetadatatype">
-
-  <xs:all>
-    <xs:element name="data" type="datakeyvaluetype" minOccurs="0" maxOccurs="unbounded">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      A data element containing the key as attribute and the value as a tag
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:element>
-  </xs:all>
-</xs:complexType>
-
-<xs:complexType name="networkstype">
-
-    <xs:attribute name="name" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      The short name of the network as it appears in the ConnectomeViewer TreeView as node
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="src" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      The name of the network.graphml file in the package
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="hierarchical" type="xs:boolean">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Is the graph hierarchical, i.e. do nodes contain subgraphs (not yet supported)
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="hypergraph" type="xs:boolean">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Is the graph a hypergraph? (not yet supported)
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-    <xs:attribute name="directed" type="xs:boolean">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Is the graph directed? Should be the same value as in the corresponding GraphML file.
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
-    
-  <xs:all>
-  
-          <xs:element name="network-surface" type="surfacetype" minOccurs="0" maxOccurs="unbounded">
-          <xsd:annotation xml:lang="en">
-            <xsd:documentation>
-            All the surfaces corresponding to this network are stored in one Gifti file in the Gifti/ folder. Since the vertices id should be corresponding over all surfaces,
-            the nodes in the GraphML file have an unique intensityvalue integer corresponding to a set of surface vertices. This information is stored in the label Gifti file.
-           </xsd:documentation>
-          </xsd:annotation>
-          </xs:element>
-
-          <xs:element name="network-metadata" type="nwmetadatatype" minOccurs="0" maxOccurs="1">
-          <xsd:annotation xml:lang="en">
-            <xsd:documentation>
-            Often, there is particular metadata for networks one wants to use for later processing. For example one can annotate networks that represent subjects with
-            information about being member of the control or test group. The very flexible schema of a dictionary (key/value pairs) is adopted to represent any kind of
-            metadata. This is not typed yet and just uses strings for key and value.
-           </xsd:documentation>
-          </xsd:annotation>
-          </xs:element>
-        
-          <xs:element name="network-volume" type="volumetype" minOccurs="0" maxOccurs="unbounded">
-          <xsd:annotation xml:lang="en">
-            <xsd:documentation>
-            All the volumes found in the Nifti directory for this specific network. It is not yet clear how exactly they will be used by the ConnectomeViewer application
-            </xsd:documentation>
-          </xsd:annotation>
-          </xs:element>
-       
-          <xs:element name="network-track" type="tracktype" minOccurs="0" maxOccurs="1">
-          <xsd:annotation xml:lang="en">
-            <xsd:documentation>
-            The track file in the Tracks/ directory that were the basis for the networks, if any.
-            </xsd:documentation>
-          </xsd:annotation>
-          </xs:element>
-
-  </xs:all>
-</xs:complexType>
-
+</xs:element>
 
 <xs:complexType name="metadata">
   <xs:all>
    <xs:element name="generator" type="xs:string" minOccurs="0">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      Software version/Converter etc. this file was generated
+      Software version/Converter etc. this file was generated with
       </xsd:documentation>
     </xsd:annotation>
   </xs:element>
@@ -300,7 +89,7 @@
    <xs:element name="creation-date" type="xs:date" minOccurs="0">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      When was the file created?
+      When was the file created? DD-MM-YYYY
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>
@@ -308,7 +97,7 @@
    <xs:element name="modification-date" type="xs:date" minOccurs="0">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      When was the file modified?
+      When was the file modified? DD-MM-YYYY
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>
@@ -316,7 +105,7 @@
    <xs:element name="name" type="xs:string" minOccurs="0">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      What is the short name of this Connectome File?
+      Short name of this Connectome File?
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>    
@@ -324,7 +113,7 @@
    <xs:element name="species" type="xs:string" minOccurs="0">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      Which species is dealt with? According to the ConnectomeWiki Category:Species taxonomy (case-sensitive!)
+      From which species is the data? According to the ConnectomeWiki Category:Species taxonomy (case-sensitive!)
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>
@@ -360,70 +149,325 @@
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>
-
-<!--
-
-Probably some more information has to be included concerning the coordinate spaces.
-Nifti and Gifti files already allow to define the coordinate spaces/voxel ordering of their data.
-
-Corresponding to the information in the Gifti files!!!
-http://www.nitrc.org/frs/download.php/158/gifti.xsd
-
-CoordinateSystemTransformMatrix
-NIFTI_XFORM_UNKNOWN
-NIFTI_XFORM_SCANNER_ANAT
-NIFTI_XFORM_ALIGNED_ANAT
-NIFTI_XFORM_TALAIRACH
-NIFTI_XFORM_MNI_152
-
-//-->
-
-
-   <xs:element name="nr_of_networks" type="xs:integer" minOccurs="1" maxOccurs="1">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      The numbers of existing network files in the current Connectome File.
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:element>
     
   </xs:all>
+  
    <xs:attribute name="version" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      Defines the version of the Connectome Schema Definition the current Connectome File is compatible with. Should be 1.0
+      Defines the version of the Connectome Schema Definition the current Connectome File is compatible with. Should be 2.0
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+</xs:complexType>  
+
+
+<xs:complexType name="networkstype">
+
+    
+  <xs:all>
+  
+          <xs:element name="network-metadata" type="networkmetadatatype" minOccurs="0" maxOccurs="1">
+          <xsd:annotation xml:lang="en">
+            <xsd:documentation>
+            Often, there is particular metadata for networks one wants to use for later processing. For example one can annotate networks that represent subjects with
+            information about being member of the control or test group. The very flexible schema of a dictionary (key/value pairs) is adopted to represent any kind of
+            metadata. The values are strings.
+           </xsd:documentation>
+          </xsd:annotation>
+          </xs:element>
+          
+          <xs:element name="network-surface" type="networksurfacetype" minOccurs="0" maxOccurs="unbounded">
+          <xsd:annotation xml:lang="en">
+            <xsd:documentation>
+            Reference to the connectome-surface using the name attribute. The surface file must exist in the archive.
+            A labeling of the surface can be specified using labelid and (optional) labelname attributes.
+            </xsd:documentation>
+          </xsd:annotation>
+          </xs:element>
+          
+          <xs:element name="network-volume" type="networkvolumetype" minOccurs="0" maxOccurs="unbounded">
+          <xsd:annotation xml:lang="en">
+            <xsd:documentation>
+            Reference to the connectome-volume using the name attribute. The volume file must exist in the archive.
+            </xsd:documentation>
+          </xsd:annotation>
+          </xs:element>
+       
+          <xs:element name="network-track" type="networktracktype" minOccurs="0" maxOccurs="unbounded">
+          <xsd:annotation xml:lang="en">
+            <xsd:documentation>
+            Reference to the connectome-track using the name attribute. The track file must exist in the archive.
+            </xsd:documentation>
+          </xsd:annotation>
+          </xs:element>
+          
+          <xs:element name="description" type="xs:string" minOccurs="0">
+            <xsd:annotation xml:lang="en">
+             <xsd:documentation>
+              Description of the network
+              </xsd:documentation>
+            </xsd:annotation>
+          </xs:element>
+
+  </xs:all>
+  
+  
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The short name of the network as it appears in the ConnectomeViewer TreeView as node
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="src" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The name of the network.graphml file in the archive including the relative path
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="directed" type="xs:boolean">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Is the network directed? This has to match the value in the GraphML file.
       </xsd:documentation>
     </xsd:annotation>
     </xs:attribute>
     
 </xs:complexType>
-  
-  <xs:element name="viewer">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="viewer-meta" type="metadata" minOccurs="1" maxOccurs="1">
-        <xsd:annotation xml:lang="en">
-          <xsd:documentation>
-          All meta data information that has nothing particularly to do with one instance of a network
-          </xsd:documentation>
-        </xsd:annotation>
-        </xs:element>
-        
-        <xs:element name="viewer-network" type="networkstype" minOccurs="0" maxOccurs="unbounded">
-        <xsd:annotation xml:lang="en">
-          <xsd:documentation>
-          The name of the network file in the current Connectome File. This defines a data source in the ConnectomeViewer.
-          </xsd:documentation>
-        </xsd:annotation>
-        </xs:element>
-        
-        <!-- later: 
-            viewer-styles: Styles: styles.xml (later, depending on ConnectomeViewer implementation)
-            viewer-scene: Scene Settings: scene_settings.xml (later, depending on ConnectomeViewer implementation)
-          //-->
 
-     </xs:sequence>
-    </xs:complexType>
+
+<xs:complexType name="surfacestype">
+
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Descriptive name of the surface. The name appears in the ConnectomeViewer Connectome File TreeView.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="src" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The relative path to the Gifti surface file within the archive.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
     
-  </xs:element>
+    <xs:attribute name="fileformat" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Set to "gifti" to use the only supported Gifti format
+      See http://www.nitrc.org/frs/download.php/158/gifti.xsd for schema information
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="dtype" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      What type of surface does the Gifti file contain:
+      - type="label"
+      The Gifti file contains surface labels. This file can be referenced
+      in connectome-network with the labelname attribute and matching labelid. If
+      referenced in such a way, the networks' nodes attribute dn_intensityvalue value
+      may match the label array integers, thereby relating a network node to a surface
+      patch (a region of interest defined on the surface)
+      - type="surfaceset"
+      The Gifti file contains a set of surfaces where the metadata tag AnatomicalStructurePrimary match.
+      Individual elements of the set are distinguished by the metadta tag AnatomicalStructureSecondary.
+      The ConnectomeViewer creates a surface container in the Connectome File TreeView.
+      The Gifti file contains information about the coordinate system used.
+      - type="surfaceset+label"
+      If the Gifti file contains data as described for both surfaceset and label above.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:all>
+        <xs:element name="description" type="xs:string" minOccurs="0">
+         <xsd:annotation xml:lang="en">
+           <xsd:documentation>
+           Description of the surface(s) or labeling.
+           </xsd:documentation>
+         </xsd:annotation>
+         </xs:element>
+    </xs:all>
+
+</xs:complexType>
+
+
+<xs:complexType name="volumestype">
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Name of the volume. The name appears in the ConnectomeViewer Connectome File TreeView.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="src" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The relative path to the Nifti volume file within the archive.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="fileformat" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Set to "nifti" to use the only supported Nifti format
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="dtype" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The Nifti file contains information about the coordinate system used.
+      Set type of volume the Nifti file contains:
+      - type="segmentation"
+      The Nifti file contains a single volume where the voxel values are integers,
+      representing a segmented Region of Interest. If this volume is referenced by
+      a connectome-network, its nodes dn_intensityvalue attribute may match these
+      integer values.
+      - type="T1-weighted"
+      The Nifti file contains a T1-weighted volume.
+      - type="T2-weighted"
+      The Nifti file contains a T2-weighted volume.
+      - type="fMRI"
+      The Nifti file contains functional MRI time series data.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+
+    <xs:all>
+      <xs:element name="description" type="xs:string" minOccurs="0">
+      <xsd:annotation xml:lang="en">
+        <xsd:documentation>
+        Detailed description of the content of the Nifti file.
+        </xsd:documentation>
+      </xsd:annotation>
+      </xs:element>
+    </xs:all>
+  
+</xs:complexType>
+
+
+<xs:complexType name="trackstype">
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Name of the track. The name appears in the ConnectomeViewer Connectome File TreeView.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="src" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The relative path to the TrackVis file within the archive.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="fileformat" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Set to "trackvis" to use the only supported TrackVis file format.
+      The TrackVis file format allows to store any number of additional numerical
+      data on the individual fibers.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+  <xs:all>
+    <xs:element name="description" type="xs:string" minOccurs="0">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Description of the content of the file, e.g what tractography algorithm was used.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:element>
+    
+  </xs:all>
+</xs:complexType>
+
+<xs:complexType name="networkmetadatatype">
+  <xs:all>
+    <xs:element name="data" minOccurs="0" maxOccurs="unbounded">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      A data element contains a key attribute and the value as tag
+      </xsd:documentation>
+    </xsd:annotation>
+    <xs:attribute name="key" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The key to be used later in the dictionary
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    </xs:element>
+  </xs:all>
+</xs:complexType>
+
+<xs:complexType name="networksurfacetype">    
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The name of the surface as reference to an existing connectome-surface
+      To use an atlas that is shipped with the ConnectomeViewer
+      - name="template_atlas_homo_sapines_01"
+      Extracted atlas from Freesurfer using fsaverage mesh
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    <xs:attribute name="labelid" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The labelid tag name that contains the labeling of the surface reference
+      by name. The referenced surface file must contain NIFTI_INTENT_LABEL intent
+      with the matching labelid in the metadata. Number of vertices of the
+      referenced surface and the label array dimension must match (one label for
+      each vertices)
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    <xs:attribute name="labelname" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Optional. The name of the another surface as reference to an existing connectome-surface
+      that contains the label array. Always use in conjunction with labelid. This can
+      be used for a separate Gifti file containing e.g. only label information.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+</xs:complexType>
+<xs:complexType name="networkvolumetype">    
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The name of the volume as reference to an existing connectome-volume
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+</xs:complexType>
+<xs:complexType name="networktracktype">    
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The name of the track as reference to an existing connectome-track
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+</xs:complexType>
+
 </xs:schema>
