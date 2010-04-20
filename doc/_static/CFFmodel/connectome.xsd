@@ -89,7 +89,7 @@
    <xs:element name="creation-date" type="xs:date" minOccurs="0">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      When was the file created? DD-MM-YYYY
+      When was the file create ?  YYYY-M-DD
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>
@@ -97,7 +97,7 @@
    <xs:element name="modification-date" type="xs:date" minOccurs="0">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      When was the file modified? DD-MM-YYYY
+      When was the file modified? YYYY-M-DD
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>
@@ -149,6 +149,17 @@
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>
+
+    <xs:element name="metadata" type="moremetadatatype" minOccurs="0" maxOccurs="1">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+          If one has any kind of metadata that might be relevant for later processing, and it is not possible to annotate the
+          metadata directly to networks with the network-metadata tag, it can be specified here. An example would be demographic
+          data about subjects, and any data that does not fit the predefined tags in connectome-meta. See also example datasets.
+          The very flexible schema of a dictionary (key/value pairs) is adopted to represent any kind of metadata. The values are strings.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xs:element>
     
   </xs:all>
   
@@ -165,10 +176,10 @@
 
 <xs:complexType name="networkstype">
 
-    
-  <xs:all>
-  
-          <xs:element name="network-metadata" type="networkmetadatatype" minOccurs="0" maxOccurs="1">
+  <xs:sequence>
+
+
+          <xs:element name="network-metadata" type="moremetadatatype" minOccurs="0" maxOccurs="1">
           <xsd:annotation xml:lang="en">
             <xsd:documentation>
             Often, there is particular metadata for networks one wants to use for later processing. For example one can annotate networks that represent subjects with
@@ -177,20 +188,23 @@
            </xsd:documentation>
           </xsd:annotation>
           </xs:element>
-          
+
+
           <xs:element name="network-surface" type="networksurfacetype" minOccurs="0" maxOccurs="unbounded">
           <xsd:annotation xml:lang="en">
             <xsd:documentation>
             Reference to the connectome-surface using the name attribute. The surface file must exist in the archive.
-            A labeling of the surface can be specified using labelid and (optional) labelname attributes.
+            A labeling of the surface can be specified using labelname refering to a connectome-surface of dtype label  with labelid, refering to the metatag in the Gifti file.
             </xsd:documentation>
           </xsd:annotation>
           </xs:element>
+
           
           <xs:element name="network-volume" type="networkvolumetype" minOccurs="0" maxOccurs="unbounded">
           <xsd:annotation xml:lang="en">
             <xsd:documentation>
             Reference to the connectome-volume using the name attribute. The volume file must exist in the archive.
+            A segmentation of the volume can be specified using segmentationname refering to a connectome-volume of dtype segmentation. The voxel dimensions have to match.
             </xsd:documentation>
           </xsd:annotation>
           </xs:element>
@@ -203,7 +217,7 @@
           </xsd:annotation>
           </xs:element>
           
-          <xs:element name="description" type="xs:string" minOccurs="0">
+          <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
             <xsd:annotation xml:lang="en">
              <xsd:documentation>
               Description of the network
@@ -211,7 +225,7 @@
             </xsd:annotation>
           </xs:element>
 
-  </xs:all>
+  </xs:sequence>
   
   
     <xs:attribute name="name" type="xs:string">
@@ -242,6 +256,15 @@
 
 
 <xs:complexType name="surfacestype">
+    <xs:all>
+        <xs:element name="description" type="xs:string" minOccurs="0">
+         <xsd:annotation xml:lang="en">
+           <xsd:documentation>
+           Description of the surface(s) or labeling.
+           </xsd:documentation>
+         </xsd:annotation>
+         </xs:element>
+    </xs:all>
 
     <xs:attribute name="name" type="xs:string">
     <xsd:annotation xml:lang="en">
@@ -274,10 +297,11 @@
       What type of surface does the Gifti file contain:
       - type="label"
       The Gifti file contains surface labels. This file can be referenced
-      in connectome-network with the labelname attribute and matching labelid. If
+      in connectome-network with either the name attribute or in addition to another
+      surface defined by name and using the labelname attribute and matching labelid. If
       referenced in such a way, the networks' nodes attribute dn_intensityvalue value
       may match the label array integers, thereby relating a network node to a surface
-      patch (a region of interest defined on the surface)
+      patch (a region of interest defined on the surface). See also example datasets.
       - type="surfaceset"
       The Gifti file contains a set of surfaces where the metadata tag AnatomicalStructurePrimary match.
       Individual elements of the set are distinguished by the metadta tag AnatomicalStructureSecondary.
@@ -289,20 +313,20 @@
     </xsd:annotation>
     </xs:attribute>
     
-    <xs:all>
-        <xs:element name="description" type="xs:string" minOccurs="0">
-         <xsd:annotation xml:lang="en">
-           <xsd:documentation>
-           Description of the surface(s) or labeling.
-           </xsd:documentation>
-         </xsd:annotation>
-         </xs:element>
-    </xs:all>
-
 </xs:complexType>
 
 
 <xs:complexType name="volumestype">
+     <xs:all>
+      <xs:element name="description" type="xs:string" minOccurs="0">
+      <xsd:annotation xml:lang="en">
+        <xsd:documentation>
+        Detailed description of the content of the Nifti file.
+        </xsd:documentation>
+      </xsd:annotation>
+      </xs:element>
+    </xs:all>
+    
     <xs:attribute name="name" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
@@ -336,7 +360,9 @@
       The Nifti file contains a single volume where the voxel values are integers,
       representing a segmented Region of Interest. If this volume is referenced by
       a connectome-network, its nodes dn_intensityvalue attribute may match these
-      integer values.
+      integer values. Such a segmentation volume can referenced in a connectome-volume
+      by the segmentationname attribute in addition to another, e.g. T1-weighted volume
+      which is referenced by the name attribute. See also example datasets.
       - type="T1-weighted"
       The Nifti file contains a T1-weighted volume.
       - type="T2-weighted"
@@ -346,21 +372,22 @@
       </xsd:documentation>
     </xsd:annotation>
     </xs:attribute>
-
-    <xs:all>
-      <xs:element name="description" type="xs:string" minOccurs="0">
-      <xsd:annotation xml:lang="en">
-        <xsd:documentation>
-        Detailed description of the content of the Nifti file.
-        </xsd:documentation>
-      </xsd:annotation>
-      </xs:element>
-    </xs:all>
-  
+ 
 </xs:complexType>
 
 
 <xs:complexType name="trackstype">
+
+  <xs:all>
+    <xs:element name="description" type="xs:string" minOccurs="0">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Description of the content of the file, e.g what tractography algorithm was used.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:element>
+    
+  </xs:all>
     <xs:attribute name="name" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
@@ -387,35 +414,34 @@
     </xsd:annotation>
     </xs:attribute>
     
-  <xs:all>
-    <xs:element name="description" type="xs:string" minOccurs="0">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Description of the content of the file, e.g what tractography algorithm was used.
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:element>
-    
-  </xs:all>
 </xs:complexType>
 
-<xs:complexType name="networkmetadatatype">
+<xs:complexType name="moremetadatatype">
   <xs:all>
-    <xs:element name="data" minOccurs="0" maxOccurs="unbounded">
+    <xs:element name="data" minOccurs="0">
+    
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
       A data element contains a key attribute and the value as tag
       </xsd:documentation>
     </xsd:annotation>
-    <xs:attribute name="key" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      The key to be used later in the dictionary
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
+    
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+            <xs:attribute name="key" type="xs:string">
+            <xsd:annotation xml:lang="en">
+              <xsd:documentation>
+              The key to be used later in the dictionary
+              </xsd:documentation>
+            </xsd:annotation>
+            </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
     
     </xs:element>
+    
   </xs:all>
 </xs:complexType>
 
@@ -430,6 +456,15 @@
       </xsd:documentation>
     </xsd:annotation>
     </xs:attribute>
+    <xs:attribute name="labelname" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Optional together with labelid. The name of the another surface as reference to an existing connectome-surface
+      that contains the label array. Always use in conjunction with labelid. This can
+      be used for a separate Gifti file containing e.g. only label information.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
     <xs:attribute name="labelid" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
@@ -441,25 +476,27 @@
       </xsd:documentation>
     </xsd:annotation>
     </xs:attribute>
-    <xs:attribute name="labelname" type="xs:string">
-    <xsd:annotation xml:lang="en">
-      <xsd:documentation>
-      Optional. The name of the another surface as reference to an existing connectome-surface
-      that contains the label array. Always use in conjunction with labelid. This can
-      be used for a separate Gifti file containing e.g. only label information.
-      </xsd:documentation>
-    </xsd:annotation>
-    </xs:attribute>
 </xs:complexType>
+
 <xs:complexType name="networkvolumetype">    
     <xs:attribute name="name" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      The name of the volume as reference to an existing connectome-volume
+      The name of the volume as reference to an existing connectome-volume.
+      The connectome-volume can be of any dtype.
       </xsd:documentation>
     </xsd:annotation>
     </xs:attribute>
+    <xs:attribute name="segmentationname" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Optional. The name of a connectome-volume with dtype segmentation that specifies
+      a segmentation of the volume referenced by name. The voxel dimensions have to match.
+    </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
 </xs:complexType>
+
 <xs:complexType name="networktracktype">    
     <xs:attribute name="name" type="xs:string">
     <xsd:annotation xml:lang="en">
