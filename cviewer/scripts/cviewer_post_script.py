@@ -59,7 +59,7 @@ def install():
     cviewer = pjoin(scripts, 'connectomeviewer.py')
     print "Creating Shortcut"
     link = pjoin(cv_start_menu, 'ConnectomeViewer.lnk')
-    cmd = '"%s"' % cviewer
+    cmd = '"%s -v"' % cviewer
     mkshortcut(python,'ConnectomeViewer BETA',link,cmd)
     print "Done."
     #import win32api
