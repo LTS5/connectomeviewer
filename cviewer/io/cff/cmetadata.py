@@ -40,6 +40,9 @@ class CMetadata(HasTraits):
     # Description of the content of the File
     description = Str
     
+    # Additional data defined as metadata
+    data = DictStrAny
+    
     # Group
     infogroup = Group(
       Item( 'version', style = 'readonly', label = 'CFF Version:'),
@@ -51,7 +54,7 @@ class CMetadata(HasTraits):
       Item( '_'),
       Item( 'species', style = 'readonly', label = 'Species:'),
       Item( 'legal_notice', style = 'readonly', label = 'Legal Notice:'),
-      Item( 'reference', style = 'readonly', label = 'References:'),
+      Item( 'reference', style = 'readonly', label = 'Reference:'),
       Item( 'url', style = 'readonly', label = 'URL:'),
       spring,
       Item( 'description', style = 'custom', show_label=False, springy=True,\
@@ -71,8 +74,14 @@ class CMetadata(HasTraits):
         """ Parses the xml string """
         if not xmlstring is None:
             # invoke the parser
-            self.parse_meta_xml(xmlstring)
-            # XXX: validate xml with schema?
+            
+            # validate the xml file with the connectome.xsd schema
+            from validator import validate_metaxml
+            
+            if validate_metaxml(xmlstring):
+                self.parse_meta_xml(xmlstring)
+            else:
+                raise RuntimeError('Can not validate meta.xml from connectome file.')
 
     def parse_meta_xml(self, xmlstring):
         """ Parses the given file and returns True if all Traits are set.
@@ -95,35 +104,40 @@ class CMetadata(HasTraits):
                 self.version = child.attrib['version']
                 for mchildren in child.iterchildren():
                     if mchildren.tag == (nsprefix + 'generator'):
-                      if not mchildren.text is None:
-                        self.generator = mchildren.text
+                        if not mchildren.text is None:
+                            self.generator = mchildren.text
                     elif mchildren.tag == (nsprefix + 'initial-creator'):
-                      if not mchildren.text is None:
-                        self.initial_creator = mchildren.text
+                        if not mchildren.text is None:
+                            self.initial_creator = mchildren.text
                     elif mchildren.tag == (nsprefix + 'creation-date'):
-                      if not mchildren.text is None:
-                        self.creation_date = mchildren.text
+                        if not mchildren.text is None:
+                            self.creation_date = mchildren.text
                     elif mchildren.tag == (nsprefix + 'modification-date'):
-                      if not mchildren.text is None:
-                        self.modification_date = mchildren.text
+                        if not mchildren.text is None:
+                            self.modification_date = mchildren.text
                     elif mchildren.tag == (nsprefix + 'name'):
-                      if not mchildren.text is None:
-                        self.name = mchildren.text
+                        if not mchildren.text is None:
+                            self.name = mchildren.text
                     elif mchildren.tag == (nsprefix + 'species'):
-                      if not mchildren.text is None:
-                        self.species = mchildren.text
+                        if not mchildren.text is None:
+                            self.species = mchildren.text
                     elif mchildren.tag == (nsprefix + 'legal-notice'):
-                      if not mchildren.text is None:
-                        self.legal_notice = mchildren.text
-                    elif mchildren.tag == (nsprefix + 'references'):
-                      if not mchildren.text is None:
-                        self.reference = mchildren.text
+                        if not mchildren.text is None:
+                            self.legal_notice = mchildren.text
+                    elif mchildren.tag == (nsprefix + 'reference'):
+                        if not mchildren.text is None:
+                            self.reference = mchildren.text
                     elif mchildren.tag == (nsprefix + 'url'):
-                      if not mchildren.text is None:
-                        self.url = mchildren.text
+                        if not mchildren.text is None:
+                            self.url = mchildren.text
                     elif mchildren.tag == (nsprefix + 'description'):
-                      if not mchildren.text is None:
-                        self.description = mchildren.text
+                        if not mchildren.text is None:
+                            self.description = mchildren.text
+                    elif mchildren.tag == (nsprefix + 'metadata'):
+                        for dchild in mchildren.iterchildren():
+                            if dchild.tag == (nsprefix + 'data'):
+                                if not dchild.text is None:
+                                    self.data[dchild.attrib['key']] = dchild.text
                     else:
-                        print 'Tag %s not found in meta.xml' % mchildren.tag
+                        print 'Tag %s not valid in meta.xml!' % mchildren.tag
         

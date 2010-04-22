@@ -36,7 +36,7 @@ class CFile(HasTraits):
     # Private traits
     #######################################
     
-    # Reference to the source connectome file with ending .cff
+    # Absolute file system path to the source connectome file with ending .cff
     _src = File
     
     #######################################
@@ -73,7 +73,7 @@ class CFile(HasTraits):
         
         cvolume.set(_cfilesrc = self._src)
         
-        if not cvolume.name is None and not cvolume.name == '':
+        if self._valid_name(cvolume.name):
             self.cvolumes[cvolume.name] = cvolume
         else:
             raise RuntimeError('Connectome Volume name is not valid!')
@@ -97,7 +97,7 @@ class CFile(HasTraits):
         
         csurface.set(_cfilesrc = self._src)
         
-        if not csurface.name is None and not csurface.name == '':
+        if self._valid_name(csurface.name):
             self.csurfaces[csurface.name] = csurface
         else:
             raise RuntimeError('Connectome Surface name is not valid!')
@@ -118,7 +118,7 @@ class CFile(HasTraits):
         
         ctrack.set(_cfilesrc = self._src)
         
-        if not ctrack.name is None and not ctrack.name == '':
+        if self._valid_name(ctrack.name):
             self.ctracks[ctrack.name] = ctrack
         else:
             raise RuntimeError('Connectome Track name is not valid!')
@@ -136,4 +136,17 @@ class CFile(HasTraits):
         # XXX to implement
         pass
     
+    def print_summary(self):
+        """ Outputs a summary of the current state of the connectome file """
+        # XXX: to implement
+        # metadata info, number and name of netw, surf, vol, tracks and which
+        # ones are currently loaded in memory
+        pass
     
+    def _valid_name(self, name):
+        """ Makes a validation check for the name """
+        
+        if not name is None and not name == '':
+            return True
+        else:
+            return False

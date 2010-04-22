@@ -79,6 +79,7 @@ def load(filename, *args, **kwargs):
         cfile.add_csurface(csur)
     
     # add networks with references to tracks, volumes, surfaces and metadata
+    # XXX
     
     return cfile
 
