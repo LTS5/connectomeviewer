@@ -5,7 +5,7 @@ cd $fullp
 
 echo "Type username to download ConnectomeViewer:"
 read usern
-echo "Type password to download ConnecctomeViewer:"
+echo "Type password to download ConnectomeViewer:"
 read passw
 
 # This removes Ubuntu Packages with are not uptodate
@@ -19,9 +19,9 @@ yum install python-pip numpy scipy python-devel ipython vtk vtk-devel swig pytho
 sudo pip install ETSProjectTools
 
 # You can also directly download an archive
-wget --user=$usern --password=$passw  http://www.connectomeviewer.org/files/ETS_3.3.1.tar.gz
 mkdir ETS
 cd ETS
+wget --user=$usern --password=$passw  http://www.connectomeviewer.org/files/ETS_3.3.1.tar.gz
 tar xzf ETS_3.3.1.tar.gz
 sudo ets develop
 cd ..
