@@ -1,4 +1,4 @@
-recursive-include cviewer *.png *.ico *.gii *.ini *.so *.txt *.dll *.sql *.html *.csv
+recursive-include cviewer *.png *.ico *.gii *.ini *.so *.txt *.dll *.sql *.html *.csv *.c *.pyx
 include *.txt
 prune examples
 prune datasets

@@ -20,6 +20,7 @@
 # Standard library imports
 import sys
 import os.path
+import os
 
 # Enthought library imports
 from enthought.traits.api import (HasTraits, Instance, Int, on_trait_change)
@@ -66,6 +67,11 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
         # add ch to logger
         logger.addHandler(ch)
 
+    dirname = os.path.dirname(fname)
+    # check if files exists, if not open it
+    if not(os.path.exists(dirname)):
+	os.makedirs(dirname)
+        
     filehandler = logging.handlers.RotatingFileHandler(fname, maxBytes=1000000, backupCount=4)
     filehandler.setLevel(mode)
     filehandler.setFormatter(formatter)

@@ -54,7 +54,17 @@ setup(
             'connectomeviewer = cviewer.run:main',
             ],
         },
-   # install_requires = ["networkx==1.0", ],
+    install_requires = ["networkx >= 1.1",
+                        "h5py >= 1.3.0",
+                        "EnvisageCore >= 3.1.2",
+                        "TraitsBackendWX >= 3.2.1",
+                        "Mayavi >= 3.3.1",
+                        "EnvisagePlugins >= 3.1.2",
+                        "EnthoughtBase >= 3.0.4",
+                        "TraitsGUI >= 3.1.1",
+                        "Traits >= 3.2.1",
+                        "Chaco >= 3.2.1"
+                        ],
     license = "GPLv3",
     long_description = """The ConnectomeViewer is a extensible, scriptable, pythonic software tool for visualization
 and analysis in structural neuroimaging research on many spatial scales. Employing the
