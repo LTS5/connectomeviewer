@@ -5,7 +5,7 @@ cd $fullp
 
 echo "Type username to download ConnectomeViewer:"
 read usern
-echo "Type password to download ConnecctomeViewer:"
+echo "Type password to download ConnectomeViewer:"
 read passw
 
 # This removes Ubuntu Packages with are not uptodate
@@ -41,9 +41,9 @@ sudo pip install ETSProjectTools
 # Checking out "AppTools==3.3.1" source from "https://svn.enthought.com/svn/enthought/AppTools/trunk"
 
 # You can also directly download an archive
-wget --user=$usern --password=$passw  http://www.connectomeviewer.org/files/ETS_3.3.1.tar.gz
 mkdir ETS
 cd ETS
+wget --user=$usern --password=$passw  http://www.connectomeviewer.org/files/ETS_3.3.1.tar.gz
 tar xzf ETS_3.3.1.tar.gz
 sudo ets develop
 cd ..
