@@ -13,7 +13,7 @@ sudo yum remove python-AppTools python-EnvisageCore python-EnvisagePlugins pytho
 
 # This adds required packages, including header files for compilation
 sudo yum update python
-yum install python-pip numpy scipy python-devel ipython vtk vtk-devel swig python-configobj libXtst libXtst-devel freeglut freeglut-devel python-matplotlib python-lxml Cython qscintilla-python python-sphinx wxPython wxPython-devel subversion gcc gcc-c++ libXt libXt-devel libX11-devel
+yum install python-pip numpy scipy python-devel ipython vtk vtk-devel swig python-configobj libXtst libXtst-devel freeglut freeglut-devel python-matplotlib python-lxml Cython qscintilla-python python-sphinx wxPython wxPython-devel subversion gcc gcc-c++ libXt libXt-devel libX11-devel hdf5 hdf5-devel
 
 # We need the Enthought Toolstack
 sudo pip install ETSProjectTools
