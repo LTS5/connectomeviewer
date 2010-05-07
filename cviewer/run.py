@@ -26,6 +26,18 @@ import logging
 # ConnectomeViewer imports
 from cviewer.app import CViewer
 
+# Testing for corrext wxversion
+# Try forcing the use of wx 2.8 before any other import.
+import sys
+if not 'wx' in sys.modules:
+    try:
+        from enthought.etsconfig.api import ETSConfig
+        if ETSConfig.toolkit in ('wx', ''):
+            import wxversion
+            wxversion.ensureMinimal('2.8')
+    except ImportError:
+        """ wxversion not installed or not 2.8 or higher"""
+
 ##########################################################################
 # `CViewerApp` class
 ##########################################################################
