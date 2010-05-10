@@ -34,6 +34,8 @@ CFFVIEW = 'cviewer.plugins.cff.ui.cff_view.CFFView'
 # This module's package.
 PKG = '.'.join(__name__.split('.')[:-1])
 
+from welcome.perspective import WelcomePerspective
+
 # Logging imports
 import logging
 logger = logging.getLogger('root.'+__name__)
@@ -64,7 +66,7 @@ class ViewerPerspective(Perspective):
     
         # The contents of the perspective. Add the views here with position
         contents = [
-            PerspectiveItem(id=CFFVIEW, position='left'),
+            PerspectiveItem(id=CFFVIEW, position='left', width=0.2),
             PerspectiveItem(id=SHELL_VIEW, position='bottom', height=0.2),
             # XXX: deactivate mayavi views per default as not to confuse end-users too much
             #PerspectiveItem(id=ENGINE_VIEW),
@@ -134,12 +136,15 @@ class CViewerUIPlugin(Plugin):
     def _views_default(self):
         """ Trait initialiser.
         """
-        return [self._engine_view_factory,
-                self._current_selection_view_factory]
+        from welcome.welcome_view import WelcomeView
+        
+        return [WelcomeView,
+                self._engine_view_factory,
+                self._current_selection_view_factory,]
 
     def _perspectives_default(self):
         """ Trait initializer. """
-        return [ViewerPerspective]
+        return [WelcomePerspective, ViewerPerspective]
 
     #def _banner_default(self):
     #    """Trait initializer """
@@ -148,6 +153,7 @@ class CViewerUIPlugin(Plugin):
     def _action_sets_default(self):
         """ Trait initializer. """
         from cviewer_ui_action_set import CViewerUIActionSet
+        
         return [CViewerUIActionSet]
 
     def _preferences_default(self):
