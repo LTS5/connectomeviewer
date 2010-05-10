@@ -41,7 +41,7 @@ External code
 * Mayavi2. Partly modified files. Prabhu Ramachandran and Gael Varoquaux.
 * Neuroimaging in Python (NiPy). IO ImageFormats. NIPY Developers.
 * Diffusion in Python. Eleftherios Garyfallidis, Matthew Brett et al.
-
+* Puddle (WelcomePerspective) by Richard W. Lincoln
 
 =======
 License

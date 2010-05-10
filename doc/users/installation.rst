@@ -29,10 +29,11 @@ Take first a look at the respective scripts in order to understand what they do.
 
     sh ./install_cviewer_ubuntu.sh > logfile.txt
 
-* Start the ConnectomeViewer with in verbose mode::
+* Start the ConnectomeViewer in verbose mode::
 
     connectomeviewer -v
 
+.. On first startup, a directory is created in your home folder (*$HOME/.enthought/ch.connectome.viewer*) to store the logfile and window settings. If the first startup was as root, you do not have write permission in this folder, leading to a *Permission Error*. Simply remove this folder (*sudo rm -rf $HOME/.enthought/ch.connectome.viewer/*) and start ConnectomeViewer again as user.
 
 Step-by-Step Guide for Installation on Windows
 ----------------------------------------------
