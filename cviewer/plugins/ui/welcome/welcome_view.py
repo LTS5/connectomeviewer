@@ -27,17 +27,27 @@
 #  Imports:
 #------------------------------------------------------------------------------
 
+# Logging imports
+import logging
+logger = logging.getLogger('root.'+__name__)
+
+import warnings
+warnings.simplefilter('ignore', UserWarning)
+# ignore UserWarning that occur with the FontManager of Enable
+
 from os.path import exists, dirname, join
 from enthought.traits.api import Instance, File, Event, Str, Font, Color
 from enthought.traits.ui.api import View, Item, TreeEditor
 from enthought.pyface.image_resource import ImageResource
 from enthought.pyface.workbench.api import View as WorkbenchView
-from enthought.enable.api import Viewport, Canvas, Component, Pointer
+
+from enthought.enable.api import Viewport, Canvas, Component, Pointer   
 from enthought.enable.component_editor import ComponentEditor
 from enthought.kiva.backend_image import Image as KivaImage
 from enthought.kiva.fonttools.font import str_to_font
-
 from enthought.enable.colors import ColorTrait
+
+    #logger.warning('UserWarning occured: ' + uw)
 
 from cviewer.action.common import IMAGE_PATH
 
@@ -259,7 +269,7 @@ class WelcomeView(WorkbenchView):
         workbench.on_trait_change(self._on_workbench, "selected")
 
         app_name = "Select ConnectomeViewer Perspective ..." #self.window.application.name
-        title = RelativeText(text=app_name, font="DEFAULT 20",
+        title = RelativeText(text=app_name, # font="DEFAULT 20",
             font_color="black", bounds=[66, 66])
 
         canvas = Canvas(bgcolor="white")
