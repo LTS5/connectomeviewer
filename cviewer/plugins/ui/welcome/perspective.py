@@ -34,7 +34,7 @@ from enthought.pyface.workbench.api import Perspective, PerspectiveItem
 #------------------------------------------------------------------------------
 
 class WelcomePerspective(Perspective):
-    """ Defines the Puddle welcome perspective.
+    """ Defines the ConnectomeViewer WelcomePerspective
     """
 
     # The perspective's unique identifier (unique within a workbench window).
@@ -52,56 +52,3 @@ class WelcomePerspective(Perspective):
     # The contents of the perspective:
     contents = [PerspectiveItem(id="cviewer.plugins.cff.ui.cff_view.welcome_view",
                     position="left", width=1.0)]
-
-#------------------------------------------------------------------------------
-#  "DefaultPerspective" class:
-#------------------------------------------------------------------------------
-
-class DefaultPerspective(Perspective):
-    """ Defines the default perspective.
-    """
-
-    # The perspective's unique identifier (unique within a workbench window).
-    id = "puddle.perspective.default_perspective"
-
-    # The perspective's name.
-    name = "Default"
-
-    # The size of the editor area in this perspective. A value of (-1, -1)
-    # indicates that the workbench window should choose an appropriate size
-    # based on the sizes of the views in the perspective.
-    editor_area_size = Tuple((400, 400))
-
-    # Is the perspective enabled?
-    enabled = True
-
-    # Should the editor area be shown in this perspective:
-    show_editor_area = True
-
-    # The contents of the perspective:
-    contents = [
-        PerspectiveItem(
-            id="puddle.resource.resource_view",
-            position="left", width=0.2
-        ),
-        PerspectiveItem(
-            id="enthought.plugins.python_shell_view",
-            position="bottom", height=0.2
-        ),
-        PerspectiveItem(
-            id="enthought.logger.plugin.view.logger_view.LoggerView",
-            position="with", height=0.2,
-            relative_to="enthought.plugins.python_shell_view"
-        ),
-        PerspectiveItem(
-            id="puddle.property_view.property_view",
-            position="right", width=0.2,
-        ),
-        PerspectiveItem(
-            id="enthought.plugins.ipython_shell.namespace_view",
-            position="with", width=0.2,
-            relative_to="puddle.property_view.property_view"
-        ),
-    ]
-
-# EOF -------------------------------------------------------------------------
