@@ -12,26 +12,26 @@ Step-by-Step Guide for Installation on Linux (Ubuntu, Fedora)
 -------------------------------------------------------------
 
 The Python Version 2.6 is needed. The installation procedure including installation of required packages,
-downloading of sources, and compilation is automated by scripts for Ubuntu and Fedora distributions.
+downloading of sources, and compilation is automated by a sh-script.
 Take first a look at the respective scripts in order to understand what they do.
 
-* Download the installation script for your Linux Distribution: `Ubuntu 9.10 or higher <http://github.com/unidesigner/connectomeviewer/raw/development/scripts/install_cviewer_ubuntu.sh>`_ or `Fedora 11 or higher <http://github.com/unidesigner/connectomeviewer/raw/development/scripts/install_cviewer_fedora.sh>`_
+* Download the `installation script <http://github.com/unidesigner/connectomeviewer/raw/development/scripts/install_cviewer.sh>`_ (Ubuntu 9.10 or higher / Fedora 11 or higher supported)
 
-* You need to make the installation file executable (for Fedora, replace _ubuntu with _fedora)::
+* You need to make the installation file executable::
 
-    chmod +x install_cviewer_ubuntu.sh
+    chmod +x install_cviewer.sh
     
-* Start the installation and compilation (for Fedora, replace _ubuntu with _fedora)::
+* Start the installation and compilation ::
 
-    sh ./install_cviewer_ubuntu.sh
-
-* If there are errors during the script execution, generate a log file and send an email it to `info[at]connectomics.org <mailto:info[at]connectomics.org>`_::
-
-    sh ./install_cviewer_ubuntu.sh > logfile.txt
+    sh ./install_cviewer.sh
 
 * Start the ConnectomeViewer in verbose mode::
 
     connectomeviewer -v
+
+* If there are errors during the script execution, generate a log file and send it together with the startup logfile via email to `info[at]connectomics.org <mailto:info[at]connectomics.org>`_::
+
+    sh ./install_cviewer.sh > logfile.txt
 
 .. On first startup, a directory is created in your home folder (*$HOME/.enthought/ch.connectome.viewer*) to store the logfile and window settings. If the first startup was as root, you do not have write permission in this folder, leading to a *Permission Error*. Simply remove this folder (*sudo rm -rf $HOME/.enthought/ch.connectome.viewer/*) and start ConnectomeViewer again as user.
 
