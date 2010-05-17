@@ -85,6 +85,14 @@
       </xsd:documentation>
     </xsd:annotation>
     </xs:element>
+   
+   <xs:element name="institution" type="xs:string" minOccurs="1">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Institution/Organisation the data was generated or the authors are associated with
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:element>
     
    <xs:element name="creation-date" type="xs:date" minOccurs="1">
     <xsd:annotation xml:lang="en">

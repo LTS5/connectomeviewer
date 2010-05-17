@@ -269,7 +269,7 @@ class WelcomeView(WorkbenchView):
         workbench.on_trait_change(self._on_workbench, "selected")
 
         app_name = "Select ConnectomeViewer Perspective ..." #self.window.application.name
-        title = RelativeText(text=app_name, # font="DEFAULT 20",
+        title = RelativeText(text=app_name, font="DEFAULT 16",
             font_color="black", bounds=[66, 66])
 
         canvas = Canvas(bgcolor="white")
