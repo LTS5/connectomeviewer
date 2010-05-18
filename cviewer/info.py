@@ -46,6 +46,8 @@ envisageplugins_min_version = '3.1.2'
 enthoughtbase_min_version = '3.0.4'
 traitsgui_min_version = '3.1.1'
 chaco_min_version = '3.2.1'
+lxml_min_version = '2.2.6'
+pymysql_min_version = '0.2'
 
 # these can be done safely
 traits_min_version = '3.2.1'

@@ -8,6 +8,9 @@ import numpy as np
 from build_helpers import make_cython_ext, package_check, INFO_VARS
 
 # Hard and soft dependency checking
+# XXX: When things could be easily installed with install_requires, why have it here?
+# Also: with the installation script, required packages (h5py,cython,...) are installed from the web
+
 package_check('scipy', INFO_VARS['scipy_min_version'])
 package_check('networkx', INFO_VARS['networkx_min_version'])
 
@@ -91,7 +94,8 @@ setup(
                         "EnvisagePlugins >= 3.1.2",
                         "EnthoughtBase >= 3.0.4",
                         "TraitsGUI >= 3.1.1",
-                        "Chaco >= 3.2.1"
+                        "Chaco >= 3.2.1",
+                        "lxml >= 2.2.6"
                         ],
     license = "GPLv3",
     long_description = INFO_VARS['long_description'],
