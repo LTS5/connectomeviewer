@@ -3,6 +3,8 @@
 from ctrack import CTrack
 from cvolume import CVolume
 from csurface import CSurface
+from ctimeserie import CTimeserie
+
 #from cnetwork import CNetwork
   # labelname connectome-surface must be of dtype="label"
   # segmentationname connectome-volume must be of dtype="segmentation"

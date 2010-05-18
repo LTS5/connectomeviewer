@@ -16,7 +16,8 @@ class CVolume(HasTraits):
     fileformat = Enum('nifti')
     
     # data type
-    dtype = Enum('segmentation', 'T1-weighted', 'T2-weighted', 'fMRI')
+    dtype = Enum('segmentation', 'T1-weighted', 'T2-weighted', 'PD-weighted', \
+                 'fMRI', 'probabilitymap', 'MD', 'FA', 'LD', 'TD')
     
     # description
     description = Str

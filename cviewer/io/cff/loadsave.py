@@ -9,6 +9,7 @@ Dependencies
 ------------
 * lxml
 * NetworkX
+* Nibabel (Nifti, Gifti IO)
 * NiPy (for Nifti IO)
 * DiPy (for TrackVis IO)
 * ConnectomeViewer (for Gifti IO)
@@ -77,6 +78,11 @@ def load(filename, *args, **kwargs):
     surdict = util.parse_surface(metadata_string)
     for name,csur in surdict.items():
         cfile.add_csurface(csur)
+    
+    # add timeseries, lazy load data
+    timedict = util.parse_timeserie(metadata_string)
+    for name,tser in timedict.items():
+        cfile.add_ctimeserie(tser)
     
     # add networks with references to tracks, volumes, surfaces and metadata
     # XXX

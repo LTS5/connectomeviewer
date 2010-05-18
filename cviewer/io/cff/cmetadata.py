@@ -16,6 +16,9 @@ class CMetadata(HasTraits):
     # Initial creator
     initial_creator = Str
     
+    # Institution
+    institution = Str
+    
     # Creation date
     creation_date = Str
     
@@ -49,6 +52,7 @@ class CMetadata(HasTraits):
       Item( 'generator', style = 'readonly', label = 'Generator:'),
       Item( 'name', style = 'readonly', label = 'Short Name:'),
       Item( 'initial_creator', style = 'readonly', label = 'Initial Creator:'),
+      Item( 'institution', style = 'readonly', label = 'Institution:'),
       Item( 'creation_date', style = 'readonly', label = 'Creation Date'),
       Item( 'modification_date', style = 'readonly', label = 'Modification Date'),
       Item( '_'),
@@ -109,6 +113,9 @@ class CMetadata(HasTraits):
                     elif mchildren.tag == (nsprefix + 'initial-creator'):
                         if not mchildren.text is None:
                             self.initial_creator = mchildren.text
+                    elif mchildren.tag == (nsprefix + 'institution'):
+                        if not mchildren.text is None:
+                            self.institution = mchildren.text
                     elif mchildren.tag == (nsprefix + 'creation-date'):
                         if not mchildren.text is None:
                             self.creation_date = mchildren.text
