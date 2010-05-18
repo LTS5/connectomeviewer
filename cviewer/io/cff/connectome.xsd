@@ -61,6 +61,15 @@
         Networks can reference to the track file using the name attribute.
         </xsd:documentation>
       </xsd:annotation>
+      </xs:element>
+      
+      <xs:element name="connectome-timeserie" type="timeseriestype" minOccurs="0" maxOccurs="unbounded">
+      <xsd:annotation xml:lang="en">
+        <xsd:documentation>
+        A list of timeserie files. The timeseries files are defined using the HDF format. No data source is created in the ConnectomeViewer so far, but
+        the data is exposed and can be used for analysis and visualization. Networks can reference to the timeseries file using the name attribute.
+        </xsd:documentation>
+      </xsd:annotation>
       </xs:element>        
 
    </xs:sequence>
@@ -226,7 +235,15 @@
             </xsd:documentation>
           </xsd:annotation>
           </xs:element>
-          
+
+          <xs:element name="network-timeserie" type="networktimeserietype" minOccurs="0" maxOccurs="unbounded">
+          <xsd:annotation xml:lang="en">
+            <xsd:documentation>
+            Reference to the connectome-timeserie using the name attribute. The timeserie file must exist in the archive.
+            </xsd:documentation>
+          </xsd:annotation>
+          </xs:element>
+
           <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1">
             <xsd:annotation xml:lang="en">
              <xsd:documentation>
@@ -412,6 +429,7 @@
     </xs:element>
     
   </xs:all>
+  
     <xs:attribute name="name" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
@@ -439,6 +457,47 @@
     </xs:attribute>
     
 </xs:complexType>
+
+<xs:complexType name="timeseriestype">
+
+  <xs:all>
+    <xs:element name="description" type="xs:string" minOccurs="0">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Description of the content of the file, e.g what type of time series data it contains.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:element>
+    
+  </xs:all>
+  
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Name of the timeseries.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="src" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The relative path to the timeseries HDF file within the archive.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+    <xs:attribute name="fileformat" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      Set tp "hdf-5" to use the only supported Hierarchical Data File format.
+      The HDF5 allows to store any number of time series or other large homogenous data.
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+    
+</xs:complexType>
+
 
 <xs:complexType name="moremetadatatype">
   <xs:all>
@@ -497,6 +556,8 @@
       with the matching labelid in the metadata. Number of vertices of the
       referenced surface and the label array dimension must match (one label for
       each vertices)
+      
+      XXX: Probably better to use the LabelTable tag in Gifti?
       </xsd:documentation>
     </xsd:annotation>
     </xs:attribute>
@@ -514,7 +575,7 @@
     <xs:attribute name="segmentationname" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      Optional. The name of a connectome-volume with dtype segmentation that specifies
+      Optional. The name of a connectome-volume that has dtype=segmentation. It specifies
       a segmentation of the volume referenced by name. The voxel dimensions have to match.
     </xsd:documentation>
     </xsd:annotation>
@@ -530,5 +591,17 @@
     </xsd:annotation>
     </xs:attribute>
 </xs:complexType>
+
+<xs:complexType name="networktimeserietype">    
+    <xs:attribute name="name" type="xs:string">
+    <xsd:annotation xml:lang="en">
+      <xsd:documentation>
+      The name of the timeserie as reference to an existing connectome-timeserie
+      </xsd:documentation>
+    </xsd:annotation>
+    </xs:attribute>
+</xs:complexType>
+
+
 
 </xs:schema>

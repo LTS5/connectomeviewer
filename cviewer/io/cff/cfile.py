@@ -32,6 +32,9 @@ class CFile(HasTraits):
     # Dictionary of ctrack instances keyed by name
     ctracks = DictStrAny
     
+    # Dictionary of ctimeserie instances keyed by name
+    ctimeseries = DictStrAny
+    
     #######################################
     # Private traits
     #######################################
@@ -129,6 +132,14 @@ class CFile(HasTraits):
         # remove data from memory, setting _cfilesrc to None
         # remove ctrack from ctracks
         
+        pass
+    
+    def add_ctimeserie(self, ctimeserie):
+        """ Add connectome time serie """
+        pass
+    
+    def remove_ctimeserie(self, ctimeserie):
+        """ Remove connectome time serie """
         pass
     
     def to_filename(self, filename):
