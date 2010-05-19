@@ -490,7 +490,7 @@
     <xs:attribute name="fileformat" type="xs:string">
     <xsd:annotation xml:lang="en">
       <xsd:documentation>
-      Set tp "hdf-5" to use the only supported Hierarchical Data File format.
+      Set tp "hdf5" to use the only supported Hierarchical Data File format.
       The HDF5 allows to store any number of time series or other large homogenous data.
       </xsd:documentation>
     </xsd:annotation>
