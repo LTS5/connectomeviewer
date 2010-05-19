@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<connectome xmlns="http://www.connectomics.ch/2010/Connectome/xmlns"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://www.connectomics.ch/2010/Connectome/xmlns connectome.xsd">
+
+<connectome-meta version="2.0">
+  <generator>DSI2CFF Converter</generator>
+  <initial-creator>Stephan Gerhard</initial-creator>
+  <institution>EPFL and UNIL-CHUV</institution>
+  <creation-date>2009-06-20</creation-date>
+  <modification-date>2010-04-12</modification-date>
+  <name>Single subject connectivity</name>
+  <species>Homo sapiens</species>
+  <legal-notice>Creative Commons Attribution License 3.0</legal-notice>
+  <reference>Unpublished dataset</reference>
+  <url>http://www.connectomeviewer.org/</url>
+  <description>This file contains connectivity data of a single male subject processed with the Connectome Mapping Pipeline developed at EPFL/LTS5.</description>
+  <metadata>
+    <data key="nr_networks">5</data>
+  </metadata>
+</connectome-meta>
+
+<connectome-network name="Network Lausanne83" src="Networks/network_res83.graphml" dtype="ANetwork">
+  <network-metadata>
+    <data key="resolution">83</data>
+  </network-metadata>
+  <network-surface name="Individual surfaces" labelname="Label Source" labelid="Resolution 83" />
+  <network-surface name="template_atlas_homo_sapiens_01" labelname="Label Source" labelid="Resolution 83" />
+  <network-volume name="T1-weighted single subject" segmentationname="Volume ROIs Resolution 83" />
+  <network-track name="Tractography" />
+  <network-timeserie name="Generated timeseries data" />
+  <description>This network contains a network with 83 nodes. It contains references to several other
+  data sources in different modalities that are in this connectome file.</description>
+</connectome-network>
+<connectome-network name="Network Lausanne150" src="Networks/network_res150.graphml" dtype="ANetwork">
+  <network-surface name="Individual surfaces" labelname="Label Source"  labelid="Resolution 150" />
+  <network-surface name="template_atlas_homo_sapiens_01" labelname="Label Source" labelid="Resolution 150" />
+  <network-volume name="Volume ROIs Resolution 150" />
+  <network-track name="Tractography" />
+</connectome-network>
+<connectome-network name="Network Lausanne258" src="Networks/network_res258.graphml" dtype="ANetwork">
+  <network-surface name="Individual surfaces" labelname="Label Source"  labelid="Resolution 258" />
+  <network-surface name="template_atlas_homo_sapiens_01" labelname="Label Source"  labelid="Resolution 258" />
+  <network-volume name="Volume ROIs Resolution 258" />
+  <network-track name="Tractography" />
+</connectome-network>
+<connectome-network name="Network Lausanne500" src="Networks/network_res500.graphml" dtype="ANetwork">
+  <network-surface name="Individual surfaces" labelname="Label Source"  labelid="Resolution 500" />
+  <network-surface name="template_atlas_homo_sapiens_01" labelname="Label Source"  labelid="Resolution 500" />
+  <network-volume name="Volume ROIs Resolution 500" />
+  <network-track name="Tractography" />
+</connectome-network>
+<connectome-network name="Network Lausanne1015" src="Networks/network_res1015.graphml" dtype="ANetwork">
+  <network-surface name="Individual surfaces" labelname="Label Source"  labelid="Resolution 1015" />
+  <network-surface name="template_atlas_homo_sapiens_01" labelname="Label Source"  labelid="Resolution 1015" />
+  <network-volume name="Volume ROIs Resolution 1015" />
+  <network-track name="Tractography" />
+</connectome-network>
+
+<connectome-surface name="Individual surfaces" src="Surfaces/testsubject.gii" fileformat="gifti" dtype="surfaceset" />
+<connectome-surface name="Label Source" src="Surfaces/testsubject_labels.gii" fileformat="gifti" dtype="label"><description>Contains the labeling of the Freesurfer Average Mesh</description></connectome-surface>
+<connectome-volume name="T1-weighted single subject" src="Volumes/T1.nii.gz" fileformat="nifti" dtype="T1-weighted"><description>The T1-weighted single scan of the subject.</description></connectome-volume>
+<connectome-volume name="Volume ROIs Resolution 83" src="Volumes/ROI_scale33.nii" fileformat="nifti" dtype="segmentation"><description>The segmentation of the brain in voxel-format.</description></connectome-volume>
+<connectome-volume name="Volume ROIs Resolution 150" src="Volumes/ROI_scale60.nii" fileformat="nifti" dtype="segmentation"><description>The segmentation of the brain in voxel-format.</description></connectome-volume>
+<connectome-volume name="Volume ROIs Resolution 258" src="Volumes/ROI_scale125.nii" fileformat="nifti" dtype="segmentation"><description>The segmentation of the brain in voxel-format.</description></connectome-volume>
+<connectome-volume name="Volume ROIs Resolution 500" src="Volumes/ROI_scale250.nii" fileformat="nifti" dtype="segmentation"><description>The segmentation of the brain in voxel-format.</description></connectome-volume>
+<connectome-volume name="Volume ROIs Resolution 1015" src="Volumes/ROI_scale500.nii" fileformat="nifti" dtype="segmentation"><description>The segmentation of the brain in voxel-format.</description></connectome-volume>
+<connectome-track name="Tractography" src="Tracks/fibers_transformed.trk" fileformat="trackvis"><description>The track file for visualisation in Trackvis.</description></connectome-track>
+<connectome-timeserie name="Generated timeseries data" src="Timeseries/generatedseries.hdf5" fileformat="hdf5"><description>83 generated 10Hz time series with Gaussian noise and different phase lags corresponding to the 83 network nodes in Network Lausanne83.</description></connectome-timeserie>
+
+</connectome>
