@@ -41,11 +41,13 @@ Step-by-Step Guide for Installation on Windows
 .. note:: ConnectomeViewer should work for all Windows Versions (except Windows 7). It was tested with Windows XP.
 
 * Install the recent EPD_ (License: Academic, Option: Just for me). It is free for academic purposes, see button at the bottom of the page.
-* Then you need to open a Command prompt (*Start->Run: cmd*)
+* To access HDF5 files, we need H5Py, you `install it from here <http://code.google.com/p/h5py/downloads/list>`_
 * Install ConnectomeViewer executable `(from the download page) <http://www.connectomeviewer.org/users/download>`_
 * Either select the ConnectomeViewer from the Startmenu (Connectome->ConnectomeViewer) or open a Command Prompt and type::
 
     connectomeviewer -v
+
+* You can `download example datasets <http://connectomeviewer.org/viewer/datasets>`_. Make sure that they end with *.cff* (however they are regular ZIP archives).
 
 If you encounter any problems, please send an email to `info AT connectomics.org <mailto:infoATconnectomics.org>`_!
 
