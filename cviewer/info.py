@@ -50,12 +50,12 @@ lxml_min_version = '2.2.6'
 pymysql_min_version = '0.2'
 
 # these can be done safely
-traits_min_version = '3.2.1'
-networkx_min_version = '1.1'
-mayavi_min_version = '3.3.1'
+traits_min_version = '3.2.0'
+networkx_min_version = '1.0'
+mayavi_min_version = '3.3.0'
 h5py_min_version = '1.3.0'
 scipy_min_version = '0.5'
-cython_min_version = '0.12.1'
+cython_min_version = '0.12'
 
 # dipy_min_version = ''
 # nibabel_min_version = ''
