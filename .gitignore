@@ -1,3 +1,4 @@
+*.bin
 *.log
 *.pyc
 *.kpf
@@ -8,3 +9,4 @@ build/
 dist/
 ConnectomeViewer.egg-info/
 datasets/
+datasets_v2/

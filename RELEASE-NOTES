@@ -1,5 +1,15 @@
 ConnectomeViewer
 
+Version 0.2.0 (DATE)
+
+
+Version 0.1.7 - BETA (May 25th 2010)
+
+* Updated installation script for Ubuntu and Fedora
+* Addition of WelcomePerspective
+* Better checking for dependency
+* Bugfixes for Windows
+
 Version 0.1.6 - BETA
 
 * Added more tutorials to the documentation.

@@ -20,9 +20,13 @@
 # Standard library imports
 import sys
 import os.path
+import os
 
 # Enthought library imports
 from enthought.traits.api import (HasTraits, Instance, Int, on_trait_change)
+from enthought.etsconfig.api import ETSConfig
+
+from enthought.logger.api import LogFileHandler, FORMATTER
 
 # ConnectomeViewer imports
 from cviewer.cviewer_workbench_application import CViewerWorkbenchApplication
@@ -49,7 +53,39 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
         The logging mode of the stream handler.
     
     """
+    if not os.path.isabs(fname):
+        path = os.path.join(ETSConfig.application_data, fname)
+    else:
+        path = fname
     
+    create_file_handler = True
+    # check if path exists
+    dirname = os.path.dirname(path)
+    
+    if not(os.path.exists(dirname)):
+        try:
+            os.makedirs(dirname)           
+        except OSError:
+            #logger.error('Can not create path to store the log file.')
+            create_file_handler = False
+
+    # check if path is writable
+    if not os.access(dirname, os.W_OK):
+        print "==========================================="
+        print "The application data path is not writable: ", dirname
+        print "Please remove it with:"
+        print "sudo rm -rf " + dirname
+        print "and re-run the ConnectomeViewer with:"
+        print "connectomeviewer -v"
+        print "==========================================="
+        raise Exception("PermissionError")
+
+    # check if files exists, if not open it
+    if not(os.path.exists(path)):
+        # XXX add try catch
+        file = open(path, 'w')
+        file.close()
+        
     # setting the logging level
     logger.setLevel(mode)
 
@@ -66,29 +102,35 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
         # add ch to logger
         logger.addHandler(ch)
 
-    filehandler = logging.handlers.RotatingFileHandler(fname, maxBytes=1000000, backupCount=4)
-    filehandler.setLevel(mode)
-    filehandler.setFormatter(formatter)
-    logger.addHandler(filehandler)
 
-    # does this fix the  
-    # no handlers could be found for logger "enthought.envisage.plugin"
-    logger_envisage.addHandler(filehandler)
-    logger_ipython.addHandler(filehandler)
-    logger_pyface.addHandler(filehandler)
-    logger_pyfaceview.addHandler(filehandler)
+    if create_file_handler:
+        filehandler = logging.handlers.RotatingFileHandler(path, maxBytes=1000000, backupCount=4)
+        
+        filehandler.setLevel(mode)
+        filehandler.setFormatter(formatter)
+        logger.addHandler(filehandler)
+        logger_envisage.addHandler(filehandler)
+
+        # does this fix the  
+        # no handlers could be found for logger "enthought.envisage.plugin"
+    
+        logger_ipython.addHandler(filehandler)
+        logger_pyface.addHandler(filehandler)
+        logger_pyfaceview.addHandler(filehandler)
     
     import datetime
     import sys
     dt = datetime.datetime.now()
     outdate = dt.strftime("%A, %d. %B %Y %I:%M%p")
     logger.info("*"*5)
-    logger.info("logfile:")
-    logger.info("'%s'", os.path.abspath(fname))
+    if create_file_handler:
+        logger.info("logfile:")
+        logger.info("'%s'", os.path.abspath(path))
     logger.info("python executable:")
     logger.info("%s", sys.executable )
     logger.info("python version:")
-    logger.info("%s", sys.version)
+    logger.info("%s", sys.version.replace('\n', ''))
+    logger.info("execution date and time:")
     logger.info("%s", outdate)
     logger.info("*"*5)
 
@@ -158,6 +200,9 @@ def get_cviewer_plugins():
 
     plugins = []
 
+    logger.info('Plugins')
+    logger.info('*******')
+
     from cviewer.plugins.cff.cff_plugin import ConnectomeFilePlugin
     # add ConnectomeFile plugin
     plugins.insert(0, ConnectomeFilePlugin())
@@ -184,8 +229,8 @@ def get_cviewer_plugins():
     logger.info('Added sLORETA Converter Plugin')
 
     # add DiPy plugin
-    dipy_works = True
     try:
+        dipy_works = True
         from cviewer.plugins.dipy.dipy_plugin import DipyPlugin
     except ImportError:
         dipy_works = False
@@ -267,9 +312,11 @@ class CViewer(HasTraits):
     def setup_logger(self):
         """ Setting up the root logger """
         from enthought.etsconfig.api import ETSConfig
+        
         path = os.path.join(ETSConfig.application_data,
                             'ch.connectome.viewer', 'cviewer.log')
         path = os.path.abspath(path)
+        
         setup_logger(logger, path, mode=self.log_mode)
 
     def parse_command_line(self, argv):

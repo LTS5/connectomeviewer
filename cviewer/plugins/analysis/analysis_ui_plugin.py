@@ -62,6 +62,8 @@ class AnalysisPerspective(Perspective):
         contents = [
             PerspectiveItem(id=SHELL_VIEW, position='bottom', height=0.2),
             PerspectiveItem(id=ANALYSIS_VIEW, position='left'),
+            PerspectiveItem(id="enthought.plugins.ipython_shell.namespace_view",
+                            position="right", width=0.2)
             #PerspectiveItem(id=PLOTVIEW1, position='left'),
             
             #PerspectiveItem(id=LOGGER_VIEW, position='with', 

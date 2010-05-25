@@ -4,63 +4,36 @@
 Download and Installation
 ==========================
 
-.. note:: Please use the `Download Page <http://www.connectomeviewer.org>`_ to get access to the download area.
+.. note:: Download the `source code <http://www.connectomeviewer.org/users/download>`_ used for the installation. Please register following `this link. <http://www.connectomeviewer.org/users/register>`_
           The ConnectomeViewer is currently BETA and released to the public. 32bit and 64bit architectures are supported.
 
 
-Step-by-Step Guide for Installation on Linux (Ubuntu)
------------------------------------------------------
+Step-by-Step Guide for Installation on Linux (Ubuntu, Fedora)
+-------------------------------------------------------------
 
-.. note:: This guide explains the necessary steps to install on a fresh Ubuntu 9.10 version with all updates.
+The Python Version 2.6 is needed. The installation procedure including installation of required packages,
+downloading of sources, and compilation is automated by a sh-script.
+Take first a look at the respective scripts in order to understand what they do.
 
-We use the default Python version 2.6. This guide is partly derived from `ETS install instructions <https://svn.enthought.com/enthought/wiki/Build>`_.
+* Download the `installation script <http://github.com/unidesigner/connectomeviewer/raw/development/scripts/install_cviewer.sh>`_ (Ubuntu 9.10 or higher / Fedora 11 or higher supported)
 
-* Start a Terminal: Applications -> Accessories -> Terminal
+* You need to make the installation file executable::
 
-* Following packages are required::
-
-    sudo apt-get remove mayavi2 python-enthoughtbase python-enthought-chaco2 python-enthought-traits python-enthought-traits-ui python-apptools python-chaco python-envisageplugins
-    sudo apt-get install subversion python-setuptools libvtk5.2 python-vtk python-numpy python-wxversion python2.6-dev python-sphinx g++ swig python-configobj glutg3 glutg3-dev libxtst-dev ipython python-lxml python-matplotlib python-qscintilla2 cython gcc
-
-* We need the Enthought Tool Suite first. Install first the helper::
-
-    sudo easy_install ETSProjectTools
+    chmod +x install_cviewer.sh
     
-* Now checkout the sources to a permanent location. We are going to install ETS in a way that allows to update it easily later on::
-    
-    ets co ETS
-    
-* Now install the sources to the Python distribution as root::
-    
-    cd ETS_3.3.1/
-    sudo ets develop
+* Start the installation and compilation ::
 
-* Install NetworkX for network analysis::
+    sh ./install_cviewer.sh
 
-    sudo easy_install networkx
-    
-* Install PyMySQL for MySQL connectivity (optional)::
-
-    sudo easy_install PyMySQL
-
-* From the `Download Page <http://www.connectomeviewer.org/users/download>`_, download the recent sourcefile (ending *.tar.gz*)
-
-* Change to the folder where you downloaded the source, and extract it (update the version)::
-
-    tar xzf ConnectomeViewer-0.X.X.tar.gz
-
-* Finally, you can install ConnectomeViewer with::
-
-    cd ConnectomeViewer-0.X.X
-    sudo python setup.py install
-
-* Start the ConnectomeViewer with::
+* Start the ConnectomeViewer in verbose mode::
 
     connectomeviewer -v
-  
-Now the ConnectomeViewer application should start up. The first start-up is usually slow.
-If you encounter any problems, please send an email to `info[at]connectomics.org <mailto:info[at]connectomics.org>`_!
 
+* If there are errors during the script execution, generate a log file and send it together with the startup logfile via email to `info[at]connectomics.org <mailto:info[at]connectomics.org>`_::
+
+    sh ./install_cviewer.sh > logfile.txt
+
+.. On first startup, a directory is created in your home folder (*$HOME/.enthought/ch.connectome.viewer*) to store the logfile and window settings. If the first startup was as root, you do not have write permission in this folder, leading to a *Permission Error*. Simply remove this folder (*sudo rm -rf $HOME/.enthought/ch.connectome.viewer/*) and start ConnectomeViewer again as user.
 
 Step-by-Step Guide for Installation on Windows
 ----------------------------------------------
@@ -68,15 +41,13 @@ Step-by-Step Guide for Installation on Windows
 .. note:: ConnectomeViewer should work for all Windows Versions (except Windows 7). It was tested with Windows XP.
 
 * Install the recent EPD_ (License: Academic, Option: Just for me). It is free for academic purposes, see button at the bottom of the page.
-* Then you need to open a Command prompt (*Start->Run: cmd*)
-* Install PyMySQL for MySQL connectivity::
-
-    easy_install PyMySQL
-
+* To access HDF5 files, we need H5Py, you `install it from here <http://code.google.com/p/h5py/downloads/list>`_
 * Install ConnectomeViewer executable `(from the download page) <http://www.connectomeviewer.org/users/download>`_
 * Either select the ConnectomeViewer from the Startmenu (Connectome->ConnectomeViewer) or open a Command Prompt and type::
 
     connectomeviewer -v
+
+* You can `download example datasets <http://connectomeviewer.org/viewer/datasets>`_. Make sure that they end with *.cff* (however they are regular ZIP archives).
 
 If you encounter any problems, please send an email to `info AT connectomics.org <mailto:infoATconnectomics.org>`_!
 
