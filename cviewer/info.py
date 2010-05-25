@@ -2,8 +2,8 @@
 
 This script should do no imports.  It only defines variables.
 '''
-version = '0.1.6'
-is_release = False
+version = '0.1.7'
+is_release = True
 
 long_description = \
 """

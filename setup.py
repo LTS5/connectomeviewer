@@ -68,7 +68,7 @@ tvol_ext, cmdclass = make_cython_ext(
 
 setup(
     name = 'ConnectomeViewer',
-    version = '0.1.6',
+    version = INFO_VARS['version'],
     author = "Stephan Gerhard",
     author_email = "stephan.gerhard@epfl.ch",
     classifiers = [c.strip() for c in """\

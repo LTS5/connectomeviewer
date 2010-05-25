@@ -63,7 +63,7 @@ echo "===================================================================="
 echo "Add required Fedora packages, including header files for compilation"
 echo "===================================================================="
 sudo yum update python
-sudo yum install python-pip numpy scipy python-devel ipython vtk vtk-devel swig python-configobj libXtst libXtst-devel freeglut freeglut-devel python-matplotlib python-lxml Cython qscintilla-python python-sphinx wxPython wxPython-devel subversion gcc gcc-c++ libXt libXt-devel libX11-devel hdf5 hdf5-devel
+sudo yum install python-pip numpy scipy python-devel ipython vtk vtk-devel swig python-configobj libXtst libXtst-devel freeglut freeglut-devel python-matplotlib python-lxml Cython qscintilla-python python-sphinx wxPython wxPython-devel subversion gcc gcc-c++ libXt libXt-devel libX11-devel hdf5 hdf5-devel python-setuptools-devel
   ;;
 
           * )
@@ -109,7 +109,7 @@ sudo easy_install networkx
 echo "=========="
 echo "... Cython"
 echo "=========="
-sudo easy_install cython
+sudo easy_install Cython
 
 echo "==============="
 echo "... h5py (HDF5)"
@@ -124,9 +124,9 @@ sudo easy_install http://pymysql.googlecode.com/files/PyMySQL-0.2-py2.6.egg
 echo "========================================="
 echo "Download and install the ConnectomeViewer"
 echo "========================================="
-wget http://www.connectomeviewer.org/files/ConnectomeViewer-0.1.6.tar.gz
-tar xzf ConnectomeViewer-0.1.6.tar.gz
-cd ConnectomeViewer-0.1.6
+wget http://www.connectomeviewer.org/files/ConnectomeViewer-0.1.7.tar.gz
+tar xzf ConnectomeViewer-0.1.7.tar.gz
+cd ConnectomeViewer-0.1.7
 sudo python setup.py install
 cd ..
 
@@ -136,10 +136,11 @@ cd ..
 echo "==================================================="
 echo "The script went through. Errors might have occured."
 echo ""
-echo "Try to start ConnectomeViewer with typing:"
-echo " connectomeviewer -v"
+echo "Try to start ConnectomeViewer:"
+echo " connectomeviewer"
 echo "If the ConnectomeViewer does not work properly, please re-run this installation script with:"
 echo " sh ./install_cviewer.sh > logfile.txt"
-echo "and send the logfile.txt and the ConnectomeViewer startup logfile to info@connectomics.org. Thank you!"
+echo "and send the logfile.txt and the ConnectomeViewer startup logfile generated with:"
+echo " connectomeviewer -v"
+echo "to info@connectomics.org. Thank you!"
 echo "============================================================="
-
