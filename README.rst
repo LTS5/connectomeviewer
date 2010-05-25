@@ -2,8 +2,8 @@
 ConnectomeViewer
 ================
 
-The ConnectomeViewer for the Visualization and Analysis of Multi-Modal Multi-Scale Network
-and Neuroimaging Data with Python
+ConnectomeViewer - A Framework for the Visualization and Analysis of Multi-Modal Multi-Scale Network
+and Neuroimaging Data in Python
 
 The ConnectomeViewer is a extensible, scriptable, pythonic software tool for visualization
 and analysis in neuroimaging research on many spatial scales. Employing the Connectome File
@@ -41,7 +41,7 @@ External code
 * Mayavi2. Partly modified files. Prabhu Ramachandran and Gael Varoquaux.
 * Neuroimaging in Python (NiPy). IO ImageFormats. NIPY Developers.
 * Diffusion in Python. Eleftherios Garyfallidis, Matthew Brett et al.
-
+* Puddle (WelcomePerspective Code) by Richard W. Lincoln
 
 =======
 License

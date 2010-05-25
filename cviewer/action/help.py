@@ -55,7 +55,7 @@ class Bugfix(Action):
 
     def perform(self, event):
         """ Performs the action. """
-        browser_open(url='https://bugs.launchpad.net/connectomeviewer', decorated = True)
+        browser_open(url='http://github.com/unidesigner/connectomeviewer/issues', decorated = True)
 
 class Keybindings(Action):
     """ An action that creates a temporary html file to show the key bindings.. """

@@ -14,7 +14,7 @@
 
 # Enthought library import
 from enthought.traits.api import HasTraits, Str, Color, Button, Bool, Int, Instance, List, Float, Any, Enum, Range, DictStrList
-from enthought.traits.ui.api import View, Item, Group, InstanceEditor, Handler
+from enthought.traits.ui.api import View, Item, Group, InstanceEditor, Handler, Tabbed
 
 # ConnectomeViewer imports
 from cviewer.plugins.cff.interfaces.i_network import INetwork
@@ -67,8 +67,7 @@ class ParaSet(HasTraits):
         label = 'Legend'
     )
 
-    traits_view = View(Group(
-                        Group(
+    traits_view = View(Tabbed(
                         absolute_group,
                         proportional_group,
                         counting_group,
@@ -76,7 +75,6 @@ class ParaSet(HasTraits):
                         ),
                        Item('_'),
                        legend_group,
-                       )
                     )
     
     def update_prop_percentage(self, old, new):
