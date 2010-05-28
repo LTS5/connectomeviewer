@@ -50,7 +50,7 @@ sudo apt-get remove mayavi2 python-enthoughtbase python-enthought-chaco2 python-
 echo "===================================================================="
 echo "Add required Ubuntu packages, including header files for compilation"
 echo "===================================================================="
-sudo apt-get install subversion python-setuptools libvtk5.2 python-vtk python-numpy python-wxversion python2.6-dev python-sphinx g++ swig python-configobj glutg3 glutg3-dev libxtst-dev ipython python-lxml python-matplotlib python-qscintilla2 gcc scons python-xlib pyqt4-dev-tools python-scipy python-pyrex python-all-dev libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8
+sudo apt-get install subversion python-setuptools libvtk5.2 python-vtk python-numpy python-wxversion python2.6-dev python-sphinx g++ swig python-configobj glutg3 glutg3-dev libxtst-dev ipython python-lxml python-matplotlib python-qscintilla2 gcc scons python-xlib pyqt4-dev-tools python-scipy python-pyrex python-all-dev libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8 python-h5py
   ;;
 
   "F" | "f" | "Fedora" | "fedora" )
@@ -63,7 +63,7 @@ echo "===================================================================="
 echo "Add required Fedora packages, including header files for compilation"
 echo "===================================================================="
 sudo yum update python
-sudo yum install python-pip numpy scipy python-devel ipython vtk vtk-devel swig python-configobj libXtst libXtst-devel freeglut freeglut-devel python-matplotlib python-lxml Cython qscintilla-python python-sphinx wxPython wxPython-devel subversion gcc gcc-c++ libXt libXt-devel libX11-devel hdf5 hdf5-devel python-setuptools-devel
+sudo yum install python-pip numpy scipy python-devel ipython vtk vtk-devel swig python-configobj libXtst libXtst-devel freeglut freeglut-devel python-matplotlib python-lxml Cython qscintilla-python python-sphinx wxPython wxPython-devel subversion gcc gcc-c++ libXt libXt-devel libX11-devel hdf5 hdf5-devel python-setuptools-devel python-h5py
   ;;
 
           * )
@@ -110,11 +110,6 @@ echo "=========="
 echo "... Cython"
 echo "=========="
 sudo easy_install Cython
-
-echo "==============="
-echo "... h5py (HDF5)"
-echo "==============="
-sudo pip install h5py
 
 echo "==========="
 echo "... PyMySQL"
