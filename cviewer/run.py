@@ -90,7 +90,7 @@ def main():
         sys.path.insert(0, '')
     # to prevent a bug (?) on 64 bit machines
     # we need to import the gifti libraries before the main loop
-    import cviewer.io.gifti.gifti as gifti
+    #import cviewer.io.gifti.gifti as gifti
     
     cviewer = CViewerApp()
     cviewer.main(sys.argv[1:])

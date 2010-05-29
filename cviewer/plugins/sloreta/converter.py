@@ -554,7 +554,7 @@ def tstatistics2graphml(rootfolder, nr_rois, name = None, \
                        measure = None, freq_bands = None, el_cord_file = None):
     """ Converts sLORETA t-statistic files into GraphML
 	Naming convention: name-measure.txt
-	E.g. EEGLaggedConn-A-B.txt
+	E.g. A-B-EEGLaggedConn.txt
         
     """
     
