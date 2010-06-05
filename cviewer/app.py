@@ -31,6 +31,7 @@ from enthought.logger.api import LogFileHandler, FORMATTER
 # ConnectomeViewer imports
 from cviewer.cviewer_workbench_application import CViewerWorkbenchApplication
 from cviewer.plugins.ui.preference_manager import preference_manager
+from cviewer.info import version as ver
 
 # Logger imports
 import logging, logging.handlers
@@ -124,14 +125,11 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
     outdate = dt.strftime("%A, %d. %B %Y %I:%M%p")
     logger.info("*"*5)
     if create_file_handler:
-        logger.info("logfile:")
-        logger.info("'%s'", os.path.abspath(path))
-    logger.info("python executable:")
-    logger.info("%s", sys.executable )
-    logger.info("python version:")
-    logger.info("%s", sys.version.replace('\n', ''))
-    logger.info("execution date and time:")
-    logger.info("%s", outdate)
+        logger.info("logfile: %s" % os.path.abspath(path))
+    logger.info("cviewer version: %s " % ver)
+    logger.info("python executable: %s" % sys.executable)
+    logger.info("python version: %s" % sys.version.replace('\n', ''))
+    logger.info("execution date and time: %s" % outdate)
     logger.info("*"*5)
 
 def get_non_gui_plugin_classes():

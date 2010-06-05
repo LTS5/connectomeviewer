@@ -172,16 +172,16 @@ class SurfaceContainer(HasTraits):
             # TODO: improve: Gifti file might have only Primary structure!
             # DO: only take secondary structure names for surfaces!
             
-            #if array.getMeta().has_key('AnatomicalStructurePrimary') and \
-            #    array.getMeta().has_key('AnatomicalStructureSecondary'):
+            #if array.get_meta_as_dict().has_key('AnatomicalStructurePrimary') and \
+            #    array.get_meta_as_dict().has_key('AnatomicalStructureSecondary'):
             
-            if array.getMeta().has_key('AnatomicalStructureSecondary'):
+            if array.get_meta_as_dict().has_key('AnatomicalStructureSecondary'):
                 
-                prim = array.getMeta()['AnatomicalStructurePrimary']
-                sec = array.getMeta()['AnatomicalStructureSecondary']
+                prim = array.get_meta_as_dict()['AnatomicalStructurePrimary']
+                sec = array.get_meta_as_dict()['AnatomicalStructureSecondary']
                 
-                if array.getMeta().has_key('Description'):
-                    desc = array.getMeta()['Description']
+                if array.get_meta_as_dict().has_key('Description'):
+                    desc = array.get_meta_as_dict()['Description']
                     
                 logger.debug('Found a structure in the Gifti file as surface:')
                 logger.debug('Primary: '+prim+' Secondary: '+sec)
@@ -253,9 +253,9 @@ class SurfaceContainer(HasTraits):
         """ Returns an array giving the intensityvalues for each verticesid """
         for array in self._label.getArraysFromIntent(gifti.GiftiIntentCode.NIFTI_INTENT_LABEL):
             
-            if array.getMeta().has_key('labelid'):
+            if array.get_meta_as_dict().has_key('labelid'):
                 
-                labelid_fromfile = array.getMeta()['labelid']
+                labelid_fromfile = array.get_meta_as_dict()['labelid']
                 
                 if self._labelid == labelid_fromfile:
                     # the labelid given in the meta.xml and the
@@ -299,12 +299,12 @@ class SurfaceContainer(HasTraits):
                     # TODO: it might be enough to say that only the primary structure match is enough!
                     # check if primary and secondary match
                     # if so, get this data array, loop to find triangle set and break
-                    if array.getMeta()['AnatomicalStructurePrimary'] == primary and \
-                        array.getMeta()['AnatomicalStructureSecondary'] == secondary :
+                    if array.get_meta_as_dict()['AnatomicalStructurePrimary'] == primary and \
+                        array.get_meta_as_dict()['AnatomicalStructureSecondary'] == secondary :
                         # loop triangleset array
                         for array2 in self._surface.getArraysFromIntent(gifti.GiftiIntentCode.NIFTI_INTENT_TRIANGLE):
-                            if array2.getMeta()['AnatomicalStructurePrimary'] == primary and \
-                                array2.getMeta()['AnatomicalStructureSecondary'] == secondary:
+                            if array2.get_meta_as_dict()['AnatomicalStructurePrimary'] == primary and \
+                                array2.get_meta_as_dict()['AnatomicalStructureSecondary'] == secondary:
                                 daF = array2.data
                                 break
                             
