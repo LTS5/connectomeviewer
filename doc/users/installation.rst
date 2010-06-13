@@ -40,7 +40,7 @@ Step-by-Step Guide for Installation on Windows
 
 .. note:: ConnectomeViewer should work for all Windows Versions (except Windows 7). It was tested with Windows XP.
 
-* Install the recent EPD_ (License: Academic, Option: Just for me). It is free for academic purposes, see button at the bottom of the page.
+* Install the recent EPD_ (License: Academic, Option: Install for all users). It is free for academic purposes, see button at the bottom of the page.
 * To access HDF5 files, we need H5Py, you `install it from here <http://code.google.com/p/h5py/downloads/list>`_
 * Install ConnectomeViewer executable `(from the download page) <http://www.connectomeviewer.org/users/download>`_
 * Either select the ConnectomeViewer from the Startmenu (Connectome->ConnectomeViewer) or open a Command Prompt and type::
