@@ -127,6 +127,7 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
     if create_file_handler:
         logger.info("logfile: %s" % os.path.abspath(path))
     logger.info("cviewer version: %s " % ver)
+    # logger.info("cviewer executable: %s " % str(__main__))
     logger.info("python executable: %s" % sys.executable)
     logger.info("python version: %s" % sys.version.replace('\n', ''))
     logger.info("execution date and time: %s" % outdate)
