@@ -32,6 +32,7 @@ def read_data_block(encoding, endian, ordering, datatype, shape, data):
         
     elif encoding == 2:
         # GIFTI_ENCODING_B64BIN
+        print len(data)
         dec = base64.decodestring(data)
         dt = GiftiType2npyType[datatype]
         sh = tuple(shape)
@@ -287,7 +288,7 @@ def parse_gifti_file(fname):
     img = None
     parser = ParserCreate()
     parser.buffer_text = True
-    parser.buffer_size = 5000000
+    parser.buffer_size = 10000000
     HANDLER_NAMES = [
     'StartElementHandler', 'EndElementHandler',
     'CharacterDataHandler',
