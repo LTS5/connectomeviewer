@@ -42,3 +42,11 @@ Apart from Connectomics research being done at mesoscale level, there are plenty
 of efforts to map wiring diagrams on the microscale levels, i.e. the cellular level.
 
 * `Introduction to Connectomics <http://hebb.mit.edu/courses/connectomics/>`_ by Sebastian Seung et al.
+
+* `CATMAID Project <http://fly.mpi-cbg.de/~saalfeld/catmaid/>`
+
+========
+Posters
+========
+
+* `OHBM 2010 - ConnectomeViewer - Multi-Modal Multi-Level Network Visualization and Analysis in Python <http://www.connectome.ch/documentation/_static/pdf/ohbm2010_poster.pdf>`_
