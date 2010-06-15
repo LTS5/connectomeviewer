@@ -151,7 +151,16 @@ class Network(HasTraits):
             elif not graph is None:
                 self.graph = graph
             else:
-                logger.error('Cannot initialize network. No graph information available')
+                
+                if self.directed:
+                    from networkx import DiGraph
+                    self.graph = DiGraph()
+                    logger.info("Initialize with empty directed Graph")
+                else:
+                    from networkx import Graph
+                    self.graph = Graph()
+                    logger.info("Initialize with empty undirected Graph")
+                
                 
         # initializes the weight key of the graph
         # with the first edgekey
