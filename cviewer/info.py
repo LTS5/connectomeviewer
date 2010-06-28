@@ -53,7 +53,7 @@ pymysql_min_version = '0.2'
 traits_min_version = '3.2.0'
 networkx_min_version = '1.0'
 mayavi_min_version = '3.3.0'
-h5py_min_version = '1.3.0'
+h5py_min_version = '1.2.0'
 scipy_min_version = '0.5'
 cython_min_version = '0.12'
 
