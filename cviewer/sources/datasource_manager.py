@@ -283,7 +283,7 @@ class DatasourceManager(HasTraits):
                 # FIXME: to check if in range [0,255] or float [0.,1.]
                 from numpy import array
                 if isinstance(str_code, tuple):
-                    return np.array(rgblist)
+                    return np.array(str_code)
                     
                 str_code = str(str_code)
                 if str_code.count(',') == 2 or str_code.count(',') == 3:

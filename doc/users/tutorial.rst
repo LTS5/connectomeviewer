@@ -9,6 +9,7 @@
    
    tutorials/tut_basicinter
    tutorials/tut_addnet
+   tutorials/tut_matlabnet
    tutorials/tut_graphlayout
    tutorials/tut_createcff
    tutorials/tut_pyconto
