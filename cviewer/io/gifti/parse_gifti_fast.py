@@ -288,7 +288,7 @@ def parse_gifti_file(fname):
     img = None
     parser = ParserCreate()
     parser.buffer_text = True
-    parser.buffer_size = 10000000
+    parser.buffer_size = 15000000
     HANDLER_NAMES = [
     'StartElementHandler', 'EndElementHandler',
     'CharacterDataHandler',

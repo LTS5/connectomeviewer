@@ -14,10 +14,10 @@ from build_helpers import make_cython_ext, package_check, INFO_VARS
 package_check('scipy', INFO_VARS['scipy_min_version'])
 package_check('networkx', INFO_VARS['networkx_min_version'])
 
-def _h5py_version(pkg_name):
-    from h5py import version
-    return version.version
-package_check('h5py', INFO_VARS['h5py_min_version'],version_getter=_h5py_version)
+#def _h5py_version(pkg_name):
+#    from h5py import version
+#    return version.version
+#package_check('h5py', INFO_VARS['h5py_min_version'],version_getter=_h5py_version)
 
 def _may_version(pkg_name):
     from enthought.mayavi import version
