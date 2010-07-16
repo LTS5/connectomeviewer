@@ -119,9 +119,9 @@ sudo easy_install http://pymysql.googlecode.com/files/PyMySQL-0.2-py2.6.egg
 echo "========================================="
 echo "Download and install the ConnectomeViewer"
 echo "========================================="
-wget http://www.connectomeviewer.org/files/ConnectomeViewer-0.1.7.tar.gz
-tar xzf ConnectomeViewer-0.1.7.tar.gz
-cd ConnectomeViewer-0.1.7
+wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.8.tar.gz
+tar xzf ConnectomeViewer-0.1.8.tar.gz
+cd ConnectomeViewer-0.1.8
 sudo python setup.py install
 cd ..
 
