@@ -35,26 +35,22 @@ Take first a look at the respective scripts in order to understand what they do.
 
 .. On first startup, a directory is created in your home folder (*$HOME/.enthought/ch.connectome.viewer*) to store the logfile and window settings. If the first startup was as root, you do not have write permission in this folder, leading to a *Permission Error*. Simply remove this folder (*sudo rm -rf $HOME/.enthought/ch.connectome.viewer/*) and start ConnectomeViewer again as user.
 
-Step-by-Step Guide for Installation on Windows
-----------------------------------------------
-
-.. note:: ConnectomeViewer should work for all Windows Versions (except Windows 7). It was tested with Windows XP.
-
-* Install the recent EPD_ (License: Academic, Option: Install for all users). It is free for academic purposes, see button at the bottom of the page.
-* To access HDF5 files, we need H5Py, you `install it from here <http://code.google.com/p/h5py/downloads/list>`_
-* Install ConnectomeViewer executable `(from the download page) <http://www.connectomeviewer.org/users/download>`_
-* Either select the ConnectomeViewer from the Startmenu (Connectome->ConnectomeViewer) or open a Command Prompt and type::
-
-    connectomeviewer -v
-
-* You can `download example datasets <http://connectomeviewer.org/viewer/datasets>`_. Make sure that they end with *.cff* (however they are regular ZIP archives).
-
-If you encounter any problems, please send an email to `info AT connectomics.org <mailto:infoATconnectomics.org>`_!
+.. Step-by-Step Guide for Installation on Windows
+.. ----------------------------------------------
+.. * Install the recent EPD_ (License: Academic, Option: Install for all users). It is free for academic purposes, see button at the bottom of the page.
+.. * To access HDF5 files, we need H5Py, you `install it from here <http://code.google.com/p/h5py/downloads/list>`_
+.. * Install ConnectomeViewer executable `(from the download page) <http://www.connectomeviewer.org/users/download>`_
+.. * Either select the ConnectomeViewer from the Startmenu (Connectome->ConnectomeViewer) or open a Command Prompt and type::
+..     connectomeviewer -v
+.. * You can `download example datasets <http://connectomeviewer.org/viewer/datasets>`_. Make sure that they end with *.cff* (however they are regular ZIP archives).
+.. If you encounter any problems, please send an email to `info AT connectomics.org <mailto:infoATconnectomics.org>`_!
 
 .. include:: ../links_names.txt
 
 Step-by-Step Guide for Installation on Other Platforms
 ------------------------------------------------------
+
+.. note:: Currently, the support for a Windows installer has been dropped. But you can install `VirtualBox <http://www.virtualbox.org/wiki/Downloads>`_ and a recent `Ubuntu <http://www.ubuntu.com/desktop/get-ubuntu/download>`_ and then carry out the steps above.
 
 If you managed to make the ConnectomeViewer work on your platform,
 `please inform us <mailto:infoATconnectomics.org>`_ and we make the instructions available here.
