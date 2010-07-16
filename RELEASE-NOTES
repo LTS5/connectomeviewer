@@ -2,6 +2,12 @@ ConnectomeViewer
 
 Version 0.2.0 (DATE)
 
+Version 0.1.8 - BETA (July 16th 2010)
+
+* Replaced Gifti support by a pure Python solution (to be integrated into Nibabel)
+* Improvements on the installation scripts and dependency management
+* Dropped installation support for Windows
+* Minor bugfixes
 
 Version 0.1.7 - BETA (May 25th 2010)
 
