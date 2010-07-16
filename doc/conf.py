@@ -72,9 +72,9 @@ copyright = '2010, EPFL & UNIL-CHUV'
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = '0.1.7 BETA'
+version = '0.1.8 BETA'
 # The full version, including alpha/beta/rc tags.
-release = '0.1.7 BETA'
+release = '0.1.8 BETA'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
