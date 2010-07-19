@@ -9,4 +9,5 @@ build/
 dist/
 ConnectomeViewer.egg-info/
 datasets/
-datasets_v2/
+
+cviewer/libs/joblib/
