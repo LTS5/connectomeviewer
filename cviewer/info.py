@@ -78,8 +78,8 @@ mayavi_min_version = '3.3.0' # mayavi2
 # python-apptools (3.3.0), python-enthought-traits (3.1.0), python-numpy (1.3.0)
 
 # outdated or not available
-pymysql_min_version = '0.2' 
-networkx_min_version = '1.0' # is out-dated
+pymysql_min_version = '0.2' # not available
+networkx_min_version = '1.0' # python-network (0.99)
 cython_min_version = '0.12' # cython (0.11.2)
 
 
