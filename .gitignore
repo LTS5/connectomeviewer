@@ -1,13 +1,10 @@
 *.bin
 *.log
 *.pyc
-*.kpf
 doc/_build/
 doc/build/
 doc/manual/
 build/
 dist/
 ConnectomeViewer.egg-info/
-datasets/
-
-cviewer/libs/joblib/
+cviewer/libs/
