@@ -106,9 +106,8 @@ setup(
     packages = find_packages(),
     include_package_data = True,
     package_dir={'cviewer': 'cviewer'},
-    scripts = [os.path.join('cviewer', 'scripts', 'cviewer_post_script.py'),
-               'connectomeviewer.py',
-               'build_helpers.py'],
+    scripts = [os.path.join('scripts','connectomeviewer.py'),
+               'build_helpers.py'], # do I need this?
     zip_safe = False,
     # From DiPy
     ext_modules = [per_ext,tvol_ext],

@@ -4,7 +4,6 @@ Overview of included libraries
 .. note: Remember to update the .gitignore in the root folder not to include the git repositories.
 Maybe one could use also git `submodules <http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules>`_ ?
 
-
 ''Criteria to decide whether a package is included here or as a dependency:''
 
 * Does the library add benefits for the neuroimaging researcher?
@@ -44,6 +43,20 @@ OpenMEEG
 --------
 URL : `http://www-sop.inria.fr/odyssee/software/OpenMEEG/`_
 
+
+Parallel Python
+---------------
+URL : `http://www.parallelpython.com`_
+
+PyConTo
+-------
+Python Connectome Toolbox
+
+* Includes Brain Connectivity Toolbox Python Wrappers
+* Network based statistics for case-control, task-control studies
+* Wrapper for CSSR, Spectral Graph Toolbox
+* Hierarchical Community Detection
+
 pbrain
 ------
 ???, is included in nipy
@@ -67,6 +80,11 @@ nibabel
 
 dipy
 ----
+Diffusion Imaging in Python
+
+Fos
+---
+Scientific 3D Visualization
 
 nipype
 ------

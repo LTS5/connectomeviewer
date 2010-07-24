@@ -40,8 +40,8 @@ class DipyPlugin(Plugin):
         """ Includes dipy in the python shell """
 
         return [
-            'from cviewer.plugins.dipy.core import track_metrics as tm', \
-            'from cviewer.plugins.dipy.viz import fos', \
-            'from cviewer.plugins.dipy.io import trackvis as tv', \
-            'from cviewer.plugins.dipy.core import track_performance as pf' ]
+            'from cviewer.libs.dipy.core import track_metrics as tm', \
+            'from cviewer.libs.dipy.viz import fos', \
+            'from cviewer.libs.dipy.io import trackvis as tv', \
+            'from cviewer.libs.dipy.core import track_performance as pf' ]
         
