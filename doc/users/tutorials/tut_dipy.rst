@@ -35,10 +35,10 @@ The DiPy library was integrated as-it-is in the ConnectomeViewer distribution. A
 a plugin was added to ConnectomeViewer exposing the DiPy functionality in the ConnectomeViewer
 Python Shell::
 
-    from cviewer.plugins.dipy.io import trackvis as tv
-    from cviewer.plugins.dipy.core import track_performance as pf
-    from cviewer.plugins.dipy.core import track_metrics as tm
-    from cviewer.plugins.dipy.viz import fos
+    from cviewer.libs.dipy.io import trackvis as tv
+    from cviewer.libs.dipy.core import track_performance as pf
+    from cviewer.libs.dipy.core import track_metrics as tm
+    from cviewer.libs.dipy.viz import fos
 
 During the installation procedure, you might have seen some compilation going on.
 DiPy uses the Cython extension to make some of the analysis methods running really fast.
