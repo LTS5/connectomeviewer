@@ -28,7 +28,6 @@ from enthought.mayavi.preferences.preference_manager import PreferenceManager
 
 # ConnectomeViewer imports
 from cviewer.plugins.ui.cviewer_ui_preferences_helper import CViewerUIPreferencesHelper
-from cviewer.plugins.cdb.connectomedb_preferences_page import ConnectomeDBPreferencesHelper
 
 # Logging import
 import logging
@@ -47,10 +46,7 @@ class CViewerPreferenceManager(PreferenceManager):
     
     # add the cviewer ui preferences
     cviewerui = Instance(PreferencesHelper)
-    
-    # add cdb preferences
-    cdb = Instance(PreferencesHelper)
-    
+        
     # The preferences.
     preferences = Instance(IPreferences)
 
@@ -68,10 +64,6 @@ class CViewerPreferenceManager(PreferenceManager):
                                 ),
                            Group(Item(name='cviewerui', style='custom'),
                                  show_labels=False, label='ConnectomeViewer',
-                                 show_border=True
-                                ),
-                           Group(Item(name='cdb', style='custom'),
-                                 show_labels=False, label='ConnectomeDatabase',
                                  show_border=True
                                 )
                            ),
@@ -95,10 +87,6 @@ class CViewerPreferenceManager(PreferenceManager):
         """Trait initializer."""
         return CViewerUIPreferencesHelper(preferences=self.preferences)
         
-    def _cdb_default(self):
-        """Trait initializer."""
-        return ConnectomeDBPreferencesHelper(preferences=self.preferences)
-
     def _load_preferences(self):
         """Load the default preferences."""
         # Save current application_home.

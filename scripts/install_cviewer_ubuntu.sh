@@ -50,11 +50,6 @@ echo "... Cython"
 echo "=========="
 sudo pip install Cython
 
-echo "==========="
-echo "... PyMySQL"
-echo "==========="
-sudo pip install http://pymysql.googlecode.com/files/PyMySQL-0.2-py2.6.egg
-
 echo "========================================="
 echo "Download and install the ConnectomeViewer"
 echo "========================================="
