@@ -15,7 +15,7 @@ class TextEditorActionSet(ActionSet):
     actions = [
         Action(
             id = "NewFileAction",
-            name = "New Text File",
+            name = "New Python File",
             class_name='cviewer.plugins.text_editor.actions.NewFileAction',
             group='TextFileGroup',
             path="MenuBar/File",
@@ -23,7 +23,7 @@ class TextEditorActionSet(ActionSet):
 
         Action(
             id = 'OpenFile',
-            name = "Open Text File ...",
+            name = "Open Python File ...",
             class_name='cviewer.plugins.text_editor.actions.OpenFileAction',
             group='TextFileGroup',
             path="MenuBar/File",
