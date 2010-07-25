@@ -262,20 +262,21 @@ class WelcomeView(WorkbenchView):
         logo = Image(image_file=logo_path, bounds=[100, 196],
             position=[25, 25])
 
-        workbench_path = join(IMAGE_PATH, "logos", "cviewer.jpg")
+        workbench_path = join(IMAGE_PATH, "logos", "cviewer2.jpg")
         
         workbench = RelativeImage(image_file=workbench_path, bounds=[128, 128],
                                   position=[0,0])
         workbench.on_trait_change(self._on_workbench, "selected")
 
-        app_name = "Select ConnectomeViewer Perspective ..." #self.window.application.name
-        title = RelativeText(text=app_name, font="DEFAULT 16",
-            font_color="black", bounds=[66, 66])
+#        app_name = "Select ConnectomeViewer Perspective ..." #self.window.application.name
+        
+#        title = RelativeText(text=app_name, font="DEFAULT 16",
+#            font_color="black", bounds=[66, 66])
 
         canvas = Canvas(bgcolor="white")
         canvas.add(logo)
         canvas.add(workbench)
-        canvas.add(title)
+#        canvas.add(title)
 
         return canvas
 

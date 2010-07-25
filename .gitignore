@@ -3,7 +3,7 @@
 *.pyc
 doc/_build/
 doc/build/
-doc/manual/
+doc/manual
 build/
 dist/
 ConnectomeViewer.egg-info/

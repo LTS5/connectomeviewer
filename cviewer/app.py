@@ -237,19 +237,6 @@ def get_cviewer_plugins():
         plugins.append(DipyPlugin())
         logger.info('Added Diffusion in Python (DiPy) Plugin')
     
-    try:
-        nomysql = False
-        # using Pure Python MySQL client
-        # http://code.google.com/p/pymysql/
-        import pymysql
-    except ImportError:
-        nomysql = True    
-    # add ConnectomeDatabase plugin
-    if not nomysql:
-        from cviewer.plugins.cdb.connectomedb_plugin import ConnectomeDBPlugin
-        plugins.append(ConnectomeDBPlugin())
-        logger.info('Added ConnectomeDBPlugin (using PyMySQL)')
-    
     return plugins
 
 
