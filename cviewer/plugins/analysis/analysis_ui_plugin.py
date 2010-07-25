@@ -129,7 +129,7 @@ class AnalysisUIPlugin(Plugin):
 
     def _commands_default(self):
         """ Initializes some imports for the ipython shell """
-        return['import pylab as P']
+        return['import pylab']
 
     def _views_default(self):
         """ Trait initialiser.
