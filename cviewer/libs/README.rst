@@ -34,6 +34,12 @@ URL : `http://code.google.com/p/pyeeg/`_
 License : GPL v3
 Current version : 0.01_r4
 
+tomoviz
+-------
+Description : Mayavi 4D Visualization for large datasets
+URL : http://github.com/emmanuelle/tomoviz
+License : new BSD
+
 PyXNAT
 ------
 
