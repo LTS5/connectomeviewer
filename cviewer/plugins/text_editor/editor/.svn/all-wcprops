@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/enthought/!svn/ver/19470/EnvisagePlugins/trunk/enthought/plugins/text_editor/editor
+END
+text_editor.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/enthought/!svn/ver/19470/EnvisagePlugins/trunk/enthought/plugins/text_editor/editor/text_editor.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/enthought/!svn/ver/16544/EnvisagePlugins/trunk/enthought/plugins/text_editor/editor/__init__.py
+END
+text_editor_handler.py
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/enthought/!svn/ver/17006/EnvisagePlugins/trunk/enthought/plugins/text_editor/editor/text_editor_handler.py
+END

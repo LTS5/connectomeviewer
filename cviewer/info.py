@@ -2,7 +2,7 @@
 
 This script should do no imports.  It only defines variables.
 '''
-version = '0.1.8'
+version = '0.1.9'
 is_release = False
 
 long_description = \
@@ -72,6 +72,7 @@ enthoughtbase_min_version = '3.0.3' # python-enthoughtbase
 chaco_min_version = '3.2.0' # python-chaco
 lxml_min_version = '2.2.4' # python-lxml
 scipy_min_version = '0.5' # python-scipy (0.7.0)
+numpy_min_version = '1.3.0' # python-numpy
 h5py_min_version = '1.2.1' # python-h5py
 mayavi_min_version = '3.3.0' # mayavi2
 
