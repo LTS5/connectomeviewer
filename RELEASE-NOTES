@@ -2,6 +2,14 @@ ConnectomeViewer
 
 Version 0.2.0 (DATE)
 
+Version 0.1.9 - BETA ()
+
+* Changed to numpy.distutils for packaging
+* Addition of libraries folder for external packages
+** Joblib, PyEEG, Tomoviz, DiPy. More to come.
+* Restructured folder
+* Bugfixes
+
 Version 0.1.8 - BETA (July 16th 2010)
 
 * Replaced Gifti support by a pure Python solution (to be integrated into Nibabel)

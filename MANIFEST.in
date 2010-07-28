@@ -1,5 +1,11 @@
-recursive-include cviewer *.png *.jpg *.ico *.gii *.ini *.so *.txt *.dll *.sql *.html *.csv *.c *.pyx
+recursive-include cviewer *.png *.jpg *.ico *.gii *.ini *.so *.txt *.dll *.sql *.html *.csv *.c *.pyx *.pdf *.py
 include *.txt
+include LICENSE
+include COPYRIGHT
+include RELEASE-NOTES
+include README.rst
+include build_helpers.py
 prune examples
-prune datasets
-prune doc
+graft doc
+prune doc/manual
+prune doc/build

@@ -1,51 +1,56 @@
 #!/usr/bin/env python
-
-from distutils.core import setup
-from setuptools import find_packages
-import os.path
+import sys
+from glob import glob
+from distutils import log
+from distutils.cmd import Command
 import numpy as np
 
-from build_helpers import make_cython_ext, package_check, INFO_VARS
+# monkey-patch numpy distutils to use Cython instead of Pyrex
+from build_helpers import generate_a_pyrex_source, package_check, make_cython_ext, INFO_VARS
 
-# Hard and soft dependency checking
-# XXX: When things could be easily installed with install_requires, why have it here?
-# Also: with the installation script, required packages (h5py,cython,...) are installed from the web
+from numpy.distutils.command.build_src import build_src
+build_src.generate_a_pyrex_source = generate_a_pyrex_source
 
-package_check('scipy', INFO_VARS['scipy_min_version'])
-package_check('networkx', INFO_VARS['networkx_min_version'])
+def configuration(parent_package='',top_path=None):
+    from numpy.distutils.misc_util import Configuration
 
-#def _h5py_version(pkg_name):
-#    from h5py import version
-#    return version.version
-#package_check('h5py', INFO_VARS['h5py_min_version'],version_getter=_h5py_version)
+    config = Configuration(None, parent_package, top_path)
+    config.set_options(ignore_setup_xxx_py=True,
+                       assume_default_configuration=True,
+                       delegate_options_to_subpackages=True,
+                       quiet=True)
+    
+    config.add_subpackage('cviewer')
+    return config
 
-def _may_version(pkg_name):
+
+################################################################################
+# Dependency check
+################################################################################
+
+def _mayavi_version(pkg_name):
     from enthought.mayavi import version
     return version.version
-
-package_check('enthought.mayavi', INFO_VARS['mayavi_min_version'],version_getter=_may_version)
-
-def _traits_version(pkg_name):
-    from enthought.traits import version
-    return version.__version__
-package_check('enthought.traits', INFO_VARS['traits_min_version'],version_getter=_traits_version)
 
 # Cython can be a build dependency
 def _cython_version(pkg_name):
     from Cython.Compiler.Version import version
     return version
-package_check('cython',
-              INFO_VARS['cython_min_version'],
-              optional=True,
-              version_getter=_cython_version,
-              messages={'opt suffix': ' - you will not be able '
-                        'to rebuild Cython source files into C files',
-                        'missing opt': 'Missing optional build-time '
-                        'package "%s"'}
-              )
 
+def _traits_version(pkg_name):
+    from enthought.traits import version
+    return version.__version__
 
-# we use cython to compile the module if we have it
+package_check('scipy', INFO_VARS['scipy_min_version'])
+package_check('networkx', INFO_VARS['networkx_min_version'])
+package_check('numpy', INFO_VARS['numpy_min_version'])
+package_check('enthought.mayavi', INFO_VARS['mayavi_min_version'],version_getter=_mayavi_version)
+package_check('enthought.traits', INFO_VARS['traits_min_version'],version_getter=_traits_version)
+package_check('cython',INFO_VARS['cython_min_version'],optional=True,version_getter=_cython_version)
+
+################################################################################
+# we use cython to compile the module if we have it. does it work?
+################################################################################
 try:
     import Cython
 except ImportError:
@@ -54,62 +59,64 @@ else:
     has_cython = True
     
 per_ext, cmdclass = make_cython_ext(
-    'cviewer.plugins.dipy.core.track_performance',
-    has_cython,
+    'cviewer.libs.dipy.dipy.core.track_performance',
     include_dirs = [np.get_include()])
-
 
 tvol_ext, cmdclass = make_cython_ext(
-    'cviewer.plugins.dipy.io.track_volumes',
-    has_cython,
+    'cviewer.libs.dipy.dipy.io.track_volumes',
     include_dirs = [np.get_include()])
 
-###
+rec_ext, cmdclass = make_cython_ext(
+    'cviewer.libs.dipy.dipy.core.reconstruction_performance',
+    include_dirs = [np.get_include()])
 
-setup(
-    name = 'ConnectomeViewer',
-    version = INFO_VARS['version'],
-    author = "Stephan Gerhard",
-    author_email = "stephan.gerhard@epfl.ch",
-    classifiers = [c.strip() for c in """\
-        Development Status :: 4 - Beta
-        Intended Audience :: Developers
-        Intended Audience :: Science/Research
-        Operating System :: OS Independent
-        Operating System :: POSIX
-        Operating System :: POSIX :: Linux 
-        Operating System :: Unix
-        Programming Language :: Python
-        Topic :: Scientific/Engineering
-        Topic :: Software Development
-        """.splitlines() if len(c.split()) > 0],    
-    description = "The ConnectomeViewer for Visualization and Analysis of Multi-Modal, Multi-Level Connectome Data",
-    entry_points = {
-        'console_scripts': [
-            'connectomeviewer = cviewer.run:main',
-            ],
-        },
-    install_requires = ["EnvisageCore >= 3.1.1",
-                        "EnvisagePlugins >= 3.1.1",
-                        "TraitsBackendWX >= 3.2.0",
-                        "EnthoughtBase >= 3.0.3",
-                        "TraitsGUI >= 3.1.0",
-                        "Chaco >= 3.2.0",
-                        "lxml >= 2.2.2"
-                        ],
-    license = "GPLv3",
-    long_description = INFO_VARS['long_description'],
-    maintainer = 'Stephan Gerhard',
-    maintainer_email = 'info@connectomics.org',
-    platforms = ["Linux", "Unix"],
-    url = 'http://www.connectomeviewer.org/',
-    packages = find_packages(),
-    include_package_data = True,
-    package_dir={'cviewer': 'cviewer'},
-    scripts = [os.path.join('scripts','connectomeviewer.py'),
-               'build_helpers.py'], # do I need this?
-    zip_safe = False,
-    # From DiPy
-    ext_modules = [per_ext,tvol_ext],
-    cmdclass    = cmdclass,  
-   )
+################################################################################
+    
+def main(**extra_args):
+    from numpy.distutils.core import setup
+    setup(
+        name = 'ConnectomeViewer',
+        version = INFO_VARS['version'],
+        author = "Stephan Gerhard",
+        author_email = "stephan.gerhard@epfl.ch",
+        classifiers = [c.strip() for c in """\
+            Development Status :: 4 - Beta
+            Intended Audience :: Developers
+            Intended Audience :: Science/Research
+            Operating System :: OS Independent
+            Operating System :: POSIX
+            Operating System :: POSIX :: Linux 
+            Operating System :: Unix
+            Programming Language :: Python
+            Topic :: Scientific/Engineering
+            Topic :: Software Development
+            """.splitlines() if len(c.split()) > 0],    
+        description = "The ConnectomeViewer for Visualization and Analysis of Multi-Modal, Multi-Level Connectome Data",
+#        entry_points = {
+#            'console_scripts': [
+#                'connectomeviewer = cviewer.run:main',
+#                ],
+#            },
+#        install_requires = ["EnvisageCore >= 3.1.1",
+#                            "EnvisagePlugins >= 3.1.1",
+#                            "TraitsBackendWX >= 3.2.0",
+#                            "EnthoughtBase >= 3.0.3",
+#                            "TraitsGUI >= 3.1.0",
+#                            "Chaco >= 3.2.0",
+#                            "lxml >= 2.2.2"
+#                            ],
+        license = "GPLv3",
+        long_description = INFO_VARS['long_description'],
+        maintainer = 'Stephan Gerhard',
+        maintainer_email = 'info@connectomics.org',
+        platforms = ["Linux", "Unix"],
+        url = 'http://www.connectomeviewer.org/',
+        scripts = glob('scripts/*.py'),
+        ext_modules = [per_ext,tvol_ext, rec_ext],         
+        configuration = configuration,
+        **extra_args
+        )
+
+    
+if __name__ == "__main__":
+    main()
