@@ -59,15 +59,15 @@ else:
     has_cython = True
     
 per_ext, cmdclass = make_cython_ext(
-    'cviewer.libs.dipy.dipy.core.track_performance',
+    'cviewer.libs.dipy.core.track_performance',
     include_dirs = [np.get_include()])
 
 tvol_ext, cmdclass = make_cython_ext(
-    'cviewer.libs.dipy.dipy.io.track_volumes',
+    'cviewer.libs.dipy.io.track_volumes',
     include_dirs = [np.get_include()])
 
 rec_ext, cmdclass = make_cython_ext(
-    'cviewer.libs.dipy.dipy.core.reconstruction_performance',
+    'cviewer.libs.dipy.core.reconstruction_performance',
     include_dirs = [np.get_include()])
 
 ################################################################################
