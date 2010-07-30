@@ -54,18 +54,3 @@ allowed him to start his master thesis supervised by Dr. Patric Hagmann, a Diffu
 
 In February 2010, the master thesis (:ref:`publications`) was finished. The development
 of the ConnectomeViewer will be continued at EPFL and UNIL-CHUV by Stephan Gerhard et al.
-
---------------
- Applications
---------------
-
-This section lists projects where the ConnectomeViewer was successfully applied
-for visualization and/or analysis of data.
-
-Human Development DSI project
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Details will follow soon.
-
-sLORETA attention study with functional connectivity
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Details will follow soon.

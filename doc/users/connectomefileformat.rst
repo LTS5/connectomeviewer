@@ -125,6 +125,5 @@ Detailed Example
 -----------------
 
 To prepare a Connectome File for correct loading in the ConnectomeViewer, adhering to
-the conventions is key. The section :ref:`createcff` gives a primer on how to create
-connectome files from your data. Additionally, you can unzip an `example connectome file <http://www.connectome.ch/datasets/homo_sapiens_02.cff>`_
+the conventions is key.  You can unzip an `example connectome file <http://www.connectome.ch/datasets/homo_sapiens_02.cff>`_
 and explore it for yourself.

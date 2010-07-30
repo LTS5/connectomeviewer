@@ -15,6 +15,9 @@ Maybe one could use also git `submodules <http://www.kernel.org/pub/software/scm
 scheme? 
 * Add it as standalone repository, symbolic link to a repository, or frozen released version?
 (How to automate the update procedure?) 
+* If the library is not available as Ubuntu package or via PyPi, this indicates that the packaging and distribution
+is not mature enough (?)
+
 
 joblib
 ------

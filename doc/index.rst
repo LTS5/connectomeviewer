@@ -10,17 +10,14 @@
    Contents:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    about
-   users/index.rst
+   users/index
    plugins
    links
    publications
    license
-
-.. htmlonly::
-
-  * :ref:`genindex`
-  * :ref:`search`
+   
+   devel/index
 
