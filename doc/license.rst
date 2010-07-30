@@ -6,8 +6,8 @@ ConnectomeViewer License Information
 
 .. _cviewer-software-license:
 
-ConnectomeViewer Software License
----------------------------------
+ConnectomeViewer Core Software License
+--------------------------------------
 
 ConnectomeViewer is free but copyright software, distributed under the terms of the
 `GNU General Public Licence <http://www.connectome.ch/viewer/license>`_ as published

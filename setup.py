@@ -91,7 +91,7 @@ def main(**extra_args):
             Topic :: Scientific/Engineering
             Topic :: Software Development
             """.splitlines() if len(c.split()) > 0],    
-        description = "The ConnectomeViewer for Visualization and Analysis of Multi-Modal, Multi-Level Connectome Data",
+        description = "Connects Multi-Modal Multi-Scale Neuroimaging Datasets For Analysis and Visualization in Python",
 #        entry_points = {
 #            'console_scripts': [
 #                'connectomeviewer = cviewer.run:main',

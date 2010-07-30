@@ -24,6 +24,22 @@
 .. _GraphML: http://graphml.graphdrawing.org/
 .. _NetworkX: http://networkx.lanl.gov/
 
+.. _dipy: http://nipy.org/dipy
+.. _connectomeviewer: http://www.connectomeviewer.org/
+.. _`connectomeviewer github`: http://github.com/unidesigner/connectomeviewer
+
+.. Documentation tools
+.. _graphviz: http://www.graphviz.org/
+.. _Sphinx: http://sphinx.pocoo.org/
+.. _`Sphinx reST`: http://sphinx.pocoo.org/rest.html
+.. _reST: http://docutils.sourceforge.net/rst.html
+.. _docutils: http://docutils.sourceforge.net
+
+.. Licenses
+.. _GPL: http://www.gnu.org/licenses/gpl.html
+.. _BSD: http://www.opensource.org/licenses/bsd-license.php
+.. _LGPL: http://www.gnu.org/copyleft/lesser.html
+
 
 .. _nipy: http://neuroimaging.scipy.org
 .. _`Brain Imaging Center`: http://bic.berkeley.edu/

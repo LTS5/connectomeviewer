@@ -8,7 +8,7 @@ a very powerful application architecture, which allows for seamless integration 
 If you would like to develop a plugin for ConnectomeViewer, there are `external tutorials <https://svn.enthought.com/enthought/wiki/EnvisageDevGuide>`_
 or you can look at the source code in the plugin folder. Feel free to `contact us <mailto:info AT connectomics DOT org>`_
 if you have any questions or would like to add a plugin to the list. Additionally, you should
-visit `ConnectomeViewer Blueprints <https://launchpad.net/connectomeviewer>`_ to see ongoing developments.
+visit `ConnectomeViewer Wiki <http://wiki.github.com/unidesigner/connectomeviewer/>`_ to see ongoing developments.
 
 
 sLORETA Plugin
@@ -40,32 +40,6 @@ and algorithms for automatic tract segmentation. It uses Cython for speed.
 **Author**: All the credit goes to the NiPy/DiPy team. Stephan Gerhard wrote the plugin code and the integration.
     
 **URL**: `http://nipy.sourceforge.net/dipy/ <http://nipy.sourceforge.net/dipy/>`_
-
-
-ConnectomeDatabase Plugin
-`````````````````````````````````
-**Summary**: This allows you to interface with a MySQL database that stores metainformation and
-links to connectome files in your lab.
-    
-**Status**: Integrated in Current Release
-
-**Tutorial**: :ref:`cdb`
-
-**Author**: Stephan Gerhard
-
-
-BlenderExporter Plugin
-`````````````````````````````````
-**Summary**: Inspired by `BrainBlend <http://brainblend.sourceforge.net/>`_ that exports structural and functional data from SPM to Blender,
-the idea is to have this possibility as well. Currently, it is not clear to what extend structural and
-functional MRI data are integrated in the Connectome File Format. See the in the *examples* folder of
-the distribution for a script to write Voxeldata for Blender.
-    
-**Status**: In Development
-
-**Author**: Stephan Gerhard
-    
-**URL**: `ConnectomeViewer BluePrints <https://blueprints.launchpad.net/connectomeviewer/+spec/blender-exporter>`_
 
 
 Bindings Plugin
