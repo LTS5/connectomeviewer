@@ -4,10 +4,6 @@ def configuration(parent_package='',top_path=None):
     config = Configuration('gifti_c', parent_package, top_path)
 
     config.add_data_dir('linux2')
-    config.add_data_files('linux2/libgifti.so')
-    config.add_data_files('linux2/libgifti-1.0.0.so')
-    config.add_data_files('linux2/libgifti64.so')
-    config.add_data_files('linux2/libgifti64-dyn.so')
     config.add_data_dir('win32')
 
     return config

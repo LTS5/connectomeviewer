@@ -9,3 +9,4 @@ prune examples
 graft doc
 prune doc/manual
 prune doc/build
+prune external
