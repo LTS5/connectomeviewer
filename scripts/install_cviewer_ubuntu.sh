@@ -33,7 +33,7 @@ esac
 echo "===================================================================="
 echo "Add required Ubuntu packages, including header files for compilation"
 echo "===================================================================="
-sudo apt-get install git-core python-setuptools libvtk5.2 python-vtk python-numpy python-wxversion python2.6-dev python-sphinx g++ swig python-configobj glutg3 glutg3-dev libxtst-dev ipython python-lxml python-matplotlib python-qscintilla2 gcc scons python-xlib pyqt4-dev-tools python-scipy python-pyrex python-all-dev libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8 python-h5py python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsbackendqt python-traitsgui python-traits python-enthought-traits-ui python-enthoughtbase python-chaco python-lxml python-h5py mayavi2 python-tables python-tables-doc python-apptools python-enthought-traits python-pip
+sudo apt-get install git-core python-setuptools libvtk5.2 python-vtk python-numpy python-wxversion python2.6-dev python-sphinx g++ swig python-configobj glutg3 glutg3-dev libxtst-dev ipython python-lxml python-matplotlib python-qscintilla2 gcc scons python-xlib pyqt4-dev-tools python-scipy python-pyrex python-all-dev libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8 python-h5py python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsbackendqt python-traitsgui python-traits python-enthought-traits-ui python-enthoughtbase python-chaco python-lxml python-h5py mayavi2 python-tables python-tables-doc python-apptools python-enthought-traits python-pip python-wxtools
 
 
 echo "========================================================="
@@ -60,9 +60,13 @@ wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0
 tar xzf ConnectomeViewer-0.1.8.tar.gz
 cd ConnectomeViewer-0.1.8/
 python setup.py install
+cd ..
+rm -rf ConnectomeViewer-0.1.8/
 
 echo "==================================================="
 echo "The installation script is finished. It may well be that errors have occured."
+echo "If you got a Permission error. Try to rerun the script with 'sudo ./install_cviewer_ubuntu.sh'"
+ECHO ""
 echo "Test your ConnectomeViewer installation by typing in the terminal:
 echo "-----------
 echo "connectomeviewer -v
@@ -72,7 +76,7 @@ echo "If there are problems, rerun the installation script with:"
 echo "-----------
 echo "sh ./install_cviewer_ubuntu.sh > logfile.txt"
 echo "-----------
-echo "Send the logfile.txt together with ConnectomeViewer startup logfile (automaticall generated) to info@connectomics.org."
+echo "Send the logfile.txt together with ConnectomeViewer startup logfile (automatically generated) to info@connectomics.org."
 echo "============================================================="
 
 # ====================================================================
