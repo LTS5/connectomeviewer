@@ -5,6 +5,7 @@ Version 0.2.0 (DATE)
 Version 0.1.9 - BETA ()
 
 * Changed to numpy.distutils for packaging
+* Added Network Based Statistics. Thanks goes to Andrew Zalesky.
 * Addition of libraries folder for external packages
 ** Joblib, PyEEG, Tomoviz, DiPy. More to come.
 * Restructured folder
