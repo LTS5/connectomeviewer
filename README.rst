@@ -2,13 +2,11 @@
 ConnectomeViewer
 ================
 
-ConnectomeViewer - A Framework for the Visualization and Analysis of Multi-Modal Multi-Scale Network
-and Neuroimaging Data in Python
+ConnectomeViewer - Connects Multi-Modal Multi-Scale Neuroimaging Datasets For Analysis and Visualization in Python
 
 The ConnectomeViewer is a extensible, scriptable, pythonic software tool for visualization
-and analysis in neuroimaging research on many spatial scales. Employing the Connectome File
-Format, diverse data such as networks, surfaces, volumes, tracks and metadata are handled
-and integrated.
+and analysis in neuroimaging research. Employing the Connectome File Format, diverse data types
+such as networks, surfaces, volumes, tracks and metadata are handled and integrated.
 
 Copyright (C) 2009-2010, Ecole Polytechnique Fédérale de Lausanne (EPFL) and
 Hospital Center and University of Lausanne (UNIL-CHUV), Switzerland
@@ -21,31 +19,41 @@ Credits
 Author
 ------
 
-ConnectomeViewer was initially developed by Stephan Gerhard as part of his master thesis.
+ConnectomeViewer was initially developed by Stephan Gerhard.
 He continues the development at EPFL and UNIL-CHUV.
 
----------------------
-Contributors & Thanks
----------------------
+------
+Thanks
+------
 * Patric Hagmann
 * Leila Cammoun
 * Jean-Philippe Thiran
 * Xavier Gigandet
 * Reto Meuli
-* Benjamin Thyreau (libgiftiio.so in 64bit)
+* Benjamin Thyreau
+* Alessandro Daducci
+* Alia Lemkaddem
+* Marie-Christine Ottet
+* Djalel Meskaldji 
+* Francesca Pizzorni
 
--------------
-External code
--------------
+---------------------
+Plugins/External code
+---------------------
+
+See plugin section in documentation for copyright and license of contributions.
+
 * Enthought Evisage. Application Framework. Enthought.
 * Mayavi2. Partly modified files. Prabhu Ramachandran and Gael Varoquaux.
-* Neuroimaging in Python (NiPy). IO ImageFormats. NIPY Developers.
+
+* Nibabel. NIPY Developers.
 * Diffusion in Python. Eleftherios Garyfallidis, Matthew Brett et al.
 * Puddle (WelcomePerspective Code) by Richard W. Lincoln
+* Andrew Zalseky (Network-Based Statistics)
 
-=======
-License
-=======
+=================================
+License for ConnectomeViewer core
+=================================
 
 ConnectomeViewer is free but copyright software, distributed under the terms of the
 GNU General Public Licence as published by the Free Software Foundation (Version 3),

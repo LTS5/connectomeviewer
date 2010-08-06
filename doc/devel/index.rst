@@ -12,10 +12,3 @@ Contents:
 
    intro
    gitwash/index
-
-   
-.. htmlonly::
-
-  * :ref:`genindex`
-  * :ref:`search`
-  
