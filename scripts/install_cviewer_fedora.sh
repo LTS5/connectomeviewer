@@ -43,21 +43,28 @@ echo "========================================================="
 echo "============"
 echo "... NetworkX"
 echo "============"
-sudo pip install networkx
+pip install networkx
 
 echo "=========="
 echo "... Cython"
 echo "=========="
-sudo pip install Cython
+pip install Cython
 
 echo "========================================="
 echo "Download and install the ConnectomeViewer"
 echo "========================================="
 
-sudo pip install -e git://github.com/unidesigner/connectomeviewer.git@dev-restruct#egg=ConnectomeViewer
+wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.8.tar.gz
+tar xzf ConnectomeViewer-0.1.8.tar.gz
+cd ConnectomeViewer-0.1.8/
+python setup.py install
+cd ..
+rm -rf ConnectomeViewer-0.1.8/
 
 echo "==================================================="
 echo "The installation script is finished. It may well be that errors have occured."
+echo "If you got a Permission error. Try to rerun the script with 'sudo ./install_cviewer_ubuntu.sh'"
+ECHO ""
 echo "Test your ConnectomeViewer installation by typing in the terminal:
 echo "-----------
 echo "connectomeviewer -v
