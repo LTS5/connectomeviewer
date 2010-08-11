@@ -17,7 +17,7 @@ can be applied to EEG/MEG time series. This plugins allows one to convert functi
 connectivity output from sLORETA to connectome files. It has also a converter from voxel-based
 data (*.slor files*) to Nifti.
     
-**Status**: Integrated in Current Release / In Development / Externally Available
+**Status**: Integrated in Current Release
 
 **Tutorial**: :ref:`sloretacon`
 
@@ -39,6 +39,20 @@ and algorithms for automatic tract segmentation. It uses Cython for speed.
 **Author**: All the credit goes to the NiPy/DiPy team. Stephan Gerhard wrote the plugin code and the integration.
     
 **URL**: `http://nipy.sourceforge.net/dipy/ <http://nipy.sourceforge.net/dipy/>`_
+
+
+Network Based Statistic Plugin
+`````````````````````````````````
+**Summary**: Computes the network-based statistic (NBS) as described in the reference.
+    
+**Status**: Integrated in Current Release
+
+**Tutorial**: :ref:`nbs`
+
+**Reference**: `Zalesky A, Fornito A, Bullmore ET (2010) Network-based statistic: Identifying differences in brain networks. NeuroImage. 10.1016/j.neuroimage.2010.06.041 <http://people.eng.unimelb.edu.au/azalesky/paper_nbs.pdf>`_
+
+**Author**: Original code written by Andrew Zalesky, rewritten for Python by Stephan Gerhard.
+
 
 
 Bindings Plugin

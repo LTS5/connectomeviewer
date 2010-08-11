@@ -4,6 +4,9 @@
  Connectome File Format
 ========================
 
+.. hint::
+   The core specification is currently rewritten and will be published soon.
+
 The ConnectomeViewer application defines its own data format, the Connectome File Format,
 adhering to `open standards <http://www.opensource.org/osr-intro>`_.
 

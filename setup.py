@@ -92,11 +92,6 @@ def main(**extra_args):
             Topic :: Software Development
             """.splitlines() if len(c.split()) > 0],    
         description = "Connects Multi-Modal Multi-Scale Neuroimaging Datasets For Analysis and Visualization in Python",
-#        entry_points = {
-#            'console_scripts': [
-#                'connectomeviewer = cviewer.run:main',
-#                ],
-#            },
 #        install_requires = ["EnvisageCore >= 3.1.1",
 #                            "EnvisagePlugins >= 3.1.1",
 #                            "TraitsBackendWX >= 3.2.0",

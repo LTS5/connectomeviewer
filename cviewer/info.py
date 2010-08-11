@@ -2,8 +2,8 @@
 
 This script should do no imports.  It only defines variables.
 '''
-version = '0.1.9'
-is_release = True
+version = '0.1.10'
+is_release = False
 
 long_description = \
 """
@@ -35,7 +35,7 @@ Specifically, we aim to:
       this framework.
 
    6. To integrate this framework with software packages in neuroimaging and provide
-      an easily installable bundle installable bundle.
+      an easily installable bundle.
 
 """
 
