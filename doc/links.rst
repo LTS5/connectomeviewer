@@ -10,6 +10,6 @@ Connectome Links
 
 * `Recent Publications on Connectome or Connectomics <http://www.seeingwithsound.com/newpubs/connectome/>`_
 
-* `The Human Connectome: Views from MRI and MICROSCOPY <http://open.nims.re.kr/kor/bbs/bbs/board.php?bo_table=n_event&wr_id=24&con=1>`_
+* `The Human Connectome: Views from MRI and MICROSCOPY <http://kchris.net/tc/kchris/798>`_
 
 * `eConnectome Toolbox for Matlab <http://econnectome.umn.edu/>`_

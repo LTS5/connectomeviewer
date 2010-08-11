@@ -179,7 +179,8 @@ class Network(HasTraits):
                     if not 'weight' in edgk:
                         self.set_weight_key(edgk[0])
             else:
-                logger.error('Cannot set weight key for network : ' + self.networkname)
+                pass
+                # logger.error('Cannot set weight key for network : ' + self.networkname)
                 
     def _name_default(self):
         return self.networkname

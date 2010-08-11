@@ -149,7 +149,7 @@ To see the points that make up the first track (ndarray), just type::
 Running a tract segmentation on example data
 --------------------------------------------
 
-These steps are taken from an example script *tractography_clustering.py* shipped with DiPy.
+These steps are taken from an example script *tractography_clustering.py* available in *examples/dipy/* folder.
 You can enter them directly in the Python Shell to follow what is happening::
 
     import time
@@ -179,9 +179,9 @@ Visualization of the results using DiPy Fos
 ConnectomeViewer interfaces with TrackVis for track visualization. You can automatically
 generate ROIs in TrackVis of your selected nodes to filter the tracks.
 
-DiPy comes with its own rendering engine wrapping VTK, namely **Phos** (which means light in greek).
+DiPy comes with its own rendering engine named **Fos** (which means light in greek).
 This will give you powerful capabilities to programatically generate the visualizations you
-need of your data. We will here use Phos solely for the purpose of displaying the results of our segmentation::
+need of your data. We will here use Fos solely for the purpose of displaying the results of our segmentation::
 
     print 'Showing dataset after clustering.'
     r=fos.ren()

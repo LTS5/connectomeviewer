@@ -1,8 +1,8 @@
 .. _graphlayout:
 
-==========================
-Art of Layouting Networks
-==========================
+=============================
+The Art of Layouting Networks
+=============================
 
 In this tutorial, you will learn about the basic functions you can use to layout
 your network in 2D or 3D. You will need to open the

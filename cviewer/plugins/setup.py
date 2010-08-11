@@ -10,6 +10,7 @@ def configuration(parent_package='',top_path=None):
     config.add_subpackage('sloreta')
     config.add_subpackage('text_editor')
     config.add_subpackage('ui')
+    config.add_subpackage('nbs')
     
     config.add_data_files('ui/preferences.ini')
 

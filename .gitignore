@@ -7,5 +7,4 @@ doc/manual
 build/
 dist/
 ConnectomeViewer.egg-info/
-cviewer/libs/
-examples/datasets_cff_v1/
+libs-queue/

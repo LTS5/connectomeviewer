@@ -7,8 +7,7 @@ a very powerful application architecture, which allows for seamless integration 
 
 If you would like to develop a plugin for ConnectomeViewer, there are `external tutorials <https://svn.enthought.com/enthought/wiki/EnvisageDevGuide>`_
 or you can look at the source code in the plugin folder. Feel free to `contact us <mailto:info AT connectomics DOT org>`_
-if you have any questions or would like to add a plugin to the list. Additionally, you should
-visit `ConnectomeViewer Wiki <http://wiki.github.com/unidesigner/connectomeviewer/>`_ to see ongoing developments.
+if you have any questions or would like to add a plugin to the list.
 
 
 sLORETA Plugin
