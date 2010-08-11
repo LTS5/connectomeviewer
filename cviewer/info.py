@@ -3,7 +3,7 @@
 This script should do no imports.  It only defines variables.
 '''
 version = '0.1.9'
-is_release = False
+is_release = True
 
 long_description = \
 """

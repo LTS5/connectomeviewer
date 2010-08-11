@@ -54,16 +54,16 @@ echo "========================================="
 echo "Download and install the ConnectomeViewer"
 echo "========================================="
 
-wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.8.tar.gz
-tar xzf ConnectomeViewer-0.1.8.tar.gz
-cd ConnectomeViewer-0.1.8/
+wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
+tar xzf ConnectomeViewer-0.1.9.tar.gz
+cd ConnectomeViewer-0.1.9/
 python setup.py install
 cd ..
-rm -rf ConnectomeViewer-0.1.8/
+rm -rf ConnectomeViewer-0.1.9/
 
 echo "==================================================="
 echo "The installation script is finished. It may well be that errors have occured."
-echo "If you got a Permission error. Try to rerun the script with 'sudo ./install_cviewer_ubuntu.sh'"
+echo "If you got a Permission error. Try to rerun the script with 'sudo ./install_cviewer_fedora.sh'"
 ECHO ""
 echo "Test your ConnectomeViewer installation by typing in the terminal:
 echo "-----------
@@ -72,7 +72,7 @@ echo "-----------
 echo ""
 echo "If there are problems, rerun the installation script with:"
 echo "-----------
-echo "sh ./install_cviewer_ubuntu.sh > logfile.txt"
+echo "sh ./install_cviewer_fedora.sh > logfile.txt"
 echo "-----------
 echo "Send the logfile.txt together with ConnectomeViewer startup logfile (automaticall generated) to info@connectomics.org."
 echo "============================================================="
