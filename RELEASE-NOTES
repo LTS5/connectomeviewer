@@ -2,13 +2,21 @@ ConnectomeViewer
 
 Version 0.2.0 (DATE)
 
-Version 0.1.9 - BETA ()
+Version 0.1.9 - BETA (August 11th 2010)
 
 * Changed to numpy.distutils for packaging
-* Added Network Based Statistics. Thanks goes to Andrew Zalesky.
-* Addition of libraries folder for external packages
-** Joblib, PyEEG, Tomoviz, DiPy. More to come.
-* Restructured folder
+* Update installation scripts for Ubuntu and Fedora
+* Added Network Based Statistics Plugin. Thanks goes to Andrew Zalesky.
+* Update documentation and added tutorials
+** Dipy tutorial: From Diffusion to tracks
+** NBS: Computing network based statistics
+** Update Matlab Interfacing tutorial
+** Added Red Button Tutorial
+** Added BlenderExporter tutorial
+* Addition of libraries folder for external packages (cviewer.libs)
+** PyEEG, Tomoviz, DiPy. PyConto.
+* Added for external packages corresponding documentation (externals/)
+ * Restructured folders (examples, externals)
 * Bugfixes
 
 Version 0.1.8 - BETA (July 16th 2010)

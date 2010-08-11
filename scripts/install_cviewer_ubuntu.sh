@@ -56,12 +56,12 @@ echo "========================================="
 
 # sudo pip install -e git://github.com/unidesigner/connectomeviewer.git@master#egg=ConnectomeViewer
 
-wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.8.tar.gz
-tar xzf ConnectomeViewer-0.1.8.tar.gz
-cd ConnectomeViewer-0.1.8/
+wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
+tar xzf ConnectomeViewer-0.1.9.tar.gz
+cd ConnectomeViewer-0.1.9/
 python setup.py install
 cd ..
-rm -rf ConnectomeViewer-0.1.8/
+rm -rf ConnectomeViewer-0.1.9/
 
 echo "==================================================="
 echo "The installation script is finished. It may well be that errors have occured."
