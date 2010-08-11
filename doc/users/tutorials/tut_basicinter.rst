@@ -22,7 +22,10 @@ Using the option ``Unselect All Nodes and Edges`` will turn off all the edges ag
  
 3. There are a bunch of key bindings usable in the 3D View. To display them, click on the main
 menu *Help -> Key Bindings*. A HTML pages pops up in your browser, listing all the keys. We will
-focus on a few for the start.
+focus on a few for the start. Here are the key-bindings:
+
+.. raw:: html
+   :file: ../../_static/keybindings.html
 
 4. First, unselect all nodes. In the 3D View, the nodes are shown as cubes (this can be changed
 in the *Visualization Object Editor*). The nodes can have two states: either selected or unselected.
@@ -44,16 +47,7 @@ can be used then to define a subgraph. This subgraph might then be used for furt
 7. You can also selectively show surfaces patches. Namely for selected nodes. Right-click on the activated
 network in the *Connectome File View* and select ``Toggle Surface Visibility``.
 
-8. Finally, we want to know how to threshold networks and select particular edge attributes.
-Select all nodes and edges as explained above. Now, find the *Mayavi Visualization Tree* View. This
-tree defines all the visualization objects in the 3D View. Under the ``Connectivity Source``, which
-represents all the edges in the visualization, there two filters, ``Set Edge Attribute`` and ``Thresholding``.
-
-9. If you click on ``Set Edge Attribute``, the corresponding dialog in the *Visualization Object Editor* gets
-updated. Here you can select particular edge attributes for the entry "Point scalars name". The network
-in the 3D View is updated immediately.
-
-10. Similarily, when you click on ``Thresholding`` in the *Mayavi Visualiztion Tree*, you can now
-choose an upper and a lower threshold for your edge values in the *Visualization Object Editor*.
+8. For thresholding, right-click on the network and select ``Edge Parameters`` to find the dialog
+with multiple thresholding options.
 
 .. Using the IPython Shell with dragged objects.
