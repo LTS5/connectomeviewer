@@ -9,7 +9,7 @@ for low resolution brain electromagnetic tomography. The purpose of this convert
 is to transform functional EEG networks derived from sLORETA to the Connectome File Format.
 Subsequently, analysis and visualization can then be done from within the ConnectomeViewer.
 
-The dataset we use is available in the folder *examples/converter/sLORETA/* from the source distribution.
+The dataset we use is available in the folder *examples/sLORETA/* in the source distribution.
 
 The example data set was kindly provided by the KEY Institute for Brain-Mind Research. It was derived from 5 minutes of resting EEG of one participant.
 

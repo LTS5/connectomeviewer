@@ -77,7 +77,7 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
         print "Please remove it with:"
         print "sudo rm -rf " + dirname
         print "and re-run the ConnectomeViewer with:"
-        print "connectomeviewer -v"
+        print "connectomeviewer.py -v"
         print "==========================================="
         raise Exception("PermissionError")
 
@@ -226,6 +226,11 @@ def get_cviewer_plugins():
     from cviewer.plugins.sloreta.sloreta_plugin import SLoretaConverterPlugin
     plugins.append(SLoretaConverterPlugin())
     logger.info('Added sLORETA Converter Plugin')
+    
+    # add NBS plugin
+    from cviewer.plugins.nbs.nbs_plugin import NBSPlugin
+    plugins.append(NBSPlugin())
+    logger.info('Added Network Based Statistics (NBS) Plugin')
 
     # add DiPy plugin
     try:

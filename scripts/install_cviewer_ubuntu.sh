@@ -69,7 +69,7 @@ echo "If you got a Permission error. Try to rerun the script with 'sudo ./instal
 ECHO ""
 echo "Test your ConnectomeViewer installation by typing in the terminal:
 echo "-----------
-echo "connectomeviewer -v
+echo "connectomeviewer.py -v
 echo "-----------
 echo ""
 echo "If there are problems, rerun the installation script with:"

@@ -19,19 +19,19 @@ Take first a look at the respective scripts in order to understand what they do.
 
 * You need to make the installation file executable::
 
-    chmod +x install_cviewer.sh
+    chmod +x install_cviewer_ubuntu.sh
     
 * Start the installation and compilation ::
 
-    sh ./install_cviewer.sh
+    sh ./install_cviewer_ubuntu.sh
 
 * Start the ConnectomeViewer in verbose mode::
 
-    connectomeviewer -v
+    connectomeviewer.py -v
 
 * If there are errors during the script execution, generate a log file and send it together with the startup logfile via email to `info[at]connectomics.org <mailto:info[at]connectomics.org>`_::
 
-    sh ./install_cviewer.sh > logfile.txt
+    sh ./install_cviewer_ubuntu.sh > logfile.txt
 
 .. On first startup, a directory is created in your home folder (*$HOME/.enthought/ch.connectome.viewer*) to store the logfile and window settings. If the first startup was as root, you do not have write permission in this folder, leading to a *Permission Error*. Simply remove this folder (*sudo rm -rf $HOME/.enthought/ch.connectome.viewer/*) and start ConnectomeViewer again as user.
 
@@ -41,7 +41,7 @@ Take first a look at the respective scripts in order to understand what they do.
 .. * To access HDF5 files, we need H5Py, you `install it from here <http://code.google.com/p/h5py/downloads/list>`_
 .. * Install ConnectomeViewer executable `(from the download page) <http://www.connectomeviewer.org/users/download>`_
 .. * Either select the ConnectomeViewer from the Startmenu (Connectome->ConnectomeViewer) or open a Command Prompt and type::
-..     connectomeviewer -v
+..     connectomeviewer.py -v
 .. * You can `download example datasets <http://connectomeviewer.org/viewer/datasets>`_. Make sure that they end with *.cff* (however they are regular ZIP archives).
 .. If you encounter any problems, please send an email to `info AT connectomics.org <mailto:infoATconnectomics.org>`_!
 

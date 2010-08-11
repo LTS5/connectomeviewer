@@ -18,6 +18,7 @@
    installation.rst
    connectomefileformat.rst
    tutorial.rst
+.. externals.rst
    ../glossary
 
 .. htmlonly::
