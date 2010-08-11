@@ -12,6 +12,7 @@ the tutorials will help you to get started.
 Basics
 ------
 * :doc:`tutorials/tut_basicinter`
+* :doc:`tutorials/tut_redbut`
 
 Data Import/Export
 ------------------
