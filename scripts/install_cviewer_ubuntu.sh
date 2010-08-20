@@ -43,12 +43,14 @@ echo "========================================================="
 echo "============"
 echo "... NetworkX"
 echo "============"
-pip install networkx
+# pip install networkx
+easy_install -U networkx
 
 echo "=========="
 echo "... Cython"
 echo "=========="
-pip install Cython
+# pip install Cython
+easy_install -U Cython
 
 echo "========================================="
 echo "Download and install the ConnectomeViewer"
