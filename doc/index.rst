@@ -18,6 +18,7 @@
    links
    publications
    license
+   releasenotes
    
    devel/index
 

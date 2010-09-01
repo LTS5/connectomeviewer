@@ -1,4 +1,6 @@
-ConnectomeViewer
+==============================
+ConnectomeViewer Release Notes
+==============================
 
 Version 0.2.0 (DATE)
 
