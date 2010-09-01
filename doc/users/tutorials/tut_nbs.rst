@@ -62,8 +62,8 @@ It is exposed through loading of the NBS plugin on startup.
 Steps to import the Matlab matrices (you might need to adapt the path)::
 
 	import scipy.io as io
-	Xmat = io.loadmat('X.mat')
-	Ymat = io.loadmat('Y.mat')
+	Xmat = io.loadmat('X.mat', matlab_compatible=True)
+	Ymat = io.loadmat('Y.mat', matlab_compatible=True)
 	X = Xmat['X']
 	Y = Ymat['Y']
 	n = X.shape[0]

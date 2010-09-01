@@ -47,7 +47,10 @@ can be used then to define a subgraph. This subgraph might then be used for furt
 7. You can also selectively show surfaces patches. Namely for selected nodes. Right-click on the activated
 network in the *Connectome File View* and select ``Toggle Surface Visibility``.
 
-8. For thresholding, right-click on the network and select ``Edge Parameters`` to find the dialog
+8. In the 3D View, you can rotate (left mouse button), zoom (right mouse button), or pan (middle mouse button).
+Using Shift Key and the left mouse button, you can change the position of the camera. With the ``key r``, you reset the camera. 
+
+9. For thresholding, right-click on the network and select ``Edge Parameters`` to find the dialog
 with multiple thresholding options.
 
 .. Using the IPython Shell with dragged objects.
