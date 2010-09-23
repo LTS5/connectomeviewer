@@ -54,3 +54,22 @@ Step-by-Step Guide for Installation on Other Platforms
 
 If you managed to make the ConnectomeViewer work on your platform,
 `please inform us <mailto:infoATconnectomics.org>`_ and we make the instructions available here.
+
+Step-by-Step Guide for Installation on Linux by Hand
+----------------------------------------------------
+
+Dependencies
+
++------------+------------+
+| Package   | Minimal Version |
++============+============+
+| NetworkX | |
++------------+------------+
+| Cython | |
++------------+------------+
+| ETS | https://svn.enthought.com/enthought/wiki/Build/ETS_3.0.0b1/Py2.5/Generic_Any_Any
++------------+------------+
+| Scipy | |
++------------+------------+
+| Numpy | |
++------------+------------+

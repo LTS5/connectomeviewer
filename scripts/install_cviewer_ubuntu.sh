@@ -68,7 +68,7 @@ rm -rf ConnectomeViewer-0.1.9/
 echo "==================================================="
 echo "The installation script is finished. It may well be that errors have occured."
 echo "If you got a Permission error. Try to rerun the script with 'sudo ./install_cviewer_ubuntu.sh'"
-ECHO ""
+echo ""
 echo "Test your ConnectomeViewer installation by typing in the terminal:
 echo "-----------
 echo "connectomeviewer.py -v
