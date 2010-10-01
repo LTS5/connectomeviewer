@@ -206,6 +206,12 @@ def get_cviewer_plugins():
     # add ConnectomeFile plugin
     plugins.insert(0, ConnectomeFilePlugin())
     logger.info('Added ConnectomeFilePlugin')
+    
+#    from cviewer.plugins.cff2.cff_plugin import ConnectomeFile2Plugin
+#    # add ConnectomeFile plugin
+#    plugins.insert(0, ConnectomeFile2Plugin())
+#    logger.info('Added ConnectomeFile2Plugin')
+    
 
     from cviewer.plugins.analysis.analysis_ui_plugin import AnalysisUIPlugin
     # add ConnectomeAnalysis UI plugin    
@@ -231,6 +237,8 @@ def get_cviewer_plugins():
     from cviewer.plugins.nbs.nbs_plugin import NBSPlugin
     plugins.append(NBSPlugin())
     logger.info('Added Network Based Statistics (NBS) Plugin')
+    
+    
 
     # add DiPy plugin
     try:
