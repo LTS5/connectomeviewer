@@ -81,7 +81,7 @@ class Trackfile(HasTraits):
         -------
         Boolean: Successfull or not
         """
-        from cviewer.plugins.dipy.io import trackvis as tv
+        from cviewer.libs.dipy.io import trackvis as tv
         
         fname = self.load_trackfile_to_file()
         try:
@@ -111,7 +111,7 @@ class Trackfile(HasTraits):
         
     def render_tracks(self):
         """ Renders the tracks in a separate window using DiPy Fos """
-        from cviewer.plugins.dipy.viz import fos
+        from cviewer.libs.dipy.viz import fos
         if not self.data_loaded:
             self.load_trackfile()
         # copy tracks for visualization

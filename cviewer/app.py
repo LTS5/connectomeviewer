@@ -238,8 +238,6 @@ def get_cviewer_plugins():
     plugins.append(NBSPlugin())
     logger.info('Added Network Based Statistics (NBS) Plugin')
     
-    
-
     # add DiPy plugin
     try:
         dipy_works = True
