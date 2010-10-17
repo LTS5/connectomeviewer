@@ -32,7 +32,7 @@ by Blender. The script is available in *examples/Blender/Exporter*. The followin
 	        time = True
 	    elif len(data.shape) == 3:
 	        frames = 1
-	        Time = False
+	        time = False
 	    else:
 	        raise Exception('Data array has no valid dimension!')
 	        
@@ -68,6 +68,6 @@ You can use the generated file with structural or functional information as volu
 Please refer to the `BrainBlend documentation <http://brainblend.sourceforge.net/index.html>`_.
 You might to want to do some data preprocessing as well.
 
-The `Blender documentation about Volume Rendering <http://www.blender.org/development/release-logs/blender-250/volume-rendering/>`_
+The `Blender documentation about Volume Rendering <http://www.blender.org/development/release-logs/blender-254-beta/volume-rendering/>`_
 has more information. A template Blender file *importing_voxeldata_struct.blend* is provided in the example folder.
 
