@@ -11,10 +11,11 @@ def configuration(parent_package='',top_path=None):
     config.add_subpackage('pyeeg')
     config.add_subpackage('tomoviz')
     
-        
+    config.add_subpackage('dipy')
+    
     # List all data directories to be loaded here
     # add setup.py with specifics
-    config.add_data_dir('dipy')
+#    config.add_data_dir('dipy')
     
     # add pyconto as datadir, because it needs to include all the __init__
     # config.add_subpackage('pyconto/algorithms/statistics/nbs')

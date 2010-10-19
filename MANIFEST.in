@@ -2,7 +2,6 @@ recursive-include cviewer *.png *.jpg *.ico *.gii *.ini *.so *.dll *.html *.csv 
 include *.txt
 include LICENSE
 include COPYRIGHT
-include RELEASE-NOTES
 include README.rst
 include build_helpers.py
 

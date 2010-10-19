@@ -121,7 +121,7 @@ def main(**extra_args):
         platforms = ["Linux", "Unix"],
         url = 'http://www.connectomeviewer.org/',
         scripts = glob('scripts/*.py'),
-#        ext_modules = [per_ext, tvol_ext, rec_ext],         
+        ext_modules = [per_ext, tvol_ext, rec_ext],         
         configuration = configuration,
         **extra_args
         )

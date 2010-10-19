@@ -2,8 +2,11 @@ import pstats, cProfile
 import os
 import subprocess
 
-import dipy.core.reconstruction_performance as rp
-
+try:
+    import reconstruction_performance as rp
+except ImportError:
+    print('Cython files for dipy were not compiled')
+    
 import pyximport
 pyximport.install()
 
