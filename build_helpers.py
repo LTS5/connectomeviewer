@@ -26,7 +26,7 @@ exec(open(_info_fname, 'rt').read(), {}, INFO_VARS)
 
 
 # Sphinx import.
-from sphinx.setup_command import BuildDoc
+# from sphinx.setup_command import BuildDoc
 
 DOC_BUILD_DIR = os.path.join('build', 'html')
 
