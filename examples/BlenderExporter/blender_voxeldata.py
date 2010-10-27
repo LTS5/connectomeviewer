@@ -23,7 +23,7 @@ def generate_blender_voxeldata(fname, data):
         time = True
     elif len(data.shape) == 3:
         frames = 1
-        Time = False
+        time = False
     else:
         raise Exception('Data array has no valid dimension!')
         

@@ -2,7 +2,11 @@
 
 import numpy as np
 from . import track_metrics as tm
-import dipy.core.track_performance as pf
+try:
+    import track_performance as pf
+except ImportError:
+    print('Cython files for dipy were not compiled')
+    
 from scipy import ndimage as nd
 import itertools
 import time
