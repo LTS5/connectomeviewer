@@ -1,4 +1,4 @@
-""" The implementation of the 'INetwork' interface. """
+""" The ConnectomeViewer wrapper for a cfflib object """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)
 #
@@ -33,22 +33,13 @@ import cfflib
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CNetwork(HasTraits, cfflib.CNetwork):
-    """ The implementation of the Connectome Networks """
+class CSurface(HasTraits, cfflib.CSurface):
+    """ The implementation of the Connectome Surface """
     
-    # the render manager of this network
-    rendermanager = Instance(RenderManager)
-    
-    # DatasourceManager Instance of this network
-    datasourcemanager = Instance(DatasourceManager)
-    
-    # the cfflib CNetwork object
-    obj = Instance(cfflib.CNetwork)
+    obj = Instance(cfflib.CSurface)
 
     # network name as seen in the TreeView
     name = Property(Str, depends_on = [ 'obj' ])
-    
-    graph = Property(Any, depends_on = [ 'obj' ])
     
     # private traits
     ###########
@@ -62,16 +53,9 @@ class CNetwork(HasTraits, cfflib.CNetwork):
     # edge parameters for visualization
     _edge_para = Instance(EdgeParameters)
     
-    
-    def _get_graph(self):
-        return self.obj.content
-    
     def _get_name(self):
         return self.obj.name
     
     def __init__(self, **traits):
-        super(CNetwork, self).__init__(**traits)
+        super(CSurface, self).__init__(**traits)
         
-        
-        
-    

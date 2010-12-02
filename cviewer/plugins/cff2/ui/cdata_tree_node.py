@@ -1,4 +1,4 @@
-""" Specify the NetworkNode with its action, context-menus """
+""" Specify the TreeNode object with its action, context-menus """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)
 #
@@ -21,19 +21,19 @@ from enthought.traits.ui.api import TreeNode
 from enthought.traits.ui.menu import Menu, Action, Separator
 
 # ConnectomeViewer imports
-from cviewer.plugins.cff2.cnetwork import CNetwork
+from cviewer.plugins.cff2.cdata import CData
 
 # Logging import
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CNetworkTreeNode(TreeNode):
+class CDataTreeNode(TreeNode):
     
     # The object that contains the container ;^)
     parent = Any
 
     # the network associated with this node
-    node_for=[CNetwork]
+    node_for=[CData]
 
     # a default icons
     # Name of group item icon
@@ -64,8 +64,6 @@ class CNetworkTreeNode(TreeNode):
     def get_children(self, object):
         """ Get the object's children. """
         pass
-        # Collate the window's views into categories.
-        #return object.surfaces + object.volumes + object.tracks
         
     ######################################################################
     # Non-public interface

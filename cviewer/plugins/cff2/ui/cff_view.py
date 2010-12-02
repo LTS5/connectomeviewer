@@ -16,7 +16,7 @@
 import os, os.path
 
 # Enthought library imports
-from enthought.traits.api import Instance, HasTraits, Any, Delegate, List, Either
+from enthought.traits.api import Instance, HasTraits, Any, Delegate, List, Either, Property
 from enthought.pyface.image_cache import ImageCache
 from enthought.traits.ui.api import (Item, TreeEditor, TreeNode, View, Handler, UIInfo)
 from enthought.pyface.image_resource import ImageResource
@@ -27,6 +27,16 @@ from enthought.pyface.action.api import Action
 from cviewer.plugins.cff2.cnetwork import CNetwork
 from cviewer.plugins.cff2.cfile import CFile
 from cnetwork_tree_node import CNetworkTreeNode
+from csurface_tree_node import CSurfaceTreeNode
+from cfile_tree_node import CFileTreeNode
+
+from cdata_tree_node import CDataTreeNode
+from cimagestack_tree_node import CImagestackTreeNode
+from cscript_tree_node import CScriptTreeNode
+from ctimeserie_tree_node import CTimeserieTreeNode
+from cvolume_tree_node import CVolumeTreeNode
+from ctrack_tree_node import CTrackTreeNode
+
 
 from cviewer.action.common import IMAGE_PATH
 
@@ -70,6 +80,11 @@ class CFFView(HasTraits):
     # render actions
     #renderactions = List(Action)
 
+#    childrenlist = Property(List, depends_on = ['cfile'] )
+#    
+#    def _get_childrenlist(self):
+#        print "get childrenlist"
+#        return self.cfile.connectome_network
 
     ###########################################################################
     # `object` interface.
@@ -98,7 +113,7 @@ class CFFView(HasTraits):
                     ok=False,
                     cancel=False,
                     icon=self.icon,
-                    title = 'Connectome File View 2',
+                    title = 'Connectome File View',
                     handler=CFFViewHandler)
         
         return view
@@ -108,23 +123,64 @@ class CFFView(HasTraits):
         """
 
         # Now setup the view.
-        nodes = [TreeNode(node_for=[CFile],
-                          children='',
-                          icon_path=IMAGE_PATH,
-                          icon_item='cff.png',
-                          icon_open='cff.png',
-                          icon_group='cff.png',
+        nodes = [
+#                 CFileTreeNode(
+#                          node_for=[CFile],
+#                          children='',
+#                          icon_path=IMAGE_PATH,
+#                          auto_open=False,
+#                          ),
+                 TreeNode(node_for=[CFile],
+                          children='children',
                           label='name',
+                          icon_path=IMAGE_PATH,
                           auto_open=True,
                           copy=False,
                           delete=False,
                           rename=False,
                           ),
-#                 NetworkTreeNode(
-#                          children='surfaces',
-#                          icon_path=IMAGE_PATH,
-#                          auto_open=False,
-#                          )
+                 CNetworkTreeNode(
+                          #node_for=[CNetwork],
+                          children='',
+                          icon_path=IMAGE_PATH,
+                          auto_open=False,
+                          ),
+                 CSurfaceTreeNode(
+                          #node_for=[CNetwork],
+                          children='',
+                          icon_path=IMAGE_PATH,
+                          auto_open=False,
+                          ),
+                 CDataTreeNode(
+                          children='',
+                          icon_path=IMAGE_PATH,
+                          auto_open=False,
+                          ),
+                 CScriptTreeNode(
+                          children='',
+                          icon_path=IMAGE_PATH,
+                          auto_open=False,
+                          ),
+                 CVolumeTreeNode(
+                          children='',
+                          icon_path=IMAGE_PATH,
+                          auto_open=False,
+                          ),
+                 CTimeserieTreeNode(
+                          children='',
+                          icon_path=IMAGE_PATH,
+                          auto_open=False,
+                          ),
+                 CImagestackTreeNode(
+                          children='',
+                          icon_path=IMAGE_PATH,
+                          auto_open=False,
+                          ),
+                 CTrackTreeNode(
+                          children='',
+                          icon_path=IMAGE_PATH,
+                          auto_open=False,
+                          ),
                  ]
         
         return nodes

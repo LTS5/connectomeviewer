@@ -20,12 +20,18 @@ import tempfile
 from threading import Thread
 
 # Enthought library imports
-from enthought.traits.api import HasTraits, Instance, Any, Str, File, List, Bool
+from enthought.traits.api import HasTraits, Instance, Any, Str, File, List, Bool, Property
 
 # ConnectomeViewer imports
 
 from cnetwork import CNetwork
-
+from csurface import CSurface
+from cvolume import CVolume
+from ctimeserie import CTimeserie
+from cdata import CData
+from cscript import CScript
+from cimagestack import CImagestack   
+from ctrack import CTrack
 import cfflib
 
 # Logging imports
@@ -65,6 +71,28 @@ class CFile(HasTraits, cfflib.connectome):
     # not nice MVC-style
     _workbenchwin = Instance('enthought.pyface.workbench.api.WorkbenchWindow')
     
+    connectome_meta = Instance(cfflib.CMetadata)
+    connectome_network = List
+    connectome_surface = List
+    connectome_volume = List
+    connectome_track = List
+    connectome_timeserie = List
+    connectome_data = List
+    connectome_script = List
+    connectome_imagestack = List
+    
+    children = Property(depends_on = ['connectome_network', 
+                                      'connectome_surface',
+                                      'connectome_volume',
+                                      'connectome_track',
+                                      'connectome_timeserie',
+                                      'connectome_data',
+                                      'connectome_script',
+                                      'connectome_imagestack',
+                                      ])
+    
+    def _get_children(self):
+        return self.get_all()
         
     ######################################################################
     # `object` interface.
@@ -73,6 +101,15 @@ class CFile(HasTraits, cfflib.connectome):
     def __init__(self, **traits):
         super(CFile, self).__init__(**traits)
         
+        self.connectome_network = []
+        self.connectome_surface = []
+        self.connectome_volume = []
+        self.connectome_track = []
+        self.connectome_timeserie = []
+        self.connectome_data = []
+        self.connectome_script = []
+        self.connectome_imagestack = []
+    
     def load_cfile(self, filepath):
         """ Load a given cfile as path and initializes the attributes """
         
@@ -86,22 +123,20 @@ class CFile(HasTraits, cfflib.connectome):
         self.file_name = os.path.split(filepath)[1]
     
         a = cfflib.load_from_cff(filepath)
-        self.__init__(connectome_meta=a.connectome_meta,
-                        connectome_network=a.connectome_network,
-                        connectome_surface=a.connectome_surface,
-                        connectome_volume=a.connectome_volume,
-                        connectome_track=a.connectome_track,
-                        connectome_timeserie=a.connectome_timeserie,
-                        connectome_data=a.connectome_data,
-                        connectome_script=a.connectome_script,
-                        connectome_imagestack=a.connectome_imagestack)
         
-        #self.connectome_network = a.get_connectome_network()
-    
-#        # open the .cff file with Zip
-#        from zipfile import ZipFile, ZIP_DEFLATED
-#        self._filezip = ZipFile(self.fullpathtofile, 'r', ZIP_DEFLATED)
-#        metadatastring = self._filezip.read('meta.cml')
-#        
-#        print "we got metadata", metadatastring
-#                
+        self.connectome_meta = a.connectome_meta
+        self.connectome_network=[CNetwork(obj=ele) for ele in a.connectome_network]
+        self.connectome_surface=[CSurface(obj=ele) for ele in a.connectome_surface]
+        self.connectome_volume =[CVolume(obj=ele) for ele in a.connectome_volume]
+        self.connectome_track =[CTrack(obj=ele) for ele in a.connectome_track]
+        self.connectome_timeserie =[CTimeserie(obj=ele) for ele in a.connectome_timeserie]
+        self.connectome_data =[CData(obj=ele) for ele in a.connectome_data]
+        self.connectome_script =[CScript(obj=ele) for ele in a.connectome_script]
+        self.connectome_imagestack =[CImagestack(obj=ele) for ele in a.connectome_imagestack]
+                 
+
+    def close_cfile(self):
+        pass
+        # save all the objects
+        # remove all the lists
+        
