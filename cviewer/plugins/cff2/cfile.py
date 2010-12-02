@@ -26,6 +26,7 @@ from enthought.traits.api import HasTraits, Instance, Any, Str, File, List, Bool
 
 from cnetwork import CNetwork
 
+import cfflib
 
 # Logging imports
 import logging
@@ -34,21 +35,36 @@ logger = logging.getLogger('root.'+__name__)
 ######################################################################
 # CFile` class.
 ######################################################################
-class CFile(HasTraits):
+class CFile(HasTraits, cfflib.connectome):
     """This class basically allows you to create an instance for a
     loaded .cff file, and serves as the primary data source for scenes etc.
     
     The view shows all the relevant attributes.
     """
 
+    # The name of the selected cff file
+    file_name = File
+    
+    # Full pathname to file including filename
+    fullpathtofile = Str
     
     # standard name
     name = Str('Connectome File')
 
-
+    #######################################
+    # Private traits.
+    #######################################
+    
+    # zipfile
+    _filezip = Any
+    
+    # data loaded
+    _data_loaded = Bool(False)
+    
     # reference to the current window for statusbar updates
     # not nice MVC-style
     _workbenchwin = Instance('enthought.pyface.workbench.api.WorkbenchWindow')
+    
         
     ######################################################################
     # `object` interface.
@@ -57,4 +73,35 @@ class CFile(HasTraits):
     def __init__(self, **traits):
         super(CFile, self).__init__(**traits)
         
-        logger.info("Init CFF2 file")
+    def load_cfile(self, filepath):
+        """ Load a given cfile as path and initializes the attributes """
+        
+        if not os.path.isfile(filepath):
+            logger.error('Not existing file: %s' %filepath)
+            return
+        
+        # set the fullpath to internal trait
+        self.fullpathtofile = filepath
+        # set the file name and make it visible in the TraitsUIView
+        self.file_name = os.path.split(filepath)[1]
+    
+        a = cfflib.load_from_cff(filepath)
+        self.__init__(connectome_meta=a.connectome_meta,
+                        connectome_network=a.connectome_network,
+                        connectome_surface=a.connectome_surface,
+                        connectome_volume=a.connectome_volume,
+                        connectome_track=a.connectome_track,
+                        connectome_timeserie=a.connectome_timeserie,
+                        connectome_data=a.connectome_data,
+                        connectome_script=a.connectome_script,
+                        connectome_imagestack=a.connectome_imagestack)
+        
+        #self.connectome_network = a.get_connectome_network()
+    
+#        # open the .cff file with Zip
+#        from zipfile import ZipFile, ZIP_DEFLATED
+#        self._filezip = ZipFile(self.fullpathtofile, 'r', ZIP_DEFLATED)
+#        metadatastring = self._filezip.read('meta.cml')
+#        
+#        print "we got metadata", metadatastring
+#                

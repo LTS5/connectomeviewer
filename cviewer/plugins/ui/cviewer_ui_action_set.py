@@ -98,10 +98,12 @@ open_file = Action(
 
 open_cff = Action(
     id            = "ConnectomeFile",
-    name          = "&Connectome File ...",
+    name          = "&Open Connectome File ...",
     class_name    = "cviewer.action.load_cff:"
                     "OpenCFile",
-    path          = "MenuBar/File/LoadDataMenu"
+    path          = "MenuBar/File",
+    group   = 'ConnectomeFileGroup',
+    before = "LoadDataMenu"
 )
 SOURCE_ACTIONS = [open_cff, open_file]
 

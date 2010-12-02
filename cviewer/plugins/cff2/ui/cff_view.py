@@ -49,7 +49,7 @@ class CFFViewHandler(Handler):
 ##############################################################################
 # CFFView class.
 ##############################################################################
-class CFF2View(HasTraits):
+class CFFView(HasTraits):
     """ A view displaying the cfile's object tree. """
 
     # The connectome file we are viewing
@@ -109,7 +109,7 @@ class CFF2View(HasTraits):
 
         # Now setup the view.
         nodes = [TreeNode(node_for=[CFile],
-                          children='networks',
+                          children='',
                           icon_path=IMAGE_PATH,
                           icon_item='cff.png',
                           icon_open='cff.png',
@@ -120,11 +120,11 @@ class CFF2View(HasTraits):
                           delete=False,
                           rename=False,
                           ),
-                 NetworkTreeNode(
-                          children='surfaces',
-                          icon_path=IMAGE_PATH,
-                          auto_open=False,
-                          )
+#                 NetworkTreeNode(
+#                          children='surfaces',
+#                          icon_path=IMAGE_PATH,
+#                          auto_open=False,
+#                          )
                  ]
         
         return nodes

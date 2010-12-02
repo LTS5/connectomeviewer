@@ -27,13 +27,13 @@ from cviewer.plugins.cff2.cnetwork import CNetwork
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class NetworkTreeNode(TreeNode):
+class CNetworkTreeNode(TreeNode):
     
     # The object that contains the container ;^)
     parent = Any
 
     # the network associated with this node
-    node_for=[Network]
+    node_for=[CNetwork]
 
     # a default icons
     # Name of group item icon

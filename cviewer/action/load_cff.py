@@ -65,10 +65,10 @@ class OpenCFile(Action):
         if cfile is None:
             # get the instance of the current CFile
             # with the help of the Service Registry
-            cfile = self.window.application.get_service('cviewer.plugins.cff.cfile.CFile')
+            cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
             exec_as_funct = False
     
-        wildcard = "Connectome File Format (*.cff)|*.cff|" \
+        wildcard = "Connectome File Format v2.0 (*.cff)|*.cff|" \
                     "All files (*.*)|*.*"
         dlg = FileDialog(wildcard=wildcard,title="Choose a Connectome File",\
                          resizeable=False, \

@@ -34,7 +34,7 @@ class BindingsPlugin(Plugin):
     # The plugin's name (suitable for displaying to the user).
     name = 'Connectome File Bindings'
     
-    mycfile = Service('cviewer.plugins.cff.cfile.CFile')
+    mycfile = Service('cviewer.plugins.cff2.cfile.CFile')
 
     analyze_node = Service('cviewer.plugins.analysis.analysis_node.AnalysisNode')
 

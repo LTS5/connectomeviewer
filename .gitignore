@@ -1,6 +1,8 @@
 *.bin
 *.log
 *.pyc
+*.so
+*.c
 doc/_build/
 doc/build/
 doc/manual

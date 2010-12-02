@@ -70,7 +70,6 @@ class ConnectomeFile2Plugin(Plugin):
 
     def _cfile_default(self):
         """ Creates the dummy cfile contributed """
-        return None
         return  self._get_cff_service()
 
     # a service offer looks up a corresponding
@@ -106,7 +105,7 @@ class ConnectomeFile2Plugin(Plugin):
         from enthought.pyface.workbench.traits_ui_view import \
                 TraitsUIView
         
-        from cviewer.plugins.cff.ui.cff_view import CFFView
+        from cviewer.plugins.cff2.ui.cff_view import CFFView
         
         cfile = self._get_cff_service()
         cfile._workbenchwin = window

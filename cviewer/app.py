@@ -202,15 +202,15 @@ def get_cviewer_plugins():
     logger.info('Plugins')
     logger.info('*******')
 
-    from cviewer.plugins.cff.cff_plugin import ConnectomeFilePlugin
-    # add ConnectomeFile plugin
-    plugins.insert(0, ConnectomeFilePlugin())
-    logger.info('Added ConnectomeFilePlugin')
-    
-#    from cviewer.plugins.cff2.cff_plugin import ConnectomeFile2Plugin
+#    from cviewer.plugins.cff.cff_plugin import ConnectomeFilePlugin
 #    # add ConnectomeFile plugin
-#    plugins.insert(0, ConnectomeFile2Plugin())
-#    logger.info('Added ConnectomeFile2Plugin')
+#    plugins.insert(0, ConnectomeFilePlugin())
+#    logger.info('Added ConnectomeFilePlugin')
+    
+    from cviewer.plugins.cff2.cff_plugin import ConnectomeFile2Plugin
+    # add ConnectomeFile plugin
+    plugins.insert(0, ConnectomeFile2Plugin())
+    logger.info('Added ConnectomeFile2Plugin')
     
 
     from cviewer.plugins.analysis.analysis_ui_plugin import AnalysisUIPlugin
