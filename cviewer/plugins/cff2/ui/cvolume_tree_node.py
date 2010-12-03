@@ -37,14 +37,14 @@ class CVolumeTreeNode(TreeNode):
 
     # a default icons
     # Name of group item icon
-    icon_group = Str('home.png')
+    icon_group = Str('volume.png')
     # Name of leaf item icon
-    icon_item=Str('home.png')
+    icon_item=Str('volume.png')
     # Name of opened group item icon
-    icon_open=Str('home.png')
+    icon_open=Str('volume.png')
     
     # labels
-    label='name'
+    label='dname'
 
     ###
     # Private Traits
@@ -53,10 +53,13 @@ class CVolumeTreeNode(TreeNode):
     # if the node is activated, this means that there exists a
     # corresponding RenderManager instance
     
-    _ShowName = Instance(Action,  
-                               kw={'name': 'Show name', 
-                                   'action': 'object.show_name',
-                                   'tooltip': 'Shows the network name'}, )
+    _VolumeVisualizer = Instance(Action,
+                               kw={'name': 'Volume Slicer', 
+                                   'action': 'object.vol_vis',
+                                    'tooltip':'Invokes a simple Volume Slicer by Gael Varoquaux.',
+                                    'enabled_when':'object.loaded == True'
+                                    },
+                               )
     
     # the menu shown after right-click
     menu = Instance(Menu, transient=True)
@@ -73,7 +76,7 @@ class CVolumeTreeNode(TreeNode):
         """ Standard menus for network nodes """
         
         menu_actions = [Separator(), \
-                        self._ShowName]
+                        self._VolumeVisualizer]
         
         return Menu( *menu_actions)
         

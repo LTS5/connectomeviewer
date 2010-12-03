@@ -28,34 +28,43 @@ from cviewer.plugins.ui.preference_manager import preference_manager
 from cviewer.plugins.cff.ui.edge_parameters_view import EdgeParameters
 
 import cfflib
+from cviewer.plugins.cff2.csurface_darray import CSurfaceDarray
 
 # Logging import
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CSurface(HasTraits, cfflib.CSurface):
+from cbase import CBase
+
+class CSurface(CBase):
     """ The implementation of the Connectome Surface """
     
     obj = Instance(cfflib.CSurface)
-
-    # network name as seen in the TreeView
-    name = Property(Str, depends_on = [ 'obj' ])
     
-    # private traits
-    ###########
-    
-    # parent cfile this networks belongs to
-    _parentcfile = Any
+    darrays = List
 
-    # filezip of cfile
-    _filezip = DelegatesTo('_parentcfile')
-
-    # edge parameters for visualization
-    _edge_para = Instance(EdgeParameters)
+    children = Property(depends_on = ['darrays'])
     
-    def _get_name(self):
-        return self.obj.name
+    def load(self):
+        self.obj.load()
+        self.loaded = True
+        # update darrays
+        self.darrays = [CSurfaceDarray(ele) for ele in self.data.darrays]
+    
+    def close(self):
+        if self.loaded:
+            logger.debug("Save...")
+            self.obj.save()
+        logger.debug("Delete from memory...")
+        del self.obj.data
+        self.darrays = []
+        self.loaded = False
+        logger.debug("Done.")
+    
+    def _get_children(self):
+        return self.darrays
     
     def __init__(self, **traits):
         super(CSurface, self).__init__(**traits)
         
+        self.darrays = []

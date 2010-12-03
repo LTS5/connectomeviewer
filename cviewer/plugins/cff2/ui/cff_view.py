@@ -26,6 +26,9 @@ from enthought.pyface.action.api import Action
 # ConnectomeViewer imports
 from cviewer.plugins.cff2.cnetwork import CNetwork
 from cviewer.plugins.cff2.cfile import CFile
+from cviewer.plugins.cff2.csurface import CSurface
+
+
 from cnetwork_tree_node import CNetworkTreeNode
 from csurface_tree_node import CSurfaceTreeNode
 from cfile_tree_node import CFileTreeNode
@@ -36,9 +39,10 @@ from cscript_tree_node import CScriptTreeNode
 from ctimeserie_tree_node import CTimeserieTreeNode
 from cvolume_tree_node import CVolumeTreeNode
 from ctrack_tree_node import CTrackTreeNode
-
+from csurface_darray_tree_node import CSurfaceDarrayTreeNode
 
 from cviewer.action.common import IMAGE_PATH
+
 
 # Logging import
 import logging
@@ -50,11 +54,20 @@ class CFFViewHandler(Handler):
     def _on_dclick(self, object):
         """ Called when a node in the tree  is double-clicked.
         """
-                
-        if isinstance(object, CNetwork):
-            logger.info("Network doubleclicked")
-        else:
+        
+        if isinstance(object, CFile):
             pass
+                
+        else:
+            if not object.loaded:
+                object.load()
+            else:
+                object.close()
+        
+#        if isinstance(object, CNetwork):
+#            logger.info("Network doubleclicked")
+#        else:
+#            pass
 
 ##############################################################################
 # CFFView class.
@@ -132,8 +145,11 @@ class CFFView(HasTraits):
 #                          ),
                  TreeNode(node_for=[CFile],
                           children='children',
-                          label='name',
+                          label='dname',
                           icon_path=IMAGE_PATH,
+                          icon_group = 'cff.png',
+                          icon_item='cff.png',
+                          icon_open='cff.png',
                           auto_open=True,
                           copy=False,
                           delete=False,
@@ -147,9 +163,26 @@ class CFFView(HasTraits):
                           ),
                  CSurfaceTreeNode(
                           #node_for=[CNetwork],
+                          children='children',
+                          icon_path=IMAGE_PATH,
+                          auto_open=True,
+                          ),
+#                 TreeNode(node_for=[CSurface],
+#                          children='children',
+#                          label='dname',
+#                          icon_path=IMAGE_PATH,
+#                          icon_group = 'cff.png',
+#                          icon_item='cff.png',
+#                          icon_open='cff.png',
+#                          auto_open=True,
+#                          copy=False,
+#                          delete=False,
+#                          rename=False,
+#                          ),
+                 CSurfaceDarrayTreeNode(
                           children='',
                           icon_path=IMAGE_PATH,
-                          auto_open=False,
+                          auto_open=False,           
                           ),
                  CDataTreeNode(
                           children='',

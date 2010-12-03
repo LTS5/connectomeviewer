@@ -55,7 +55,7 @@ class CFile(HasTraits, cfflib.connectome):
     fullpathtofile = Str
     
     # standard name
-    name = Str('Connectome File')
+    dname = Str('Connectome File')
 
     #######################################
     # Private traits.

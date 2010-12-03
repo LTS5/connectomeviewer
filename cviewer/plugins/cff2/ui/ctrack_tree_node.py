@@ -37,14 +37,14 @@ class CTrackTreeNode(TreeNode):
 
     # a default icons
     # Name of group item icon
-    icon_group = Str('home.png')
+    icon_group = Str('trackvis.png')
     # Name of leaf item icon
-    icon_item=Str('home.png')
+    icon_item=Str('trackvis.png')
     # Name of opened group item icon
-    icon_open=Str('home.png')
+    icon_open=Str('trackvis.png')
     
     # labels
-    label='name'
+    label='dname'
 
     ###
     # Private Traits
@@ -53,10 +53,18 @@ class CTrackTreeNode(TreeNode):
     # if the node is activated, this means that there exists a
     # corresponding RenderManager instance
     
-    _ShowName = Instance(Action,  
-                               kw={'name': 'Show name', 
-                                   'action': 'object.show_name',
-                                   'tooltip': 'Shows the network name'}, )
+    _TracksRender = Instance(Action,
+                               kw={'name': 'Show Tracks (fos)', 
+                                   'action': 'object.render_tracks',
+                                    'tooltip':'Show the rendered tracks',
+                                    'enabled_when':'object.loaded == True'
+                                    }, )
+    
+    _TrackVisLaunchAction = Instance(Action,
+                               kw={'name': 'Launch TrackVis', 
+                                   'action': 'object.launch_trackvis',
+                                    'tooltip':'Launch TrackVis',
+                                    'enabled_when':'object.loaded == True'}, )
     
     # the menu shown after right-click
     menu = Instance(Menu, transient=True)
@@ -73,7 +81,8 @@ class CTrackTreeNode(TreeNode):
         """ Standard menus for network nodes """
         
         menu_actions = [Separator(), \
-                        self._ShowName]
+                        self._TracksRender, \
+                        self._TrackVisLaunchAction]
         
         return Menu( *menu_actions)
         

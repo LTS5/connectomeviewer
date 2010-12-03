@@ -31,6 +31,21 @@ from cviewer.plugins.ui.preference_manager import preference_manager
 import logging
 logger = logging.getLogger('root.'+__name__)
 
+#class SetStatusBar(Action):
+#
+#    name        = "statusbar"
+#    description = "..."
+#    tooltip     = "sddff"
+#    
+#    def __init__(self, **traits):
+#        super(SetStatusBar, self).__init__(**traits)
+#    
+#    def perform(self, event, value):
+#        self.print_traits()
+#        print self.application
+#        print self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
+#        self.window.status_bar_manager.message=value
+        
 ######################################################################
 # `OpenCFFFile` class.
 ######################################################################
@@ -84,15 +99,16 @@ class OpenCFile(Action):
             if os.path.exists(dlg.paths[0]) and (dlg.paths[0]).endswith('.cff'):
                 
                 # close the cfile if one is currently loaded
-                if cfile._data_loaded:
-                    cfile.close_cfile(close_scenes=True)
+                cfile.close_cfile()
                 
-                if not exec_as_funct:
-                    # setup statusbar
-                    self.window.status_bar_manager.message='Loading Connectome File ...'
+#                if not exec_as_funct:
+#                    # setup statusbar
+#                    self.window.status_bar_manager.message='Loading Connectome File ...'
                 
                 # load cfile data
                 cfile.load_cfile(dlg.paths[0])
+                
+                self.window.status_bar_manager.message=''
                 
             else:
                 logger.info('Could not load file: '+ dlg.paths)

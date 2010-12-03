@@ -26,26 +26,13 @@ import cfflib
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CTimeserie(HasTraits, cfflib.CTimeserie):
+from cbase import CBase
+
+class CTimeserie(CBase):
     """ The implementation of the Connectome Timeserie """
     
     obj = Instance(cfflib.CTimeserie)
 
-    # network name as seen in the TreeView
-    name = Property(Str, depends_on = [ 'obj' ])
-    
-    # private traits
-    ###########
-    
-    # parent cfile this networks belongs to
-    _parentcfile = Any
-
-    # filezip of cfile
-    _filezip = DelegatesTo('_parentcfile')
-
-    def _get_name(self):
-        return self.obj.name
-    
     def __init__(self, **traits):
         super(CTimeserie, self).__init__(**traits)
         

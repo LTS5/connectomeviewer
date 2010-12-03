@@ -20,19 +20,23 @@ from enthought.traits.api import HasTraits, Str, Bool, CBool, Any, Dict, impleme
       List, Instance, DelegatesTo, Property
 from enthought.traits.ui.api import View, Item, auto_close_message, message
 
+# ConnectomeViewer imports
+
 import cfflib
+from nibabel.gifti.util import intent_codes
 
 # Logging import
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-from cbase import CBase
 
-class CImagestack(CBase):
-    """ The implementation of the Connectome Imagestack """
+class CSurfaceDarray(HasTraits):
+    """ The implementation of the Connectome Surface data array """
     
-    obj = Instance(cfflib.CImagestack)
-
-    def __init__(self, **traits):
-        super(CImagestack, self).__init__(**traits)
+    def __init__(self, darray, **traits):
+        super(CSurfaceDarray, self).__init__(**traits)
         
+        self.data = darray
+        
+        self.dname = 'Data arrays (%s)' % str(intent_codes.label[self.data.intent])
+        # attach it to parent?

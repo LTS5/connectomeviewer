@@ -29,7 +29,7 @@ CURRENT_SELECTION_VIEW = 'enthought.mayavi.core.engine.Engine.current_selection'
 SHELL_VIEW = 'enthought.plugins.python_shell_view'
 LOGGER_VIEW = 'enthought.logger.plugin.view.logger_view.LoggerView' 
 ID = 'connectome.cviewer.ui'
-CFFVIEW = 'cviewer.plugins.cff.ui.cff_view.CFFView'
+CFFVIEW = 'cviewer.plugins.cff2.ui.cff_view.CFFView'
 
 # This module's package.
 PKG = '.'.join(__name__.split('.')[:-1])

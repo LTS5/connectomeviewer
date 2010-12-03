@@ -26,26 +26,26 @@ import cfflib
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CVolume(HasTraits, cfflib.CVolume):
+from cbase import CBase
+
+class CVolume(CBase):
     """ The implementation of the Connectome Volume """
     
     obj = Instance(cfflib.CVolume)
 
-    # network name as seen in the TreeView
-    name = Property(Str, depends_on = [ 'obj' ])
-    
-    # private traits
-    ###########
-    
-    # parent cfile this networks belongs to
-    _parentcfile = Any
+    def vol_vis(self):
+        """ Invokes the Volume Visualizer by Gael Varoquaux """
+        
+        if not self.loaded:
+            self.load()
+        
+        from cviewer.visualization.volume.thread_volslice import ThreadedVolumeSlicer
 
-    # filezip of cfile
-    _filezip = DelegatesTo('_parentcfile')
+        logger.debug('Invoke Volume Slicer...')
 
-    def _get_name(self):
-        return self.obj.name
-    
+        action = ThreadedVolumeSlicer(fname = self.obj.tmpsrc)
+        action.start()
+        
     def __init__(self, **traits):
         super(CVolume, self).__init__(**traits)
         

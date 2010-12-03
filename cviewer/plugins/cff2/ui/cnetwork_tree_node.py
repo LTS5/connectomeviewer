@@ -44,7 +44,7 @@ class CNetworkTreeNode(TreeNode):
     icon_open=Str('home.png')
     
     # labels
-    label='name'
+    label='dname'
 
     ###
     # Private Traits
@@ -57,6 +57,12 @@ class CNetworkTreeNode(TreeNode):
                                kw={'name': 'Show name', 
                                    'action': 'object.show_name',
                                    'tooltip': 'Shows the network name'}, )
+    
+    _ChangeParameters = Instance(Action,
+                                 kw={'name': 'Edge Parameters',
+                                     'action': 'object._edge_parameters',
+                                     'tooltip': 'Thresholding and Change Attributes',
+                                     'enabled_when' : 'object.loaded == True'}, )
     
     # the menu shown after right-click
     menu = Instance(Menu, transient=True)
@@ -75,7 +81,7 @@ class CNetworkTreeNode(TreeNode):
         """ Standard menus for network nodes """
         
         menu_actions = [Separator(), \
-                        self._ShowName]
+                        self._ChangeParameters]
         
         return Menu( *menu_actions)
         

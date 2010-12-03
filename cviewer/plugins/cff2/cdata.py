@@ -26,25 +26,12 @@ import cfflib
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CData(HasTraits, cfflib.CData):
+from cbase import CBase
+
+class CData(CBase):
     """ The implementation of the Connectome Data """
     
     obj = Instance(cfflib.CData)
-
-    # network name as seen in the TreeView
-    name = Property(Str, depends_on = [ 'obj' ])
-    
-    # private traits
-    ###########
-    
-    # parent cfile this networks belongs to
-    _parentcfile = Any
-
-    # filezip of cfile
-    _filezip = DelegatesTo('_parentcfile')
-
-    def _get_name(self):
-        return self.obj.name
     
     def __init__(self, **traits):
         super(CData, self).__init__(**traits)

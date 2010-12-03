@@ -37,14 +37,14 @@ class CTimeserieTreeNode(TreeNode):
 
     # a default icons
     # Name of group item icon
-    icon_group = Str('home.png')
+    icon_group = Str('timeserie.png')
     # Name of leaf item icon
-    icon_item=Str('home.png')
+    icon_item=Str('timeserie.png')
     # Name of opened group item icon
-    icon_open=Str('home.png')
+    icon_open=Str('timeserie.png')
     
     # labels
-    label='name'
+    label='dname'
 
     ###
     # Private Traits

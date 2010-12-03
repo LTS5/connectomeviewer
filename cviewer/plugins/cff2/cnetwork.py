@@ -33,7 +33,9 @@ import cfflib
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CNetwork(HasTraits, cfflib.CNetwork):
+from cbase import CBase
+
+class CNetwork(CBase):
     """ The implementation of the Connectome Networks """
     
     # the render manager of this network
@@ -44,31 +46,21 @@ class CNetwork(HasTraits, cfflib.CNetwork):
     
     # the cfflib CNetwork object
     obj = Instance(cfflib.CNetwork)
-
-    # network name as seen in the TreeView
-    name = Property(Str, depends_on = [ 'obj' ])
     
     graph = Property(Any, depends_on = [ 'obj' ])
-    
-    # private traits
-    ###########
-    
-    # parent cfile this networks belongs to
-    _parentcfile = Any
-
-    # filezip of cfile
-    _filezip = DelegatesTo('_parentcfile')
 
     # edge parameters for visualization
     _edge_para = Instance(EdgeParameters)
     
-    
     def _get_graph(self):
-        return self.obj.content
-    
-    def _get_name(self):
-        return self.obj.name
-    
+        return self.obj.data
+
+#    def invoke_matrix_viewer(self):
+#        """ Invoke the Conectome Matrix Viewer """
+#        from cviewer.visualization.matrix.cmatrix_viewer import CMatrixViewer
+#        self.cmatrix_viewer = CMatrixViewer(self.network)
+#        self.cmatrix_viewer.edit_traits()
+
     def __init__(self, **traits):
         super(CNetwork, self).__init__(**traits)
         

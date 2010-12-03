@@ -21,27 +21,27 @@ from enthought.traits.ui.api import TreeNode
 from enthought.traits.ui.menu import Menu, Action, Separator
 
 # ConnectomeViewer imports
-from cviewer.plugins.cff2.csurface import CSurface
+from cviewer.plugins.cff2.csurface_darray import CSurfaceDarray
 
 # Logging import
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CSurfaceTreeNode(TreeNode):
+class CSurfaceDarrayTreeNode(TreeNode):
     
     # The object that contains the container ;^)
     parent = Any
 
     # the network associated with this node
-    node_for=[CSurface]
+    node_for=[CSurfaceDarray]
 
     # a default icons
     # Name of group item icon
-    icon_group = Str('surface.png')
+    icon_group = Str('surfaceda.png')
     # Name of leaf item icon
-    icon_item=Str('surface.png')
+    icon_item=Str('surfaceda.png')
     # Name of opened group item icon
-    icon_open=Str('surface.png')
+    icon_open=Str('surfaceda.png')
     
     # labels
     label='dname'
@@ -62,8 +62,8 @@ class CSurfaceTreeNode(TreeNode):
     menu = Instance(Menu, transient=True)
     
     def get_children(self, object):
-        # this works!
-        return object.children
+        """ Get the object's children. """
+        pass
         
     ######################################################################
     # Non-public interface
@@ -76,7 +76,4 @@ class CSurfaceTreeNode(TreeNode):
                         self._ShowName]
         
         return Menu( *menu_actions)
-        
-    def __init__(self, **traits):
-        super(CSurfaceTreeNode, self).__init__(**traits)
         
