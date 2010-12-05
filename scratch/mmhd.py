@@ -51,14 +51,40 @@ open:
 - multiple surface representation vs. canonical
 - store fibers?
 - brainregion: region or regionset?
+- labelings? e.g. for multi-resolution
+- clusterings?
+- skeletons?
+
+file
+====
+represents an datasets of an individual or atlas
+
+structural
+----------
 
 /brainregions
-    /region <of class, id>
+        
+    /regiongroup <of class, id>
+        /attribute: JSON encoded with 1:{}, 2:{},...
+        /group:surface
+            /group:labelings ?
+            /group:graphics
+                /dataset:affine
+                /dataset:aabb
+                /dataset:spatialdatastructure ?
+            /group:geometry
+                /group:resolution_highest
+                    /dataset:vertices
+                    /dataset:connectivity
+                    /dataset:offset
+            
         /volume
+            /group:geometry
+                /attribute:dim,pixdim,unit,
+                /group:resolution_highest
+                    /dataset:3d-array
         /mesh
         /slices (with polygons)
-        
-    /regionset <of class, id>
         
         
 /brainregionconnections
@@ -84,3 +110,6 @@ open:
         /polygon (e.g. for cleft area)
         
         
+dynamic
+-------
+path/../../vertices -> time dimension array with sampling rate
