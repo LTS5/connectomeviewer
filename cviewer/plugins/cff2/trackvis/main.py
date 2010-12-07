@@ -2,6 +2,9 @@ import threading
 import subprocess
 import os
 
+import logging
+logger = logging.getLogger('root.'+__name__)
+
 class ThreadedTrackvis(threading.Thread):
     
     def __init__(self, tvpath, trkfname):

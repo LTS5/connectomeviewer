@@ -84,6 +84,7 @@ class OpenCFile(Action):
             exec_as_funct = False
     
         wildcard = "Connectome File Format v2.0 (*.cff)|*.cff|" \
+                    "Connectome Markup File v2.0 (meta.cml)|meta.cml|" \
                     "All files (*.*)|*.*"
         dlg = FileDialog(wildcard=wildcard,title="Choose a Connectome File",\
                          resizeable=False, \
@@ -109,6 +110,8 @@ class OpenCFile(Action):
                 cfile.load_cfile(dlg.paths[0])
                 
                 self.window.status_bar_manager.message=''
-                
+            elif os.path.exists(dlg.paths[0]) and (dlg.paths[0]).endswith('meta.cml'):
+                cfile.close_cfile()
+                cfile.load_cfile(dlg.paths[0], ismetacml = True)
             else:
                 logger.info('Could not load file: '+ dlg.paths)

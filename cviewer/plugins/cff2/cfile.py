@@ -110,7 +110,7 @@ class CFile(HasTraits, cfflib.connectome):
         self.connectome_script = []
         self.connectome_imagestack = []
     
-    def load_cfile(self, filepath):
+    def load_cfile(self, filepath, ismetacml = False):
         """ Load a given cfile as path and initializes the attributes """
         
         if not os.path.isfile(filepath):
@@ -122,8 +122,11 @@ class CFile(HasTraits, cfflib.connectome):
         # set the file name and make it visible in the TraitsUIView
         self.file_name = os.path.split(filepath)[1]
     
-        a = cfflib.load_from_cff(filepath)
-        
+        if ismetacml:
+            a = cfflib.load_from_meta_cml(filepath)
+        else:
+            a = cfflib.load_from_cff(filepath)
+            
         self.connectome_meta = a.connectome_meta
         self.connectome_network=[CNetwork(obj=ele) for ele in a.connectome_network]
         self.connectome_surface=[CSurface(obj=ele) for ele in a.connectome_surface]

@@ -17,7 +17,7 @@ import os
 
 # Enthought library imports
 from enthought.traits.api import HasTraits, Str, Bool, CBool, Any, Dict, implements, \
-      List, Instance, DelegatesTo, Property
+      List, Instance, DelegatesTo, Property, Code
 from enthought.traits.ui.api import View, Item, auto_close_message, message
 
 import cfflib
@@ -33,6 +33,30 @@ class CScript(CBase):
     
     obj = Instance(cfflib.CScript)
     
+    code = Code
+
+    view = View(
+            Item( 'code',  style = 'readonly' ),
+            resizable = True,
+            width     = 0.75,
+            height    = 0.75
+        )
+    
     def __init__(self, **traits):
         super(CScript, self).__init__(**traits)
+        
+    def print_file(self):
+        """ Prints the file content """
+        if not self.loaded:
+            self.load()
+        self.obj.data.seek(0)
+        return self.obj.data.read()
+        
+    def open_file(self):
+        """ Opens the file in an editor """
+        if not self.loaded:
+            self.load()
+
+        self.code = self.print_file()
+        self.configure_traits()
         

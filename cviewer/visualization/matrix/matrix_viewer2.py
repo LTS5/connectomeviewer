@@ -5,6 +5,7 @@
    region to zoom.  If you use a sequence of zoom boxes, pressing alt-left-arrow
    and alt-right-arrow moves you forwards and backwards through the "zoom 
    history".
+* Right-click on the colorbar selects highlighted value range
 """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)
@@ -58,13 +59,11 @@ class MatrixViewer(HasTraits):
     custtool = Instance(CustomTool)
     colorbar = Instance(ColorBar)
     
-    edge_para = Any
-    data_name = Enum("a", "b")
-    
-    fro = Int
-    to = Int
+    fro = Any
+    to = Any
     data = None
     val = Float
+    nodelabels = Any
 
     traits_view = View(
                     Group(
@@ -82,12 +81,22 @@ class MatrixViewer(HasTraits):
                     )
 
     
-    def __init__(self, data, **traits):
-        """ Data is a nxn numpy array """
+    def __init__(self, nodelabels, matdict, **traits):
+        """ Starts a matrix inspector
+        
+        Parameters
+        ----------
+        nodelables : list
+            List of strings of labels for the rows of the matrix
+        matdict : dictionary
+            Keys are the edge type and values are NxN Numpy arrays """
         super(HasTraits, self).__init__(**traits)
         
-        self.data_name = data.keys()[0]
-        self.data = data
+        self.add_trait('data_name', Enum(matdict.keys()))
+        
+        self.data_name = matdict.keys()[0]
+        self.data = matdict
+        self.nodelables = nodelabels
         self.plot = self._create_plot_component()
         
         # set trait notification on customtool
@@ -96,7 +105,8 @@ class MatrixViewer(HasTraits):
 
     def _data_name_changed(self, old, new):
         self.pd.set_data("imagedata", self.data[self.data_name])
-        self.my_plot.set_value_selection((0, 2))
+        #self.my_plot.set_value_selection((0, 2))
+        self.tplot.title = "Matrix for %s" % self.data_name
         
     def _update_fields(self):
         from numpy import trunc
@@ -109,9 +119,9 @@ class MatrixViewer(HasTraits):
         sh = self.data[self.data_name].shape
         # assume matrix whose shape is (# of rows, # of columns)
         if frotmp >= 0 and frotmp < sh[0] and totmp >= 0 and totmp < sh[1]:
-            self.fro = frotmp
-            self.to = totmp
-            self.val = self.data[self.data_name][self.fro, self.to]
+            self.fro = self.nodelables[frotmp]
+            self.to = self.nodelables[totmp]
+            self.val = self.data[self.data_name][frotmp, totmp]
         
     def _create_plot_component(self):
         
@@ -129,7 +139,7 @@ class MatrixViewer(HasTraits):
                       colormap=jet)
     
         # Tweak some of the plot properties
-        self.tplot.title = "Matrix"
+        self.tplot.title = "Matrix for %s" % self.data_name
         self.tplot.padding = 50
     
         # Right now, some of the tools are a little invasive, and we need the 
@@ -180,17 +190,11 @@ class MatrixViewer(HasTraits):
 
 if __name__ == "__main__":
     import numpy as np
-    #self.edge_para = edge_para
-    a = np.random.randint(1,10,(10,10))
-    b = np.random.randint(1,100,(100,100))
-    a[0,0] = 100
     
-    data = {'a':a, 'b':b}
+    nodelabels = [str(e) for e in range(300)]
+    matdict = {'edgval1':np.random.random( (300,300) ), 'edgval2': np.random.random( (300,300) )}
     
-    nodelabels = ['first', 'second', 'third']
-    matdict = {'edgval1':np.random.random( (3,3) ), 'edgval2': np.random.random( (3,3) )}
-    
-    demo = MatrixViewer(matdict)
+    demo = MatrixViewer(nodelabels, matdict)
     demo.configure_traits()
 
 

@@ -64,6 +64,12 @@ class CNetworkTreeNode(TreeNode):
                                      'tooltip': 'Thresholding and Change Attributes',
                                      'enabled_when' : 'object.loaded == True'}, )
     
+    _RenderMatrixAction = Instance(Action,
+                               kw={'name': 'Connectome Matrix Viewer', 
+                                   'action': 'object.invoke_matrix_viewer',
+                                    'tooltip':'View the connectivity matrices',
+                                    'enabled_when':'object.loaded == True'}, )
+    
     # the menu shown after right-click
     menu = Instance(Menu, transient=True)
     
@@ -81,7 +87,7 @@ class CNetworkTreeNode(TreeNode):
         """ Standard menus for network nodes """
         
         menu_actions = [Separator(), \
-                        self._ChangeParameters]
+                        self._RenderMatrixAction]
         
         return Menu( *menu_actions)
         

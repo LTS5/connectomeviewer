@@ -41,4 +41,5 @@ class OpenFileAction(Action):
             default_directory=pref_script_path)
         if dialog.open() == OK:
             self.window.workbench.edit(File(dialog.path), kind=TextEditor)
-    
+
+            

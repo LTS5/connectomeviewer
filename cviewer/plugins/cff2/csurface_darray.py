@@ -38,5 +38,29 @@ class CSurfaceDarray(HasTraits):
         
         self.data = darray
         
-        self.dname = 'Data arrays (%s)' % str(intent_codes.label[self.data.intent])
+        if not self.data.meta is None:
+            getdict = self.data.meta.get_data_as_dict()
+            prim = ''
+            if getdict.has_key('AnatomicalStructurePrimary'):
+                prim = getdict['AnatomicalStructurePrimary']
+            sec = ''
+            if getdict.has_key('AnatomicalStructureSecondary'):
+                sec = getdict['AnatomicalStructureSecondary']
+                
+            # name resolution
+            if prim == '':
+                if sec == '':
+                    dname = 'Data arrays (%s)' % str(intent_codes.label[self.data.intent])
+                else:
+                    dname = '%s (%s)' % (sec, str(intent_codes.label[self.data.intent]))
+            else:
+                if sec == '':
+                    dname = '%s (%s)' % (prim, str(intent_codes.label[self.data.intent]))
+                else:
+                    dname = '%s / %s (%s)' % (prim, sec, str(intent_codes.label[self.data.intent]))
+        else:
+            dname = 'Data arrays (%s)' % str(intent_codes.label[self.data.intent])
+            
+        self.dname = dname
         # attach it to parent?
+        

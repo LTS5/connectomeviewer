@@ -72,8 +72,7 @@ class CSurfaceTreeNode(TreeNode):
     def _menu_default(self):
         """ Standard menus for network nodes """
         
-        menu_actions = [Separator(), \
-                        self._ShowName]
+        menu_actions = [Separator()]
         
         return Menu( *menu_actions)
         

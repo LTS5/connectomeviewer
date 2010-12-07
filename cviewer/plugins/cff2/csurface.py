@@ -46,20 +46,13 @@ class CSurface(CBase):
     children = Property(depends_on = ['darrays'])
     
     def load(self):
-        self.obj.load()
-        self.loaded = True
+        super(CSurface, self).load()
         # update darrays
         self.darrays = [CSurfaceDarray(ele) for ele in self.data.darrays]
     
     def close(self):
-        if self.loaded:
-            logger.debug("Save...")
-            self.obj.save()
-        logger.debug("Delete from memory...")
-        del self.obj.data
+        super(CSurface, self).close()
         self.darrays = []
-        self.loaded = False
-        logger.debug("Done.")
     
     def _get_children(self):
         return self.darrays

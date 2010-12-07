@@ -53,10 +53,10 @@ class CScriptTreeNode(TreeNode):
     # if the node is activated, this means that there exists a
     # corresponding RenderManager instance
     
-    _ShowName = Instance(Action,  
-                               kw={'name': 'Show name', 
-                                   'action': 'object.show_name',
-                                   'tooltip': 'Shows the network name'}, )
+    _OpenFile = Instance(Action,  
+                               kw={'name': 'Open File in Editor (readonly)', 
+                                   'action': 'object.open_file',
+                                   'tooltip': 'Opens the file in readonly editor'}, )
     
     # the menu shown after right-click
     menu = Instance(Menu, transient=True)
@@ -73,7 +73,7 @@ class CScriptTreeNode(TreeNode):
         """ Standard menus for network nodes """
         
         menu_actions = [Separator(), \
-                        self._ShowName]
+                        self._OpenFile]
         
         return Menu( *menu_actions)
         
