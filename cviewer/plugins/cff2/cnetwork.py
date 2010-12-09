@@ -62,14 +62,22 @@ class CNetwork(CBase):
 
     def _get_matdict(self):
         if not self.loaded:
-            return
+            self.load()
         import networkx as nx
         matdict = {}
         g = self._relabel_to_int(self.graph)
         # grab keys from the first edge, discarding id
         u,v,d = g.edges_iter(data=True).next()
         dl = d.keys()
-        dl.remove('id')
+        try:
+            dl.remove('id')
+        except:
+            pass
+        # remove not float/integer
+        for k in dl:
+            if not isinstance(d[k], int) and not isinstance(d[k], float):
+                dl.remove(k)
+                
         # create numpy matrix for each key using recarray
         matrec = nx.to_numpy_recarray(g, dtype=zip(dl, [float]*len(dl)) )
         for k in dl:
@@ -78,15 +86,17 @@ class CNetwork(CBase):
 
     def _get_nodelabels(self, nodekey = 'dn_label'):
         if not self.loaded:
-            return
+            self.load()
         g = self._relabel_to_int(self.graph)
+        a = []
         return [v[nodekey] for n,v in g.nodes_iter(data=True)]
 
-    def invoke_matrix_viewer(self):
+    def invoke_matrix_viewer(self, nodelabelkey = 'dn_label'):
         """ Invoke the Connectome Matrix Viewer """
         from cviewer.visualization.matrix.matrix_viewer2 import MatrixViewer
                 
-        cmatrix_viewer = MatrixViewer(self._get_nodelabels(), self._get_matdict())
+        cmatrix_viewer = MatrixViewer(self._get_nodelabels(nodekey = nodelabelkey),
+                                      self._get_matdict())
         cmatrix_viewer.edit_traits()
 
     def __init__(self, **traits):
