@@ -69,7 +69,7 @@ class ViewerPerspective(Perspective):
             PerspectiveItem(id=CFFVIEW, position='left', width=0.2),
             PerspectiveItem(id=SHELL_VIEW, position='bottom', height=0.2),
             # XXX: deactivate mayavi views per default as not to confuse end-users too much
-            #PerspectiveItem(id=ENGINE_VIEW),
+            PerspectiveItem(id=ENGINE_VIEW),
             #PerspectiveItem(id=CURRENT_SELECTION_VIEW, position='bottom',
             #                relative_to=ENGINE_VIEW),
         ]
@@ -136,15 +136,12 @@ class CViewerUIPlugin(Plugin):
     def _views_default(self):
         """ Trait initialiser.
         """
-        from welcome.welcome_view import WelcomeView
-        
-        return [WelcomeView,
-                self._engine_view_factory,
+        return [self._engine_view_factory,
                 self._current_selection_view_factory,]
 
     def _perspectives_default(self):
         """ Trait initializer. """
-        return [WelcomePerspective, ViewerPerspective]
+        return [ViewerPerspective]
 
     #def _banner_default(self):
     #    """Trait initializer """
