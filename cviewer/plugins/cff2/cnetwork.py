@@ -69,7 +69,8 @@ class CNetwork(CBase):
         # grab keys from the first edge, discarding id
         u,v,d = g.edges_iter(data=True).next()
         dl = d.keys()
-        dl.remove('id')
+        if 'id' in dl:
+            dl.remove('id')
         # create numpy matrix for each key using recarray
         matrec = nx.to_numpy_recarray(g, dtype=zip(dl, [float]*len(dl)) )
         for k in dl:

@@ -36,12 +36,12 @@ class BindingsPlugin(Plugin):
     
     mycfile = Service('cviewer.plugins.cff2.cfile.CFile')
 
-    analyze_node = Service('cviewer.plugins.analysis.analysis_node.AnalysisNode')
+    #analyze_node = Service('cviewer.plugins.analysis.analysis_node.AnalysisNode')
 
     def _bindings_default(self):
         """ Trait initializer. """
                
-        bindings = {'cfile' : self.mycfile, 'analyze_node' : self.analyze_node}
+        bindings = {'cfile' : self.mycfile } #, 'analyze_node' : self.analyze_node}
 
         return [bindings]
         
