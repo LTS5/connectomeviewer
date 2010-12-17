@@ -80,7 +80,7 @@ class RunScript(Action):
                 
             if 'cfile' not in g:
                 # load cfile reference into gloabl name space
-                cfile = self.window.application.get_service('cviewer.plugins.cff.cfile.CFile')
+                cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
                 g['cfile'] = cfile
             
             # always store last executed path in preferences

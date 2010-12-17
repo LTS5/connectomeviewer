@@ -20,10 +20,10 @@ import tempfile
 from threading import Thread
 
 # Enthought library imports
-from enthought.traits.api import HasTraits, Instance, Any, Str, File, List, Bool, Property
+from enthought.traits.api import HasTraits, Instance, Any, Str, File, List, Bool, Property, cached_property
 
 # ConnectomeViewer imports
-
+from cmetadata import CMetadata
 from cnetwork import CNetwork
 from csurface import CSurface
 from cvolume import CVolume
@@ -41,7 +41,7 @@ logger = logging.getLogger('root.'+__name__)
 ######################################################################
 # CFile` class.
 ######################################################################
-class CFile(HasTraits, cfflib.connectome):
+class CFile(HasTraits):
     """This class basically allows you to create an instance for a
     loaded .cff file, and serves as the primary data source for scenes etc.
     
@@ -57,6 +57,8 @@ class CFile(HasTraits, cfflib.connectome):
     # standard name
     dname = Str('Connectome File')
 
+    obj = Instance(cfflib.connectome)
+
     #######################################
     # Private traits.
     #######################################
@@ -71,29 +73,86 @@ class CFile(HasTraits, cfflib.connectome):
     # not nice MVC-style
     _workbenchwin = Instance('enthought.pyface.workbench.api.WorkbenchWindow')
     
-    connectome_meta = Instance(cfflib.CMetadata)
-    connectome_network = List
-    connectome_surface = List
-    connectome_volume = List
-    connectome_track = List
-    connectome_timeserie = List
-    connectome_data = List
-    connectome_script = List
-    connectome_imagestack = List
+    connectome_meta = Property(Any)
+    connectome_network = Property(List)
+    connectome_surface = Property(List)
+    connectome_volume = Property(List)
+    connectome_track = Property(List)
+    connectome_timeserie = Property(List)
+    connectome_data = Property(List)
+    connectome_script = Property(List)
+    connectome_imagestack = Property(List)
     
-    children = Property(depends_on = ['connectome_network', 
-                                      'connectome_surface',
-                                      'connectome_volume',
-                                      'connectome_track',
-                                      'connectome_timeserie',
-                                      'connectome_data',
-                                      'connectome_script',
-                                      'connectome_imagestack',
-                                      ])
+    children = List
     
-    def _get_children(self):
-        return self.get_all()
+    def _obj_changed(self):
+        self._update_children()
         
+    def _update_children(self):
+        self.children = self.connectome_network + self.connectome_surface + \
+                self.connectome_volume + self.connectome_track + \
+                self.connectome_timeserie + self.connectome_data + \
+                self.connectome_script + self.connectome_imagestack
+    
+    def _get_connectome_meta(self):
+        if self.obj is None:
+            return None
+        else:
+            return CMetadata(obj=self.obj.connectome_meta)
+        
+    def _get_connectome_network(self):
+        if self.obj is None:
+            return []
+        else:
+            return [CNetwork(obj=ele) for ele in self.obj.connectome_network]
+
+    def _get_connectome_surface(self):
+        if self.obj is None:
+            return []
+        else:
+            if self._connectome_surface is None:
+                self._connectome_surface = [CSurface(obj=ele) for ele in self.obj.connectome_surface]
+                return self._connectome_surface
+            else:
+                return self._connectome_surface
+        
+    def _get_connectome_volume(self):
+        if self.obj is None:
+            return []
+        else:
+            return [CVolume(obj=ele) for ele in self.obj.connectome_volume]
+        
+    def _get_connectome_track(self):
+        if self.obj is None:
+            return []
+        else:
+            return [CTrack(obj=ele) for ele in self.obj.connectome_track]
+        
+    def _get_connectome_timeserie(self):
+        if self.obj is None:
+            return []
+        else:
+            return [CTimeserie(obj=ele) for ele in self.obj.connectome_timeserie]
+
+    def _get_connectome_data(self):
+        if self.obj is None:
+            return []
+        else:
+            return [CData(obj=ele) for ele in self.obj.connectome_data]
+        
+    def _get_connectome_script(self):
+        if self.obj is None:
+            return []
+        else:
+            return [CScript(obj=ele) for ele in self.obj.connectome_script]
+        
+    def _get_connectome_imagestack(self):
+        if self.obj is None:
+            return []
+        else:
+            return [CImagestack(obj=ele) for ele in self.obj.connectome_imagestack]
+
+    
     ######################################################################
     # `object` interface.
     ######################################################################
@@ -101,15 +160,8 @@ class CFile(HasTraits, cfflib.connectome):
     def __init__(self, **traits):
         super(CFile, self).__init__(**traits)
         
-        self.connectome_network = []
-        self.connectome_surface = []
-        self.connectome_volume = []
-        self.connectome_track = []
-        self.connectome_timeserie = []
-        self.connectome_data = []
-        self.connectome_script = []
-        self.connectome_imagestack = []
-    
+        self._connectome_surface = None
+        
     def load_cfile(self, filepath, ismetacml = False):
         """ Load a given cfile as path and initializes the attributes """
         
@@ -123,23 +175,25 @@ class CFile(HasTraits, cfflib.connectome):
         self.file_name = os.path.split(filepath)[1]
     
         if ismetacml:
-            a = cfflib.load_from_meta_cml(filepath)
+            self.obj = cfflib.load_from_meta_cml(filepath)
         else:
-            a = cfflib.load_from_cff(filepath)
+            self.obj = cfflib.load_from_cff(filepath)
             
-        self.connectome_meta = a.connectome_meta
-        self.connectome_network=[CNetwork(obj=ele) for ele in a.connectome_network]
-        self.connectome_surface=[CSurface(obj=ele) for ele in a.connectome_surface]
-        self.connectome_volume =[CVolume(obj=ele) for ele in a.connectome_volume]
-        self.connectome_track =[CTrack(obj=ele) for ele in a.connectome_track]
-        self.connectome_timeserie =[CTimeserie(obj=ele) for ele in a.connectome_timeserie]
-        self.connectome_data =[CData(obj=ele) for ele in a.connectome_data]
-        self.connectome_script =[CScript(obj=ele) for ele in a.connectome_script]
-        self.connectome_imagestack =[CImagestack(obj=ele) for ele in a.connectome_imagestack]
-                 
-
     def close_cfile(self):
+#        if not self.obj.iszip:
+#            logger.info("Save connectome file data.")
         pass
         # save all the objects
         # remove all the lists
+        
+    def show_surface(self):
+        # invokes a code oracle
+        # get loaded surfaces
+        from cviewer.plugins.codeoracle.csurface_action import SurfaceParameter
+        so = SurfaceParameter()
+        so.edit_traits()
+
+    
+        
+        
         

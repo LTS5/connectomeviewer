@@ -39,7 +39,7 @@ class CSurfaceDarray(HasTraits):
         self.data = darray
         
         if not self.data.meta is None:
-            getdict = self.data.meta.get_metadata()
+            getdict = self.data.get_meta_as_dict()
             prim = ''
             if getdict.has_key('AnatomicalStructurePrimary'):
                 prim = getdict['AnatomicalStructurePrimary']

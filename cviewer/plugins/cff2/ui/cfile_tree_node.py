@@ -44,7 +44,12 @@ class CFileTreeNode(TreeNode):
     icon_open=Str('cff.png')
     
     # labels
-    label='name'
+    label='dname'
+
+    auto_open=True
+    copy=False
+    delete=False
+    rename=False
 
     ###
     # Private Traits
@@ -58,14 +63,19 @@ class CFileTreeNode(TreeNode):
                                    'action': 'object.show_name',
                                    'tooltip': 'Shows the network name'}, )
     
+    _ShowSurface = Instance(Action,  
+                               kw={'name': 'Show surface', 
+                                   'action': 'object.show_surface',
+                                   'tooltip': 'Creates a surface to inspect'}, )
+    
+    
     # the menu shown after right-click
     menu = Instance(Menu, transient=True)
     
     def get_children(self, object):
         """ Get the object's children. """
-
         # Collate the window's views into categories.
-        return object.connectome_network + object.connectome_surface
+        return object.children
     
         
     ######################################################################
@@ -75,7 +85,6 @@ class CFileTreeNode(TreeNode):
     def _menu_default(self):
         """ Standard menus for network nodes """
         
-        menu_actions = [Separator()]
-        
+        menu_actions = [Separator(), self._ShowSurface]
         return Menu( *menu_actions)
         

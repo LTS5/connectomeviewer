@@ -1,4 +1,4 @@
-""" The implementation of the 'INetwork' interface. """
+""" The ConnectomeViewer wrapper for a cfflib object """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)
 #

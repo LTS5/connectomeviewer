@@ -33,9 +33,10 @@ class Oracle(HasTraits):
     """
 
     # The lines of code recorded.
-    lines = List(Str)
+    #lines = List(Str)
     
     # The code to display
+#    code = Code(editor=CodeEditor(line='current_line'))
     code = Code(editor=CodeEditor(line='current_line'))
 
     # Button to save script to file.
@@ -78,7 +79,8 @@ class Oracle(HasTraits):
 
     def get_code(self):
         """Returns the recorded lines as a string of printable code."""
-        return '\n'.join(self.lines) + '\n'
+        return self.code
+#        return '\n'.join(self.lines) + '\n'
     
     ######################################################################
     # Non-public interface.
@@ -119,5 +121,5 @@ class Oracle(HasTraits):
 
 if __name__ == '__main__':
     a = Oracle()
-    a.lines.append("import pyconto\nprint 'me'")
+    a.code = "import pyconto\nprint 'me'"
     a.configure_traits()

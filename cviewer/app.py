@@ -229,6 +229,11 @@ def get_cviewer_plugins():
     logger.info('Added BindingsPlugin')
 
     # add sLORETA Converter plugin
+    from cviewer.plugins.codeoracle.oracle_plugin import OraclePlugin
+    plugins.append(OraclePlugin())
+    logger.info('Added Oracle Plugin')
+    
+    # add Oracle Converter plugin
     from cviewer.plugins.sloreta.sloreta_plugin import SLoretaConverterPlugin
     plugins.append(SLoretaConverterPlugin())
     logger.info('Added sLORETA Converter Plugin')
