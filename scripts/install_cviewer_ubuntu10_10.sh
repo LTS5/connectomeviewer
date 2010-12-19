@@ -39,7 +39,6 @@ sudo apt-get install git-core python-setuptools libvtk5.4 python-vtk python-nump
 sudo apt-get install python-matplotlib python-qscintilla2 gcc scons python-xlib pyqt4-dev-tools python-scipy python-pyrex python-all-dev python-dicom
 sudo apt-get install libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8 python-h5py python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsbackendqt python-traitsgui python-enthoughtbase python-chaco python-lxml python-h5py mayavi2 python-tables python-tables-doc python-apptools python-pip python-wxtools python-sphinx
 
-
 echo "========================================================="
 echo "Install/Update required packages for the ConnectomeViewer"
 echo "========================================================="
