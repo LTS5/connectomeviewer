@@ -40,6 +40,7 @@ sudo apt-get install python-matplotlib python-qscintilla2 gcc scons python-xlib 
 sudo apt-get install libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8 python-h5py python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsbackendqt python-traitsgui python-enthoughtbase python-chaco python-lxml python-h5py mayavi2 python-tables python-tables-doc python-apptools python-pip python-wxtools python-sphinx
 
 
+
 echo "========================================================="
 echo "Install/Update required packages for the ConnectomeViewer"
 echo "========================================================="
@@ -55,6 +56,14 @@ echo "=========="
 sudo pip install --upgrade Cython
 
 echo "==========="
+<<<<<<< HEAD
+=======
+echo "... PyDICOM"
+echo "==========="
+sudo pip install --upgrade pydicom
+
+echo "==========="
+>>>>>>> 0c5abae4c270d85c81a11428409c4b2936967408
 echo "... Nibabel"
 echo "==========="
 sudo pip install --upgrade nibabel
@@ -65,12 +74,21 @@ echo "========================================="
 
 # sudo pip install -e git://github.com/unidesigner/connectomeviewer.git@master#egg=ConnectomeViewer
 
+<<<<<<< HEAD
 wget --no-check-certificate http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
 tar xzf ConnectomeViewer-0.1.9.tar.gz
 cd ConnectomeViewer-0.1.9/
 sudo python setup.py install
 cd ..
 sudo rm -rf ConnectomeViewer-0.1.9/
+=======
+wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
+tar xzf ConnectomeViewer-0.1.9.tar.gz
+cd ConnectomeViewer-0.1.9/
+python setup.py install
+cd ..
+rm -rf ConnectomeViewer-0.1.9/
+>>>>>>> 0c5abae4c270d85c81a11428409c4b2936967408
 
 echo "==================================================="
 echo "The installation script is finished. It may well be that errors have occured."
@@ -83,7 +101,11 @@ echo "-----------
 echo ""
 echo "If there are problems, rerun the installation script with:"
 echo "-----------
+<<<<<<< HEAD
 echo "sh ./install_cviewer_ubuntu10_10.sh > logfile.txt"
+=======
+echo "sh ./install_cviewer_ubuntu.sh > logfile.txt"
+>>>>>>> 0c5abae4c270d85c81a11428409c4b2936967408
 echo "-----------
 echo "Send the logfile.txt together with ConnectomeViewer startup logfile (automatically generated) to info@connectomics.org."
 echo "============================================================="
