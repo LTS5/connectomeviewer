@@ -58,7 +58,7 @@ echo "========================================="
 echo "You can browse the ConnectomeViewer folder for tutorial examples, external packages documentation etc."
 # sudo pip install -e git://github.com/unidesigner/connectomeviewer.git@master#egg=ConnectomeViewer
 
-wget http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
+wget --no-check-certificate http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
 tar xzf ConnectomeViewer-0.1.9.tar.gz
 cd ConnectomeViewer-0.1.9/
 sudo python setup.py install

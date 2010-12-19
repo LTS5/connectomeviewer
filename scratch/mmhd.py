@@ -113,3 +113,7 @@ structural
 dynamic
 -------
 path/../../vertices -> time dimension array with sampling rate
+- flat list of regions and connections
+- mapping of row index implicit to id, an IPv6 string for identitiy in space and time devided by point
+- links. 2 pairs with 0/1 saying if it has arrow. also tri-partitite relations
+- add properties for links in table columns. weights/plastic/directed

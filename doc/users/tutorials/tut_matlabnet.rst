@@ -5,7 +5,7 @@ Add network from Matlab connectivity matrix
 ===========================================
 
 It is assumed that you have a connectivity matrix and node positions stored in
-Matlab files (see *examples/matlab_import/data*). Here you learn how to directly load these data in ConnectomeViewer
+Matlab files (see `examples/matlab_import/data <https://github.com/unidesigner/connectomeviewer>`_). Here you learn how to directly load these data in ConnectomeViewer
 and visualize the network.
 
 The following code will do ::
@@ -28,7 +28,10 @@ script (Menu: File->New Text File. Ctrl-S to store it as .py file. Run it with C
 Alternatively, you can run the script in the ConnectomeViewer IPython shell with *run -i myscript.py*.
 To get to know the current path, type *pwd*. Change paths using the *cd* command.
 
-Of course you have to adapt the paths to your Matlab files and the names of your arrays.
+Of course you have to adapt the paths to your Matlab files and the names of your arrays. You can check the loaded data with::
+	print M
+	print M.keys()
+Dive into the dictionary accordingly.
 
 If you have a directed network (asymmetric matrix, set directed = True), the edges are
 still displayed without arrows. But you can change this by opening the the *Mayavi Visualization Tree*
