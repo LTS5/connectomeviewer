@@ -21,7 +21,6 @@ case "$exdata" in
   wget http://www.connectomeviewer.org/datasets/macaca_mulatta_01.cff
   cd ..
   ;;
-
           * )
    # Default option.	  
    # Empty input (hitting RETURN) fits here, too.
@@ -31,39 +30,51 @@ case "$exdata" in
 
 esac
 
-echo "===================================================================="
-echo "Add required Fedora packages, including header files for compilation"
-echo "===================================================================="
-sudo yum install python-pip numpy scipy python-devel ipython vtk vtk-devel swig python-configobj libXtst libXtst-devel freeglut freeglut-devel python-matplotlib python-lxml Cython qscintilla-python python-sphinx wxPython wxPython-devel subversion gcc gcc-c++ libXt libXt-devel libX11-devel hdf5 hdf5-devel python-setuptools-devel python-h5py python-AppTools python-EnvisageCore python-EnvisagePlugins python-Traits python-TraitsBackendQt python-TraitsGUI
 
-#echo "========================================================"
+echo "===================================================================="
+echo "Add required Ubuntu packages, including header files for compilation"
+echo "===================================================================="
+sudo apt-get update
+sudo apt-get install git-core python-setuptools libvtk5.4 python-vtk python-numpy python-wxversion python2.6-dev g++ swig python-configobj glutg3 glutg3-dev libxtst-dev ipython python-lxml
+sudo apt-get install python-matplotlib python-qscintilla2 gcc scons python-xlib pyqt4-dev-tools python-scipy python-pyrex python-all-dev python-dicom
+sudo apt-get install libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8 python-h5py python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsbackendqt python-traitsgui python-enthoughtbase python-chaco python-lxml python-h5py mayavi2 python-tables python-tables-doc python-apptools python-pip python-wxtools python-sphinx
+
+
+echo "========================================================="
 echo "Install/Update required packages for the ConnectomeViewer"
 echo "========================================================="
 
 echo "============"
 echo "... NetworkX"
 echo "============"
-easy_install -U networkx
+sudo pip install --upgrade networkx
 
 echo "=========="
 echo "... Cython"
 echo "=========="
-easy_install -U Cython
+sudo pip install --upgrade Cython
+
+echo "==========="
+echo "... Nibabel"
+echo "==========="
+sudo pip install --upgrade nibabel
 
 echo "========================================="
 echo "Download and install the ConnectomeViewer"
 echo "========================================="
 
+# sudo pip install -e git://github.com/unidesigner/connectomeviewer.git@master#egg=ConnectomeViewer
+
 wget --no-check-certificate http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
 tar xzf ConnectomeViewer-0.1.9.tar.gz
 cd ConnectomeViewer-0.1.9/
-python setup.py install
+sudo python setup.py install
 cd ..
-rm -rf ConnectomeViewer-0.1.9/
+sudo rm -rf ConnectomeViewer-0.1.9/
 
 echo "==================================================="
 echo "The installation script is finished. It may well be that errors have occured."
-echo "If you got a Permission error. Try to rerun the script with 'sudo ./install_cviewer_fedora.sh'"
+echo "If you got a Permission error. Try to rerun the script with 'sudo ./install_cviewer_ubuntu.sh'"
 ECHO ""
 echo "Test your ConnectomeViewer installation by typing in the terminal:
 echo "-----------
@@ -72,7 +83,8 @@ echo "-----------
 echo ""
 echo "If there are problems, rerun the installation script with:"
 echo "-----------
-echo "sh ./install_cviewer_fedora.sh > logfile.txt"
+echo "sh ./install_cviewer_ubuntu10_10.sh > logfile.txt"
 echo "-----------
-echo "Send the logfile.txt together with ConnectomeViewer startup logfile (automaticall generated) to info@connectomics.org."
+echo "Send the logfile.txt together with ConnectomeViewer startup logfile (automatically generated) to info@connectomics.org."
 echo "============================================================="
+
