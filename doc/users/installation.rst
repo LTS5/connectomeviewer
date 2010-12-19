@@ -21,9 +21,9 @@ Take first a look at the respective scripts in order to understand what they do.
 
     chmod +x install_cviewer_ubuntu.sh
     
-* Start the installation and compilation ::
+* Start the installation and compilation (choose the appropriate script) ::
 
-    sh ./install_cviewer_ubuntu.sh
+    sh ./install_cviewer_ubuntu10_10.sh
 
 * Start the ConnectomeViewer in verbose mode::
 
