@@ -6,29 +6,9 @@ from enthought.traits.ui.api import (View, Item, Group, HGroup, CodeEditor,
 from cviewer.plugins.cff2.csurface_darray import CSurfaceDarray
 from nibabel.gifti.util import intent_codes
 
-
-class CloseHandler(Handler):
-    """This class cleans up after the UI for the recorder is closed."""
-
-    def close(self, info, is_ok):
-        """This method is invoked when the user closes the UI."""
-        
-        # recorder = info.object
-        # recorder.on_ui_close()
-        if is_ok:
-            info.object.isok = True
-        else:
-            info.object.isok = False
-            
-        return True
-    
 class SurfaceParameter(HasTraits):
     
     engine = Enum("Mayavi", ["Mayavi"])
-    isok = Bool(False)
-
-#    pointset = List(CSurfaceDarray)
-#    faces = List(CSurfaceDarray)
     
     view = View(
              Item('engine', label = "Use Engine"),
@@ -38,7 +18,6 @@ class SurfaceParameter(HasTraits):
              id='cviewer.plugins.codeoracle.surfaceparameter',
              buttons=['OK'], 
              resizable=True,
-             handler=CloseHandler(),
              title = "Create surface ..."
              )
     
@@ -66,15 +45,14 @@ class SurfaceParameter(HasTraits):
                         self.labels_da[cobj.name + ' / ' + cdobj.dname + ' (%s)' % str(i)] = {'name' : cobj.obj.name,
                                                                              'da_idx' : i}
                         
-        
         if len(self.pointset_da) == 0:
-            self.pointset_da["None"] = None
+            self.pointset_da["None"] = {'name' : "None"}
             
         if len(self.faces_da) == 0:
-            self.faces_da["None"] = None
+            self.faces_da["None"] = {'name' : "None"}
         
         if len(self.labels_da) == 0:
-            self.labels_da["None"] = None
+            self.labels_da["None"] = {'name' : "None"}
         
         # assert labels and pointset dimension are the same
         
@@ -82,23 +60,5 @@ class SurfaceParameter(HasTraits):
         self.add_trait('faces', Enum(self.faces_da.keys()) )
         self.add_trait('labels', Enum(self.labels_da.keys()) )
         
-                        
-    def on_ui_close(self):
-        """Called from the CloseHandler when the UI is closed. This
-        method basically stops the recording.
-        """
-        # show code
-#        from oracle import Oracle
-##        a = Oracle()
-##        a.code = "from enthought.mayavi import mlab\nmlab.test_surf()"
-##        a.edit_traits()
-#        
-#        # create a temporary file
-#        import tempfile
-#        myf = tempfile.mktemp(suffix='.py', prefix='my')
-#        f=open(myf,'w')
-#        f.write("""import numpy
-#        """)
-#        f.close()
 
         

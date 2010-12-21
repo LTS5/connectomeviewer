@@ -104,7 +104,13 @@ class CFile(HasTraits):
         if self.obj is None:
             return []
         else:
-            return [CNetwork(obj=ele) for ele in self.obj.connectome_network]
+            if self._connectome_network is None:
+                self._connectome_network = [CNetwork(obj=ele) for ele in self.obj.connectome_network]
+                return self._connectome_network
+            else:
+                return self._connectome_network
+            
+            return 
 
     def _get_connectome_surface(self):
         if self.obj is None:
@@ -161,6 +167,7 @@ class CFile(HasTraits):
         super(CFile, self).__init__(**traits)
         
         self._connectome_surface = None
+        self._connectome_network = None
         
     def load_cfile(self, filepath, ismetacml = False):
         """ Load a given cfile as path and initializes the attributes """

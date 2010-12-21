@@ -18,10 +18,17 @@
 from enthought.envisage.ui.action.api import Action, Group, Menu, ToolBar
 from enthought.envisage.ui.workbench.api import WorkbenchActionSet
 
-oracle_action = Action(
-    id            = "Oracle",
+show_surface = Action(
+    id            = "OracleCSurface",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowSurfaces",
-    name          = "Show Surfaces",
+    name          = "Show Surface",
+    path          = "MenuBar/PluginsMenu/Code Oracle"
+)
+
+show_network = Action(
+    id            = "OracleCNetwork",
+    class_name    = "cviewer.plugins.codeoracle.actions.ShowNetworks",
+    name          = "Show Network",
     path          = "MenuBar/PluginsMenu/Code Oracle"
 )
 
@@ -31,5 +38,6 @@ class OracleActionSet(WorkbenchActionSet):
     id = "cviewer.plugins.codeoracle.action_set"
     
     actions = [
-        oracle_action,
+        show_surface,
+        show_network
     ]
