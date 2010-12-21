@@ -32,7 +32,7 @@ class OraclePlugin(Plugin):
     ACTION_SETS = 'enthought.envisage.ui.workbench.action_sets'
     
     # The plugin's unique identifier.
-    id = 'connectome.oracle'
+    id = 'connectome.codeoracle'
 
     # The plugin's name (suitable for displaying to the user).
     name = 'Oracle Plugin'

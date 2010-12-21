@@ -20,9 +20,9 @@ from enthought.envisage.ui.workbench.api import WorkbenchActionSet
 
 oracle_action = Action(
     id            = "Oracle",
-    class_name    = "cviewer.plugins.codeoracle.actions.DoAction",
-    name          = "Oracle Action",
-    path          = "MenuBar/PluginsMenu/Oracle"
+    class_name    = "cviewer.plugins.codeoracle.actions.ShowSurfaces",
+    name          = "Show Surfaces",
+    path          = "MenuBar/PluginsMenu/Code Oracle"
 )
 
 class OracleActionSet(WorkbenchActionSet):

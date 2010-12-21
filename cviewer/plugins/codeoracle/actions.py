@@ -12,7 +12,7 @@ from cviewer.plugins.ui.preference_manager import preference_manager
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class DoAction(Action):
+class ShowSurfaces(Action):
     """ Open a new file in the text editor.
     """
     tooltip = "Create a new file for editing"
@@ -25,20 +25,34 @@ class DoAction(Action):
         event.print_traits()
         
         from csurface_action import SurfaceParameter
-        
+        from scripts import surfscript, surfscript_nola
         cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
                 
         so = SurfaceParameter(cfile)
-        so.edit_traits(kind='modal')
+        # can not be modal if we have add_trait methods
+        #so.configure_traits(kind='modal')
+        #so.edit_traits(kind='modal')
+        so.edit_traits(kind='livemodal')
         
-        # create a temporary file
-        import tempfile
-        myf = tempfile.mktemp(suffix='.py', prefix='my')
-        f=open(myf,'w')
-        f.write("""from enthought.mayavi import mlab
-print "%s"
-""" % so.engine)
-        f.close()   
-        
-        self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
-        
+        if not so.pointset_da[so.pointset] is None:
+            # if cancel, not create surface
+            # create a temporary file
+            import tempfile
+            myf = tempfile.mktemp(suffix='.py', prefix='my')
+            f=open(myf, 'w')
+            if so.labels_da[so.labels] is None:
+                f.write(surfscript_nola % (so.pointset_da[so.pointset]['name'], \
+                                      so.pointset_da[so.pointset]['da_idx'], \
+                                      so.faces_da[so.faces]['name'], \
+                                      so.faces_da[so.faces]['da_idx'] ) )
+            else:
+                f.write(surfscript % (so.pointset_da[so.pointset]['name'],
+                                      so.pointset_da[so.pointset]['da_idx'],
+                                      so.faces_da[so.faces]['name'], 
+                                      so.faces_da[so.faces]['da_idx'],
+                                      so.labels_da[so.labels]['name'],
+                                      so.labels_da[so.labels]['da_idx']))
+            f.close()
+            
+            self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+                

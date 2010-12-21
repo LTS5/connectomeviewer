@@ -1,5 +1,5 @@
 
-from enthought.traits.api import Code, Button, Int, on_trait_change, Any, HasTraits,List, Str, Enum, Instance
+from enthought.traits.api import Code, Button, Int, on_trait_change, Any, HasTraits,List, Str, Enum, Instance, Bool
 from enthought.traits.ui.api import (View, Item, Group, HGroup, CodeEditor,
                                      spring, Handler, EnumEditor)
 
@@ -12,14 +12,21 @@ class CloseHandler(Handler):
 
     def close(self, info, is_ok):
         """This method is invoked when the user closes the UI."""
-        recorder = info.object
-        recorder.on_ui_close()
+        
+        # recorder = info.object
+        # recorder.on_ui_close()
+        if is_ok:
+            info.object.isok = True
+        else:
+            info.object.isok = False
+            
         return True
     
 class SurfaceParameter(HasTraits):
     
-    engine = Enum("Mayavi", ["Mayavi", "fos.me"])
-    
+    engine = Enum("Mayavi", ["Mayavi"])
+    isok = Bool(False)
+
 #    pointset = List(CSurfaceDarray)
 #    faces = List(CSurfaceDarray)
     
@@ -27,8 +34,9 @@ class SurfaceParameter(HasTraits):
              Item('engine', label = "Use Engine"),
              Item('pointset', label = "Pointset"),
              Item('faces', label = "Faces"),
+             Item('labels', label="labels"),
              id='cviewer.plugins.codeoracle.surfaceparameter',
-             buttons=['OK', 'Cancel'], 
+             buttons=['OK'], 
              resizable=True,
              handler=CloseHandler(),
              title = "Create surface ..."
@@ -37,35 +45,43 @@ class SurfaceParameter(HasTraits):
     def __init__(self, cfile, **traits):
         super(SurfaceParameter, self).__init__(**traits)
         
-        pointset = []
-        faces = []
+        self.pointset_da = {}
+        self.faces_da = {}
+        self.labels_da = {}
         
         for cobj in cfile.connectome_surface:
             if cobj.loaded:
                 # check darrays
                 # if correct intent, add to list
-                for cdobj in cobj.darrays:
+                for i, cdobj in enumerate(cobj.darrays):
                      if cdobj.data.intent == 1008:
-                        pointset.append(cobj.name + ' / ' + cdobj.dname)
+                        self.pointset_da[cobj.name + ' / ' + cdobj.dname + ' (%s)' % str(i)] = {'name' : cobj.obj.name,
+                                                                             'da_idx' : i}
                         #pointset.append(cdobj)
                      if cdobj.data.intent == 1009:
-                        faces.append(cobj.name + ' / ' + cdobj.dname)
+                        self.faces_da[cobj.name + ' / ' + cdobj.dname + ' (%s)' % str(i)] = {'name' : cobj.obj.name,
+                                                                             'da_idx' : i}
                         #faces.append(cdobj.dname)
+                     if cdobj.data.intent == 1002:
+                        self.labels_da[cobj.name + ' / ' + cdobj.dname + ' (%s)' % str(i)] = {'name' : cobj.obj.name,
+                                                                             'da_idx' : i}
                         
         
-        if len(pointset) == 0:
-            pointset = ["None"]
+        if len(self.pointset_da) == 0:
+            self.pointset_da["None"] = None
             
-        if len(faces) == 0:
-            faces = ["None"]
+        if len(self.faces_da) == 0:
+            self.faces_da["None"] = None
         
-        print "piontset",pointset
+        if len(self.labels_da) == 0:
+            self.labels_da["None"] = None
         
-        self.add_trait('pointset', Enum(pointset) )
-        self.add_trait('faces', Enum(faces) )
+        # assert labels and pointset dimension are the same
         
-        self.pointset = pointset[0]
-        self.faces = faces[0]
+        self.add_trait('pointset',  Enum(self.pointset_da.keys()) )
+        self.add_trait('faces', Enum(self.faces_da.keys()) )
+        self.add_trait('labels', Enum(self.labels_da.keys()) )
+        
                         
     def on_ui_close(self):
         """Called from the CloseHandler when the UI is closed. This
