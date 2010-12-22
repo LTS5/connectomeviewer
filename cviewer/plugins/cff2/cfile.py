@@ -86,9 +86,19 @@ class CFile(HasTraits):
     children = List
     
     def _obj_changed(self):
-        self._update_children()
-        
-    def _update_children(self):
+        self.update_children()
+    
+    def update_children(self):
+        # remove all internal structures
+        self._connectome_surface = None
+        self._connectome_network = None
+        self._connectome_volume = None
+        self._connectome_track = None
+        self._connectome_timeserie = None
+        self._connectome_data = None
+        self._connectome_script = None
+        self._connectome_imagestack = None
+
         self.children = self.connectome_network + self.connectome_surface + \
                 self.connectome_volume + self.connectome_track + \
                 self.connectome_timeserie + self.connectome_data + \
@@ -109,8 +119,6 @@ class CFile(HasTraits):
                 return self._connectome_network
             else:
                 return self._connectome_network
-            
-            return 
 
     def _get_connectome_surface(self):
         if self.obj is None:
@@ -126,37 +134,61 @@ class CFile(HasTraits):
         if self.obj is None:
             return []
         else:
-            return [CVolume(obj=ele) for ele in self.obj.connectome_volume]
+            if self._connectome_volume is None:
+                self._connectome_volume = [CVolume(obj=ele) for ele in self.obj.connectome_volume]
+                return self._connectome_volume
+            else:
+                return self._connectome_volume
         
     def _get_connectome_track(self):
         if self.obj is None:
             return []
         else:
-            return [CTrack(obj=ele) for ele in self.obj.connectome_track]
+            if self._connectome_track is None:
+                self._connectome_track = [CTrack(obj=ele) for ele in self.obj.connectome_track]
+                return self._connectome_track
+            else:
+                return self._connectome_track
         
     def _get_connectome_timeserie(self):
         if self.obj is None:
             return []
         else:
-            return [CTimeserie(obj=ele) for ele in self.obj.connectome_timeserie]
+            if self._connectome_timeserie is None:
+                self._connectome_timeserie = [CTimeserie(obj=ele) for ele in self.obj.connectome_timeserie]
+                return self._connectome_timeserie
+            else:
+                return self._connectome_timeserie
 
     def _get_connectome_data(self):
         if self.obj is None:
             return []
         else:
-            return [CData(obj=ele) for ele in self.obj.connectome_data]
+            if self._connectome_data is None:
+                self._connectome_data = [CData(obj=ele) for ele in self.obj.connectome_data]
+                return self._connectome_data
+            else:
+                return self._connectome_data
         
     def _get_connectome_script(self):
         if self.obj is None:
             return []
         else:
-            return [CScript(obj=ele) for ele in self.obj.connectome_script]
+            if self._connectome_script is None:
+                self._connectome_script = [CScript(obj=ele) for ele in self.obj.connectome_script]
+                return self._connectome_script
+            else:
+                return self._connectome_script
         
     def _get_connectome_imagestack(self):
         if self.obj is None:
             return []
         else:
-            return [CImagestack(obj=ele) for ele in self.obj.connectome_imagestack]
+            if self._connectome_imagestack is None:
+                self._connectome_imagestack = [CImagestack(obj=ele) for ele in self.obj.connectome_imagestack]
+                return self._connectome_imagestack
+            else:
+                return self._connectome_imagestack
 
     
     ######################################################################
@@ -168,7 +200,14 @@ class CFile(HasTraits):
         
         self._connectome_surface = None
         self._connectome_network = None
-        
+        self._connectome_volume = None
+        self._connectome_track = None
+        self._connectome_timeserie = None
+        self._connectome_data = None
+        self._connectome_script = None
+        self._connectome_imagestack = None
+    
+    
     def load_cfile(self, filepath, ismetacml = False):
         """ Load a given cfile as path and initializes the attributes """
         

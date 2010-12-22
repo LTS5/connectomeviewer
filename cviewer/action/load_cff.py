@@ -26,6 +26,7 @@ from enthought.pyface.image_resource import ImageResource
 # ConnectomeViewer imports
 from common import IMAGE_PATH
 from cviewer.plugins.ui.preference_manager import preference_manager
+import cfflib
 
 # Logging imports
 import logging
@@ -54,7 +55,7 @@ class OpenCFile(Action):
     extensions.  """
 
     name        = "Open CFF File"
-    description = "Open the File Dialog where you can select a .cff file"
+    description = "Open the File Dialog where you can select a .cff or meta.cml file"
     tooltip     = "Open a CFF file"
     path        = Str("MenuBar/File/LoadDataMenu")
     image       = ImageResource("cff-open.png", search_path=[IMAGE_PATH])
@@ -115,3 +116,47 @@ class OpenCFile(Action):
                 cfile.load_cfile(dlg.paths[0], ismetacml = True)
             else:
                 logger.info('Could not load file: '+ dlg.paths)
+                
+                
+class SaveCFile(Action):
+    """ An action that save aconnectome file """
+
+    name        = "Save CFF File"
+    description = "Save the connectome file"
+    tooltip     = "Save a CFF file"
+    path        = Str("MenuBar/File/LoadDataMenu")
+    image       = ImageResource("cff-open.png", search_path=[IMAGE_PATH])
+
+    # Is the action enabled?
+    enabled = Bool(True)
+
+    # Is the action visible?
+    visible = Bool(True)
+
+    ###########################################################################
+    # 'Action' interface.
+    ###########################################################################
+
+    def perform(self, event, cfile=None):
+        """ Performs the action. """
+        
+        logger.info('Performing save connectome file action')
+        
+        # helper variable to use this function not only in the menubar
+        exec_as_funct = True
+        
+        cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
+
+        wildcard = "Connectome File Format v2.0 (*.cff)|*.cff|" \
+                    "All files (*.*)|*.*"
+                    
+        dlg = FileDialog(wildcard=wildcard,title="Save as Connectome File",\
+                         resizeable=False, action = 'save as',\
+                         default_directory=preference_manager.cviewerui.cffpath,)
+        
+        if dlg.open() == OK:
+
+            if (dlg.paths[0]).endswith('.cff'):
+                
+                cfflib.save_to_cff(cfile.obj, dlg.paths[0])
+                logger.info("Saved connectome file to %s" % dlg.paths[0])

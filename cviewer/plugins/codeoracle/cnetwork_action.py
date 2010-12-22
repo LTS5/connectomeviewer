@@ -39,7 +39,7 @@ class NetworkParameter(HasTraits):
             if cobj.loaded:
                 if isinstance(cobj, CNetwork):
                     # add more info
-                    a=cobj.data.nodes_iter(data=True)
+                    a=cobj.obj.data.nodes_iter(data=True)
                     n, dn = a.next()
                     npos = []
                     lab = []
@@ -53,7 +53,7 @@ class NetworkParameter(HasTraits):
                     if len(lab) == 0:
                         lab = ["None"]
                         
-                    a=cobj.data.edges_iter(data=True)
+                    a=cobj.obj.data.edges_iter(data=True)
                     e1, e2, de = a.next()
                     ev = []
                     for k in de.keys():

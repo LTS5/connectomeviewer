@@ -38,7 +38,7 @@ class CBase(HasTraits):
     loaded = Bool(False)
     
     # data exposed
-    data = Property(Any, depends_on = ['obj'] )
+#    data = Property(Any, depends_on = ['obj'] )
     
     # active window
     window = Instance('enthought.pyface.workbench.api.WorkbenchWindow')
@@ -55,11 +55,11 @@ class CBase(HasTraits):
     def _get_name(self):
         return self.obj.name
     
-    def _get_data(self):
-        if self.loaded:
-            return self.obj.data
-        else:
-            print "No data. Need to load the object first."
+#    def _get_data(self):
+#        if self.loaded:
+#            return self.obj.data
+#        else:
+#            print "No data. Need to load the object first."
     
     def load(self):
         self.obj.load()

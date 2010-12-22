@@ -101,7 +101,7 @@ class CViewerWorkbenchApplication(WorkbenchApplication):
         
         adds = ['ConnectomeViewer BETA - Version %s' % ( version ),
                 '',
-                'Copyright &copy; 2009-2010, Ecole Polytechnique F&eacute;d&eacute;rale de Lausanne (EPFL) and',
+                'Copyright &copy; 2009-2011, Ecole Polytechnique F&eacute;d&eacute;rale de Lausanne (EPFL) and',
                 'University Hospital Center and University of Lausanne (UNIL-CHUV)',
                 '',
                 'Author: Stephan Gerhard <em>info [at] connectomics.org</em>',

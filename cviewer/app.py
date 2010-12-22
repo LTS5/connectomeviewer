@@ -212,7 +212,6 @@ def get_cviewer_plugins():
     plugins.insert(0, ConnectomeFile2Plugin())
     logger.info('Added ConnectomeFile2Plugin')
     
-
     #from cviewer.plugins.analysis.analysis_ui_plugin import AnalysisUIPlugin
     # add ConnectomeAnalysis UI plugin    
     #plugins.insert(0, AnalysisUIPlugin())

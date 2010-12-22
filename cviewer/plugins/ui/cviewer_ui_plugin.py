@@ -66,10 +66,10 @@ class ViewerPerspective(Perspective):
     
         # The contents of the perspective. Add the views here with position
         contents = [
-            PerspectiveItem(id=CFFVIEW, position='left', width=0.2),
+            PerspectiveItem(id=CFFVIEW, position='left', width=0.6),
+            PerspectiveItem(id=ENGINE_VIEW, position='bottom', relative_to=CFFVIEW),
             PerspectiveItem(id=SHELL_VIEW, position='bottom', height=0.2),
             # XXX: deactivate mayavi views per default as not to confuse end-users too much
-            PerspectiveItem(id=ENGINE_VIEW),
             #PerspectiveItem(id=CURRENT_SELECTION_VIEW, position='bottom',
             #                relative_to=ENGINE_VIEW),
         ]

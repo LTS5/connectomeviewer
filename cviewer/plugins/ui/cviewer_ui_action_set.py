@@ -105,7 +105,17 @@ open_cff = Action(
     group   = 'ConnectomeFileGroup',
     before = "LoadDataMenu"
 )
-SOURCE_ACTIONS = [open_cff, open_file]
+save_cff = Action(
+    id            = "ConnectomeFileSave",
+    name          = "&Save Connectome File ...",
+    class_name    = "cviewer.action.load_cff:"
+                    "SaveCFile",
+    path          = "MenuBar/File",
+    group   = 'ConnectomeFileGroup',
+    before = "LoadDataMenu"
+)
+
+SOURCE_ACTIONS = [open_cff, save_cff, open_file]
 
 #
 #for src in registry.sources:

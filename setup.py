@@ -105,15 +105,7 @@ def main(**extra_args):
             Topic :: Scientific/Engineering
             Topic :: Software Development
             """.splitlines() if len(c.split()) > 0],    
-        description = "Connects Multi-Modal Multi-Scale Neuroimaging Datasets For Analysis and Visualization in Python",
-#        install_requires = ["EnvisageCore >= 3.1.1",
-#                            "EnvisagePlugins >= 3.1.1",
-#                            "TraitsBackendWX >= 3.2.0",
-#                            "EnthoughtBase >= 3.0.3",
-#                            "TraitsGUI >= 3.1.0",
-#                            "Chaco >= 3.2.0",
-#                            "lxml >= 2.2.2"
-#                            ],
+        description = "Multi-Modal MR Connectomics Framework for Analysis and Visualization",
         license = "GPLv3",
         long_description = INFO_VARS['long_description'],
         maintainer = 'Stephan Gerhard',

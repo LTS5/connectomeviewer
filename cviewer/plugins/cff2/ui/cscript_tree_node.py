@@ -54,9 +54,9 @@ class CScriptTreeNode(TreeNode):
     # corresponding RenderManager instance
     
     _OpenFile = Instance(Action,  
-                               kw={'name': 'Open File in Editor (readonly)', 
+                               kw={'name': 'Open File in Editor', 
                                    'action': 'object.open_file',
-                                   'tooltip': 'Opens the file in readonly editor'}, )
+                                   'tooltip': 'Open the file in editor'}, )
     
     # the menu shown after right-click
     menu = Instance(Menu, transient=True)

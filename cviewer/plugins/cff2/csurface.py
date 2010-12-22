@@ -48,7 +48,7 @@ class CSurface(CBase):
     def load(self):
         super(CSurface, self).load()
         # update darrays
-        self.darrays = [CSurfaceDarray(ele) for ele in self.data.darrays]
+        self.darrays = [CSurfaceDarray(ele) for ele in self.obj.data.darrays]
     
     def close(self):
         super(CSurface, self).close()

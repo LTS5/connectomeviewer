@@ -32,8 +32,6 @@ class CScript(CBase):
     """ The implementation of the Connectome CScript """
     
     obj = Instance(cfflib.CScript)
-    
-    code = Code
 
     view = View(
             Item( 'code',  style = 'readonly' ),
@@ -44,19 +42,13 @@ class CScript(CBase):
     
     def __init__(self, **traits):
         super(CScript, self).__init__(**traits)
-        
-    def print_file(self):
-        """ Prints the file content """
-        if not self.loaded:
-            self.load()
-        self.obj.data.seek(0)
-        return self.obj.data.read()
-        
+                
     def open_file(self):
         """ Opens the file in an editor """
         if not self.loaded:
             self.load()
 
-        self.code = self.print_file()
-        self.configure_traits()
+        # call a plugin  action to perform the open action
+        from cviewer.plugins.cff2.actions.actions import OpenFile
+        
         
