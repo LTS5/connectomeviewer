@@ -134,3 +134,84 @@ for la in create_label:
 
 """
 
+nbsscript = """
+# Imports
+import numpy as np
+import cviewer.libs.pyconto.algorithms.statistics.nbs as nbs
+from pylab import imshow, show, title
+import networkx as nx
+
+# Define your groups
+# Retrieve the corresponding CNetwork objects
+firstgroup = cfile.obj.get_by_name(['connectome_scale33'])
+first_edge_value = 'average_fiber_length'
+secondgroup = cfile.obj.get_by_name(['connectome_scale33'])
+second_edge_value = 'average_fiber_length'
+THRESH=3
+K=1000
+TAIL='left'
+SHOW_MATRIX = True
+SHOW_3DVIEW = True
+# If we want to see the network in 3D, we need to define the node positions
+node_location_key = '...'
+
+# ===========
+
+# Make sure that all networks are loaded in memory
+for net in firstgroup:
+    net.load()
+for net in secondgroup:
+    net.load()
+
+# Convert your network data for each group into numpy arrays
+nr1_networks = len(firstgroup)
+nr1_nrnodes = len(firstgroup[0].data.nodes())
+
+nr2_networks = len(secondgroup)
+nr2_nrnodes = len(secondgroup[0].data.nodes())
+
+X = np.zeros( (nr1_nrnodes, nr1_nrnodes, nr1_networks) )
+Y = np.zeros( (nr2_nrnodes, nr2_nrnodes, nr2_networks) )
+
+
+# Fill in the data from the networks
+for i, sub in enumerate(firstgroup):
+    graph=sub.data
+    # Setting the edge requested edge value as weight value
+    for u,v,d in graph.edges(data=True):
+        graph[u][v]['weight']=d[first_edge_value]
+    # Retrieve the matrix
+    X[:,:,i] = nx.to_numpy_matrix(graph)
+
+for i, sub in enumerate(secondgroup):
+    graph=sub.data
+    # Setting the edge requested edge value as weight value
+    for u,v,d in graph.edges(data=True):
+        graph[u][v]['weight']=d[second_edge_value]
+    # Retrieve the matrix
+    Y[:,:,i] = nx.to_numpy_matrix(graph)
+
+# Compute NBS, this might take a long time
+# you can run in the background...
+PVAL, ADJ, NULL = nbs.compute_nbs(X,Y,THRESH,K,TAIL)
+
+# We can now look at the connectivity matrix identified with matplotlib
+if SHOW_MATRIX:
+    imshow(ADJ, interpolation='nearest')
+    title('Edges identified by the NBS')
+    show()
+
+# we create a networkx graph again from the adjacency matrix
+nbsgraph = nx.from_numpy_matrix(ADJ)
+# relabel nodes because the should not start at zero for our convention
+nbsgraph=nx.relabel_nodes(g, lambda x: x + 1)
+# populate node dictionaries with attributes from first network of the first group
+# it must include some location information to display it
+for nid, ndata in firstgroup[0].data.nodes_iter(data=True):
+    nbsgraph.node[nid] = ndata
+
+# You can now add now the results to the connectome file
+# Make sure that the name is not existing yet in the connectome file
+#cfile.obj.add_connectome_network_from_nxgraph('NBS result 1', nbsgraph, dtype='NBSResult')
+
+"""
