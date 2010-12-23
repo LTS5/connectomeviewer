@@ -143,17 +143,14 @@ import networkx as nx
 
 # Define your groups
 # Retrieve the corresponding CNetwork objects
-firstgroup = cfile.obj.get_by_name(['connectome_scale33'])
-first_edge_value = 'average_fiber_length'
-secondgroup = cfile.obj.get_by_name(['connectome_scale33'])
-second_edge_value = 'average_fiber_length'
-THRESH=3
-K=1000
-TAIL='left'
-SHOW_MATRIX = True
-SHOW_3DVIEW = True
-# If we want to see the network in 3D, we need to define the node positions
-node_location_key = '...'
+firstgroup = cfile.obj.get_by_name(%s)
+first_edge_value = '%s'
+secondgroup = cfile.obj.get_by_name(%s)
+second_edge_value = '%s'
+THRESH=%s
+K=%s
+TAIL='%s'
+SHOW_MATRIX = False
 
 # ===========
 
@@ -172,7 +169,6 @@ nr2_nrnodes = len(secondgroup[0].data.nodes())
 
 X = np.zeros( (nr1_nrnodes, nr1_nrnodes, nr1_networks) )
 Y = np.zeros( (nr2_nrnodes, nr2_nrnodes, nr2_networks) )
-
 
 # Fill in the data from the networks
 for i, sub in enumerate(firstgroup):
@@ -204,7 +200,7 @@ if SHOW_MATRIX:
 # we create a networkx graph again from the adjacency matrix
 nbsgraph = nx.from_numpy_matrix(ADJ)
 # relabel nodes because the should not start at zero for our convention
-nbsgraph=nx.relabel_nodes(g, lambda x: x + 1)
+nbsgraph=nx.relabel_nodes(nbsgraph, lambda x: x + 1)
 # populate node dictionaries with attributes from first network of the first group
 # it must include some location information to display it
 for nid, ndata in firstgroup[0].data.nodes_iter(data=True):
@@ -212,6 +208,17 @@ for nid, ndata in firstgroup[0].data.nodes_iter(data=True):
 
 # You can now add now the results to the connectome file
 # Make sure that the name is not existing yet in the connectome file
-#cfile.obj.add_connectome_network_from_nxgraph('NBS result 1', nbsgraph, dtype='NBSResult')
+cfile.obj.add_connectome_network_from_nxgraph('NBS result at %s', nbsgraph, dtype='NBSResult')
+cfile.update_children()
+"""
 
+volrendering = """
+from enthought.mayavi import mlab
+import numpy as np
+data=np.random.random( (10,10,10))
+min = data.min()
+max = data.max()
+source=mlab.pipeline.scalar_field(data)
+vol = mlab.pipeline.volume(source, vmin=min+0.65*(max-min), 
+                                   vmax=min+0.9*(max-min))
 """

@@ -67,16 +67,7 @@ class CNetwork(CBase):
         matdict = {}
         g = self._relabel_to_int(self.graph)
         # grab keys from the first edge, discarding id
-        u,v,d = g.edges_iter(data=True).next()
-        dl = d.keys()
-        try:
-            dl.remove('id')
-        except:
-            pass
-        # remove not float/integer
-        for k in dl:
-            if not isinstance(d[k], int) and not isinstance(d[k], float):
-                dl.remove(k)
+        dl = self._get_edge_values()
                 
         # create numpy matrix for each key using recarray
         matrec = nx.to_numpy_recarray(g, dtype=zip(dl, [float]*len(dl)) )
@@ -90,6 +81,19 @@ class CNetwork(CBase):
         g = self._relabel_to_int(self.graph)
         a = []
         return [v[nodekey] for n,v in g.nodes_iter(data=True)]
+
+    def _get_edge_values(self):
+        if not self.loaded:
+            self.load()
+        if len(self.obj.data.edges()) == 0:
+            return
+        edi = self.obj.data.edges_iter(data=True)
+        u,v,ed = edi.next()
+        ret = []
+        for k,v in ed.items():
+            if isinstance(v, float) or isinstance(v, int):
+                ret.append(k)
+        return ret
 
     def invoke_matrix_viewer(self, nodelabelkey = 'dn_label'):
         """ Invoke the Connectome Matrix Viewer """

@@ -12,6 +12,51 @@ from cviewer.plugins.ui.preference_manager import preference_manager
 import logging
 logger = logging.getLogger('root.'+__name__)
 
+class ComputeNBS(Action):
+    tooltip = "Compute NBS"
+    description = "Compute NBS"
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+
+        from cnetwork_nbs_action import NBSNetworkParameter, NBSMoreParameter
+        from scripts import nbsscript
+        cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
+        
+        no = NBSNetworkParameter(cfile)
+        no.edit_traits(kind='livemodal')
+
+        if (len(no.selected1) == 0 or len(no.selected2) == 0):
+            return
+
+        mo = NBSMoreParameter(cfile, no.selected1[0], no.selected2[0])
+        mo.edit_traits(kind='livemodal')
+
+        import datetime as dt
+        a=dt.datetime.now()
+        ostr = '%s%s%s' % (a.hour, a.minute, a.second)
+        
+        if not (len(no.selected1) == 0 or len(no.selected2) == 0):
+            # if cancel, not create surface
+            # create a temporary file
+            import tempfile
+            myf = tempfile.mktemp(suffix='.py', prefix='my')
+            f=open(myf, 'w')
+            f.write(nbsscript % (str(no.selected1),
+                                 mo.first_edge_value,
+                                 str(no.selected2),
+                                 mo.second_edge_value,
+                                 mo.THRES,
+                                 mo.K,
+                                 mo.TAIL,
+                                 ostr))
+            f.close()
+            
+            self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+            
+
 class ShowNetworks(Action):
     tooltip = "Create a surface"
     description = "Create a surface"

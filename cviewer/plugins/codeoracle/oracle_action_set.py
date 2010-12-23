@@ -32,6 +32,14 @@ show_network = Action(
     path          = "MenuBar/PluginsMenu/Code Oracle"
 )
 
+compute_nbs = Action(
+    id            = "OracleNBS",
+    class_name    = "cviewer.plugins.codeoracle.actions.ComputeNBS",
+    name          = "Network-based statistic (NBS)",
+    path          = "MenuBar/PluginsMenu/Code Oracle/Statistics/NBS"
+)
+
+
 class OracleActionSet(WorkbenchActionSet):
     """ The actionset for the Oracle plugin """
     
@@ -39,5 +47,6 @@ class OracleActionSet(WorkbenchActionSet):
     
     actions = [
         show_surface,
-        show_network
+        show_network,
+        compute_nbs
     ]
