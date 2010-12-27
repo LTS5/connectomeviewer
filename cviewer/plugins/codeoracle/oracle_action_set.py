@@ -22,21 +22,21 @@ show_surface = Action(
     id            = "OracleCSurface",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowSurfaces",
     name          = "Show Surface",
-    path          = "MenuBar/PluginsMenu/Code Oracle"
+    path          = "MenuBar/Code Oracle"
 )
 
 show_network = Action(
     id            = "OracleCNetwork",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowNetworks",
     name          = "Show Network",
-    path          = "MenuBar/PluginsMenu/Code Oracle"
+    path          = "MenuBar/Code Oracle"
 )
 
 compute_nbs = Action(
     id            = "OracleNBS",
     class_name    = "cviewer.plugins.codeoracle.actions.ComputeNBS",
     name          = "Network-based statistic (NBS)",
-    path          = "MenuBar/PluginsMenu/Code Oracle/Statistics/NBS"
+    path          = "MenuBar/Code Oracle/Statistics"
 )
 
 

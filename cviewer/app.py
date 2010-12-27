@@ -121,6 +121,7 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
     
     import datetime
     import sys
+    import platform
     dt = datetime.datetime.now()
     outdate = dt.strftime("%A, %d. %B %Y %I:%M%p")
     logger.info("*"*5)
@@ -130,6 +131,8 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
     # logger.info("cviewer executable: %s " % str(__main__))
     logger.info("python executable: %s" % sys.executable)
     logger.info("python version: %s" % sys.version.replace('\n', ''))
+    logger.info("uname: %s" % ' '.join(platform.uname()))
+    logger.info("distribution: %s" % ' '.join(platform.linux_distribution()))
     logger.info("execution date and time: %s" % outdate)
     logger.info("*"*5)
 

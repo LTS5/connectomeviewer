@@ -222,3 +222,24 @@ source=mlab.pipeline.scalar_field(data)
 vol = mlab.pipeline.volume(source, vmin=min+0.65*(max-min), 
                                    vmax=min+0.9*(max-min))
 """
+
+volslice = """
+
+from enthought.mayavi import mlab
+import nibabel as nib
+
+a=nib.load('T1.nii.gz')
+d=a.get_data()
+data_src = mlab.pipeline.scalar_field(d)
+ipw = mlab.pipeline.image_plane_widget(data_src, plane_orientation = 'x_axes')
+
+"""
+
+reportlab = """
+from reportlab.pdfgen import canvas
+ 
+c = canvas.Canvas("hello.pdf")
+c.drawString(100,750,"Welcome to Reportlab!")
+c.save()
+http://www.protocolostomy.com/2008/10/22/generating-reports-with-charts-using-python-reportlab/
+"""
