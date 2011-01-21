@@ -84,8 +84,8 @@ class OpenCFile(Action):
             cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
             exec_as_funct = False
     
-        wildcard = "Connectome File Format v2.0 (*.cff)|*.cff|" \
-                    "Connectome Markup File v2.0 (meta.cml)|meta.cml|" \
+        wildcard = "Connectome Markup File v2.0 (meta.cml)|meta.cml|" \
+                    "Connectome File Format v2.0 (*.cff)|*.cff|" \
                     "All files (*.*)|*.*"
         dlg = FileDialog(wildcard=wildcard,title="Choose a Connectome File",\
                          resizeable=False, \

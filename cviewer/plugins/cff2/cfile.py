@@ -220,10 +220,7 @@ class CFile(HasTraits):
         # set the file name and make it visible in the TraitsUIView
         self.file_name = os.path.split(filepath)[1]
     
-        if ismetacml:
-            self.obj = cfflib.load_from_meta_cml(filepath)
-        else:
-            self.obj = cfflib.load_from_cff(filepath)
+        self.obj = cfflib.load(filepath)
             
     def close_cfile(self):
 #        if not self.obj.iszip:
