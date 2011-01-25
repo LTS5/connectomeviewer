@@ -224,15 +224,29 @@ vol = mlab.pipeline.volume(source, vmin=min+0.65*(max-min),
 """
 
 volslice = """
-
 from enthought.mayavi import mlab
-import nibabel as nib
+import numpy as np
 
-a=nib.load('T1.nii.gz')
-d=a.get_data()
-data_src = mlab.pipeline.scalar_field(d)
-ipw = mlab.pipeline.image_plane_widget(data_src, plane_orientation = 'x_axes')
+volname="%s"
 
+# Retrieve volume data (as Nibabel Image)
+voldat = cfile.obj.get_by_name(volname).data
+# Retrieve the image data
+data = voldat.get_data()
+# Retrieve the affine
+affine = voldat.get_affine()
+center = np.r_[0, 0, 0, 1]
+# Create A ScalarField with spacing and origin from
+# the affine
+data_src = mlab.pipeline.scalar_field(data)
+data_src.spacing = np.diag(affine)[:3]
+data_src.origin = np.dot(affine, center)[:3]
+# Create an outlint
+mlab.pipeline.outline(data_src)
+# Create a simple x-aligned image plane widget
+image_plane_widget = mlab.pipeline.image_plane_widget(data_src, name=volname)
+image_plane_widget.ipw.plane_orientation = 'x_axes'
+image_plane_widget.ipw.reslice_interpolate = 'nearest_neighbour'                    
 """
 
 reportlab = """

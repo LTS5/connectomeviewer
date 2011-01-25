@@ -122,3 +122,33 @@ class ShowSurfaces(Action):
             
             self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
 
+
+class ShowVolumes(Action):
+    """ Open a new file in the text editor
+    """
+    tooltip = "Create a volume"
+    description = "Create a volume"
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+        
+        from cvolume_action import VolumeParameter
+        from scripts import volslice
+        cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
+                
+        so = VolumeParameter(cfile)
+        so.edit_traits(kind='livemodal')
+        
+        if True: #not so.pointset_da[so.pointset]['name'] == "None":
+            # if cancel, not create surface
+            # create a temporary file
+            import tempfile
+            myf = tempfile.mktemp(suffix='.py', prefix='my')
+            f=open(myf, 'w')
+            f.write(volslice % so.volumes[so.myvolume]['name'])
+            f.close()
+            
+            self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+
