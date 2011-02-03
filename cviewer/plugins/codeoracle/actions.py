@@ -112,12 +112,16 @@ class ShowSurfaces(Action):
             import tempfile
             myf = tempfile.mktemp(suffix='.py', prefix='my')
             f=open(myf, 'w')
+            if so.labels_da[so.labels].has_key('da_idx'):
+                labels = so.labels_da[so.labels]['da_idx']
+            else:
+                labels = ""
             f.write(surfscript % (so.pointset_da[so.pointset]['name'],
                                   so.pointset_da[so.pointset]['da_idx'],
                                   so.faces_da[so.faces]['name'], 
                                   so.faces_da[so.faces]['da_idx'],
                                   so.labels_da[so.labels]['name'],
-                                  so.labels_da[so.labels]['da_idx']))
+                                  labels))
             f.close()
             
             self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)

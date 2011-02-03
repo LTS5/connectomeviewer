@@ -10,7 +10,6 @@ def configuration(parent_package='',top_path=None):
 
     # List all packages to be loaded here
     config.add_subpackage('action')
-    config.add_subpackage('io')
     config.add_subpackage('libs')    
     config.add_subpackage('plugins')
     config.add_subpackage('resources') # necessary when in data_dir?

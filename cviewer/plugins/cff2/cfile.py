@@ -42,10 +42,7 @@ logger = logging.getLogger('root.'+__name__)
 # CFile` class.
 ######################################################################
 class CFile(HasTraits):
-    """This class basically allows you to create an instance for a
-    loaded .cff file, and serves as the primary data source for scenes etc.
-    
-    The view shows all the relevant attributes.
+    """This is a wrapper class for a connectome file
     """
 
     # The name of the selected cff file
