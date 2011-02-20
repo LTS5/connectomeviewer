@@ -3,15 +3,7 @@
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Modified BSD License
 
 # Standard library imports
 import os.path
@@ -32,20 +24,6 @@ import cfflib
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-#class SetStatusBar(Action):
-#
-#    name        = "statusbar"
-#    description = "..."
-#    tooltip     = "sddff"
-#    
-#    def __init__(self, **traits):
-#        super(SetStatusBar, self).__init__(**traits)
-#    
-#    def perform(self, event, value):
-#        self.print_traits()
-#        print self.application
-#        print self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
-#        self.window.status_bar_manager.message=value
         
 ######################################################################
 # `OpenCFFFile` class.
@@ -102,10 +80,6 @@ class OpenCFile(Action):
                 
                 # close the cfile if one is currently loaded
                 cfile.close_cfile()
-                
-#                if not exec_as_funct:
-#                    # setup statusbar
-#                    self.window.status_bar_manager.message='Loading Connectome File ...'
                 
                 # load cfile data
                 cfile.load_cfile(dlg.paths[0])

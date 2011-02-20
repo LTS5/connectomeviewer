@@ -4,15 +4,7 @@
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Modified BSD License
 
 # Enthought library imports
 from enthought.envisage.api import Plugin
@@ -39,9 +31,5 @@ class DipyPlugin(Plugin):
     def _commands_default(self):
         """ Includes dipy in the python shell """
 
-        return [
-            'from cviewer.libs.dipy.dipycore import track_metrics as tm', \
-            'from cviewer.libs.dipy.dipy.viz import fos', \
-            'from cviewer.libs.dipy.dipy.io import trackvis as tv', \
-            'from cviewer.libs.dipy.dipy.core import track_performance as pf' ]
+        return [ 'import dipy' ]
         

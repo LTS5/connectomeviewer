@@ -4,15 +4,7 @@
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Modified BSD License
 
 # Standard library imports
 from enthought.traits.api import Bool
@@ -108,8 +100,7 @@ class CViewerWorkbenchApplication(WorkbenchApplication):
                 'Contributors: <em>see README file</em>',
                 '',
                 'This program comes with ABSOLUTELY NO WARRANTY',
-                'It is licensed under GNU General Public License Version 3',
-                'http://www.connectomics.org/viewer/license',
+                'It is licensed under Modified BSD License',
                 ]
         
         about_dialog = AboutDialog(

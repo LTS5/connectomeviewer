@@ -32,11 +32,6 @@ def _mayavi_version(pkg_name):
     from enthought.mayavi import version
     return version.version
 
-# Cython can be a build dependency
-def _cython_version(pkg_name):
-    from Cython.Compiler.Version import version
-    return version
-
 def _traits_version(pkg_name):
     from enthought.traits import version
     return version.__version__
@@ -46,29 +41,6 @@ package_check('networkx', INFO_VARS['networkx_min_version'])
 package_check('numpy', INFO_VARS['numpy_min_version'])
 package_check('enthought.mayavi', INFO_VARS['mayavi_min_version'],version_getter=_mayavi_version)
 package_check('enthought.traits', INFO_VARS['traits_min_version'],version_getter=_traits_version)
-package_check('cython',INFO_VARS['cython_min_version'],optional=True,version_getter=_cython_version)
-
-################################################################################
-# we use cython to compile the module if we have it. does it work?
-################################################################################
-try:
-    import Cython
-except ImportError:
-    has_cython = False
-else:
-    has_cython = True
-    
-per_ext, cmdclass = make_cython_ext(
-    'cviewer.libs.dipy.core.track_performance',
-    include_dirs = [np.get_include()])
-
-tvol_ext, cmdclass = make_cython_ext(
-    'cviewer.libs.dipy.io.track_volumes',
-    include_dirs = [np.get_include()])
-
-rec_ext, cmdclass = make_cython_ext(
-    'cviewer.libs.dipy.core.reconstruction_performance',
-    include_dirs = [np.get_include()])
 
 ################################################################################
 ################################################################################
@@ -106,7 +78,7 @@ def main(**extra_args):
             Topic :: Software Development
             """.splitlines() if len(c.split()) > 0],    
         description = "Multi-Modal MR Connectomics Framework for Analysis and Visualization",
-        license = "GPLv3",
+        license = "Modified BSD License",
         long_description = INFO_VARS['long_description'],
         maintainer = 'Stephan Gerhard',
         maintainer_email = 'info@connectomics.org',

@@ -51,11 +51,11 @@ pymysql_min_version = '0.2'
 
 # these can be done safely
 traits_min_version = '3.2.0'
-networkx_min_version = '1.0'
-mayavi_min_version = '3.3.0'
+networkx_min_version = '1.4'
+mayavi_min_version = '3.3.2'
 h5py_min_version = '1.2.0'
 scipy_min_version = '0.5'
-cython_min_version = '0.12'
+
 
 # for ubuntu 10.04
 ###
@@ -80,21 +80,4 @@ mayavi_min_version = '3.3.0' # mayavi2
 
 # outdated or not available
 pymysql_min_version = '0.2' # not available
-networkx_min_version = '1.0' # python-network (0.99)
-cython_min_version = '0.12' # cython (0.11.2)
-
-
-# dipy_min_version = ''
-# nibabel_min_version = ''
-# nipy_min_version = ''
-#
-#"networkx >= 1.1",
-#"h5py >= 1.3.0",
-#"EnvisageCore >= 3.1.2",
-#"TraitsBackendWX >= 3.2.1",
-#"Mayavi >= 3.3.1",
-#"EnvisagePlugins >= 3.1.2",
-#"EnthoughtBase >= 3.0.4",
-#"TraitsGUI >= 3.1.1",
-#"Traits >= 3.2.1",
-#"Chaco >= 3.2.1"
+networkx_min_version = '1.4' # python-network (0.99)
