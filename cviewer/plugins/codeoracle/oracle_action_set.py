@@ -25,9 +25,16 @@ show_volumecre = Action(
 )
 
 show_network = Action(
-    id            = "OracleCNetwork",
+    id            = "OracleCNetwork3D",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowNetworks",
-    name          = "Show Network",
+    name          = "3D Network",
+    path          = "MenuBar/Code Oracle/CNetwork"
+)
+
+connection_matrix = Action(
+    id            = "OracleCNetworkMat",
+    class_name    = "cviewer.plugins.codeoracle.actions.ConnectionMatrix",
+    name          = "Connection Matrix",
     path          = "MenuBar/Code Oracle/CNetwork"
 )
 
@@ -48,5 +55,6 @@ class OracleActionSet(WorkbenchActionSet):
         show_surface,
         show_network,
         compute_nbs,
-        show_volumecre
+        show_volumecre,
+        connection_matrix
     ]

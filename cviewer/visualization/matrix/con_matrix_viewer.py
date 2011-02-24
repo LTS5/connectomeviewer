@@ -30,7 +30,7 @@ class CustomHandler(Handler):
     
     def object_data_name_changed(self, info):
         if not info.initialized:
-            info.ui.title = info.object.data_name
+            info.ui.title = "Connection Matrix: " + info.object.data_name
 
 
 class CustomTool(BaseTool):
@@ -44,7 +44,7 @@ class CustomTool(BaseTool):
         self.xval = xval
         self.yval = yval
 
-class MatrixViewer(HasTraits):
+class ConnectionMatrixViewer(HasTraits):
     
     tplot = Instance(Plot)
     plot = Instance(Component)
@@ -67,9 +67,9 @@ class MatrixViewer(HasTraits):
                         Item('val', label="Value", style = 'readonly', springy=True),
                         ),
                         orientation = "vertical"),
-                    Item('data_name', label="Image data"),
-                    handler=CustomHandler(),
-                    resizable=True, title="Matrix Viewer"
+                    Item('data_name', label="Edge key"),
+                   # handler=CustomHandler(),
+                    resizable=True, title="Connection Matrix Viewer"
                     )
 
     
@@ -98,7 +98,7 @@ class MatrixViewer(HasTraits):
     def _data_name_changed(self, old, new):
         self.pd.set_data("imagedata", self.data[self.data_name])
         #self.my_plot.set_value_selection((0, 2))
-        self.tplot.title = "Matrix for %s" % self.data_name
+        self.tplot.title = "Connection Matrix for %s" % self.data_name
         
     def _update_fields(self):
         from numpy import trunc
@@ -111,8 +111,10 @@ class MatrixViewer(HasTraits):
         sh = self.data[self.data_name].shape
         # assume matrix whose shape is (# of rows, # of columns)
         if frotmp >= 0 and frotmp < sh[0] and totmp >= 0 and totmp < sh[1]:
-            self.fro = self.nodelables[frotmp]
-            self.to = self.nodelables[totmp]
+            row = " (%i" % (frotmp + 1) + ")"
+            col = " (%i" % (totmp + 1) + ")"
+            self.fro = " " + str(self.nodelables[frotmp]) + row 
+            self.to = " " + str(self.nodelables[totmp]) + col
             self.val = self.data[self.data_name][frotmp, totmp]
         
     def _create_plot_component(self):
@@ -131,8 +133,8 @@ class MatrixViewer(HasTraits):
                       colormap=jet)
     
         # Tweak some of the plot properties
-        self.tplot.title = "Matrix for %s" % self.data_name
-        self.tplot.padding = 50
+        self.tplot.title = "Connection Matrix for %s" % self.data_name
+        self.tplot.padding = 80
     
         # Right now, some of the tools are a little invasive, and we need the 
         # actual CMapImage object to give to them
@@ -186,7 +188,7 @@ if __name__ == "__main__":
     nodelabels = [str(e) for e in range(300)]
     matdict = {'edgval1':np.random.random( (300,300) ), 'edgval2': np.random.random( (300,300) )}
     
-    demo = MatrixViewer(nodelabels, matdict)
+    demo = ConnectionMatrixViewer(nodelabels, matdict)
     demo.configure_traits()
 
 

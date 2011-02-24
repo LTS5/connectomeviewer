@@ -45,55 +45,9 @@ class CNetwork(CBase):
     _edge_para = Instance(EdgeParameters)
     
     def _get_graph(self):
+        if not self.loaded:
+            self.load()
         return self.obj.data
-
-    def _relabel_to_int(self, graph):
-        import networkx as nx
-        def intmap(x): return int(x)
-        return nx.relabel_nodes(graph,intmap)
-
-    def _get_matdict(self):
-        if not self.loaded:
-            self.load()
-        import networkx as nx
-        matdict = {}
-        g = self._relabel_to_int(self.graph)
-        # grab keys from the first edge, discarding id
-        dl = self._get_edge_values()
-                
-        # create numpy matrix for each key using recarray
-        matrec = nx.to_numpy_recarray(g, dtype=zip(dl, [float]*len(dl)) )
-        for k in dl:
-            matdict[k] = matrec[k]
-        return matdict
-
-    def _get_nodelabels(self, nodekey = 'dn_label'):
-        if not self.loaded:
-            self.load()
-        g = self._relabel_to_int(self.graph)
-        a = []
-        return [v[nodekey] for n,v in g.nodes_iter(data=True)]
-
-    def _get_edge_values(self):
-        if not self.loaded:
-            self.load()
-        if len(self.obj.data.edges()) == 0:
-            return
-        edi = self.obj.data.edges_iter(data=True)
-        u,v,ed = edi.next()
-        ret = []
-        for k,v in ed.items():
-            if isinstance(v, float) or isinstance(v, int):
-                ret.append(k)
-        return ret
-
-    def invoke_matrix_viewer(self, nodelabelkey = 'dn_label'):
-        """ Invoke the Connectome Matrix Viewer """
-        from cviewer.visualization.matrix.matrix_viewer2 import MatrixViewer
-                
-        cmatrix_viewer = MatrixViewer(self._get_nodelabels(nodekey = nodelabelkey),
-                                      self._get_matdict())
-        cmatrix_viewer.edit_traits()
 
     def __init__(self, **traits):
         super(CNetwork, self).__init__(**traits)

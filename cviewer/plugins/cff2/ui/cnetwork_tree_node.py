@@ -78,8 +78,8 @@ class CNetworkTreeNode(TreeNode):
     def _menu_default(self):
         """ Standard menus for network nodes """
         
-        menu_actions = [Separator(), \
-                        self._RenderMatrixAction]
+        menu_actions = []
+        
         
         return Menu( *menu_actions)
         

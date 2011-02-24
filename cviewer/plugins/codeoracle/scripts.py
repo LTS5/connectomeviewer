@@ -1,19 +1,26 @@
 surfscript = """
-# Imports
+# Importing Mayavi mlab interface
 from enthought.mayavi import mlab
 
-# Retrieve data from connectome file
+
+# Retrieving the data
+# -------------------
+
+# surface data from connectome file
 surface_file_vertices = cfile.obj.get_by_name("%s")
 vertices = surface_file_vertices.data.darrays[%s].data
-
 surface_file_faces = cfile.obj.get_by_name("%s")
 faces = surface_file_faces.data.darrays[%s].data
+surface_file_labels = cfile.obj.get_by_name("%s")
 
-# Ensure that (triangluar) faces have dimension (N,3)
+# Sanity check
+# ------------
+
+# ensure that (triangluar) faces have dimension (N,3)
 if len(faces.shape) == 1:
     faces = faces.reshape( (len(faces) / 3, 3) )
 
-surface_file_labels = cfile.obj.get_by_name("%s")
+# check for labels
 if surface_file_labels is None:
     labels = None
 else:
@@ -23,18 +30,90 @@ else:
     # Ensure that each vertices has a corresponding label
     assert vertices.shape[0] == len(labels)
 
-# Create triangular mesh
+# Perform task
+# ------------
+
+# Create triangular surface mesh
 x, y, z = vertices[:,0], vertices[:,1], vertices[:,2]
 mlab.triangular_mesh(x, y, z, faces, scalars = labels)
 
 """
 
+conmatrix = """
+# Importing NetworkX
+import networkx as nx
+# Import the Connectome Matrix Viewer
+from cviewer.visualization.matrix.con_matrix_viewer import ConnectionMatrixViewer
+
+# Retrieving the data
+# -------------------
+
+# retrieve the graph
+g = cfile.obj.get_by_name("%s").data
+
+# set the node key to use the labels
+nodelabelkey = "%s"
+
+# Defining some helper functions
+# ------------------------------
+
+def relabel_to_int(graph):
+    " Relabel string node ids to integer "
+    def intmap(x): return int(x)
+    return nx.relabel_nodes(graph,intmap)
+
+def get_nodelabels(graph, nodekey = 'dn_label'):
+    " Retrieve a list of node labels "
+    g = relabel_to_int(graph)
+    a = []
+    return [v[nodekey] for n,v in g.nodes_iter(data=True)]
+
+def get_edge_values(graph):
+    " Retrieve valid edge keys "
+    if len(graph.edges()) == 0:
+        return
+    edi = graph.edges_iter(data=True)
+    u,v,ed = edi.next()
+    ret = []
+    for k,v in ed.items():
+        if isinstance(v, float) or isinstance(v, int):
+            ret.append(k)
+    return ret
+
+def get_matdict(graph):
+    matdict = {}
+    g = relabel_to_int(graph)
+    # grab keys from the first edge, discarding id
+    dl = get_edge_values(g)
+    # create numpy matrix for each key using recarray
+    matrec = nx.to_numpy_recarray(g, dtype=zip(dl, [float]*len(dl)) )
+    for k in dl:
+        matdict[k] = matrec[k]
+    return matdict
+
+def invoke_matrix_viewer(graph, nodelabelkey = 'dn_label'):
+    " Invoke the Connectome Matrix Viewer "
+    cmatrix_viewer = ConnectionMatrixViewer(get_nodelabels(graph, nodekey = nodelabelkey),
+                                  get_matdict(graph))
+    cmatrix_viewer.edit_traits()
+
+# Perform task
+# ------------
+
+invoke_matrix_viewer(g, nodelabelkey)
+"""
+
 netscript = """
+# Importing NumPy
 import numpy as np
+# Importing Mayavi mlab and tvtk packages
 from enthought.mayavi import mlab
 from enthought.tvtk.api import tvtk
 
-# Retrieve graph
+# Retrieving the data and set parameters
+# --------------------------------------
+
+# load graph data
 g = cfile.obj.get_by_name("%s").data
 position_key = "%s"
 edge_key = "%s"
@@ -76,8 +155,9 @@ start_positions = position_array[edges[:, 0], :].T
 end_positions = position_array[edges[:, 1], :].T
 vectors = end_positions - start_positions
 
-# Create visualization
-# --------------------
+# Perform task
+# ------------
+
 # create a new figure
 mlab.figure()
 
@@ -94,7 +174,7 @@ vectorsrc = mlab.pipeline.vector_scatter(start_positions[0],
                              vectors[2],
                              name = 'Connectivity Source')
 
-# Add scalar array
+# add scalar array
 da = tvtk.DoubleArray(name=edge_key)
 da.from_array(ev)
             
@@ -105,7 +185,7 @@ vectorsrc.mlab_source.dataset.point_data.scalars.name = edge_key
 # need to update the boundaries
 vectorsrc.outputs[0].update()
 
-# Add a thresholding filter
+# Add a thresholding filter to threshold the edges
 thres = mlab.pipeline.threshold(vectorsrc, name="Thresholding")
 
 myvectors = mlab.pipeline.vectors(thres,colormap='OrRd',
@@ -135,11 +215,18 @@ for la in create_label:
 """
 
 nbsscript = """
-# Imports
+# Import Numpy
 import numpy as np
-import cviewer.libs.pyconto.algorithms.statistics.nbs as nbs
+# Import pylab for plotting
 from pylab import imshow, show, title
+# Import NetworkX
 import networkx as nx
+# Import Network based statistic
+import cviewer.libs.pyconto.algorithms.statistics.nbs as nbs
+
+
+# Retrieving the data and set parameters
+# --------------------------------------
 
 # Define your groups
 # Retrieve the corresponding CNetwork objects
@@ -187,8 +274,12 @@ for i, sub in enumerate(secondgroup):
     # Retrieve the matrix
     Y[:,:,i] = nx.to_numpy_matrix(graph)
 
+# Perform task
+# ------------
+
 # Compute NBS, this might take a long time
-# you can run in the background...
+# and might better be done in a thread
+
 PVAL, ADJ, NULL = nbs.compute_nbs(X,Y,THRESH,K,TAIL)
 
 # We can now look at the connectivity matrix identified with matplotlib
@@ -224,25 +315,38 @@ vol = mlab.pipeline.volume(source, vmin=min+0.65*(max-min),
 """
 
 volslice = """
+# Import Mayavi mlab interface
 from enthought.mayavi import mlab
+# Import NumPy
 import numpy as np
 
+# Retrieving the data and set parameters
+# --------------------------------------
+
+# the CVolume name
 volname="%s"
 
 # Retrieve volume data (as Nibabel Image)
 voldat = cfile.obj.get_by_name(volname).data
+
 # Retrieve the image data
 data = voldat.get_data()
+
 # Retrieve the affine
 affine = voldat.get_affine()
 center = np.r_[0, 0, 0, 1]
-# Create A ScalarField with spacing and origin from
-# the affine
+
+# Perform task
+# ------------
+
+# create A ScalarField with spacing and origin from the affine
 data_src = mlab.pipeline.scalar_field(data)
 data_src.spacing = np.diag(affine)[:3]
 data_src.origin = np.dot(affine, center)[:3]
-# Create an outlint
+
+# Create an outline
 mlab.pipeline.outline(data_src)
+
 # Create a simple x-aligned image plane widget
 image_plane_widget = mlab.pipeline.image_plane_widget(data_src, name=volname)
 image_plane_widget.ipw.plane_orientation = 'x_axes'
@@ -250,10 +354,109 @@ image_plane_widget.ipw.reslice_interpolate = 'nearest_neighbour'
 """
 
 reportlab = """
-from reportlab.pdfgen import canvas
+# Credits
+# http://www.protocolostomy.com/2008/10/22/generating-reports-with-charts-using-python-reportlab/
+
+# Import ReportLab
+from reportlab.platypus import *
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.rl_config import defaultPageSize
+from reportlab.lib.units import inch
+# Import NetworkX
+import networkx
+
+# Retrieving the data and set parameters
+# --------------------------------------
+
+PAGE_HEIGHT=defaultPageSize[1]
+styles = getSampleStyleSheet()
+Title = "Connectome Report: "
+URL = "http://www.connectomics.org/"
+email = "info@connectomics.org"
+
+Elements=[]
+HeaderStyle = styles["Heading1"]
+ParaStyle = styles["Normal"]
+PreStyle = styles["Code"]
+
+# load data
+net=a.get_by_name("%s")
+net.load()
+g=net.data
+netw = g
  
-c = canvas.Canvas("hello.pdf")
-c.drawString(100,750,"Welcome to Reportlab!")
-c.save()
-http://www.protocolostomy.com/2008/10/22/generating-reports-with-charts-using-python-reportlab/
+def header(txt, style=HeaderStyle, klass=Paragraph, sep=0.3):
+    s = Spacer(0.2*inch, sep*inch)
+    para = klass(txt, style)
+    sect = [s, para]
+    result = KeepTogether(sect)
+    return result
+ 
+def p(txt):
+    return header(txt, style=ParaStyle, sep=0.1)
+ 
+def pre(txt):
+    s = Spacer(0.1*inch, 0.1*inch)
+    p = Preformatted(txt, PreStyle)
+    precomps = [s,p]
+    result = KeepTogether(precomps)
+    return result
+ 
+def go():
+    doc = SimpleDocTemplate('gfe.pdf')
+    doc.build(Elements)
+ 
+mytitle = header(Title + a.get_connectome_meta().get_title())
+
+mysite = header(URL, sep=0.1, style=ParaStyle)
+mymail = header(email, sep=0.1, style=ParaStyle)
+
+myabstract = p(Abstract)
+head_info = [mytitle, mysite, mymail]
+
+ 
+code_title = header("Basic code to produce output")
+code_explain = p("This is a snippet of code. It's an example using the Preformatted flowable object, which
+                 makes it easy to put code into your documents. Enjoy!")
+
+
+mytitlenet = header(net.get_name())
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import networkx as nx
+
+for u,v,d in netw.edges_iter(data=True):
+    netw.edge[u][v]['weight'] = netw.edge[u][v]['de_adcmean']
+
+b=nx.to_numpy_matrix(netw)
+fig = plt.figure()
+fig.suptitle("Connection matrix")
+aa= plt.imshow(b, interpolation='nearest', cmap=plt.cm.jet, vmin = b.min(), vmax=b.max())
+fig.savefig('matrix.png')
+
+fig.clear()
+fig.suptitle("Degree distribution")
+plt.hist(netw.degree().values(),30)
+fig.savefig('distri.png')
+
+# measures
+
+me1 = p("Number of Nodes: " + str(netw.number_of_nodes()))
+me2 = p("Number of Edges: " +  str(netw.number_of_edges()))
+me3 = p("Is network connected: " + str(nx.is_connected(netw)))
+me4 = p("Number of connected components: " + str(nx.number_connected_components(netw)))
+me5 = p("Average unweighted shortest path length: " + str(nx.average_shortest_path_length(netw, weighted = False)))
+me6 = p("Average Clustering Coefficient: " + str(nx.average_clustering(netw)))
+
+logo = "matrix.png"
+im1 = Image(logo, 300,225)
+logo = "distri.png"
+im2 = Image(logo, 250,188)
+
+codesection = [mytitle, mysite, mymail, mytitlenet, im1, im2, me1, me2, me3, me4, me5, me6]
+src = KeepTogether(codesection)
+Elements.append(src)
+go()
 """

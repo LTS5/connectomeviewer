@@ -5,13 +5,55 @@ from enthought.traits.ui.api import (View, Item, Group, HGroup, CodeEditor,
 
 from cviewer.plugins.cff2.cnetwork import CNetwork
 
+class MatrixNetworkParameter(HasTraits):
+    
+    view = View(
+             Item('graph', label = "Graph"),
+             Item('node_label', label="Node Label"),
+             id='cviewer.plugins.codeoracle.matrixnetworkparameter',
+             buttons=['OK'], 
+             resizable=True,
+             title = "Connection Matrix Generator Script"
+             )
+    
+    def _graph_changed(self, value):
+        self.remove_trait("node_label")
+        self.add_trait('node_label',  Enum(self.netw[firstk]['lab']) )      
+        
+    def __init__(self, cfile, **traits):
+        super(MatrixNetworkParameter, self).__init__(**traits)
+        
+        self.netw = {}
+        
+        for cobj in cfile.connectome_network:
+            if cobj.loaded:
+                if isinstance(cobj, CNetwork):
+                    # add more info
+                    a=cobj.obj.data.nodes_iter(data=True)
+                    n, dn = a.next()
+                    lab = []
+                    for k in dn.keys():
+                        if 'name' in k or 'label' in k:
+                            lab.append(k)
+                    if len(lab) == 0:
+                        lab = ["None"]
+                        
+                    self.netw[cobj.name] = {'name' : cobj.obj.name, 'lab' : lab}
+
+        if len(self.netw) == 0:
+            self.netw["None"] = {'name' : "None", 'lab' : "None"}
+                    
+        self.add_trait('graph',  Enum(self.netw.keys()) )
+        firstk = self.netw.keys()[0]
+        self.add_trait('node_label',  Enum(self.netw[firstk]['lab']) )      
+        
+        
 class NetworkParameter(HasTraits):
     
     engine = Enum("Mayavi", ["Mayavi"])
-#    graph = Any
     
     view = View(
-             Item('engine', label = "Use Engine"),
+             Item('engine', label = "Engine"),
              Item('graph', label = "Graph"),
              Item('node_position', label = "Node Positions"),
              Item('edge_value', label="Edge Value"),
@@ -19,7 +61,7 @@ class NetworkParameter(HasTraits):
              id='cviewer.plugins.codeoracle.networkparameter',
              buttons=['OK'], 
              resizable=True,
-             title = "Create surface ..."
+             title = "3D Network Generator Script"
              )
     
     def _graph_changed(self, value):
