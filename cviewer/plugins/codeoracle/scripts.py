@@ -103,6 +103,51 @@ def invoke_matrix_viewer(graph, nodelabelkey = 'dn_label'):
 invoke_matrix_viewer(g, nodelabelkey)
 """
 
+ctrackedge = """
+# Importing Numpy
+import numpy as np
+# Import Dipy Visualization
+import dipy.viz.fvtk as fvtk
+
+# Retrieving the data and set parameters
+# --------------------------------------
+
+a = cfile.obj.get_by_name("Filtered Tractography").get_fibers_as_numpy()
+fiberlabels = cfile.obj.get_by_name("Fiber labels (freesurferaparc)").data
+
+fromtofloatid = 8.10
+
+
+# Defining some helper functions
+# ------------------------------
+
+def sidx(arr, value):
+    " Returns the indices that are equal to a given value "
+    return np.where( arr == value)[0]
+
+def randcolarr(arr):
+    " Returns a random color for each row in arr "
+    return np.random.rand(1,3).repeat(len(arr),axis=0)
+    
+def showfibfvtk(fibarr, colarr, percentage = 100):
+    fibarr2 = fibarr[::percentage]
+    colarr2 = colarr[::percentage]
+    fibarr2list = fibarr2.tolist()
+    r=fvtk.ren()
+    #fvtk.add(r,fvtk.axes())
+    r.SetBackground(1, 1, 1)
+    [fvtk.add(r,fvtk.line(ele, colarr2[i,:])) for i, ele in enumerate(fibarr2list)];
+    fvtk.show(r, title = "Fibers", size = (500,500))
+    
+
+# Perform task
+# ------------
+
+idx = sidx(fiberlabels, fromtofloatid)
+showfibfvtk(a[idx], randcolarr(a[idx]), 100)
+
+"""
+
 netscript = """
 # Importing NumPy
 import numpy as np

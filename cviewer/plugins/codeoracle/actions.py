@@ -12,6 +12,28 @@ from cviewer.plugins.ui.preference_manager import preference_manager
 import logging
 logger = logging.getLogger('root.'+__name__)
 
+class ShowTracks(Action):
+    tooltip = "Show tracks between two regions"
+    description = "Show tracks between two regions"
+    
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+
+        from scripts import ctrackedge
+        cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
+        
+        import tempfile
+        myf = tempfile.mktemp(suffix='.py', prefix='my')
+        f=open(myf, 'w')
+        f.write(ctrackedge)
+        f.close()
+        
+        self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+            
+
 class ComputeNBS(Action):
     tooltip = "Compute NBS"
     description = "Compute NBS"

@@ -19,7 +19,7 @@ class ThreadedTrackvis(threading.Thread):
         if os.path.isfile(self.tvpath):
             process = subprocess.call( newcmd, shell = True)
             if process < 0:
-                logger.debug("Trackvis Thread was terminated by signal " + str(retcode))
+                logger.debug("Trackvis Thread was terminated by signal " + str(process))
             else:
-                logger.debug("Trackvis Thread returned with returncode " + str(retcode))
+                logger.debug("Trackvis Thread returned with returncode " + str(process))
             

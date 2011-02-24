@@ -45,6 +45,13 @@ compute_nbs = Action(
     path          = "MenuBar/Code Oracle/Statistics"
 )
 
+show_tracks = Action(
+    id            = "OracleNBS",
+    class_name    = "cviewer.plugins.codeoracle.actions.ShowTracks",
+    name          = "Tracks between regions",
+    path          = "MenuBar/Code Oracle/CTrack"
+)
+
 
 class OracleActionSet(WorkbenchActionSet):
     """ The actionset for the Oracle plugin """
@@ -56,5 +63,6 @@ class OracleActionSet(WorkbenchActionSet):
         show_network,
         compute_nbs,
         show_volumecre,
-        connection_matrix
+        connection_matrix,
+        show_tracks
     ]

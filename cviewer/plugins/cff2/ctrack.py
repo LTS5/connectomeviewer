@@ -27,9 +27,21 @@ class CTrack(CBase):
     
     obj = Instance(cfflib.CTrack)
     
+    
     def __init__(self, **traits):
         super(CTrack, self).__init__(**traits)
-        
+    
+    def get_fibdata(self):
+        """ Return a Numpy Object of TrackVis fibers """
+        if not self.loaded:
+            self.load()
+         
+        if self.obj.get_fileformat() == 'TrackVis':
+            return self.obj.get_fibers_as_numpy()
+        else:
+            return None
+    
+    
     def launch_trackvis(self, volumefname = None):
         """ Launches TrackVis externally """
         logger.info("Launch TrackVis...")
