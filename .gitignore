@@ -11,3 +11,7 @@ dist/
 ConnectomeViewer.egg-info/
 libs-queue/
 MANIFEST
+.project
+.pydevproject
+.settings/
+.idea/
