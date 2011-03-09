@@ -19,7 +19,7 @@ from cmetadata import CMetadata
 from cnetwork import CNetwork
 from csurface import CSurface
 from cvolume import CVolume
-from ctimeserie import CTimeserie
+from ctimeseries import CTimeseries
 from cdata import CData
 from cscript import CScript
 from cimagestack import CImagestack   
@@ -144,7 +144,7 @@ class CFile(HasTraits):
             return []
         else:
             if self._connectome_timeserie is None:
-                self._connectome_timeserie = [CTimeserie(obj=ele) for ele in self.obj.connectome_timeserie]
+                self._connectome_timeserie = [CTimeseries(obj=ele) for ele in self.obj.connectome_timeseries]
                 return self._connectome_timeserie
             else:
                 return self._connectome_timeserie

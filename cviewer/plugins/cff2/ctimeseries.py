@@ -20,11 +20,11 @@ logger = logging.getLogger('root.'+__name__)
 
 from cbase import CBase
 
-class CTimeserie(CBase):
-    """ The implementation of the Connectome Timeserie """
+class CTimeseries(CBase):
+    """ The implementation of the Connectome Timeseries """
     
-    obj = Instance(cfflib.CTimeserie)
+    obj = Instance(cfflib.CTimeseries)
 
     def __init__(self, **traits):
-        super(CTimeserie, self).__init__(**traits)
+        super(CTimeseries, self).__init__(**traits)
         

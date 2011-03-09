@@ -26,7 +26,7 @@
 
 .. _dipy: http://nipy.org/dipy
 .. _connectomeviewer: http://www.connectomeviewer.org/
-.. _`connectomeviewer github`: http://github.com/unidesigner/connectomeviewer
+.. _`connectomeviewer github`: http://github.com/LTS5/connectomeviewer
 
 .. Documentation tools
 .. _graphviz: http://www.graphviz.org/

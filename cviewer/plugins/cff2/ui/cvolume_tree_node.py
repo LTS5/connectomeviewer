@@ -67,8 +67,7 @@ class CVolumeTreeNode(TreeNode):
     def _menu_default(self):
         """ Standard menus for network nodes """
         
-        menu_actions = [Separator(), \
-                        self._VolumeVisualizer]
+        menu_actions = [Separator(),]
         
         return Menu( *menu_actions)
         

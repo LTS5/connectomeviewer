@@ -21,9 +21,9 @@ Other relevant Literature
 Mesoscale
 ::::::::::
 
-* Gerhard S (2010). `Connectomics - Tools and Applications. ConnectomeViewer and ConnectomeWiki <http://www.connectome.ch/documentation/_static/pdf/master_thesis_gerhard2010.pdf>`_ Master thesis. Institute of Neuroinformatics, Zurich, Switzerland.
+* Gerhard S (2010). Connectomics - Tools and Applications. ConnectomeViewer and ConnectomeWiki. Master thesis. Institute of Neuroinformatics, Zurich, Switzerland.
 
-* Gerhard S (2010). `Connectomics - Tools and Applications. <http://www.connectome.ch/documentation/_static/pdf/master_thesis_gerhard2010_presentation.pdf>`_ Master thesis presentation. Institute of Neuroinformatics, Zurich, Switzerland.
+* Gerhard S (2010). Connectomics - Tools and Applications. Master thesis presentation. Institute of Neuroinformatics, Zurich, Switzerland.
 
 * Hagmann P, et al. (2008). `Mapping the Structural Core of Human Cerebral Cortex <http://dx.doi.org/10.1371/journal.pbio.0060159>`_ PLoS Biology Vol. 6, No. 7, e159
 
@@ -48,4 +48,4 @@ of efforts to map wiring diagrams on the microscale levels, i.e. the cellular le
 Posters
 :::::::
 
-* `OHBM 2010 - ConnectomeViewer - Multi-Modal Multi-Level Network Visualization and Analysis in Python <http://www.connectome.ch/documentation/_static/pdf/ohbm2010_poster.pdf>`_
+* OHBM 2010 - ConnectomeViewer - Multi-Modal Multi-Level Network Visualization and Analysis in Python

@@ -28,7 +28,7 @@ from cfile_tree_node import CFileTreeNode
 from cdata_tree_node import CDataTreeNode
 from cimagestack_tree_node import CImagestackTreeNode
 from cscript_tree_node import CScriptTreeNode
-from ctimeserie_tree_node import CTimeserieTreeNode
+from ctimeseries_tree_node import CTimeseriesTreeNode
 from cvolume_tree_node import CVolumeTreeNode
 from ctrack_tree_node import CTrackTreeNode
 from csurface_darray_tree_node import CSurfaceDarrayTreeNode
@@ -164,7 +164,7 @@ class CFFView(HasTraits):
                           icon_path=IMAGE_PATH,
                           auto_open=False,
                           ),
-                 CTimeserieTreeNode(
+                 CTimeseriesTreeNode(
                           children='',
                           icon_path=IMAGE_PATH,
                           auto_open=False,

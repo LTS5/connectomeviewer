@@ -5,7 +5,7 @@ Add network from Matlab connectivity matrix
 ===========================================
 
 It is assumed that you have a connectivity matrix and node positions stored in
-Matlab files (see `examples/matlab_import/data <https://github.com/unidesigner/connectomeviewer>`_). Here you learn how to directly load these data in ConnectomeViewer
+Matlab files (see `examples/matlab_import/data <https://github.com/LTS5/connectomeviewer>`_). Here you learn how to directly load these data in ConnectomeViewer
 and visualize the network.
 
 The following code will do ::

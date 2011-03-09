@@ -13,19 +13,19 @@ from enthought.traits.ui.api import TreeNode
 from enthought.traits.ui.menu import Menu, Action, Separator
 
 # ConnectomeViewer imports
-from cviewer.plugins.cff2.ctimeserie import CTimeserie
+from cviewer.plugins.cff2.ctimeseries import CTimeseries
 
 # Logging import
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-class CTimeserieTreeNode(TreeNode):
+class CTimeseriesTreeNode(TreeNode):
     
     # The object that contains the container ;^)
     parent = Any
 
     # the network associated with this node
-    node_for=[CTimeserie]
+    node_for=[CTimeseries]
 
     # a default icons
     # Name of group item icon

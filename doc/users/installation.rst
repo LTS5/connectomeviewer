@@ -15,7 +15,7 @@ The Python Version 2.6 is needed. The installation procedure including installat
 downloading of sources, and compilation is automated by a sh-script.
 Take first a look at the respective scripts in order to understand what they do.
 
-* Download the `installation script <https://github.com/unidesigner/connectomeviewer/tree/master/scripts>`_ (Ubuntu / Fedora 11 or higher supported)
+* Download the `installation script <https://github.com/LTS5/connectomeviewer/tree/master/scripts>`_ (Ubuntu / Fedora 11 or higher supported)
 
 * You need to make the installation file executable::
 
