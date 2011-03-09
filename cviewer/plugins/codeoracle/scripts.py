@@ -103,6 +103,46 @@ def invoke_matrix_viewer(graph, nodelabelkey = 'dn_label'):
 invoke_matrix_viewer(g, nodelabelkey)
 """
 
+conmatrixpyplot = """
+# Importing NetworkX
+import networkx as nx
+# Import Pylab
+from pylab import imshow, show, cm
+
+# Retrieving the data
+# -------------------
+
+# retrieve the graph
+g = cfile.obj.get_by_name("%s").data
+
+# define the edge key to plot
+edgekey = "%s"
+
+# binarize matrix
+binarize = False
+
+# Defining some helper functions
+# ------------------------------
+
+def show_matrix(a, edge, binarize = False):
+    for u,v,d in a.edges_iter(data=True):
+        a.edge[u][v]['weight'] = a.edge[u][v][edge]
+    bb=nx.to_numpy_matrix(a)
+    if binarize:
+        c=np.zeros(bb.shape)
+        c[bb>0] = 1
+        b = c
+    else:
+        b = bb
+    imshow(b, interpolation='nearest', cmap=cm.jet, vmin = b.min(), vmax=b.max())
+    show()
+
+# Perform task
+# ------------
+show_matrix(g, edgekey, binarize)
+
+"""
+
 ctrackedge = """
 # Importing Numpy
 import numpy as np
