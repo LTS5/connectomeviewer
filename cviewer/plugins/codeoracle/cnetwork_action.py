@@ -46,7 +46,48 @@ class MatrixNetworkParameter(HasTraits):
         self.add_trait('graph',  Enum(self.netw.keys()) )
         firstk = self.netw.keys()[0]
         self.add_trait('node_label',  Enum(self.netw[firstk]['lab']) )      
-        
+
+class MatrixEdgeNetworkParameter(HasTraits):
+
+    view = View(
+             Item('graph', label = "Graph"),
+             Item('edge_label', label="Edge Label"),
+             id='cviewer.plugins.codeoracle.matrixnetworkparameter',
+             buttons=['OK'],
+             resizable=True,
+             title = "Connection Matrix Generator Script"
+             )
+
+    def _graph_changed(self, value):
+        self.remove_trait("edge_label")
+        self.add_trait('edge_label',  Enum(self.netw[firstk]['lab']) )
+
+    def __init__(self, cfile, **traits):
+        super(MatrixEdgeNetworkParameter, self).__init__(**traits)
+
+        self.netw = {}
+
+        for cobj in cfile.connectome_network:
+            if cobj.loaded:
+                if isinstance(cobj, CNetwork):
+                    # add more info
+                    a=cobj.obj.data.edges_iter(data=True)
+                    u,v, dn = a.next()
+                    lab = []
+                    for k in dn.keys():
+                        if not k in lab:
+                            lab.append(k)
+                    if len(lab) == 0:
+                        lab = ["None"]
+
+                    self.netw[cobj.name] = {'name' : cobj.obj.name, 'lab' : lab}
+
+        if len(self.netw) == 0:
+            self.netw["None"] = {'name' : "None", 'lab' : "None"}
+
+        self.add_trait('graph',  Enum(self.netw.keys()) )
+        firstk = self.netw.keys()[0]
+        self.add_trait('edge_label',  Enum(self.netw[firstk]['lab']) )
         
 class NetworkParameter(HasTraits):
     

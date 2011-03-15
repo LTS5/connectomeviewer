@@ -38,6 +38,13 @@ connection_matrix = Action(
     path          = "MenuBar/Code Oracle/CNetwork"
 )
 
+simple_connection_matrix = Action(
+    id            = "OracleCNetworkSimpleMat",
+    class_name    = "cviewer.plugins.codeoracle.actions.SimpleConnectionMatrix",
+    name          = "Simple Connection Matrix",
+    path          = "MenuBar/Code Oracle/CNetwork"
+)
+
 compute_nbs = Action(
     id            = "OracleNBS",
     class_name    = "cviewer.plugins.codeoracle.actions.ComputeNBS",
@@ -64,5 +71,6 @@ class OracleActionSet(WorkbenchActionSet):
         compute_nbs,
         show_volumecre,
         connection_matrix,
+        simple_connection_matrix,
         show_tracks
     ]

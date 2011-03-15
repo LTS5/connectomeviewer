@@ -137,6 +137,34 @@ class ConnectionMatrix(Action):
             
             self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
 
+class SimpleConnectionMatrix(Action):
+    tooltip = "Show simple connection matrix"
+    description = "Show simple connection matrix"
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+
+        from cnetwork_action import MatrixEdgeNetworkParameter
+        from scripts import conmatrixpyplot
+        cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
+        
+        no = MatrixEdgeNetworkParameter(cfile)
+        no.edit_traits(kind='livemodal')
+
+        if not no.netw[no.graph]['name'] == "None":
+            # if cancel, not create surface
+            # create a temporary file
+            import tempfile
+            myf = tempfile.mktemp(suffix='.py', prefix='my')
+            f=open(myf, 'w')
+            f.write(conmatrixpyplot % (no.netw[no.graph]['name'],
+                                  no.edge_label))
+            f.close()
+
+            self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+
 class ShowSurfaces(Action):
     """ Open a new file in the text editor
     """
