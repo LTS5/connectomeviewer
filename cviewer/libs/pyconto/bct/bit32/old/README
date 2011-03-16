@@ -1,0 +1,7 @@
+bct-cpp is a C++ port of the Brain Connectivity Toolbox, a set of MATLAB
+functions and neuroanatomical data sets useful in the analysis of structural
+or functional brain networks.
+
+See <http://www.brain-connectivity-toolbox.net/> for more information.
+
+See LICENSE for information about bct-cpp's license.

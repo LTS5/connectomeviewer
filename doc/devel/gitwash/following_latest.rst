@@ -18,7 +18,7 @@ Get the local copy of the code
 
 From the command line::
 
-   git clone git://github.com/unidesigner/connectomeviewer.git
+   git clone git://github.com/LTS5/connectomeviewer.git
 
 You now have a copy of the code tree in the new ``connectomeviewer`` directory.
 

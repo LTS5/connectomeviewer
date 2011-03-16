@@ -4,6 +4,9 @@
  Connectome File Format
 ========================
 
+.. warning:: This content is deprecated. The Connectome File Format Version 2.0 is the new release, together
+             with the `Connectome File Format Library <http://www.connectomics.org/cfflib/>`_
+
 .. hint::
    The core specification is currently rewritten and will be published soon.
 

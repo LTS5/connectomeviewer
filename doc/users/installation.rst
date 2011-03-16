@@ -4,6 +4,8 @@
 Download and Installation
 ==========================
 
+.. warning:: This content is soon deprecated and replaced by an easier installation procedure using Neuro Debian.
+
 .. note:: Download the `source code <http://www.connectomeviewer.org/users/download>`_ used for the installation. Please register following `this link. <http://www.connectomeviewer.org/users/register>`_
           The ConnectomeViewer is currently BETA and released to the public. 32bit and 64bit architectures are supported.
 

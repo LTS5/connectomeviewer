@@ -4,6 +4,8 @@
 Overview of included external libraries
 =======================================
 
+.. warning:: This content is deprecated.
+
 .. note: Remember to update the .gitignore in the root folder not to include the git repositories.
 Maybe one could use also git `submodules <http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules>`_ ?
 

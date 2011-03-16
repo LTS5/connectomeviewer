@@ -2,11 +2,9 @@
  Introduction
 ==============
 
-ConnectomeViewer is under currently under heavy development.  You can visit `ConnectomeViewer Issues <http://github.com/unidesigner/connectomeviewer/issues>`_ to see ongoing developments.
+ConnectomeViewer is under currently under heavy development.  You can visit `ConnectomeViewer Issues <http://github.com/LTS5/connectomeviewer/issues>`_ to see ongoing developments.
 
-Feel free to join in and contribute for example your custom plugins.
-
-The lead developer is Stephan Gerhard (info AT connectomics DOT org).
+If you have any questions or feedback, you can post the the `Connectome Mapping Toolkit group <http://groups.google.com/group/cmtk-users>`_.
 
 The primary develpoment repository is `connectomeviewer github`_.
 

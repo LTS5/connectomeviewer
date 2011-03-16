@@ -26,21 +26,6 @@ data (*.slor files*) to Nifti.
 **URL**: `http://www.uzh.ch/keyinst/loreta.htm <http://www.uzh.ch/keyinst/loreta.htm>`_
 
 
-Diffusion in Python Plugin
-`````````````````````````````````
-**Summary**: The Diffusion Imaging Analysis in Python is part of the NiPy effort
-and under development. It includes readers/writers of diffusion and track data,
-and algorithms for automatic tract segmentation. It uses Cython for speed.
-    
-**Status**: Integrated in Current Release
-
-**Tutorial**: :ref:`pydipy`
-
-**Author**: All the credit goes to the NiPy/DiPy team. Stephan Gerhard wrote the plugin code and the integration.
-    
-**URL**: `http://nipy.sourceforge.net/dipy/ <http://nipy.sourceforge.net/dipy/>`_
-
-
 Network Based Statistic Plugin
 `````````````````````````````````
 **Summary**: Computes the network-based statistic (NBS) as described in the reference.
@@ -52,7 +37,6 @@ Network Based Statistic Plugin
 **Reference**: `Zalesky A, Fornito A, Bullmore ET (2010) Network-based statistic: Identifying differences in brain networks. NeuroImage. 10.1016/j.neuroimage.2010.06.041 <http://people.eng.unimelb.edu.au/azalesky/paper_nbs.pdf>`_
 
 **Author**: Original code written by Andrew Zalesky, rewritten for Python by Stephan Gerhard.
-
 
 
 Bindings Plugin

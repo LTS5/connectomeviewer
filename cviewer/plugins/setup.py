@@ -3,10 +3,8 @@ def configuration(parent_package='',top_path=None):
 
     config = Configuration('plugins', parent_package, top_path)
 
-    config.add_subpackage('analysis')
     config.add_subpackage('bindings')
-    config.add_subpackage('cff')
-    config.add_subpackage('dipy')
+    config.add_subpackage('cff2')
     config.add_subpackage('sloreta')
     config.add_subpackage('text_editor')
     config.add_subpackage('ui')

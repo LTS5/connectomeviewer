@@ -3,11 +3,12 @@
 ===========
  Tutorials
 ===========
-   
+
+.. warning:: This content is deprecated with Connectome Viewer Version 2.0. These tutorials will be exposed through the CodeOracle plugin.
+
 The best way to learn how to use the ConnectomeViewer is by example. There are
 already some examples in the *example/* folder shipped with the software. Additionally,
 the tutorials will help you to get started.
-   
    
 Basics
 ------

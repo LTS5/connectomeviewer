@@ -3,6 +3,9 @@ ConnectomeViewer Release Notes
 ==============================
 
 Version 0.2.0 (DATE)
+* Support for the Connectome File Format Version 2.0
+* Compatibility with the Connectome Mapper
+* Functionality is now encapuslated in CodeOracle scripts
 
 Version 0.1.9 - BETA (August 11th 2010)
 

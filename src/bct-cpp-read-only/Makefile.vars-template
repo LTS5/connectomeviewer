@@ -1,0 +1,22 @@
+# Arguments to be sent to the C++ compiler
+# Some arguments may already be specified in Makefile
+CXXFLAGS                +=
+
+# Installation directory
+install_dir              = /usr/local
+
+# The following variables are only needed for SWIG
+# If you aren't generating Python bindings, you don't need to worry about them
+
+# Python header file directory
+python_dir               =
+
+# Typical values for swig_lib_flags in different environments
+# You probably don't need to change these
+swig_lib_flags_apple     = -bundle -flat_namespace -undefined suppress
+swig_lib_flags_linux     = -shared
+
+# Arguments for generating a shared library from SWIG wrappers
+# You can probably use one of the previously defined variables
+# E.g., swig_lib_flags = $(swig_lib_flags_apple)
+swig_lib_flags           =

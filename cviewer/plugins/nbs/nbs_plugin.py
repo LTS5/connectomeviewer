@@ -3,7 +3,7 @@
 Original code author:  Andrew Zalesky, azalesky@unimelb.edu.au
 
 """
-# Copyright (C) 2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
+# Copyright (C) 2011, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)
 #
 # Modified BSD License
@@ -34,5 +34,5 @@ class NBSPlugin(Plugin):
         """ Exposes the nbs namespace in the python shell """
 
         return [
-            'import cviewer.libs.pyconto.algorithms.statistics.nbs as nbs' ]
+            'import cviewer.libs.pyconto.groupstatistics.nbs as nbs' ]
         

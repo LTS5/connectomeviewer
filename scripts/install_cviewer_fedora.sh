@@ -54,7 +54,7 @@ echo "========================================="
 echo "Download and install the ConnectomeViewer"
 echo "========================================="
 
-wget --no-check-certificate http://github.com/downloads/unidesigner/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
+wget --no-check-certificate http://github.com/downloads/LTS5/connectomeviewer/ConnectomeViewer-0.1.9.tar.gz
 tar xzf ConnectomeViewer-0.1.9.tar.gz
 cd ConnectomeViewer-0.1.9/
 python setup.py install

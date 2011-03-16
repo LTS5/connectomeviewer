@@ -13,7 +13,7 @@ Overview
 
    git clone git@github.com/your-user-name/connectomeviewer.git
    cd connectomeviewer
-   git remote add upstream git://github.com/unidesigner/connectomeviewer.git
+   git remote add upstream git://github.com/LTS5/connectomeviewer.git
 
 In detail
 =========
@@ -46,7 +46,7 @@ Linking your repository to the upstream repo
 ::
 
    cd cviewer
-   git remote add upstream git://github.com/unidesigner/connectomeviewer.git
+   git remote add upstream git://github.com/LTS5/connectomeviewer.git
 
 ``upstream`` here is just the arbitrary name we're using to refer to the
 main connectomeviewer_ repository at `connectomeviewer github`_.
@@ -59,8 +59,8 @@ use it to merge into our own code.
 Just for your own satisfaction, show yourself that you now have a new
 'remote', with ``git remote -v show``, giving you something like::
 
-   upstream	git://github.com/unidesigner/connectomeviewer.git (fetch)
-   upstream	git://github.com/unidesigner/connectomeviewer.git (push)
+   upstream	git://github.com/LTS5/connectomeviewer.git (fetch)
+   upstream	git://github.com/LTS5/connectomeviewer.git (push)
    origin	git@github.com:your-user-name/connectomeviewer.git (fetch)
    origin	git@github.com:your-user-name/connectomeviewer.git (push)
 

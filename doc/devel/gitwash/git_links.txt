@@ -15,7 +15,7 @@
 
 .. connectomeviewer
 .. _connectomeviewer: http://www.connectomeviewer.org/
-.. _`connectomeviewer github`: http://github.com/unidesigner/connectomeviewer
+.. _`connectomeviewer github`: http://github.com/LTS5/connectomeviewer
 
 
 .. nipy
