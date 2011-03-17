@@ -40,7 +40,7 @@ class CustomTool(BaseTool):
     
     def normal_mouse_move(self, event):
         xval, yval = self.component.map_data((event.x, event.y))
-        
+        #print "xval", xval
         self.xval = xval
         self.yval = yval
 
@@ -101,18 +101,17 @@ class ConnectionMatrixViewer(HasTraits):
         self.tplot.title = "Connection Matrix for %s" % self.data_name
         
     def _update_fields(self):
-        from numpy import trunc
         
         # map mouse location to array index
-        frotmp = int(trunc(self.custtool.yval))
-        totmp = int(trunc(self.custtool.xval))
+        frotmp = int(round(self.custtool.yval) - 1)
+        totmp = int(round(self.custtool.xval) - 1)
         
         # check if within range
         sh = self.data[self.data_name].shape
         # assume matrix whose shape is (# of rows, # of columns)
         if frotmp >= 0 and frotmp < sh[0] and totmp >= 0 and totmp < sh[1]:
-            row = " (%i" % (frotmp + 1) + ")"
-            col = " (%i" % (totmp + 1) + ")"
+            row = " (index: %i" % (frotmp + 1) + ")"
+            col = " (index: %i" % (totmp + 1) + ")"
             self.fro = " " + str(self.nodelables[frotmp]) + row 
             self.to = " " + str(self.nodelables[totmp]) + col
             self.val = self.data[self.data_name][frotmp, totmp]
@@ -123,13 +122,17 @@ class ConnectionMatrixViewer(HasTraits):
         self.pd = ArrayPlotData()
         self.pd.set_data("imagedata", self.data[self.data_name])
     
+        # find dimensions
+        xdim = self.data[self.data_name].shape[1]
+        ydim = self.data[self.data_name].shape[0]
+    
         # Create the plot
         self.tplot = Plot(self.pd, default_origin="top left")
         self.tplot.x_axis.orientation = "top"
         self.tplot.img_plot("imagedata", 
                       name="my_plot",
-                      #xbounds=(0,10),
-                      #ybounds=(0,10),
+                      xbounds=(0.5,xdim + 0.5),
+                      ybounds=(0.5,ydim + 0.5),
                       colormap=jet)
     
         # Tweak some of the plot properties
@@ -185,8 +188,9 @@ class ConnectionMatrixViewer(HasTraits):
 if __name__ == "__main__":
     import numpy as np
     
-    nodelabels = [str(e) for e in range(300)]
-    matdict = {'edgval1':np.random.random( (300,300) ), 'edgval2': np.random.random( (300,300) )}
+    nodelabels = [str(e) for e in range(3)]
+    nodelabels = ['a', 'b', 'c']
+    matdict = {'edgval1':np.random.random( (3,3) ), 'edgval2': np.random.random( (3,3) )}
     
     demo = ConnectionMatrixViewer(nodelabels, matdict)
     demo.configure_traits()
