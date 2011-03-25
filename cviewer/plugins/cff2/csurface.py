@@ -13,11 +13,7 @@ from enthought.traits.api import HasTraits, Str, Bool, CBool, Any, Dict, impleme
 from enthought.traits.ui.api import View, Item, auto_close_message, message
 
 # ConnectomeViewer imports
-
-from cviewer.visualization.render_manager import RenderManager
-from cviewer.sources.datasource_manager import DatasourceManager
 from cviewer.plugins.ui.preference_manager import preference_manager
-from cviewer.plugins.cff.ui.edge_parameters_view import EdgeParameters
 
 import cfflib
 from cviewer.plugins.cff2.csurface_darray import CSurfaceDarray

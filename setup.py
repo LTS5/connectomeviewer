@@ -8,8 +8,8 @@ import numpy as np
 # monkey-patch numpy distutils to use Cython instead of Pyrex
 from build_helpers import generate_a_pyrex_source, package_check, make_cython_ext, INFO_VARS
 
-from numpy.distutils.command.build_src import build_src
-build_src.generate_a_pyrex_source = generate_a_pyrex_source
+#from numpy.distutils.command.build_src import build_src
+#build_src.generate_a_pyrex_source = generate_a_pyrex_source
 
 def configuration(parent_package='',top_path=None):
     from numpy.distutils.misc_util import Configuration
@@ -84,8 +84,8 @@ def main(**extra_args):
         maintainer_email = 'info@connectomics.org',
         platforms = ["Linux", "Unix"],
         url = 'http://www.connectomeviewer.org/',
-        scripts = glob('scripts/*.py'),
-        ext_modules = [per_ext, tvol_ext, rec_ext],         
+        scripts = glob('scripts/*'),
+#        ext_modules = [per_ext, tvol_ext, rec_ext],         
         configuration = configuration,
         **extra_args
         )
