@@ -9,9 +9,9 @@ def configuration(parent_package='',top_path=None):
     config = Configuration('libs', parent_package, top_path)
 
     config.add_subpackage('pyeeg')
-    config.add_subpackage('tomoviz')
+   # config.add_subpackage('tomoviz')
     
-    config.add_subpackage('dipy')
+  #  config.add_subpackage('dipy')
     
     # List all data directories to be loaded here
     # add setup.py with specifics
