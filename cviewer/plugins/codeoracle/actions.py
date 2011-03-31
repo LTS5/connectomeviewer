@@ -12,6 +12,28 @@ from cviewer.plugins.ui.preference_manager import preference_manager
 import logging
 logger = logging.getLogger('root.'+__name__)
 
+
+
+class NipypeBet(Action):
+    tooltip = "Brain extraction using BET"
+    description = "Brain extraction using BET"
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+
+        from scripts import nipypebet
+
+        import tempfile
+        myf = tempfile.mktemp(suffix='.py', prefix='my')
+        f=open(myf, 'w')
+        f.write(nipypebet)
+        f.close()
+
+        self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+
+
 class ShowTracks(Action):
     tooltip = "Show tracks between two regions"
     description = "Show tracks between two regions"

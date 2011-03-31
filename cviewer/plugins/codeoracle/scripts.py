@@ -1,3 +1,48 @@
+
+nipypebet = """
+# Prerequisite:
+# 1. You need to have Nipype installed on your system. You can check this by entering
+#    import nipype
+#    In the IPython console. If it gives an error, you might want to install it from NeuroDebian.
+#    See http://neuro.debian.net/ - Documentation is on http://nipy.sourceforge.net/nipype/
+# 2. For this simple brain extraction script, you need to have FSL installed.
+
+# Goal:
+# This script shows how to extract the brain using BET through the Nipype interface.
+# It is derived from http://nipy.sourceforge.net/nipype/users/dartmouth_workshop_2010.html
+
+# As an input, you need a T1-weighted image that as an input to the Nipype node.
+rawimage = cfile.obj.get_by_name('MYRAWT1IMAGE')
+
+# Let's check if the metadata agrees with what is expected (it should say "T1-weighted")
+print rawimage.dtype
+
+# We do not necessarily need to load the connectome object - if the connectome file is extracted
+# locally. We just need to retrieve the absolute file path
+rawimage_pwd = rawimage.get_abs_path()
+
+# We need the Nipype FSL interface
+import nipype.interfaces.fsl as fsl
+
+# We set the FSL default output type to compressed Nifti-1
+fsl.FSLCommand.set_default_output_type('NIFTI_GZ')
+
+# We want to store the processed file in the temporary folder for now.
+fname_out = '/tmp/only_brain.nii.gz'
+
+# Now, we run the Nipype BET node, providing the correct input
+result = fsl.BET(in_file=rawimage_pwd, out_file = fname_out ).run()
+
+# We can print the result
+print result.outputs
+
+# To add the processed data file to the currently loaded connectome file, ...
+#cvol = cf.CVolume(name="BETed brain", src=fname_out, fileformat='Nifti1GZ', dtype='T1-weighted')
+#cfile.obj.add_connectome_volume(cvol)
+# Make sure that you save the connectome file if you want to keep the processed file.
+
+"""
+
 pushpull = """
 # Prerequisite:
 # 1. For this script to run, you need to have PyXNAT installed

@@ -66,6 +66,13 @@ show_tracks = Action(
     path          = "MenuBar/Code Oracle/CTrack"
 )
 
+nipype_bet = Action(
+    id            = "OracleNipypeBet",
+    class_name    = "cviewer.plugins.codeoracle.actions.NipypeBet",
+    name          = "Brain extraction using BET",
+    path          = "MenuBar/Code Oracle/Other/Nipype"
+)
+
 
 class OracleActionSet(WorkbenchActionSet):
     """ The actionset for the Oracle plugin """
@@ -80,5 +87,6 @@ class OracleActionSet(WorkbenchActionSet):
         connection_matrix,
         simple_connection_matrix,
         show_tracks,
-        xnat_pushpull
+        xnat_pushpull,
+        nipype_bet
     ]
