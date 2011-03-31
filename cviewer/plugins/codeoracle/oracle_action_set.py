@@ -10,6 +10,13 @@
 from enthought.envisage.ui.action.api import Action, Group, Menu, ToolBar
 from enthought.envisage.ui.workbench.api import WorkbenchActionSet
 
+xnat_pushpull = Action(
+    id            = "OracleXNATPushPull",
+    class_name    = "cviewer.plugins.codeoracle.actions.XNATPushPull",
+    name          = "XNAT Push and Pull",
+    path          = "MenuBar/Code Oracle/Other"
+)
+
 show_surface = Action(
     id            = "OracleCSurface",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowSurfaces",
@@ -53,7 +60,7 @@ compute_nbs = Action(
 )
 
 show_tracks = Action(
-    id            = "OracleNBS",
+    id            = "OracleShowTracks",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowTracks",
     name          = "Tracks between regions",
     path          = "MenuBar/Code Oracle/CTrack"
@@ -72,5 +79,6 @@ class OracleActionSet(WorkbenchActionSet):
         show_volumecre,
         connection_matrix,
         simple_connection_matrix,
-        show_tracks
+        show_tracks,
+        xnat_pushpull
     ]

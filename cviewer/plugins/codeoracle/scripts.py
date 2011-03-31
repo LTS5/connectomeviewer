@@ -1,3 +1,47 @@
+pushpull = """
+# Prerequisite:
+# 1. For this script to run, you need to have PyXNAT installed
+#    on your PYTHONPATH system. You can get it from http://packages.python.org/pyxnat/
+# 2. You need to have access to an XNAT server and a project
+#    You can create a login and project here:
+#    http://central.xnat.org/
+#    http://sandbox.xnat.org/
+
+# Goal:
+# 1. We want to push a connectome file to an XNAT server
+# 2. We want to pull a connectome file from an XNAT server
+
+# We assume that a connectome file is currently loaded. For testing purposes,
+# it is beneficial if the files are not too big.
+
+# Retrieve the currently loaded connectome object to push to the XNAT Server
+a = cfile.obj
+
+# You need to setup the XNAT connection
+a.set_xnat_connection({'server': 'http://sandbox.xnat.org', 'user':'YOURUSERNAME', 'password':'YOURPASSWORD'})
+
+# You need to have write access on the XNAT Server given. You will need the projectid to push
+# data to the server. In addition, you need to provide a subjectid and an experimentid. If overwrite
+# is set to True, remote files are overwritten by the local files.
+
+# Then, you can push the connectome file to XNAT
+a.push( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", overwrite = False)
+
+# NB: On the remote server, unique identifier for the subject and experiment id are generated, using the project id.
+# The push operation may take some time.
+
+# Similarly as you pushed a connectome file to XNAT, you can pull it again from the server.
+# You need the same identifiers to retrieve the data again. In addition, you need to provide a storage
+# path for the retrieved files.
+
+#a.pull( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", '/YOUR/FILE/STORAGE/PATH')
+
+# In case you want to load the pulled connectome object, you can load it using cfflib
+
+#import cfflib as cf; mynewcon = cf.load( '/YOUR/FILE/STORAGE/PATH/meta.cml' )
+
+"""
+
 surfscript = """
 # Importing Mayavi mlab interface
 from enthought.mayavi import mlab
