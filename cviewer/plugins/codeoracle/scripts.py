@@ -197,6 +197,8 @@ conmatrixpyplot = """
 import networkx as nx
 # Import Pylab
 from pylab import imshow, show, cm
+# Import Numpy
+import numpy as np
 
 # Retrieving the data
 # -------------------
@@ -241,18 +243,18 @@ import dipy.viz.fvtk as fvtk
 # Retrieving the data and set parameters
 # --------------------------------------
 
-a = cfile.obj.get_by_name("Filtered Tractography").get_fibers_as_numpy()
-fiberlabels = cfile.obj.get_by_name("Fiber labels (freesurferaparc)").data
+a = cfile.obj.get_by_name("Final Tractography (freesurferaparc)").get_fibers_as_numpy()
+fiberlabels = cfile.obj.get_by_name("Final fiber labels (freesurferaparc)").data
 
-fromtofloatid = 8.10
-
+fromid = 8
+toid = 10
 
 # Defining some helper functions
 # ------------------------------
 
-def sidx(arr, value):
+def sidx(arr, fromval, toval):
     " Returns the indices that are equal to a given value "
-    return np.where( arr == value)[0]
+    return np.where( (arr[:,0] == fromval) & (arr[:,1] == toval) )[0]
 
 def randcolarr(arr):
     " Returns a random color for each row in arr "
@@ -272,7 +274,7 @@ def showfibfvtk(fibarr, colarr, percentage = 100):
 # Perform task
 # ------------
 
-idx = sidx(fiberlabels, fromtofloatid)
+idx = sidx(fiberlabels, fromid, toid)
 showfibfvtk(a[idx], randcolarr(a[idx]), 100)
 
 """
