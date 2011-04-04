@@ -100,7 +100,8 @@ surface_file_vertices = cfile.obj.get_by_name("%s")
 vertices = surface_file_vertices.data.darrays[%s].data
 surface_file_faces = cfile.obj.get_by_name("%s")
 faces = surface_file_faces.data.darrays[%s].data
-surface_file_labels = cfile.obj.get_by_name("%s")
+labelname = "%s"
+surface_file_labels = cfile.obj.get_by_name(labelname)
 
 # Sanity check
 # ------------
@@ -110,7 +111,7 @@ if len(faces.shape) == 1:
     faces = faces.reshape( (len(faces) / 3, 3) )
 
 # check for labels
-if surface_file_labels is None:
+if labelname == "None":
     labels = None
 else:
     labels = surface_file_labels.data.darrays[%s].data

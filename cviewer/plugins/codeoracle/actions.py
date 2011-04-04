@@ -230,7 +230,7 @@ class ShowSurfaces(Action):
             if so.labels_da[so.labels].has_key('da_idx'):
                 labels = so.labels_da[so.labels]['da_idx']
             else:
-                labels = ""
+                labels = 0
             f.write(surfscript % (so.pointset_da[so.pointset]['name'],
                                   so.pointset_da[so.pointset]['da_idx'],
                                   so.faces_da[so.faces]['name'], 
