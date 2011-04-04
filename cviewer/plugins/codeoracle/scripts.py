@@ -56,6 +56,11 @@ pushpull = """
 # 1. We want to push a connectome file to an XNAT server
 # 2. We want to pull a connectome file from an XNAT server
 
+# Hint:
+# If you plan to retrieve or upload big datasets, it is recommended to run this
+# script in an external Python shell, as long script executions block the IPython
+# shell within the Connectome Viewer.
+
 # We assume that a connectome file is currently loaded. For testing purposes,
 # it is beneficial if the files are not too big.
 
