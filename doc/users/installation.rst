@@ -25,6 +25,10 @@ Upgrade NetworkX::
 
     sudo pip install --upgrade networkx
 
+Install cfflib::
+
+    sudo pip install cfflib
+
 Install Nibabel (from the NeuroDebian repository)::
 
 	sudo apt-get install python-nibabel python-nibabel-doc python-dicom
