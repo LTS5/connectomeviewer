@@ -4,8 +4,8 @@
 Publications
 ============
 
-How to cite the ConnectomeViewer?
-`````````````````````````````````
+How to cite the Connectome Viewer and Connectome File Format?
+`````````````````````````````````````````````````````````````
 
 * Stephan Gerhard, Leila Cammoun, Jean-Philippe Thiran, Patric Hagmann. ConnectomeViewer.org. Ecole Polytechnique Fédérale de Lausanne and University Hospital Center and University of Lausanne. 2010.
 

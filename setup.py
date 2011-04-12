@@ -6,7 +6,7 @@ from distutils.cmd import Command
 import numpy as np
 
 # monkey-patch numpy distutils to use Cython instead of Pyrex
-from build_helpers import generate_a_pyrex_source, package_check, make_cython_ext, INFO_VARS
+from build_helpers import package_check,    INFO_VARS
 
 #from numpy.distutils.command.build_src import build_src
 #build_src.generate_a_pyrex_source = generate_a_pyrex_source
@@ -61,7 +61,7 @@ if not 'extra_setuptools_args' in globals():
 def main(**extra_args):
     from numpy.distutils.core import setup
     setup(
-        name = 'ConnectomeViewer',
+        name = 'Connectome Viewer',
         version = INFO_VARS['version'],
         author = "Stephan Gerhard",
         author_email = "stephan.gerhard@epfl.ch",

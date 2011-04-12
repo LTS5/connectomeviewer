@@ -6,37 +6,40 @@ Download and Installation
 
 .. warning:: This content is soon deprecated and replaced by an easier installation procedure using Neuro Debian.
 
-.. note:: Download the `source code <http://www.connectomeviewer.org/users/download>`_ used for the installation. Please register following `this link. <http://www.connectomeviewer.org/users/register>`_
-          The ConnectomeViewer is currently BETA and released to the public. 32bit and 64bit architectures are supported.
+Step-by-Step Guide for Installation on Ubuntu/Debian
+----------------------------------------------------
 
+The Python Version 2.6 is needed minimally.
+Add the NeuroDebian repository to your system. The steps are explained here::
 
-Step-by-Step Guide for Installation on Linux (Ubuntu, Fedora)
--------------------------------------------------------------
+	firefox http://neuro.debian.net/
 
-The Python Version 2.6 is needed. The installation procedure including installation of required packages,
-downloading of sources, and compilation is automated by a sh-script.
-Take first a look at the respective scripts in order to understand what they do.
+There are many dependencies to install (the exact package names might change slightly if using Ubuntu version smaller than 10.10)::
 
-* Download the `installation script <https://github.com/LTS5/connectomeviewer/tree/master/scripts>`_ (Ubuntu / Fedora 11 or higher supported)
+    sudo apt-get update
+    sudo apt-get install git-core python-setuptools libvtk5.4 python-vtk python-numpy python-wxversion python2.6-dev g++ swig python-configobj glutg3 glutg3-dev libxtst-dev ipython python-lxml
+    sudo apt-get install python-matplotlib python-qscintilla2 gcc scons python-xlib pyqt4-dev-tools python-scipy python-pyrex python-all-dev python-dicom
+    sudo apt-get install libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8 python-h5py python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsbackendqt python-traitsgui python-enthoughtbase python-chaco python-lxml python-h5py mayavi2 python-tables python-tables-doc python-apptools python-pip python-wxtools python-sphinx
 
-* You need to make the installation file executable::
+Upgrade NetworkX::
 
-    chmod +x install_cviewer_ubuntu.sh
-    
-* Start the installation and compilation (choose the appropriate script) ::
+    sudo pip install --upgrade networkx
 
-    sh ./install_cviewer_ubuntu10_10.sh
+Install Nibabel (from the NeuroDebian repository)::
 
-* Start the ConnectomeViewer in verbose mode::
+	sudo apt-get install python-nibabel python-nibabel-doc python-dicom
 
-    connectomeviewer.py -v
+Download the `Connectome Viewer source code <http://www.cmtk.org/users/download>`_, extract and install it::
 
-* If there are errors during the script execution, generate a log file and send it together with the startup logfile via email to `info[at]connectomics.org <mailto:info[at]connectomics.org>`_::
+    tar xzf LTS5-....tar.gz
+    cd LTS5-connectomeviewer-..../
+    sudo python setup.py install
 
-    sh ./install_cviewer_ubuntu.sh > logfile.txt
+You should now be able to start with::
+
+    connectomeviewer -v
 
 .. On first startup, a directory is created in your home folder (*$HOME/.enthought/ch.connectome.viewer*) to store the logfile and window settings. If the first startup was as root, you do not have write permission in this folder, leading to a *Permission Error*. Simply remove this folder (*sudo rm -rf $HOME/.enthought/ch.connectome.viewer/*) and start ConnectomeViewer again as user.
-
 .. Step-by-Step Guide for Installation on Windows
 .. ----------------------------------------------
 .. * Install the recent EPD_ (License: Academic, Option: Install for all users). It is free for academic purposes, see button at the bottom of the page.
@@ -49,29 +52,7 @@ Take first a look at the respective scripts in order to understand what they do.
 
 .. include:: ../links_names.txt
 
-Step-by-Step Guide for Installation on Other Platforms
-------------------------------------------------------
+Installation on Other Platforms
+-------------------------------
 
 .. note:: Currently, the support for a Windows installer has been dropped. But you can install `VirtualBox <http://www.virtualbox.org/wiki/Downloads>`_ and a recent `Ubuntu <http://www.ubuntu.com/desktop/get-ubuntu/download>`_ and then carry out the steps above.
-
-If you managed to make the ConnectomeViewer work on your platform,
-`please inform us <mailto:infoATconnectomics.org>`_ and we make the instructions available here.
-
-Step-by-Step Guide for Installation on Linux by Hand
-----------------------------------------------------
-
-Dependencies
-
-+------------+------------+
-| Package   | Minimal Version |
-+============+============+
-| NetworkX | |
-+------------+------------+
-| Cython | |
-+------------+------------+
-| ETS | https://svn.enthought.com/enthought/wiki/Build/ETS_3.0.0b1/Py2.5/Generic_Any_Any
-+------------+------------+
-| Scipy | |
-+------------+------------+
-| Numpy | |
-+------------+------------+

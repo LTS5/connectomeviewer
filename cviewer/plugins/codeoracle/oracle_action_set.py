@@ -14,42 +14,42 @@ xnat_pushpull = Action(
     id            = "OracleXNATPushPull",
     class_name    = "cviewer.plugins.codeoracle.actions.XNATPushPull",
     name          = "XNAT Push and Pull",
-    path          = "MenuBar/Code Oracle/Other"
+    path          = "MenuBar/Code Oracle/Other/XNAT"
 )
 
 show_surface = Action(
     id            = "OracleCSurface",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowSurfaces",
     name          = "Show Surface",
-    path          = "MenuBar/Code Oracle/CSurface"
+    path          = "MenuBar/Code Oracle/Connectome/CSurface/Visualization"
 )
 
 show_volumecre = Action(
     id            = "OracleCVolumeCre",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowVolumes",
     name          = "Volume Creation",
-    path          = "MenuBar/Code Oracle/CVolume"
+    path          = "MenuBar/Code Oracle/Connectome/CVolume/Visualization"
 )
 
 show_network = Action(
     id            = "OracleCNetwork3D",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowNetworks",
     name          = "3D Network",
-    path          = "MenuBar/Code Oracle/CNetwork"
+    path          = "MenuBar/Code Oracle/Connectome/CNetwork/Visualization"
 )
 
 connection_matrix = Action(
     id            = "OracleCNetworkMat",
     class_name    = "cviewer.plugins.codeoracle.actions.ConnectionMatrix",
     name          = "Connection Matrix",
-    path          = "MenuBar/Code Oracle/CNetwork"
+    path          = "MenuBar/Code Oracle/Connectome/CNetwork/Visualization"
 )
 
 simple_connection_matrix = Action(
     id            = "OracleCNetworkSimpleMat",
     class_name    = "cviewer.plugins.codeoracle.actions.SimpleConnectionMatrix",
     name          = "Simple Connection Matrix",
-    path          = "MenuBar/Code Oracle/CNetwork"
+    path          = "MenuBar/Code Oracle/Connectome/CNetwork/Visualization"
 )
 
 compute_nbs = Action(
@@ -63,7 +63,7 @@ show_tracks = Action(
     id            = "OracleShowTracks",
     class_name    = "cviewer.plugins.codeoracle.actions.ShowTracks",
     name          = "Tracks between regions",
-    path          = "MenuBar/Code Oracle/CTrack"
+    path          = "MenuBar/Code Oracle/Connectome/CTrack/Visualization"
 )
 
 nipype_bet = Action(

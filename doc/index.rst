@@ -15,10 +15,8 @@
    about
    users/index
    plugins
-   links
    publications
    license
-   releasenotes
    
    devel/index
 

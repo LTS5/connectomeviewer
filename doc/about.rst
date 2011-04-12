@@ -21,16 +21,8 @@ clinical neuroscientists, as well as complex network scientists, providing
 an integrative, extensible platform to visualize and analyze Connectomics data.
 
 With the Connectome File Format, interlinking different datatypes such as
-hierarchical networks, surface data, and volumetric data is easy and might provide
+networks, surface data, and volumetric data is easy and might provide
 new ways of analyzing and interacting with data.
-
-Furthermore, ConnectomeViewer readily integrates with
-
-   * `ConnectomeWiki`_: a semantic knowledge base representing connectomics data at
-     a mesoscale level across various species, allowing easy access to relevant literature
-     and databases.
-   * ConnectomeDatabase: a repository to store and disseminate Connectome files.
-     (development stalled)
 
 .. include:: links_names.txt
 

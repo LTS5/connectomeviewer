@@ -4,38 +4,13 @@
  Tutorials
 ===========
 
-.. warning:: This content is deprecated with Connectome Viewer Version 2.0. These tutorials will be exposed through the CodeOracle plugin.
+.. warning:: This content is deprecated with Connectome Viewer Version 2.0. Scripts that serve as tutorials will be
+             exposed through the CodeOracle plugin.
 
-The best way to learn how to use the ConnectomeViewer is by example. There are
-already some examples in the *example/* folder shipped with the software. Additionally,
-the tutorials will help you to get started.
-   
-Basics
-------
-* :doc:`tutorials/tut_basicinter`
-* :doc:`tutorials/tut_redbut`
+The best way to learn how to use the Connectome Viewer is by example. The Code Oracle (Menu Bar) lets you
+automatically create Python scripts for tasks you want to perform. Load a connectome file, double-click the
+files you want to work with to load them into memory. Then, you can select tasks from the Code Oracle menu.
+After setting parameters in a GUI or directly in the script, you can run the script (save it first) by pressing Ctrl-R,
+and perform the requested task.
 
-Data Import/Export
-------------------
-* :doc:`tutorials/tut_addnet`
-* :doc:`tutorials/tut_matlabnet`
-* :doc:`tutorials/tut_blendexport`
-
-Network Statistics
-------------------
-* :doc:`tutorials/tut_nbs`
-
-Graph Layouting
---------------- 
-* :doc:`tutorials/tut_graphlayout`
-
-EEG/MEG Source Localisation
----------------------------
-* :doc:`tutorials/tut_sloretacon`
-   
-Diffusion MRI
--------------
-* :doc:`tutorials/tut_dipy`
-* :doc:`tutorials/tut_dcm2trk`
-   
-
+We are open to Code Oracle script contributions that might be useful for the neuroimaging connectome research community.
