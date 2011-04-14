@@ -228,9 +228,9 @@ def get_cviewer_plugins():
     logger.info('Added Oracle Plugin')
     
     # add Oracle Converter plugin
-    from cviewer.plugins.sloreta.sloreta_plugin import SLoretaConverterPlugin
-    plugins.append(SLoretaConverterPlugin())
-    logger.info('Added sLORETA Converter Plugin')
+#    from cviewer.plugins.sloreta.sloreta_plugin import SLoretaConverterPlugin
+#    plugins.append(SLoretaConverterPlugin())
+#    logger.info('Added sLORETA Converter Plugin')
     
     # add NBS plugin
     from cviewer.plugins.nbs.nbs_plugin import NBSPlugin
@@ -246,7 +246,17 @@ def get_cviewer_plugins():
     if dipy_works:
         plugins.append(DipyPlugin())
         logger.info('Added Diffusion in Python (DiPy) Plugin')
-    
+
+    # add cmp
+    try:
+        cmp_works = True
+        from cviewer.plugins.cmp.cmp_plugin import CMPPlugin
+    except ImportError:
+        cmp_works = False
+    if cmp_works:
+        plugins.append(CMPPlugin())
+        logger.info('Added Connectome Mapper Plugin')
+
     return plugins
 
 

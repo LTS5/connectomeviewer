@@ -119,11 +119,6 @@ class CViewerUIPlugin(Plugin):
     #####################################################################
     # Private methods.
 
-    # TODO: currently deactivated imports for better performance
-    #def _commands_default(self):
-    #    """ Initializes some imports for the ipython shell """
-    #    return []
-        #return['import cviewer.plugins.cff.gifti as gifti']
 
     def _views_default(self):
         """ Trait initialiser.
@@ -134,10 +129,6 @@ class CViewerUIPlugin(Plugin):
     def _perspectives_default(self):
         """ Trait initializer. """
         return [ViewerPerspective]
-
-    #def _banner_default(self):
-    #    """Trait initializer """
-    #    return ["Welcome! After loading Connectome File (.cff), double-click the network to activate and render it. See Help->Key Bindings for more info.", ]
 
     def _action_sets_default(self):
         """ Trait initializer. """

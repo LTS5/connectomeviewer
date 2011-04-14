@@ -12,6 +12,7 @@ def configuration(parent_package='',top_path=None):
     config.add_subpackage('ui')
     config.add_subpackage('nbs')
     config.add_subpackage('sloreta')
+    config.add_subpackage('cmp')
 
     config.add_data_files('ui/preferences.ini')
 
