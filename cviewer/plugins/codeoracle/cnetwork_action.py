@@ -137,6 +137,9 @@ class NetworkParameter(HasTraits):
                         lab = ["None"]
                         
                     a=cobj.obj.data.edges_iter(data=True)
+                    if len(cobj.obj.data.edges()) == 0:
+                        raise Exception("No edges exist in the connectome network")
+                        
                     e1, e2, de = a.next()
                     ev = []
                     for k in de.keys():
