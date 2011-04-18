@@ -404,24 +404,43 @@ from pylab import imshow, show, title
 # Import NetworkX
 import networkx as nx
 # Import Network based statistic
-import cviewer.libs.pyconto.algorithms.statistics.nbs as nbs
+import cviewer.libs.pyconto.groupstatistics.nbs as nbs
 
+# For documentation of Network-based statistic parameters
+# do in IPython: nbs.compute_nbs?
+# https://github.com/LTS5/connectomeviewer/blob/master/cviewer/libs/pyconto/groupstatistics/nbs/_nbs.py
 
 # Retrieving the data and set parameters
 # --------------------------------------
 
-# Define your groups
-# Retrieve the corresponding CNetwork objects
-firstgroup = cfile.obj.get_by_name(%s)
-first_edge_value = '%s'
-secondgroup = cfile.obj.get_by_name(%s)
-second_edge_value = '%s'
-THRESH=%s
-K=%s
-TAIL='%s'
-SHOW_MATRIX = False
+# Define the two groups of networks you want to compare,
+# setting the connectome network name. These objects need
+# to exist in the loaded connectome file.
+first = ['FirstNetwork_control', 'SecondNetwork_control']
+# The same for the second group:
+second = ['FirstNetwork_patient', 'SecondNetwork_patient']
 
-# ===========
+# Select the edge value to use for the first group
+first_edge_value = 'number_of_fibers'
+
+# Select the edge value to use for the second group
+second_edge_value = 'number_of_fibers'
+
+# More parameters for threshold (THRESH)
+# andd the number of # permutations (K)
+THRESH=3
+K=10
+# Can be one of 'left', 'equal', 'right'
+TAIL='left'
+
+SHOW_MATRIX = True
+
+# Perform task
+# ------------
+
+# Get the connectome objects for the given connectome network names
+firstgroup = [cfile.obj.get_by_name(n) for n in first]
+secondgroup = [cfile.obj.get_by_name(n) for n in second]
 
 # Make sure that all networks are loaded in memory
 for net in firstgroup:
@@ -460,7 +479,7 @@ for i, sub in enumerate(secondgroup):
 # ------------
 
 # Compute NBS, this might take a long time
-# and might better be done in a thread
+# and might better be done in a seperate script
 
 PVAL, ADJ, NULL = nbs.compute_nbs(X,Y,THRESH,K,TAIL)
 
@@ -479,9 +498,14 @@ nbsgraph=nx.relabel_nodes(nbsgraph, lambda x: x + 1)
 for nid, ndata in firstgroup[0].data.nodes_iter(data=True):
     nbsgraph.node[nid] = ndata
 
+# Find a date
+import datetime as dt
+a=dt.datetime.now()
+ostr = '%s:%s:%s' % (a.hour, a.minute, a.second)
+
 # You can now add now the results to the connectome file
 # Make sure that the name is not existing yet in the connectome file
-cfile.obj.add_connectome_network_from_nxgraph('NBS result at %s', nbsgraph, dtype='NBSResult')
+cfile.obj.add_connectome_network_from_nxgraph('NBS result at %s' % ostr, nbsgraph, dtype='NBSResult')
 cfile.update_children()
 """
 

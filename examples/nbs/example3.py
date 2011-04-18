@@ -1,7 +1,7 @@
 """ This script provides a toy example of the NBS """
 
 import numpy as np
-import cviewer.libs.pyconto.algorithms.statistics.nbs as nbs
+import cviewer.libs.pyconto.groupstatistics.nbs as nbs
 from pylab import imshow, show, title
 
 # Generate simulated data.
