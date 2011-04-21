@@ -15,7 +15,10 @@ from enthought.traits.ui.api import View, Item, auto_close_message, message
 # ConnectomeViewer imports
 
 import cfflib
-from nibabel.gifti.util import intent_codes
+try:
+    from nibabel.nifti1 import intent_codes
+except ImportError:
+    print("Please install Nibabel >= 1.1.0")
 
 # Logging import
 import logging
