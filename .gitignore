@@ -1,17 +1,13 @@
 *.bin
 *.log
 *.pyc
-*.so
 *.c
 doc/_build/
 doc/build/
 doc/manual
 build/
 dist/
-ConnectomeViewer.egg-info/
-libs-queue/
 MANIFEST
 .project
-.pydevproject
 .settings/
 .idea/
