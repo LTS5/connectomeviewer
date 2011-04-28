@@ -4,7 +4,7 @@ from enthought.traits.ui.api import (View, Item, Group, HGroup, CodeEditor,
                                      spring, Handler, EnumEditor)
 
 from cviewer.plugins.cff2.csurface_darray import CSurfaceDarray
-from nibabel.gifti.util import intent_codes
+
 
 class SurfaceParameter(HasTraits):
     
