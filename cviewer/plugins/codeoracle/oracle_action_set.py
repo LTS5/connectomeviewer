@@ -10,6 +10,15 @@
 from enthought.envisage.ui.action.api import Action, Group, Menu, ToolBar
 from enthought.envisage.ui.workbench.api import WorkbenchActionSet
 
+
+
+networkrepo = Action(
+    id            = "OracleCNetworkReport",
+    class_name    = "cviewer.plugins.codeoracle.actions.NetworkReport",
+    name          = "Network Report",
+    path          = "MenuBar/Code Oracle/Connectome/CNetwork/Analysis"
+)
+
 xnat_pushpull = Action(
     id            = "OracleXNATPushPull",
     class_name    = "cviewer.plugins.codeoracle.actions.XNATPushPull",
@@ -88,5 +97,6 @@ class OracleActionSet(WorkbenchActionSet):
         simple_connection_matrix,
         show_tracks,
         xnat_pushpull,
-        nipype_bet
+        nipype_bet,
+        networkrepo
     ]

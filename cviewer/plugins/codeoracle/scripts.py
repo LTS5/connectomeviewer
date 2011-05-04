@@ -563,106 +563,107 @@ reportlab = """
 # Credits
 # http://www.protocolostomy.com/2008/10/22/generating-reports-with-charts-using-python-reportlab/
 
-# Import ReportLab
 from reportlab.platypus import *
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.rl_config import defaultPageSize
 from reportlab.lib.units import inch
-# Import NetworkX
-import networkx
-
-# Retrieving the data and set parameters
-# --------------------------------------
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
+import datetime
+import tempfile
+import os.path
 
 PAGE_HEIGHT=defaultPageSize[1]
 styles = getSampleStyleSheet()
-Title = "Connectome Report: "
-URL = "http://www.connectomics.org/"
-email = "info@connectomics.org"
-
+Title = "Connectome Report for "
 Elements=[]
 HeaderStyle = styles["Heading1"]
 ParaStyle = styles["Normal"]
 PreStyle = styles["Code"]
+today = datetime.date.today()
+tmpdir = tempfile.gettempdir()
 
-# load data
-net=a.get_by_name("%s")
+# Retrieving the data
+# -------------------
+
+# the network for the reporting
+net = cfile.obj.get_by_name('connectome_freesurferaparc')
 net.load()
-g=net.data
-netw = g
- 
+# the edge key
+de_key = 'number_of_fibers'
+# output file name
+fname = os.path.join(tmpdir, 'out.pdf')
+
+date = today.strftime('Reported on %dth, %h %Y')
+netw = net.data
+
 def header(txt, style=HeaderStyle, klass=Paragraph, sep=0.3):
     s = Spacer(0.2*inch, sep*inch)
     para = klass(txt, style)
     sect = [s, para]
     result = KeepTogether(sect)
     return result
- 
+
 def p(txt):
     return header(txt, style=ParaStyle, sep=0.1)
- 
+
 def pre(txt):
     s = Spacer(0.1*inch, 0.1*inch)
     p = Preformatted(txt, PreStyle)
     precomps = [s,p]
     result = KeepTogether(precomps)
     return result
- 
-def go():
-    doc = SimpleDocTemplate('gfe.pdf')
+
+def go(fname):
+    doc = SimpleDocTemplate(fname)
     doc.build(Elements)
- 
-mytitle = header(Title + a.get_connectome_meta().get_title())
 
-mysite = header(URL, sep=0.1, style=ParaStyle)
-mymail = header(email, sep=0.1, style=ParaStyle)
+mytitle = header(Title + '"' + cfile.obj.get_connectome_meta().get_title() + '"')
+mydate = header(date, sep=0.1, style=ParaStyle)
 
-myabstract = p(Abstract)
-head_info = [mytitle, mysite, mymail]
-
- 
-code_title = header("Basic code to produce output")
-code_explain = p("This is a snippet of code. It's an example using the Preformatted flowable object, which
-                 makes it easy to put code into your documents. Enjoy!")
-
-
-mytitlenet = header(net.get_name())
-
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import networkx as nx
+mytitlenet = header(net.get_name() + " (CNetwork)")
 
 for u,v,d in netw.edges_iter(data=True):
-    netw.edge[u][v]['weight'] = netw.edge[u][v]['de_adcmean']
+    edgval = netw.edge[u][v][de_key]
+    if edgval > 0:
+        netw.edge[u][v]['weight'] = 1
+    else:
+        netw.edge[u][v]['weight'] = 1
 
 b=nx.to_numpy_matrix(netw)
 fig = plt.figure()
-fig.suptitle("Connection matrix")
-aa= plt.imshow(b, interpolation='nearest', cmap=plt.cm.jet, vmin = b.min(), vmax=b.max())
-fig.savefig('matrix.png')
+fig.suptitle("Binary Connection matrix")
+aa= plt.imshow(b, interpolation='nearest', cmap=plt.cm.Greys, vmin = b.min(), vmax=b.max())
+fig.savefig(os.path.join(tmpdir, 'matrix.png'))
 
 fig.clear()
 fig.suptitle("Degree distribution")
 plt.hist(netw.degree().values(),30)
-fig.savefig('distri.png')
+fig.savefig(os.path.join(tmpdir,'distri.png'))
 
 # measures
-
+if nx.is_connected(netw):
+    isit = "Yes"
+else:
+    isit = "No"
 me1 = p("Number of Nodes: " + str(netw.number_of_nodes()))
 me2 = p("Number of Edges: " +  str(netw.number_of_edges()))
-me3 = p("Is network connected: " + str(nx.is_connected(netw)))
+me3 = p("Is network connected: " + isit)
 me4 = p("Number of connected components: " + str(nx.number_connected_components(netw)))
-me5 = p("Average unweighted shortest path length: " + str(nx.average_shortest_path_length(netw, weighted = False)))
-me6 = p("Average Clustering Coefficient: " + str(nx.average_clustering(netw)))
+me44 = p("Average node degree: %.2f" % np.mean(netw.degree().values()))
+me5 = p("Average unweighted shortest path length: %.2f" % nx.average_shortest_path_length(netw, weighted = False))
+me6 = p("Average clustering coefficient: %.2f" % nx.average_clustering(netw))
 
-logo = "matrix.png"
+logo = os.path.join(tmpdir, "matrix.png")
 im1 = Image(logo, 300,225)
-logo = "distri.png"
+logo = os.path.join(tmpdir, "distri.png")
 im2 = Image(logo, 250,188)
 
-codesection = [mytitle, mysite, mymail, mytitlenet, im1, im2, me1, me2, me3, me4, me5, me6]
+codesection = [mytitle, mydate, mytitlenet, me1, me2, me3, me4,me44, me5, me6, im1, im2]
 src = KeepTogether(codesection)
 Elements.append(src)
-go()
+go(fname)
 """
