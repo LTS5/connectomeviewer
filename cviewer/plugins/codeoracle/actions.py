@@ -14,6 +14,27 @@ logger = logging.getLogger('root.'+__name__)
 
 
 
+
+class NetworkReport(Action):
+    tooltip = "Network Report"
+    description = "Network Report"
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+
+        from scripts import reportlab
+
+        import tempfile
+        myf = tempfile.mktemp(suffix='.py', prefix='my')
+        f=open(myf, 'w')
+        f.write(reportlab)
+        f.close()
+
+        self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+
+
 class NipypeBet(Action):
     tooltip = "Brain extraction using BET"
     description = "Brain extraction using BET"
