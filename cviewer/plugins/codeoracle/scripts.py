@@ -64,18 +64,21 @@ pushpull = """
 # We assume that a connectome file is currently loaded. For testing purposes,
 # it is beneficial if the files are not too big.
 
+# We need to load cfflib
+import cfflib as cf
+
 # Retrieve the currently loaded connectome object to push to the XNAT Server
 a = cfile.obj
 
 # You need to setup the XNAT connection
-a.set_xnat_connection({'server': 'http://sandbox.xnat.org', 'user':'YOURUSERNAME', 'password':'YOURPASSWORD'})
+cf.set_xnat_connection({'server': 'http://sandbox.xnat.org', 'user':'YOURUSERNAME', 'password':'YOURPASSWORD'})
 
 # You need to have write access on the XNAT Server given. You will need the projectid to push
 # data to the server. In addition, you need to provide a subjectid and an experimentid. If overwrite
 # is set to True, remote files are overwritten by the local files.
 
 # Then, you can push the connectome file to XNAT
-a.push( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", overwrite = False)
+cf.xnat_push( connectome_obj = a, projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", overwrite = False)
 
 # NB: On the remote server, unique identifier for the subject and experiment id are generated, using the project id.
 # The push operation may take some time.
@@ -84,7 +87,7 @@ a.push( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EX
 # You need the same identifiers to retrieve the data again. In addition, you need to provide a storage
 # path for the retrieved files.
 
-#a.pull( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", '/YOUR/FILE/STORAGE/PATH')
+#cf.xnat_pull( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", '/YOUR/FILE/STORAGE/PATH')
 
 # In case you want to load the pulled connectome object, you can load it using cfflib
 
