@@ -37,6 +37,7 @@ Thanks
 * Djalel Meskaldji 
 * Francesca Pizzorni
 * Christophe Chenes
+* Alessandra Griffa
 
 ---------------------
 Plugins/External code
@@ -46,5 +47,5 @@ See plugin section in documentation for copyright and license of contributions.
 
 * Enthought Evisage. Application Framework. Enthought.
 * Mayavi2. Partly modified files. Prabhu Ramachandran and Gael Varoquaux
-* Andrew Zalseky (Network-Based Statistics)
+* Andrew Zalesky (Network-Based Statistics)
 
