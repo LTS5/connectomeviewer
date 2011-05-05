@@ -33,14 +33,12 @@ Install Nibabel (from the NeuroDebian repository)::
 
 	sudo apt-get install python-nibabel python-nibabel-doc python-dicom
   
-.. note:: Currently, NeuroDebian include Nibabel version 1.0.2, but 1.1.0 is required for the Connectome Viewer 2.0 RC1. The new Nibabel version will be available in a few days.
+.. note:: Currently, NeuroDebian include Nibabel version 1.0.2, but 1.1.0 is required for the Connectome Viewer 2.0 RC2. The new Nibabel version will be available in a few days.
          You can install the development version in the meanwhile.
          
-Nibabel 1.1.0 development version::
+Nibabel 1.1.0 version::
 
-  git clone https://github.com/nipy/nibabel.git
-  cd nibabel
-  sudo python setup.py install
+  sudo easy_install nibabel
 
 Download the `Connectome Viewer source code <http://www.cmtk.org/users/download>`_, extract and install it::
 
