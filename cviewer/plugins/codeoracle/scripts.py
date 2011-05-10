@@ -1,3 +1,57 @@
+threedviz2 = """
+# Modified from NetworkX drawing
+# https://networkx.lanl.gov/trac/browser/networkx/examples/drawing/mayavi2_spring.py
+
+import networkx as nx
+import numpy as np
+from enthought.mayavi import mlab
+
+# Retrieve NetworkX graph
+G = cfile.obj.get_by_name("connectome_freesurferaparc").data
+
+# Key value on the nodes to transform to scalar value for node coloring
+node_scalar_key = "dn_correspondence_id"
+
+# Network Layouting: 2d circular layout
+pos=nx.circular_layout(G,dim=2,scale=1)
+# numpy array of x,y,z positions in sorted node order
+xyz=np.array([pos[v] for v in sorted(G)])
+# adding zero z coordinate
+xyz = np.hstack( (xyz, np.zeros( (len(xyz), 1) ) ) )
+
+# Network Layouting: 3d spring layout
+#pos=nx.spring_layout(G,dim=3)
+# numpy array of x,y,z positions in sorted node order
+#xyz=np.array([pos[v] for v in sorted(G)])
+
+# If you do not want to apply a layouting algorithm
+# You can create the xyz array from your node positions
+# as displayed in Code Oracle "3D Network"
+
+# scalar colors
+scalars = np.zeros( (len(G.nodes()),) )
+for i,data in enumerate(G.nodes(data=True)):
+    scalars[i] = float(data[1][node_scalar_key])
+
+mlab.figure(1, bgcolor=(0, 0, 0))
+mlab.clf()
+
+pts = mlab.points3d(xyz[:,0], xyz[:,1], xyz[:,2],
+                    scalars,
+                    scale_factor=0.05,
+                    scale_mode='none',
+                    colormap='Blues',
+                    resolution=20)
+
+# Defines only the connectivity
+# You can combine this script with the "3D Network" Code Oracle
+pts.mlab_source.dataset.lines = np.array(G.edges())
+tube = mlab.pipeline.tube(pts, tube_radius=0.008)
+mlab.pipeline.surface(tube, color=(0.8, 0.8, 0.8))
+
+# You can store the resulting figure programmatically
+# mlab.savefig('mynetwork.png')
+"""
 
 nipypebet = """
 # Prerequisite:
