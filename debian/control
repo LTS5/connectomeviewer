@@ -1,4 +1,4 @@
-Source: cviewer
+Source: connectomeviewer
 Section: python
 Priority: extra
 Maintainer: Stephan Gerhard <debian@unidesign.ch>
