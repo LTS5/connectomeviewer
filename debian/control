@@ -11,8 +11,8 @@ Vcs-Browser: http://github.com/LTS5/connectomeviewer
 XS-Python-Version: >= 2.6
 
 Package: connectomeviewer
-Architecture: all
-Depends: ${python:Depends}, ${misc:Depends},
+Architecture: any
+Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends},
         python-cfflib (>= 2.0.5),
         python-numpy,
         python-scipy,
@@ -24,9 +24,10 @@ Recommends: nipy-suite,
         python-matplotlib,
         python-qscintilla2,
 Provides: ${python:Provides}
-Description: Interactive Analysis and Visualization for MR Connectomics in Python
- The Connectome Viewer is a extensible, scriptable, pythonic research environment for
- visualization and analysis in neuroimaging research, especially for connectomics.
+Description: Interactive Analysis and Visualization for MR Connectomics
+ The Connectome Viewer is a extensible, scriptable, pythonic research
+ environment for visualization and (network) analysis in neuroimaging and
+ connectomics.
  .
  Employing the Connectome File Format, diverse data types such as networks,
  surfaces, volumes, tracks and metadata are handled and integrated. The
