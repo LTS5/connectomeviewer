@@ -1,4 +1,4 @@
-connectomeviewer (2.0-1) UNRELEASED; urgency=low
+connectomeviewer (2.0.0-1) UNRELEASED; urgency=low
 
   * Initial release (Closes: #565431).
 
