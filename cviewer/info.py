@@ -2,7 +2,7 @@
 
 This script should do no imports.  It only defines variables.
 '''
-version = '2.0.0-RC1'
+version = '2.0.0-RC2'
 is_release = False
 
 long_description = \

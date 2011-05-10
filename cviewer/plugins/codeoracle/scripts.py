@@ -1,3 +1,57 @@
+threedviz2 = """
+# Modified from NetworkX drawing
+# https://networkx.lanl.gov/trac/browser/networkx/examples/drawing/mayavi2_spring.py
+
+import networkx as nx
+import numpy as np
+from enthought.mayavi import mlab
+
+# Retrieve NetworkX graph
+G = cfile.obj.get_by_name("connectome_freesurferaparc").data
+
+# Key value on the nodes to transform to scalar value for node coloring
+node_scalar_key = "dn_correspondence_id"
+
+# Network Layouting: 2d circular layout
+pos=nx.circular_layout(G,dim=2,scale=1)
+# numpy array of x,y,z positions in sorted node order
+xyz=np.array([pos[v] for v in sorted(G)])
+# adding zero z coordinate
+xyz = np.hstack( (xyz, np.zeros( (len(xyz), 1) ) ) )
+
+# Network Layouting: 3d spring layout
+#pos=nx.spring_layout(G,dim=3)
+# numpy array of x,y,z positions in sorted node order
+#xyz=np.array([pos[v] for v in sorted(G)])
+
+# If you do not want to apply a layouting algorithm
+# You can create the xyz array from your node positions
+# as displayed in Code Oracle "3D Network"
+
+# scalar colors
+scalars = np.zeros( (len(G.nodes()),) )
+for i,data in enumerate(G.nodes(data=True)):
+    scalars[i] = float(data[1][node_scalar_key])
+
+mlab.figure(1, bgcolor=(0, 0, 0))
+mlab.clf()
+
+pts = mlab.points3d(xyz[:,0], xyz[:,1], xyz[:,2],
+                    scalars,
+                    scale_factor=0.05,
+                    scale_mode='none',
+                    colormap='Blues',
+                    resolution=20)
+
+# Defines only the connectivity
+# You can combine this script with the "3D Network" Code Oracle
+pts.mlab_source.dataset.lines = np.array(G.edges())
+tube = mlab.pipeline.tube(pts, tube_radius=0.008)
+mlab.pipeline.surface(tube, color=(0.8, 0.8, 0.8))
+
+# You can store the resulting figure programmatically
+# mlab.savefig('mynetwork.png')
+"""
 
 nipypebet = """
 # Prerequisite:
@@ -64,18 +118,21 @@ pushpull = """
 # We assume that a connectome file is currently loaded. For testing purposes,
 # it is beneficial if the files are not too big.
 
+# We need to load cfflib
+import cfflib as cf
+
 # Retrieve the currently loaded connectome object to push to the XNAT Server
 a = cfile.obj
 
 # You need to setup the XNAT connection
-a.set_xnat_connection({'server': 'http://sandbox.xnat.org', 'user':'YOURUSERNAME', 'password':'YOURPASSWORD'})
+cf.set_xnat_connection({'server': 'http://sandbox.xnat.org', 'user':'YOURUSERNAME', 'password':'YOURPASSWORD'})
 
 # You need to have write access on the XNAT Server given. You will need the projectid to push
 # data to the server. In addition, you need to provide a subjectid and an experimentid. If overwrite
 # is set to True, remote files are overwritten by the local files.
 
 # Then, you can push the connectome file to XNAT
-a.push( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", overwrite = False)
+cf.xnat_push( connectome_obj = a, projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", overwrite = False)
 
 # NB: On the remote server, unique identifier for the subject and experiment id are generated, using the project id.
 # The push operation may take some time.
@@ -84,7 +141,7 @@ a.push( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EX
 # You need the same identifiers to retrieve the data again. In addition, you need to provide a storage
 # path for the retrieved files.
 
-#a.pull( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", '/YOUR/FILE/STORAGE/PATH')
+#cf.xnat_pull( projectid = "YOURPROJECTID", subjectid = "SUBJECTID", experimentid = "EXPID", '/YOUR/FILE/STORAGE/PATH')
 
 # In case you want to load the pulled connectome object, you can load it using cfflib
 

@@ -14,6 +14,25 @@ logger = logging.getLogger('root.'+__name__)
 
 
 
+class NetworkVizTubes(Action):
+    tooltip = "Show 3D Network with Tubes"
+    description = "Show 3D Network with Tubes and colorcoded Nodes"
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+
+        from scripts import threedviz2
+
+        import tempfile
+        myf = tempfile.mktemp(suffix='.py', prefix='my')
+        f=open(myf, 'w')
+        f.write(threedviz2)
+        f.close()
+
+        self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+
 
 class NetworkReport(Action):
     tooltip = "Network Report"
@@ -147,8 +166,8 @@ class ComputeNBS(Action):
 
 
 class ShowNetworks(Action):
-    tooltip = "Create a surface"
-    description = "Create a surface"
+    tooltip = "Create a 3D Network"
+    description = "Create a 3D Network"
 
     # The WorkbenchWindow the action is attached to.
     window = Any()
