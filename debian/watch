@@ -1,0 +1,4 @@
+version=3
+
+opts="filenamemangle=s/.*\/(.*)/cfflib-$1\.tar\.gz/" \
+  http://github.com/LTS5/connectomeviewer/downloads .*tarball/release-([\d\.a-z]+)

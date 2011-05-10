@@ -1,0 +1,5 @@
+connectomeviewer (2.0-1) UNRELEASED; urgency=low
+
+  * Initial release (Closes: #565431).
+
+ -- Stephan Gerhard <debian@unidesign.ch>  Thu, 28 Apr 2011 10:49:57 +0200
