@@ -4,31 +4,29 @@ Priority: extra
 Maintainer: Stephan Gerhard <debian@unidesign.ch>
 Build-Depends: debhelper (>= 7.2.18), python-all, python-support,
 			   python-cfflib
-Standards-Version: 3.9.1
+Standards-Version: 3.9.2
 Homepage: http://www.connectomeviewer.org
 Vcs-Git: git://github.com/LTS5/connectomeviewer.git
 Vcs-Browser: http://github.com/LTS5/connectomeviewer
-XS-Python-Version: >= 2.6
 
 Package: connectomeviewer
-Architecture: any
-Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends},
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}
         python-cfflib (>= 2.0.5),
         python-numpy,
         python-scipy,
         python-chaco,
         mayavi2,
-        ipython,
-        libc6
+        ipython
 Recommends: nipy-suite,
         python-matplotlib,
         python-qscintilla2,
 Provides: ${python:Provides}
 Description: Interactive Analysis and Visualization for MR Connectomics
  The Connectome Viewer is a extensible, scriptable, pythonic research
- environment for visualization and (network) analysis in neuroimaging and
- connectomics.
+ environment for visualization and (network) analysis in neuroimaging
+ and connectomics.
  .
- Employing the Connectome File Format, diverse data types such as networks,
- surfaces, volumes, tracks and metadata are handled and integrated. The
- Connectome Viewer is part of the MR Connectome Toolkit.
+ Employing the Connectome File Format, diverse data types such as
+ networks, surfaces, volumes, tracks and metadata are handled and
+ integrated. The Connectome Viewer is part of the MR Connectome Toolkit.
