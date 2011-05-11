@@ -1,4 +1,4 @@
-""" Diffusion in Python (DiPy) Plugin for ConnectomeViewer
+""" Connectome Mapper Plugin for Connectome Viewer
 
 """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and

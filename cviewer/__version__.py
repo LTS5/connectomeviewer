@@ -1,4 +1,4 @@
-""" Version information for ConnectomeViewer
+""" Version information for Connectome Viewer
 """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
 # University Hospital Center and University of Lausanne (UNIL-CHUV)

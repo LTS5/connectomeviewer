@@ -18,7 +18,7 @@ class MatrixNetworkParameter(HasTraits):
     
     def _graph_changed(self, value):
         self.remove_trait("node_label")
-        self.add_trait('node_label',  Enum(self.netw[firstk]['lab']) )      
+        self.add_trait('node_label',  Enum(self.netw[value]['lab']) )
         
     def __init__(self, cfile, **traits):
         super(MatrixNetworkParameter, self).__init__(**traits)
@@ -45,7 +45,7 @@ class MatrixNetworkParameter(HasTraits):
                     
         self.add_trait('graph',  Enum(self.netw.keys()) )
         firstk = self.netw.keys()[0]
-        self.add_trait('node_label',  Enum(self.netw[firstk]['lab']) )      
+        self.add_trait('node_label',  Enum(self.netw[firstk]['lab']) )
 
 class MatrixEdgeNetworkParameter(HasTraits):
 
@@ -53,14 +53,14 @@ class MatrixEdgeNetworkParameter(HasTraits):
              Item('graph', label = "Graph"),
              Item('edge_label', label="Edge Label"),
              id='cviewer.plugins.codeoracle.matrixnetworkparameter',
-             buttons=['OK'],
+                 buttons=['OK'],
              resizable=True,
              title = "Connection Matrix Generator Script"
              )
 
     def _graph_changed(self, value):
         self.remove_trait("edge_label")
-        self.add_trait('edge_label',  Enum(self.netw[firstk]['lab']) )
+        self.add_trait('edge_label',  Enum(self.netw[value]['lab']) )
 
     def __init__(self, cfile, **traits):
         super(MatrixEdgeNetworkParameter, self).__init__(**traits)
@@ -110,8 +110,9 @@ class NetworkParameter(HasTraits):
         self.remove_trait("edge_value")
         self.remove_trait("node_label")
         self.add_trait('node_position',  Enum(self.netw[value]['pos']) )
+        # fixme: does not update the edge value (e.g. when none)
         self.add_trait('edge_value',  Enum(self.netw[value]['ev']) )   
-        self.add_trait('node_label',  Enum(self.netw[firstk]['lab']) )      
+        self.add_trait('node_label',  Enum(self.netw[value]['lab']) )
         
     def __init__(self, cfile, **traits):
         super(NetworkParameter, self).__init__(**traits)
@@ -138,15 +139,15 @@ class NetworkParameter(HasTraits):
                         
                     a=cobj.obj.data.edges_iter(data=True)
                     if len(cobj.obj.data.edges()) == 0:
-                        raise Exception("No edges exist in the connectome network")
-                        
-                    e1, e2, de = a.next()
-                    ev = []
-                    for k in de.keys():
-                        if isinstance(de[k], float) or isinstance(de[k], int):
-                           ev.append(k) 
-                    if len(ev) == 0:
                         ev = ["None"]
+                    else:
+                        e1, e2, de = a.next()
+                        ev = []
+                        for k in de.keys():
+                            if isinstance(de[k], float) or isinstance(de[k], int):
+                               ev.append(k)
+                        if len(ev) == 0:
+                            ev = ["None"]
                         
                     self.netw[cobj.name] = {'name' : cobj.obj.name,
                                             'ev' : ev, 'pos' : npos, 'lab' : lab}

@@ -10,7 +10,7 @@ from enthought.traits.ui.api import auto_close_message
 from enthought.mayavi.preferences.api import preference_manager
 from enthought.pyface.image_resource import ImageResource
 
-# ConnectomeViewer imports
+# Connectome Viewer imports
 from common import IMAGE_PATH
 
 def browser_open(url, decorated = False):
@@ -74,8 +74,8 @@ class HelpIndex(Action):
     """ An action that pop up the help in a browser. """
 
     name = "Help"
-    tooltip       = "The ConnectomeViewer User Guide"
-    description   = "The ConnectomeViewer User Guide"
+    tooltip       = "The Connectome Viewer User Guide"
+    description   = "The Connectome Viewer User Guide"
     image = ImageResource("help-browser.png", search_path=[IMAGE_PATH])
 
     ###########################################################################

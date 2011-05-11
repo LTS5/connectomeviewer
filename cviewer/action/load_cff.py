@@ -15,7 +15,7 @@ from enthought.pyface.action.api import Action
 from enthought.pyface.api import FileDialog, OK
 from enthought.pyface.image_resource import ImageResource
 
-# ConnectomeViewer imports
+# Connectome Viewer imports
 from common import IMAGE_PATH
 from cviewer.plugins.ui.preference_manager import preference_manager
 import cfflib

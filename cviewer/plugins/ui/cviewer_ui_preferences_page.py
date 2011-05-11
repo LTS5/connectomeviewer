@@ -19,7 +19,7 @@ class CViewerUIPreferencesPage(PreferencesPage):
     category = ''
 
     # The page name (this is what is shown in the preferences dialog.
-    name = 'ConnectomeViewer'
+    name = 'Connectome Viewer'
 
     # The path to the preference node that contains the preferences.
     preferences_path = 'cviewer.plugins.ui'
@@ -42,7 +42,7 @@ class CViewerUIPreferencesPage(PreferencesPage):
     trackvispath = Directory(desc='the path where the TrackVis executables reside')
 
     # show the ConnectomeViewer splash screen
-    show_splash_screen = Bool(desc='if the ConnectomeViewer splashscreen is shown on startup')
+    show_splash_screen = Bool(desc='if the Connectome Viewer splashscreen is shown on startup')
     
     #### Traits UI views ######################################################
     trait_view = View(Group(

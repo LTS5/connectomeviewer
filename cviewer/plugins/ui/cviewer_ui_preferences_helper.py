@@ -35,7 +35,7 @@ class CViewerUIPreferencesHelper(PreferencesHelper):
     trackvispath = Directory(desc='the path where the TrackVis executables reside')
 
     # show the ConnectomeViewer splash screen
-    show_splash_screen = Bool(desc='if the ConnectomeViewer splashscreen is shown on startup')
+    show_splash_screen = Bool(desc='if the Connectome Viewer splashscreen is shown on startup')
     
     ######################################################################
     # Traits UI view.

@@ -10,7 +10,7 @@ from enthought.pyface.api import FileDialog, CANCEL
 from enthought.traits.api import Code, Instance
 from enthought.traits.ui.api import CodeEditor, Group, Item, View
 from enthought.traits.ui.key_bindings import KeyBinding, KeyBindings
-from enthought.traits.ui.menu import NoButtons
+from enthought.traits.ui.menu import NoButtons,ApplyButton, OKCancelButtons
 
 # Local imports.
 from text_editor_handler import TextEditorHandler
@@ -28,6 +28,7 @@ def _id_generator():
 
 _id_generator = _id_generator()
 
+from enthought.traits.api import Button
 
 class TextEditor(TraitsUIEditor):
     """ A text editor. """
@@ -40,9 +41,15 @@ class TextEditor(TraitsUIEditor):
     # The text being edited.
     text = Code
 
+    # Run
+    runbut = Button
+
     ###########################################################################
     # 'IEditor' interface.
     ###########################################################################
+
+    def _runbut_fired(self):
+        self.run()
 
     def save(self):
         """ Saves the text to disk. """
@@ -208,6 +215,7 @@ class TextEditor(TraitsUIEditor):
                 Item(
                     'text', editor=CodeEditor(key_bindings=self.key_bindings)
                 ),
+                Item('runbut', label = 'Run script...', show_label = False),
                 show_labels = False
             ),
         
@@ -217,7 +225,8 @@ class TextEditor(TraitsUIEditor):
             resizable = True,
             width     = 1.0,
             height    = 1.0,
-            buttons   = NoButtons,
+            #buttons   = NoButtons,
+            buttons=['OK'],
         )    
 
         return view

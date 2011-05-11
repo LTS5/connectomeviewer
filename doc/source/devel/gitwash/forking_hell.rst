@@ -1,7 +1,7 @@
 .. _forking:
 
 ================================================
-Making your own copy (fork) of ConnectomeViewer
+Making your own copy (fork) of Connectome Viewer
 ================================================
 
 You need to do this only once.  The instructions here are very similar

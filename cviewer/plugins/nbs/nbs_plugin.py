@@ -1,4 +1,4 @@
-""" Network based statistic plugin for ConnectomeViewer
+""" Network based statistic plugin for Connectome Viewer
 
 Original code author:  Andrew Zalesky, azalesky@unimelb.edu.au
 

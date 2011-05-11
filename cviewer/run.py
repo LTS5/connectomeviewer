@@ -1,4 +1,4 @@
-""" Startup script for the ConnectomeViewer application
+""" Startup script for the Connectome Viewer application
 
 """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
