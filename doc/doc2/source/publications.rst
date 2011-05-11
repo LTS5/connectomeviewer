@@ -48,4 +48,4 @@ of efforts to map wiring diagrams on the microscale levels, i.e. the cellular le
 Posters
 :::::::
 
-* OHBM 2010 - ConnectomeViewer - Multi-Modal Multi-Level Network Visualization and Analysis in Python
+* OHBM 2010 - Connectome Viewer - Multi-Modal Multi-Level Network Visualization and Analysis in Python

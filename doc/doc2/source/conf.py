@@ -117,7 +117,7 @@ pygments_style = 'sphinx'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = 'ConnectomeViewer Documentation'
+html_title = 'Connectome Viewer Documentation'
 
 # The name of an image file (within the static path) to place at the top of
 # the sidebar.
@@ -180,7 +180,7 @@ htmlhelp_basename = project
 # [howto/manual]).
 
 latex_documents = [
-  ('contents', 'cviewer.tex', 'ConnectomeViewer Documentation',
+  ('contents', 'cviewer.tex', 'Connectome Viewer Documentation',
    ur'Multi-Modal, Multi-Level pythonic Network Visualization and Analysis','manual'),
   ## ('devel/index', 'nipy_devel.tex',
   ##  'Neuroimaging in Python Developer Documentation',

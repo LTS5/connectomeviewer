@@ -1,6 +1,6 @@
 .. _users-guide-index:
 
-.. This is the source doc for the ConnectomeViewer users guide. The users guide
+.. This is the source doc for the Connectome Viewer users guide. The users guide
    includes the FAQ (a directory below), and glossary.
 
 ============

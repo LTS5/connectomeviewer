@@ -1,4 +1,4 @@
-"""ConnectomeViewer action set for menus and actions
+"""Connectome Viewer action set for menus and actions
 
 """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
@@ -193,7 +193,7 @@ for filter in registry.filters:
 help_cviewer = Action(
     id            = "HelpCViewer",
     class_name    = "cviewer.action.help.HelpIndex",
-    name          = "User Guide &ConnectomeViewer",
+    name          = "User Guide &Connectome Viewer",
     path          = "MenuBar/Help"
 )
 
@@ -231,7 +231,7 @@ tvtk_class_browser = Action(
 ################################################################################
 
 class CViewerUIActionSet(WorkbenchActionSet):
-    """ All the default actions available in the ConnectomeViewer UI """
+    """ All the default actions available in the Connectome Viewer UI """
     
     id = "cviewer.plugins.ui.action_set"
     

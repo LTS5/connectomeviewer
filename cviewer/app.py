@@ -1,4 +1,4 @@
-""" The ConnectomeViewer Envisage application with Plugins
+""" The Connectome Viewer Envisage application with Plugins
 
 """
 
@@ -68,8 +68,8 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
         print "The application data path is not writable: ", dirname
         print "Please remove it with:"
         print "sudo rm -rf " + dirname
-        print "and re-run the ConnectomeViewer with:"
-        print "connectomeviewer.py -v"
+        print "and re-run the Connectome Viewer with:"
+        print "connectomeviewer -v"
         print "==========================================="
         raise Exception("PermissionError")
 
@@ -149,7 +149,7 @@ def get_non_gui_plugins():
     return [cls() for cls in get_non_gui_plugin_classes()]
 
 def get_plugin_classes():
-    """Get list of default plugin classes to use for ConnectomeViewer."""
+    """Get list of default plugin classes to use for Connectome Viewer."""
 
     # Force the selection of a toolkit:
     from enthought.traits.ui.api import toolkit
@@ -190,7 +190,7 @@ def get_plugins():
     return [cls() for cls in get_plugin_classes()]
 
 def get_cviewer_plugins():
-    """ Get list of ConnectomeViewer plugins """
+    """ Get list of Connectome Viewer plugins """
 
     plugins = []
 
@@ -226,26 +226,11 @@ def get_cviewer_plugins():
     from cviewer.plugins.codeoracle.oracle_plugin import OraclePlugin
     plugins.append(OraclePlugin())
     logger.info('Added Oracle Plugin')
-    
-    # add Oracle Converter plugin
-#    from cviewer.plugins.sloreta.sloreta_plugin import SLoretaConverterPlugin
-#    plugins.append(SLoretaConverterPlugin())
-#    logger.info('Added sLORETA Converter Plugin')
-    
+
     # add NBS plugin
     from cviewer.plugins.nbs.nbs_plugin import NBSPlugin
     plugins.append(NBSPlugin())
     logger.info('Added Network Based Statistics (NBS) Plugin')
-    
-    # add DiPy plugin
-    try:
-        dipy_works = True
-        from cviewer.plugins.dipy.dipy_plugin import DipyPlugin
-    except ImportError:
-        dipy_works = False
-    if dipy_works:
-        plugins.append(DipyPlugin())
-        logger.info('Added Diffusion in Python (DiPy) Plugin')
 
     # add cmp
     try:

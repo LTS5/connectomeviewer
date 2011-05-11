@@ -1,7 +1,7 @@
 .. _about_cviewer:
 
 ========================
- About ConnectomeViewer
+ About Connectome Viewer
 ========================
 
 --------
@@ -16,7 +16,7 @@ Python is emerging as `standard programming language in neuroscience/neuroinform
 Thus it makes sense to build a reusable application using Python for Connectomics
 research, allowing the use of many `scientific tools <http://www.scipy.org/>`_.
 
-The ConnectomeViewer application was developed to meet the needs of basic and
+The Connectome Viewer application was developed to meet the needs of basic and
 clinical neuroscientists, as well as complex network scientists, providing
 an integrative, extensible platform to visualize and analyze Connectomics data.
 
@@ -45,4 +45,4 @@ Prof. Jean-Philippe Thiran, the head of the `LTS5 group <http://lts5www.epfl.ch/
 allowed him to start his master thesis supervised by Dr. Patric Hagmann, a Diffusion Spectrum Imaging specialist.
 
 In February 2010, the master thesis (:ref:`publications`) was finished. The development
-of the ConnectomeViewer will be continued at EPFL and UNIL-CHUV by Stephan Gerhard et al.
+of the Connectome Viewer will be continued at EPFL and UNIL-CHUV by Stephan Gerhard et al.

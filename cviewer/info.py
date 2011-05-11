@@ -1,19 +1,19 @@
-''' Release data for ConnectomeViewer
+''' Release data for Connectome Viewer
 
 This script should do no imports.  It only defines variables.
 '''
-version = '2.0.0-RC2'
+version = '2.0.0-RC3'
 is_release = False
 
 long_description = \
 """
-ConnectomeViewer - A Framework for the Visualization and Analysis of Multi-Modal Multi-Scale
+Connectome Viewer - A Framework for the Visualization and Analysis of Multi-Modal Multi-Scale
 Connectome Data in Python
 
-The aim of ConnectomeViewer is to produce a platform-independent Python framework for
+The aim of Connectome Viewer is to produce a platform-independent Python framework for
 the analysis and visualization of Connectome data using an open development model.
 
-The ConnectomeViewer is a extensible, scriptable, pythonic software tool for visualization
+The Connectome Viewer is a extensible, scriptable, pythonic software tool for visualization
 and analysis in neuroimaging research on many spatial scales. Employing the Connectome File
 Format, diverse data such as networks, surfaces, volumes, tracks and metadata are handled
 and integrated.
