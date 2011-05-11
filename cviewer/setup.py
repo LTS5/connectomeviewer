@@ -13,7 +13,6 @@ def configuration(parent_package='',top_path=None):
     config.add_subpackage('libs')    
     config.add_subpackage('plugins')
     config.add_subpackage('resources') # necessary when in data_dir?
-    config.add_subpackage('sources')
     config.add_subpackage('visualization')
     
     # List all data directories to be loaded here
