@@ -11,7 +11,7 @@ Vcs-Browser: http://github.com/LTS5/connectomeviewer
 
 Package: connectomeviewer
 Architecture: all
-Depends: ${python:Depends}, ${misc:Depends}
+Depends: ${python:Depends}, ${misc:Depends},
         python-cfflib (>= 2.0.5),
         python-numpy,
         python-scipy,
