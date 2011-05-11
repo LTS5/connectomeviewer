@@ -53,7 +53,7 @@ class MatrixEdgeNetworkParameter(HasTraits):
              Item('graph', label = "Graph"),
              Item('edge_label', label="Edge Label"),
              id='cviewer.plugins.codeoracle.matrixnetworkparameter',
-             buttons=['OK'],
+                 buttons=['OK'],
              resizable=True,
              title = "Connection Matrix Generator Script"
              )
@@ -138,15 +138,15 @@ class NetworkParameter(HasTraits):
                         
                     a=cobj.obj.data.edges_iter(data=True)
                     if len(cobj.obj.data.edges()) == 0:
-                        raise Exception("No edges exist in the connectome network")
-                        
-                    e1, e2, de = a.next()
-                    ev = []
-                    for k in de.keys():
-                        if isinstance(de[k], float) or isinstance(de[k], int):
-                           ev.append(k) 
-                    if len(ev) == 0:
                         ev = ["None"]
+                    else:
+                        e1, e2, de = a.next()
+                        ev = []
+                        for k in de.keys():
+                            if isinstance(de[k], float) or isinstance(de[k], int):
+                               ev.append(k)
+                        if len(ev) == 0:
+                            ev = ["None"]
                         
                     self.netw[cobj.name] = {'name' : cobj.obj.name,
                                             'ev' : ev, 'pos' : npos, 'lab' : lab}
