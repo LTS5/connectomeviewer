@@ -16,6 +16,7 @@ from enthought.pyface.api import AboutDialog, ImageResource, SplashScreen
 # ConnectomeViewer imports
 from cviewer.plugins.ui.preference_manager import preference_manager
 from cviewer.action.common import IMAGE_PATH
+from .info import version
 
 # Logging imports
 import logging
@@ -37,7 +38,7 @@ class CViewerWorkbenchApplication(WorkbenchApplication):
     icon = ImageResource('favicon.ico', search_path=_image_path)
 
     # The name of the application (also used on window title bars etc).
-    name = "Connectome Viewer"
+    name = "Connectome Viewer " + str(version)
     
     ###########################################################################
     # 'WorkbenchApplication' interface.
