@@ -1,4 +1,0 @@
-#include <bct/bct.h>
-#include "bct_test.h"
-
-MATRIX_TO_MATRIX_FUNCTION(matching_ind_in)
