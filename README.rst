@@ -1,13 +1,13 @@
-================
-ConnectomeViewer
-================
+=================
+Connectome Viewer
+=================
 
-The ConnectomeViewer - Interactive Analysis and Visualization for MR Connectomics
+The Connectome Viewer - Interactive Analysis and Visualization for MR Connectomics
 
-The ConnectomeViewer is a extensible, scriptable, pythonic software tool for visualization
+The Connectome Viewer is a extensible, scriptable, pythonic software tool for visualization
 and analysis in neuroimaging research. Employing the Connectome File Format, diverse data types
 such as networks, surfaces, volumes, tracks and metadata are handled and integrated. The
-ConnectomeViewer is part of the MR Connectome Toolkit.
+Connectome Viewer is part of the MR Connectome Toolkit.
 
 Copyright (C) 2009-2011, Ecole Polytechnique Fédérale de Lausanne (EPFL) and
 Hospital Center and University of Lausanne (UNIL-CHUV), Switzerland

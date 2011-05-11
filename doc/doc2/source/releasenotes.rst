@@ -1,6 +1,6 @@
-==============================
+===============================
 Connectome Viewer Release Notes
-==============================
+===============================
 
 .. warning:: This document is deprecated. Please see the GitHub commit log for updates.
 

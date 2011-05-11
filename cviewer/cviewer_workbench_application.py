@@ -1,4 +1,4 @@
-""" The ConnectomeViewer Envisage Workbench Application class
+""" The Connectome Viewer Envisage Workbench Application class
 
 """
 # Copyright (C) 2009-2010, Ecole Polytechnique Federale de Lausanne (EPFL) and
@@ -16,6 +16,7 @@ from enthought.pyface.api import AboutDialog, ImageResource, SplashScreen
 # ConnectomeViewer imports
 from cviewer.plugins.ui.preference_manager import preference_manager
 from cviewer.action.common import IMAGE_PATH
+from .info import version
 
 # Logging imports
 import logging
@@ -37,7 +38,7 @@ class CViewerWorkbenchApplication(WorkbenchApplication):
     icon = ImageResource('favicon.ico', search_path=_image_path)
 
     # The name of the application (also used on window title bars etc).
-    name = "ConnectomeViewer"
+    name = "Connectome Viewer " + str(version)
     
     ###########################################################################
     # 'WorkbenchApplication' interface.
@@ -91,7 +92,7 @@ class CViewerWorkbenchApplication(WorkbenchApplication):
         #'VTK version %s' % (vtk_version),
         from cviewer.version import version
         
-        adds = ['ConnectomeViewer BETA - Version %s' % ( version ),
+        adds = ['Connectome Viewer - Version %s' % ( version ),
                 '',
                 'Copyright &copy; 2009-2011, Ecole Polytechnique F&eacute;d&eacute;rale de Lausanne (EPFL) and',
                 'University Hospital Center and University of Lausanne (UNIL-CHUV)',

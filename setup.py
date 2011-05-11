@@ -6,10 +6,7 @@ from distutils.cmd import Command
 import numpy as np
 
 # monkey-patch numpy distutils to use Cython instead of Pyrex
-from build_helpers import package_check,    INFO_VARS
-
-#from numpy.distutils.command.build_src import build_src
-#build_src.generate_a_pyrex_source = generate_a_pyrex_source
+from build_helpers import package_check, INFO_VARS
 
 def configuration(parent_package='',top_path=None):
     from numpy.distutils.misc_util import Configuration
@@ -57,7 +54,6 @@ if len(set(('develop', 'bdist_egg', 'bdist_rpm', 'bdist', 'bdist_dumb',
 if not 'extra_setuptools_args' in globals():
     extra_setuptools_args = dict()
     
-    
 def main(**extra_args):
     from numpy.distutils.core import setup
     setup(
@@ -66,7 +62,7 @@ def main(**extra_args):
         author = "Stephan Gerhard",
         author_email = "stephan.gerhard@epfl.ch",
         classifiers = [c.strip() for c in """\
-            Development Status :: 4 - Beta
+            Development Status :: 5 - Production/Stable
             Intended Audience :: Developers
             Intended Audience :: Science/Research
             Operating System :: OS Independent
@@ -85,11 +81,9 @@ def main(**extra_args):
         platforms = ["Linux", "Unix"],
         url = 'http://www.connectomeviewer.org/',
         scripts = glob('scripts/*'),
-#        ext_modules = [per_ext, tvol_ext, rec_ext],         
         configuration = configuration,
         **extra_args
         )
-
     
 if __name__ == "__main__":
     main()
