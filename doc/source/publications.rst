@@ -7,7 +7,7 @@ Publications
 How to cite the Connectome Viewer and Connectome File Format?
 `````````````````````````````````````````````````````````````
 
-* Gerhard S et al. "The Connectome Viewer Toolkit: an open source framework to manage, analyze and visualize connectomes", Frontiers in Neuroinformatics (Submitted)
+* Gerhard S et al. "The Connectome Viewer Toolkit: an open source framework to manage, analyze and visualize connectomes", Frontiers in Neuroinformatics, May 2011 (Accepted)
 
 Related publications
 ````````````````````
