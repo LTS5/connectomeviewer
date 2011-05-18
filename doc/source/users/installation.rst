@@ -14,31 +14,12 @@ Add the NeuroDebian repository to your system. The steps are explained here::
 
 	firefox http://neuro.debian.net/
 
-There are many dependencies to install (the exact package names might change slightly if using Ubuntu version smaller than 10.10)::
+There are some dependencies to install (the exact package names might change slightly for different Ubuntu/Debian versions)::
 
     sudo apt-get update
-    sudo apt-get install git-core python-setuptools libvtk5.4 python-vtk python-numpy python-wxversion python2.6-dev g++ swig python-configobj glutg3 glutg3-dev libxtst-dev ipython python-lxml
-    sudo apt-get install python-matplotlib python-qscintilla2 gcc scons python-xlib pyqt4-dev-tools python-scipy python-pyrex python-all-dev python-dicom
-    sudo apt-get install libxt-dev libglu1-mesa-dev python-pip wget python-wxgtk2.8 python-h5py python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsbackendqt python-traitsgui python-enthoughtbase python-chaco python-lxml python-h5py mayavi2 python-tables python-tables-doc python-apptools python-pip python-wxtools python-sphinx
 
-Upgrade NetworkX::
-
-    sudo pip install --upgrade networkx
-
-Install cfflib::
-
-    sudo pip install cfflib
-
-Install Nibabel (from the NeuroDebian repository)::
-
-	sudo apt-get install python-nibabel python-nibabel-doc python-dicom
-  
-.. note:: Currently, NeuroDebian include Nibabel version 1.0.2, but 1.1.0 is required for the Connectome Viewer 2.0 RC2. The new Nibabel version will be available in a few days.
-         You can install the development version in the meanwhile.
-         
-Nibabel 1.1.0 version::
-
-  sudo easy_install nibabel
+    sudo apt-get install python-wxgtk2.8 python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsgui python-enthoughtbase python-wxtools python-wxversion
+    sudo apt-get install python-nibabel python-cfflib python-numpy python-scipy python-chaco mayavi2 ipython nipy-suite python-matplotlib python-qscintilla2
 
 Download the `Connectome Viewer source code <http://www.cmtk.org/users/download>`_, extract and install it::
 
