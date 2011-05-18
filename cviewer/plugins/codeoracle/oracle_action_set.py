@@ -68,6 +68,13 @@ simple_connection_matrix = Action(
     path          = "MenuBar/Code Oracle/Connectome/CNetwork/Visualization"
 )
 
+writegexf = Action(
+    id            = "OracleCNetworkWriteGEXF",
+    class_name    = "cviewer.plugins.codeoracle.actions.WriteGEXF",
+    name          = "Write Gephi GEXF",
+    path          = "MenuBar/Code Oracle/Connectome/CNetwork/Analysis"
+)
+
 compute_nbs = Action(
     id            = "OracleNBS",
     class_name    = "cviewer.plugins.codeoracle.actions.ComputeNBS",
@@ -115,5 +122,6 @@ class OracleActionSet(WorkbenchActionSet):
         cortico_cortico,
         xnat_pushpull,
         nipype_bet,
-        networkrepo
+        networkrepo,
+        writegexf
     ]

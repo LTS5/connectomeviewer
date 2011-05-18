@@ -53,6 +53,24 @@ class NetworkReport(Action):
 
         self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
 
+class WriteGEXF(Action):
+    tooltip = "Write Gephi GEXF file"
+    description = "Write Gephi GEXF file"
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+
+        from scripts import writegexf
+
+        import tempfile
+        myf = tempfile.mktemp(suffix='.py', prefix='my')
+        f=open(myf, 'w')
+        f.write(writegexf)
+        f.close()
+
+        self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
 
 class CorticoCortico(Action):
     tooltip = "Extract cortico-cortico fibers"

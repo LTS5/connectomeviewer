@@ -1,3 +1,29 @@
+writegexf = '''
+""" Convert a connectome network to the GEXF format
+readable by Gephi for further analysis and visualization """
+
+import networkx as nx
+import numpy as np
+
+cnet = cfile.obj.get_by_name('connectome_freesurferaparc')
+cnet.load()
+outpath = 'out.gexf'
+
+def fix_float_for_gexf(network):
+    for u,v,d in network.edges_iter(data=True):
+        for k,v in d.items():
+            if isinstance(d[k], np.float64):
+                d[k] = float( d[k] )
+    for u,d in network.nodes_iter(data=True):
+        for k,v in d.items():
+            if isinstance(d[k], np.float64):
+                d[k] = float( d[k] )
+    return network
+
+G = fix_float_for_gexf(cnet.data)
+nx.write_gexf(cnet.data, outpath)
+'''
+
 corticocortico ='''
 """ Extract cortio-cortico fibers from tractography outputs of CMTK,
 apply clustering and visualize them. The basic idea is to remove sets of
