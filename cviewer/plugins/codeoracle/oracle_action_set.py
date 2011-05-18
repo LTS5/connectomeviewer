@@ -82,6 +82,14 @@ show_tracks = Action(
     path          = "MenuBar/Code Oracle/Connectome/CTrack/Visualization"
 )
 
+cortico_cortico = Action(
+    id            = "OracleCorticoCorticoTracks",
+    class_name    = "cviewer.plugins.codeoracle.actions.CorticoCortico",
+    name          = "Extract cortico-cortico fiber tracks",
+    path          = "MenuBar/Code Oracle/Connectome/CTrack/Analysis"
+)
+
+
 nipype_bet = Action(
     id            = "OracleNipypeBet",
     class_name    = "cviewer.plugins.codeoracle.actions.NipypeBet",
@@ -104,6 +112,7 @@ class OracleActionSet(WorkbenchActionSet):
         connection_matrix,
         simple_connection_matrix,
         show_tracks,
+        cortico_cortico,
         xnat_pushpull,
         nipype_bet,
         networkrepo

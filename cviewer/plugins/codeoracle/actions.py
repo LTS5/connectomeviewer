@@ -54,6 +54,26 @@ class NetworkReport(Action):
         self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
 
 
+class CorticoCortico(Action):
+    tooltip = "Extract cortico-cortico fibers"
+    description = "Extract cortico-cortico fibers"
+
+    # The WorkbenchWindow the action is attached to.
+    window = Any()
+
+    def perform(self, event=None):
+
+        from scripts import corticocortico
+
+        import tempfile
+        myf = tempfile.mktemp(suffix='.py', prefix='my')
+        f=open(myf, 'w')
+        f.write(corticocortico)
+        f.close()
+
+        self.window.workbench.edit(File(myf), kind=TextEditor,use_existing=False)
+
+
 class NipypeBet(Action):
     tooltip = "Brain extraction using BET"
     description = "Brain extraction using BET"
