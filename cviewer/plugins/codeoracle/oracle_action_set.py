@@ -68,6 +68,13 @@ simple_connection_matrix = Action(
     path          = "MenuBar/Code Oracle/Connectome/CNetwork/Visualization"
 )
 
+writegexf = Action(
+    id            = "OracleCNetworkWriteGEXF",
+    class_name    = "cviewer.plugins.codeoracle.actions.WriteGEXF",
+    name          = "Write Gephi GEXF",
+    path          = "MenuBar/Code Oracle/Connectome/CNetwork/Analysis"
+)
+
 compute_nbs = Action(
     id            = "OracleNBS",
     class_name    = "cviewer.plugins.codeoracle.actions.ComputeNBS",
@@ -81,6 +88,14 @@ show_tracks = Action(
     name          = "Tracks between regions",
     path          = "MenuBar/Code Oracle/Connectome/CTrack/Visualization"
 )
+
+cortico_cortico = Action(
+    id            = "OracleCorticoCorticoTracks",
+    class_name    = "cviewer.plugins.codeoracle.actions.CorticoCortico",
+    name          = "Extract cortico-cortico fiber tracks",
+    path          = "MenuBar/Code Oracle/Connectome/CTrack/Analysis"
+)
+
 
 nipype_bet = Action(
     id            = "OracleNipypeBet",
@@ -104,7 +119,9 @@ class OracleActionSet(WorkbenchActionSet):
         connection_matrix,
         simple_connection_matrix,
         show_tracks,
+        cortico_cortico,
         xnat_pushpull,
         nipype_bet,
-        networkrepo
+        networkrepo,
+        writegexf
     ]

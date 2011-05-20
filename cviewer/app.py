@@ -233,14 +233,14 @@ def get_cviewer_plugins():
     logger.info('Added Network Based Statistics (NBS) Plugin')
 
     # add cmp
-    try:
-        cmp_works = True
-        from cviewer.plugins.cmp.cmp_plugin import CMPPlugin
-    except ImportError:
-        cmp_works = False
-    if cmp_works:
-        plugins.append(CMPPlugin())
-        logger.info('Added Connectome Mapper Plugin')
+     #try:
+ #        cmp_works = True
+ #        from cviewer.plugins.cmp.cmp_plugin import CMPPlugin
+ #    except ImportError:
+ #        cmp_works = False
+ #    if cmp_works:
+ #        plugins.append(CMPPlugin())
+ #        logger.info('Added Connectome Mapper Plugin')
 
     return plugins
 
