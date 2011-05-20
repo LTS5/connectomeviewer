@@ -1,4 +1,4 @@
 version=3
 
 opts="filenamemangle=s/.*\/(.*)/connectomeviewer-$1\.tar\.gz/" \
-  http://github.com/LTS5/connectomeviewer/downloads .*tarball/release-([\d\.a-z]+)-RC4
+  http://github.com/LTS5/connectomeviewer/downloads .*tarball/release-([\d\.a-z]+)
