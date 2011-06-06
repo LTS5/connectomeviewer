@@ -26,8 +26,6 @@ CFFVIEW = 'cviewer.plugins.cff2.ui.cff_view.CFFView'
 # This module's package.
 PKG = '.'.join(__name__.split('.')[:-1])
 
-from welcome.perspective import WelcomePerspective
-
 # Logging imports
 import logging
 logger = logging.getLogger('root.'+__name__)
