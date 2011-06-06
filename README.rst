@@ -25,6 +25,7 @@ Stephan Gerhard
 ------
 Thanks
 ------
+* Yaroslav Halchenko
 * Patric Hagmann
 * Leila Cammoun
 * Jean-Philippe Thiran
@@ -48,4 +49,3 @@ See plugin section in documentation for copyright and license of contributions.
 * Enthought Evisage. Application Framework. Enthought.
 * Mayavi2. Partly modified files. Prabhu Ramachandran and Gael Varoquaux
 * Andrew Zalesky (Network-Based Statistics)
-
