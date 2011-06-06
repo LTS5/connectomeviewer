@@ -25,7 +25,6 @@ Recommends: python-nipype,
         python-matplotlib,
         python-qscintilla2,
 Suggests: nipy-suite
-Provides: ${python:Provides}
 Description: Interactive Analysis and Visualization for MR Connectomics
  The Connectome Viewer is a extensible, scriptable, pythonic research
  environment for visualization and (network) analysis in neuroimaging
