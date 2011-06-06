@@ -2,8 +2,8 @@ Source: connectomeviewer
 Section: python
 Priority: extra
 Maintainer: Stephan Gerhard <debian@unidesign.ch>
-Build-Depends: debhelper (>= 7.2.18), python-all, python-support,
-			   python-cfflib, python-setuptools
+Build-Depends: debhelper (>= 7.2.18), python-all (>= 2.6), python-support,
+			   python-setuptools
 Standards-Version: 3.9.2
 Homepage: http://www.connectomeviewer.org
 Vcs-Git: git://github.com/LTS5/connectomeviewer.git
