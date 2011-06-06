@@ -13,14 +13,18 @@ Package: connectomeviewer
 Architecture: all
 Depends: ${python:Depends}, ${misc:Depends},
         python-cfflib (>= 2.0.5),
+        python-networkx (>= 1.4),
+        python-nibabel,
         python-numpy,
         python-scipy,
         python-chaco,
         mayavi2,
         ipython
-Recommends: nipy-suite,
+Recommends: python-nipype,
+        python-dipy,
         python-matplotlib,
         python-qscintilla2,
+Suggests: nipy-suite
 Provides: ${python:Provides}
 Description: Interactive Analysis and Visualization for MR Connectomics
  The Connectome Viewer is a extensible, scriptable, pythonic research
