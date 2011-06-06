@@ -33,19 +33,19 @@ def _traits_version(pkg_name):
     from enthought.traits import version
     return version.__version__
 
-package_check('networkx', INFO_VARS['networkx_min_version'])
-package_check('numpy', INFO_VARS['numpy_min_version'])
-package_check('enthought.mayavi', INFO_VARS['mayavi_min_version'],version_getter=_mayavi_version)
-package_check('enthought.traits', INFO_VARS['traits_min_version'],version_getter=_traits_version)
 
 ################################################################################
 ################################################################################
 # For some commands, use setuptools
 
-if len(set(('develop', 'bdist_egg', 'bdist_rpm', 'bdist', 'bdist_dumb', 
+if len(set(('build', 'develop', 'bdist_egg', 'bdist_rpm', 'bdist', 'bdist_dumb',
             'bdist_wininst', 'install_egg_info', 'egg_info', 'easy_install',
             )).intersection(sys.argv)) > 0:
     from setup_egg import extra_setuptools_args
+    package_check('networkx', INFO_VARS['networkx_min_version'])
+    package_check('numpy', INFO_VARS['numpy_min_version'])
+    package_check('enthought.mayavi', INFO_VARS['mayavi_min_version'],version_getter=_mayavi_version)
+    package_check('enthought.traits', INFO_VARS['traits_min_version'],version_getter=_traits_version)
 
 # extra_setuptools_args can be defined from the line above, but it can
 # also be defined here because setup.py has been exec'ed from
