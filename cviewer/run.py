@@ -9,6 +9,7 @@
 # Standard library imports
 import sys
 import logging
+from __version__ import __version__
 
 # First, and before importing any Enthought packages, set the ETS_TOOLKIT
 # environment variable to qt4, to tell Traits that we will use Qt.
@@ -45,7 +46,7 @@ class CViewerApp(CViewer):
         
         from optparse import OptionParser
         usage = "usage: %prog [options]"
-        parser = OptionParser(usage, version="%prog 0.1.0")
+        parser = OptionParser(usage, version="%prog " + __version__ )
         #parser.add_option("--load-cff", 
         #              type="string", dest="cfile", default='',
         #              help="Open the given .cff file directly.")
