@@ -1,0 +1,3 @@
+# Upstream does not provide a manpage because of rudimentary
+# command line interface. --help is accessible though
+connectomeviewer binary: binary-without-manpage *usr/bin/connectomeviewer
