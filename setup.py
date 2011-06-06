@@ -33,7 +33,6 @@ def _traits_version(pkg_name):
     from enthought.traits import version
     return version.__version__
 
-package_check('scipy', INFO_VARS['scipy_min_version'])
 package_check('networkx', INFO_VARS['networkx_min_version'])
 package_check('numpy', INFO_VARS['numpy_min_version'])
 package_check('enthought.mayavi', INFO_VARS['mayavi_min_version'],version_getter=_mayavi_version)

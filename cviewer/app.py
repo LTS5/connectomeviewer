@@ -298,7 +298,7 @@ class CViewer(HasTraits):
         # start the application.
         self.application.run()
         
-        logger.info('We hope you enjoyed using the ConnectomeViewer!')
+        logger.info('We hope you enjoyed using the Connectome Viewer!')
         
     def setup_logger(self):
         """ Setting up the root logger """
@@ -333,7 +333,7 @@ class CViewer(HasTraits):
 
 
 def main(argv=None):
-    """ Helper to start up the ConnectomeViewer application. """
+    """ Helper to start up the Connectome Viewer application. """
     
     m = CViewer()
     m.main(argv)
