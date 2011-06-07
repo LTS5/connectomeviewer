@@ -4,8 +4,6 @@
 Download and Installation
 ==========================
 
-.. warning:: This content is soon deprecated and replaced by an easier installation procedure using Neuro Debian.
-
 Step-by-Step Guide for Installation on Ubuntu/Debian
 ----------------------------------------------------
 
@@ -14,22 +12,23 @@ Add the NeuroDebian repository to your system. The steps are explained here::
 
 	firefox http://neuro.debian.net/
 
-There are some dependencies to install (the exact package names might change slightly for different Ubuntu/Debian versions)::
+The Connectome Viewer with all dependencies is available from Neuro Debian::
 
     sudo apt-get update
-
-    sudo apt-get install python-wxgtk2.8 python-envisagecore python-envisageplugins python-traitsbackendwx python-traitsgui python-enthoughtbase python-wxtools python-wxversion
-    sudo apt-get install python-nibabel python-cfflib python-numpy python-scipy python-chaco mayavi2 ipython nipy-suite python-matplotlib python-qscintilla2
-
-Download the `Connectome Viewer source code <http://www.cmtk.org/users/download>`_, extract and install it::
-
-    tar xzf LTS5-....tar.gz
-    cd LTS5-connectomeviewer-..../
-    sudo python setup.py install
+    sudo apt-get install connectomeviewer
 
 You should now be able to start with::
 
     connectomeviewer -v
+
+After startup, you can adapt the view widgets according to your needs and screen size. You can now
+download `example connectome files <http://connectomeviewer.org/viewer/datasets>`_. After loading a file, double-click on an item (e.g. a network)
+in the Connectome File View to load the data in memory. Start to explore the Code Oracle scripts (see Menu bar)
+for visualization and analysis task. Created scripts can be saved (Ctrl-S) and run (Ctrl-R) in the embedded
+Python Shell. You might want to change preferences in menu Tools->Preference (e.g. use Ipython, don't prompt on exit).
+
+Do not miss the `Mayavi2 documentation page <http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/>`_ that details the many visualization capabilities also available in
+Connectome Viewer. Furthermore, check out the `Neuroimaging in Python project <http://nipy.org>`_ for more neuroimaging package and documentation.
 
 .. On first startup, a directory is created in your home folder (*$HOME/.enthought/ch.connectome.viewer*) to store the logfile and window settings. If the first startup was as root, you do not have write permission in this folder, leading to a *Permission Error*. Simply remove this folder (*sudo rm -rf $HOME/.enthought/ch.connectome.viewer/*) and start ConnectomeViewer again as user.
 .. Step-by-Step Guide for Installation on Windows
@@ -47,4 +46,4 @@ You should now be able to start with::
 Installation on Other Platforms
 -------------------------------
 
-.. note:: Currently, the support for a Windows installer has been dropped. But you can install `VirtualBox <http://www.virtualbox.org/wiki/Downloads>`_ and a recent `Ubuntu <http://www.ubuntu.com/desktop/get-ubuntu/download>`_ and then carry out the steps above.
+.. note:: You can install `VirtualBox <http://www.virtualbox.org/wiki/Downloads>`_ and a recent `Neuro Debian virtual machine <http://neuro.debian.net/vm.html>`_ and then carry out the steps above.
