@@ -5,8 +5,8 @@
 # Modified BSD License
 
 # Enthough library imports
-from enthought.traits.api import List
-from enthought.envisage.api import Plugin, ServiceOffer, ExtensionPoint
+from traits.api import List
+from envisage.api import Plugin, ServiceOffer, ExtensionPoint
 
 # ConnectomeViewer imports
 
@@ -23,9 +23,9 @@ CFFVIEW = 'cviewer.plugins.cff2.ui.cff_view.CFFView'
 class ConnectomeFile2Plugin(Plugin):
 
     # Extension points we contribute to.
-    VIEWS  = 'enthought.envisage.ui.workbench.views'    
+    VIEWS  = 'envisage.ui.workbench.views'    
     #- for application scope and
-    SERVICE_OFFERS = 'enthought.envisage.service_offers'
+    SERVICE_OFFERS = 'envisage.service_offers'
 
     #### Extension points offered by this plugin ##############################
 
@@ -94,7 +94,7 @@ class ConnectomeFile2Plugin(Plugin):
 
     def _cfile_view_factory(self, window, **traits):
         """ Factory method for connectome file views. """
-        from enthought.pyface.workbench.traits_ui_view import \
+        from pyface.workbench.traits_ui_view import \
                 TraitsUIView
         
         from cviewer.plugins.cff2.ui.cff_view import CFFView

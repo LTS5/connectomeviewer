@@ -8,7 +8,7 @@ import sys
 import numpy as np
 from scipy import ndimage, linalg
 
-from enthought.mayavi import mlab
+from mayavi import mlab
 
 # Neuroimaging library imports
 from nipy.neurospin.datasets import as_volume_img, VolumeImg
@@ -47,7 +47,7 @@ anat_blurred = ndimage.gaussian_filter(
 vol = mlab.pipeline.volume(anat_src, color=(1, 1, 1))
 
 # Change the opacity function
-from enthought.tvtk.util.ctf import PiecewiseFunction
+from tvtk.util.ctf import PiecewiseFunction
 
 shell_size = .1
 otf = PiecewiseFunction()
@@ -106,7 +106,7 @@ def render_fmri(volume):
     vol = mlab.pipeline.volume(fmri_src)
 
     # Change the opacity function
-    from enthought.tvtk.util.ctf import PiecewiseFunction
+    from tvtk.util.ctf import PiecewiseFunction
 
     width = .1
     otf = PiecewiseFunction()

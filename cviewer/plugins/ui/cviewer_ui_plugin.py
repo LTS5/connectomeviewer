@@ -10,16 +10,16 @@
 # License: BSD Style.
 
 # Enthought library imports
-from enthought.envisage.api import Plugin
-from enthought.traits.api import List, on_trait_change
-from enthought.pyface.workbench.api import Perspective, PerspectiveItem
-from enthought.etsconfig.api import ETSConfig
+from envisage.api import Plugin
+from traits.api import List, on_trait_change
+from pyface.workbench.api import Perspective, PerspectiveItem
+from traits.etsconfig.api import ETSConfig
 
 # View IDs
-ENGINE_VIEW = 'enthought.mayavi.core.ui.engine_view.EngineView'
-CURRENT_SELECTION_VIEW = 'enthought.mayavi.core.engine.Engine.current_selection'
-SHELL_VIEW = 'enthought.plugins.python_shell_view'
-LOGGER_VIEW = 'enthought.logger.plugin.view.logger_view.LoggerView' 
+ENGINE_VIEW = 'mayavi.core.ui.engine_view.EngineView'
+CURRENT_SELECTION_VIEW = 'mayavi.core.engine.Engine.current_selection'
+SHELL_VIEW = 'envisage.plugins.python_shell_view'
+LOGGER_VIEW = 'apptools.logger.plugin.view.logger_view.LoggerView' 
 ID = 'connectome.cviewer.ui'
 CFFVIEW = 'cviewer.plugins.cff2.ui.cff_view.CFFView'
 
@@ -79,13 +79,13 @@ class CViewerUIPlugin(Plugin):
     """
 
     # extension points this plugin contributes to
-    PERSPECTIVES        = 'enthought.envisage.ui.workbench.perspectives'
-    PREFERENCES         = 'enthought.envisage.preferences'
-    PREFERENCES_PAGES   = 'enthought.envisage.ui.workbench.preferences_pages'
-    #BANNER              = 'enthought.plugins.ipython_shell.banner'
-    ACTION_SETS         = 'enthought.envisage.ui.workbench.action_sets'
-    #COMMANDS            = 'enthought.plugins.python_shell.commands'
-    VIEWS               = "enthought.envisage.ui.workbench.views"
+    PERSPECTIVES        = 'envisage.ui.workbench.perspectives'
+    PREFERENCES         = 'envisage.preferences'
+    PREFERENCES_PAGES   = 'envisage.ui.workbench.preferences_pages'
+    #BANNER              = 'envisage.plugins.ipython_shell.banner'
+    ACTION_SETS         = 'envisage.ui.workbench.action_sets'
+    #COMMANDS            = 'envisage.plugins.python_shell.commands'
+    VIEWS               = "envisage.ui.workbench.views"
     
     # The plugin's unique identifier.
     id = ID
@@ -149,9 +149,9 @@ class CViewerUIPlugin(Plugin):
     
     def _engine_view_factory(self, window, **traits):
         """ Factory method for engine views. """
-        from enthought.pyface.workbench.traits_ui_view import \
+        from pyface.workbench.traits_ui_view import \
                 TraitsUIView
-        from enthought.mayavi.core.ui.engine_view import \
+        from mayavi.core.ui.engine_view import \
                             EngineView
 
         engine_view = EngineView(engine=self._get_engine(window))
@@ -167,7 +167,7 @@ class CViewerUIPlugin(Plugin):
     def _current_selection_view_factory(self, window, **traits):
         """ Factory method for the current selection of the engine. """
 
-        from enthought.pyface.workbench.traits_ui_view import \
+        from pyface.workbench.traits_ui_view import \
                 TraitsUIView
 
         engine = self._get_engine(window)
@@ -184,13 +184,13 @@ class CViewerUIPlugin(Plugin):
 
     def _get_engine(self, window):
         """Return the Mayavi engine of the particular window."""
-        from enthought.mayavi.core.engine import Engine
+        from mayavi.core.engine import Engine
         return window.get_service(Engine)
 
     def _get_script(self, window):
-        """Return the `enthought.mayavi.plugins.script.Script` instance
+        """Return the `mayavi.plugins.script.Script` instance
         of the window."""
-        from enthought.mayavi.plugins.script import Script
+        from mayavi.plugins.script import Script
         return window.get_service(Script)
 
     ######################################################################
@@ -224,7 +224,7 @@ class CViewerUIPlugin(Plugin):
         try:
             py.bind('mayavi', script)
             py.bind('engine', script.engine)
-            from enthought.naming.ui.api import explore
+            from apptools.naming.ui.api import explore
             py.bind('explore', explore)
         except AttributeError, msg:
             # This can happen when the shell is not visible.

@@ -5,9 +5,9 @@
 # Modified BSD License
 
 # Enthought library imports
-from enthought.preferences.ui.api import PreferencesPage
-from enthought.traits.api import Bool, Directory
-from enthought.traits.ui.api import View, Group, Item
+from apptools.preferences.ui.api import PreferencesPage
+from traits.api import Bool, Directory
+from traitsui.api import View, Group, Item
 
 class CViewerUIPreferencesPage(PreferencesPage):
     """ The preferences page for the Connectome Viewer UI Plugin. """

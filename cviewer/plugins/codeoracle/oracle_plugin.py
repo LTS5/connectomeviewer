@@ -7,9 +7,9 @@
 # Modified BSD License
 
 # Enthought library imports
-from enthought.envisage.api import Plugin
-from enthought.envisage.api import Service
-from enthought.traits.api import List
+from envisage.api import Plugin
+from envisage.api import Service
+from traits.api import List
 
 # This module's package.
 PKG = '.'.join(__name__.split('.')[:-1])
@@ -21,7 +21,7 @@ logger = logging.getLogger('root.'+__name__)
 class OraclePlugin(Plugin):
     """ This plugin allows to create code """
 
-    ACTION_SETS = 'enthought.envisage.ui.workbench.action_sets'
+    ACTION_SETS = 'envisage.ui.workbench.action_sets'
     
     # The plugin's unique identifier.
     id = 'connectome.codeoracle'

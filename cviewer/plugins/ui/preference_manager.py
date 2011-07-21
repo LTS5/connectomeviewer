@@ -9,14 +9,14 @@ from os.path import join
 import pkg_resources
 
 # Enthought library imports
-from enthought.etsconfig.api import ETSConfig
-from enthought.traits.api import Instance
-from enthought.traits.ui.api import View, Group, Item
-from enthought.preferences.api import (ScopedPreferences, IPreferences,
+from traits.etsconfig.api import ETSConfig
+from traits.api import Instance
+from traitsui.api import View, Group, Item
+from apptools.preferences.api import (ScopedPreferences, IPreferences,
         PreferencesHelper)
 
 # Mayavi2 imports
-from enthought.mayavi.preferences.preference_manager import PreferenceManager
+from mayavi.preferences.preference_manager import PreferenceManager
 
 # ConnectomeViewer imports
 from cviewer.plugins.ui.cviewer_ui_preferences_helper import CViewerUIPreferencesHelper
@@ -89,8 +89,8 @@ class CViewerPreferenceManager(PreferenceManager):
         ETSConfig.application_home = path
         try:
             for pkg in ('cviewer.plugins.ui',
-                        'enthought.mayavi.preferences',
-                        'enthought.tvtk.plugins.scene'):
+                        'mayavi.preferences',
+                        'tvtk.plugins.scene'):
                 pref = 'preferences.ini'
                 pref_file = pkg_resources.resource_stream(pkg, pref)
 

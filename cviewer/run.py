@@ -24,7 +24,7 @@ from cviewer.app import CViewer
 import sys
 if not 'wx' in sys.modules:
     try:
-        from enthought.etsconfig.api import ETSConfig
+        from traits.etsconfig.api import ETSConfig
         if ETSConfig.toolkit in ('wx', ''):
             import wxversion
             wxversion.ensureMinimal('2.8')

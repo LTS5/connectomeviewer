@@ -34,18 +34,18 @@ confused with too rich interaction.
 
 import numpy as np
 
-from enthought.traits.api import HasTraits, Instance, Array, \
+from traits.api import HasTraits, Instance, Array, \
     on_trait_change
 
-from enthought.traits.ui.api import View, Item, HGroup, Group
+from traitsui.api import View, Item, HGroup, Group
 
-from enthought.tvtk.api import tvtk
-from enthought.tvtk.pyface.scene import Scene
+from tvtk.api import tvtk
+from tvtk.pyface.scene import Scene
 
-from enthought.mayavi import mlab
-from enthought.mayavi.core.api import PipelineBase, Source
-from enthought.mayavi.core.ui.api import SceneEditor, MayaviScene
-from enthought.mayavi.tools.mlab_scene_model import MlabSceneModel
+from mayavi import mlab
+from mayavi.core.api import PipelineBase, Source
+from mayavi.core.ui.api import SceneEditor, MayaviScene
+from mayavi.tools.mlab_scene_model import MlabSceneModel
 
 import sys
 from cviewer.io.nipy.api import load_image

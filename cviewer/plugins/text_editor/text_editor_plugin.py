@@ -2,12 +2,12 @@
 """
 
 # Enthought library imports.
-from enthought.traits.api import List
-from enthought.envisage.api import Plugin
+from traits.api import List
+from envisage.api import Plugin
 
 # The plugin's globally unique identifier (also used as the prefix for all
 # identifiers defined in this module).
-ID = "enthought.plugins.text_editor"
+ID = "envisage.plugins.text_editor"
 
 class TextEditorPlugin(Plugin):
     """ Text Editor plugin for the Workbench UI.
@@ -17,7 +17,7 @@ class TextEditorPlugin(Plugin):
 
     #### Contributions made by this plugin #####################################
 
-    ACTION_SETS = 'enthought.envisage.ui.workbench.action_sets'
+    ACTION_SETS = 'envisage.ui.workbench.action_sets'
     action_sets = List(contributes_to=ACTION_SETS)
 
     def _action_sets_default(self):

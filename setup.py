@@ -26,11 +26,11 @@ def configuration(parent_package='',top_path=None):
 ################################################################################
 
 def _mayavi_version(pkg_name):
-    from enthought.mayavi import version
+    from mayavi import version
     return version.version
 
 def _traits_version(pkg_name):
-    from enthought.traits import version
+    from traits import version
     return version.__version__
 
 # Check for core dependencies
@@ -44,8 +44,8 @@ if len(set(('develop', 'bdist_egg', 'bdist_rpm', 'bdist', 'bdist_dumb',
             )).intersection(sys.argv)) > 0:
     from setup_egg import extra_setuptools_args
     package_check('networkx', INFO_VARS['networkx_min_version'])
-    package_check('enthought.mayavi', INFO_VARS['mayavi_min_version'],version_getter=_mayavi_version)
-    package_check('enthought.traits', INFO_VARS['traits_min_version'],version_getter=_traits_version)
+    package_check('mayavi', INFO_VARS['mayavi_min_version'],version_getter=_mayavi_version)
+    package_check('traits', INFO_VARS['traits_min_version'],version_getter=_traits_version)
 
 # extra_setuptools_args can be defined from the line above, but it can
 # also be defined here because setup.py has been exec'ed from
