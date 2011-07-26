@@ -668,7 +668,8 @@ for i,nodeid in enumerate(g.nodes()):
     # apply a conversion procedure if the position
     # is a tuple store as string
     # we need a numpy array in the end
-    pos = tuple(float(s) for s in pos[1:-1].split(','))
+    if type(pos) is str:
+        pos = tuple(float(s) for s in pos[1:-1].split(','))
     pos = np.array(pos)
     position_array[i,:] = pos
 
