@@ -65,7 +65,7 @@ envisageplugins_min_version = '3.1.1' # python-envisageplugins
 traitsbackendwx_min_version = '3.2.0' # python-traitsbackendwx
 traitsbackendqt_min_version = '3.2.0' # python-traitsbackendqt
 traitsgui_min_version = '3.1.0' # python-traitsgui
-traits_min_version = '3.2.0' # python-traits
+traits_min_version = '4.0.0' # python-traits
 
 python_enthought_traits_ui = '3.1.0' # python-enthought-traits-ui
 enthoughtbase_min_version = '3.0.3' # python-enthoughtbase
