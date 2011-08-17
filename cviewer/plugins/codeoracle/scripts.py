@@ -367,9 +367,6 @@ nipypebet = """
 # As an input, you need a T1-weighted image that as an input to the Nipype node.
 rawimage = cfile.obj.get_by_name('MYRAWT1IMAGE')
 
-# Let's check if the metadata agrees with what is expected (it should say "T1-weighted")
-print rawimage.dtype
-
 # We do not necessarily need to load the connectome object - if the connectome file is extracted
 # locally. We just need to retrieve the absolute file path
 rawimage_pwd = rawimage.get_abs_path()
@@ -913,7 +910,8 @@ mlab.pipeline.outline(data_src)
 # Create a simple x-aligned image plane widget
 image_plane_widget = mlab.pipeline.image_plane_widget(data_src, name=volname)
 image_plane_widget.ipw.plane_orientation = 'x_axes'
-image_plane_widget.ipw.reslice_interpolate = 'nearest_neighbour'                    
+image_plane_widget.ipw.reslice_interpolate = 'nearest_neighbour'
+image_plane_widget.ipw.slice_index = int(data.shape[0]/2)
 """
 
 reportlab = """
