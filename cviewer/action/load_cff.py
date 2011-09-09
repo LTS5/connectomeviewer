@@ -64,6 +64,7 @@ class OpenCFile(Action):
     
         wildcard = "Connectome Markup File v2.0 (meta.cml)|meta.cml|" \
                     "Connectome File Format v2.0 (*.cff)|*.cff|" \
+                    "Nifti-1 (*.nii.gz)|*.nii.gz|" \
                     "All files (*.*)|*.*"
         dlg = FileDialog(wildcard=wildcard,title="Choose a Connectome File",\
                          resizeable=False, \
@@ -88,6 +89,13 @@ class OpenCFile(Action):
             elif os.path.exists(dlg.paths[0]) and (dlg.paths[0]).endswith('meta.cml'):
                 cfile.close_cfile()
                 cfile.load_cfile(dlg.paths[0], ismetacml = True)
+
+            elif os.path.exists(dlg.paths[0]) and (dlg.paths[0]).endswith('.nii.gz'):
+                cvol = cfflib.CVolume(name="xxx",
+                               src=os.path.join('QBALL.nii.gz'),
+                               fileformat='Nifti1GZ')
+                cfile.obj.add_connectome_volume(cvol)
+
             else:
                 logger.info('Could not load file: '+ dlg.paths)
                 

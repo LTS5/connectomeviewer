@@ -195,6 +195,8 @@ class CFile(HasTraits):
         self._connectome_data = None
         self._connectome_script = None
         self._connectome_imagestack = None
+
+        self.obj = cfflib.connectome()
     
     
     def load_cfile(self, filepath, ismetacml = False):
