@@ -55,7 +55,8 @@ class OpenFile(Action):
             cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
             exec_as_funct = False
 
-        wildcard = "Nifti-1 (*.nii.gz)|*.nii.gz|" \
+        wildcard = "All files (*.*)|*.*" \
+                   "Nifti-1 (*.nii.gz)|*.nii.gz|" \
                    "Gifti (*.gii)|*.gii|" \
                    "TrackVis tracks (*.trk)|*.trk|" \
                    "Network Pickle (*.gpickle)|*.gpickle|" \
@@ -63,8 +64,8 @@ class OpenFile(Action):
                    "Numpy Data (*.npy)|*.npy|" \
                    "Pickle Data (*.pkl)|*.pkl|" \
                    "Text Data (*.txt)|*.txt|" \
-                   "CSV Data (*.csv)|*.csv|" \
-                   "All files (*.*)|*.*"
+                   "CSV Data (*.csv)|*.csv|"
+
         dlg = FileDialog(wildcard=wildcard,title="Choose a file",\
                          resizeable=False, \
                          default_directory=preference_manager.cviewerui.cffpath,)
@@ -89,7 +90,6 @@ class OpenFile(Action):
                             name = fname, gii_filename = dlg.paths[0])
                 cfile.obj.add_connectome_surface(csurf)
 
-            # these assume internal knowledge of how cfflib works
             elif os.path.exists(dlg.paths[0]) and fname.endswith('.trk'):
                     ctrk = cfflib.CTrack(
                                 name = fname, src = dlg.paths[0])

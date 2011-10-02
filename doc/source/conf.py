@@ -66,15 +66,15 @@ master_doc = 'index'
 
 # General substitutions.
 project = 'Connectome Viewer'
-copyright = '2010, EPFL & UNIL-CHUV. Author: Stephan Gerhard'
+copyright = '2011, EPFL & UNIL-CHUV. Author: Stephan Gerhard'
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = '2.0.0'
+version = '2.1.0'
 # The full version, including alpha/beta/rc tags.
-release = '2.0.0'
+release = '2.1.0'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
