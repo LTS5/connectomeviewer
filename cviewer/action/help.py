@@ -5,10 +5,10 @@
 # Modified BSD License
 
 # Enthought library imports
-from enthought.pyface.action.api import Action
-from enthought.traits.ui.api import auto_close_message
-from enthought.mayavi.preferences.api import preference_manager
-from enthought.pyface.image_resource import ImageResource
+from pyface.action.api import Action
+from traitsui.api import auto_close_message
+from mayavi.preferences.api import preference_manager
+from pyface.image_resource import ImageResource
 
 # Connectome Viewer imports
 from common import IMAGE_PATH

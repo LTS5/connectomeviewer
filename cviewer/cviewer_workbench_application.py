@@ -7,11 +7,11 @@
 # Modified BSD License
 
 # Standard library imports
-from enthought.traits.api import Bool
+from traits.api import Bool
 
 # Enthought library import
-from enthought.envisage.ui.workbench.api import WorkbenchApplication
-from enthought.pyface.api import AboutDialog, ImageResource, SplashScreen
+from envisage.ui.workbench.api import WorkbenchApplication
+from pyface.api import AboutDialog, ImageResource, SplashScreen
 
 # ConnectomeViewer imports
 from cviewer.plugins.ui.preference_manager import preference_manager

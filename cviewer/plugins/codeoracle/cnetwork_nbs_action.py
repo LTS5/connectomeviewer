@@ -1,10 +1,10 @@
-from enthought.traits.api import Code, Button, Int, on_trait_change, Any, HasTraits,List, Str, Enum, Instance, Bool, Property, Float
-from enthought.traits.ui.api import (View, Item, Group, HGroup, CodeEditor,
+from traits.api import Code, Button, Int, on_trait_change, Any, HasTraits,List, Str, Enum, Instance, Bool, Property, Float
+from traitsui.api import (View, Item, Group, HGroup, CodeEditor,
                                      spring, Handler, EnumEditor)
-from enthought.traits.ui.api \
+from traitsui.api \
     import View, HGroup, Item, TabularEditor
     
-from enthought.traits.ui.tabular_adapter \
+from traitsui.tabular_adapter \
     import TabularAdapter
 
 class MultiSelectAdapter ( TabularAdapter ):

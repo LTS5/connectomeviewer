@@ -12,9 +12,9 @@
 # License: BSD Style.
 
 # Enthought library imports.
-from enthought.envisage.ui.action.api import Action, Group, Menu, ToolBar
-from enthought.envisage.ui.workbench.api import WorkbenchActionSet
-from enthought.mayavi.core.registry import registry
+from envisage.ui.action.api import Action, Group, Menu, ToolBar
+from envisage.ui.workbench.api import WorkbenchActionSet
+from mayavi.core.registry import registry
 
 ########################################
 # Groups
@@ -83,7 +83,7 @@ plugins_menu = Menu(
 # MODIFY
 open_file = Action(
     id            = "OpenFile",
-    class_name    = "enthought.mayavi.action.sources.OpenFile",
+    class_name    = "mayavi.action.sources.OpenFile",
     name          = "&Open file ...",
     path          =  "MenuBar/File/LoadDataMenu"
 )
@@ -122,7 +122,7 @@ SOURCE_ACTIONS = [open_file2, open_cff, save_cff, open_file]
 #for src in registry.sources:
 #    if len(src.extensions) == 0:
 #        action = Action(id=src.id,
-#                        class_name="enthought.mayavi.action.sources." + src.id,
+#                        class_name="mayavi.action.sources." + src.id,
 #                        name= src.menu_name,
 #                        path="MenuBar/File/LoadDataMenu"
 #                        )
@@ -134,7 +134,7 @@ SOURCE_ACTIONS = [open_file2, open_cff, save_cff, open_file]
 
 save_viz = Action(
     id            = "SaveVisualization",
-    class_name    = "enthought.mayavi.action.save_load.SaveVisualization",
+    class_name    = "mayavi.action.save_load.SaveVisualization",
     name          = "&Save Visualization",
     group         = "ConnectomeFileGroup",
     path          = "MenuBar/File",
@@ -142,7 +142,7 @@ save_viz = Action(
 
 load_viz = Action(
     id            = "LoadVisualization",
-    class_name    = "enthought.mayavi.action.save_load.LoadVisualization",
+    class_name    = "mayavi.action.save_load.LoadVisualization",
     name          = "&Load Visualization",
     group         = "ConnectomeFileGroup",
     path          = "MenuBar/File",
@@ -163,7 +163,7 @@ run_script = Action(
 
 add_mm = Action(
     id            = "AddModuleManager",
-    class_name    = "enthought.mayavi.action.modules.AddModuleManager",
+    class_name    = "mayavi.action.modules.AddModuleManager",
     name          = "&Add ModuleManager",
     path="MenuBar/VisualizeMenu",
     after="FiltersMenu"
@@ -175,7 +175,7 @@ add_mm = Action(
 MODULE_ACTIONS = []
 for module in registry.modules:
     action = Action(id=module.id,
-                    class_name="enthought.mayavi.action.modules." + module.id,
+                    class_name="mayavi.action.modules." + module.id,
                     name= module.menu_name,
                     group = "ModulesGroup",
                     path="MenuBar/VisualizeMenu/ModulesMenu"
@@ -188,7 +188,7 @@ for module in registry.modules:
 FILTER_ACTIONS = []
 for filter in registry.filters:
     action = Action(id=filter.id,
-                    class_name="enthought.mayavi.action.filters." + filter.id,
+                    class_name="mayavi.action.filters." + filter.id,
                     name= filter.menu_name,
                     group = "FiltersGroup",
                     path="MenuBar/VisualizeMenu/FiltersMenu"
@@ -208,7 +208,7 @@ help_cviewer = Action(
 
 help_index = Action(
     id            = "HelpIndex",
-    class_name    = "enthought.mayavi.action.help.HelpIndex",
+    class_name    = "mayavi.action.help.HelpIndex",
     name          = "User Guide &MayaVi2",
     path          = "MenuBar/Help"
 )
@@ -229,7 +229,7 @@ keybindings = Action(
 
 tvtk_class_browser = Action(
     id            = "TVTKClassBrowser",
-    class_name    = "enthought.mayavi.action.help.TVTKClassBrowser",
+    class_name    = "mayavi.action.help.TVTKClassBrowser",
     name          = "&VTK Class Browser",
     path          = "MenuBar/Help",
 )

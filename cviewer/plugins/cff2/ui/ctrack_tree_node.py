@@ -8,9 +8,9 @@
 import os
 
 # Enthought library imports
-from enthought.traits.api import Instance, Str, Any
-from enthought.traits.ui.api import TreeNode
-from enthought.traits.ui.menu import Menu, Action, Separator
+from traits.api import Instance, Str, Any
+from traitsui.api import TreeNode
+from traitsui.menu import Menu, Action, Separator
 
 # ConnectomeViewer imports
 from cviewer.plugins.cff2.ctrack import CTrack

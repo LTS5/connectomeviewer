@@ -303,7 +303,7 @@ threedviz2 = """
 
 import networkx as nx
 import numpy as np
-from enthought.mayavi import mlab
+from mayavi import mlab
 
 # Retrieve NetworkX graph
 G = cfile.obj.get_by_name("connectome_freesurferaparc").data
@@ -447,7 +447,7 @@ cf.xnat_push( connectome_obj = a, projectid = "YOURPROJECTID", subjectid = "SUBJ
 
 surfscript = """
 # Importing Mayavi mlab interface
-from enthought.mayavi import mlab
+from mayavi import mlab
 
 
 # Retrieving the data
@@ -642,8 +642,8 @@ netscript = """
 # Importing NumPy
 import numpy as np
 # Importing Mayavi mlab and tvtk packages
-from enthought.mayavi import mlab
-from enthought.tvtk.api import tvtk
+from mayavi import mlab
+from tvtk.api import tvtk
 
 # Retrieving the data and set parameters
 # --------------------------------------
@@ -864,7 +864,7 @@ cfile.update_children()
 """
 
 volrendering = """
-from enthought.mayavi import mlab
+from mayavi import mlab
 import numpy as np
 data=np.random.random( (10,10,10))
 min = data.min()
@@ -876,7 +876,7 @@ vol = mlab.pipeline.volume(source, vmin=min+0.65*(max-min),
 
 volslice = """
 # Import Mayavi mlab interface
-from enthought.mayavi import mlab
+from mayavi import mlab
 # Import NumPy
 import numpy as np
 

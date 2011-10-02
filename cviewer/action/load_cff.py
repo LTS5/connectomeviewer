@@ -9,11 +9,11 @@
 import os.path
 
 # Enthought library imports
-from enthought.io.api import File
-from enthought.traits.api import Str, Bool
-from enthought.pyface.action.api import Action
-from enthought.pyface.api import FileDialog, OK
-from enthought.pyface.image_resource import ImageResource
+from apptools.io.api import File
+from traits.api import Str, Bool
+from pyface.action.api import Action
+from pyface.api import FileDialog, OK
+from pyface.image_resource import ImageResource
 
 # Connectome Viewer imports
 from common import IMAGE_PATH

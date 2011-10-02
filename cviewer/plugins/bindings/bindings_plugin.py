@@ -7,9 +7,9 @@
 # Modified BSD License
 
 # Enthought library imports
-from enthought.envisage.api import Plugin
-from enthought.traits.api import List
-from enthought.envisage.api import Service
+from envisage.api import Plugin
+from traits.api import List
+from envisage.api import Service
 
 # Logging imports
 import logging
@@ -18,7 +18,7 @@ logger = logging.getLogger('root.'+__name__)
 class BindingsPlugin(Plugin):
     """ A plugin that binds some names to values in the Python Shell View. """
    
-    bindings = List(contributes_to='enthought.plugins.python_shell.bindings')
+    bindings = List(contributes_to='envisage.plugins.python_shell.bindings')
 
     # The plugin's unique identifier.
     id = 'connectome.bindings'

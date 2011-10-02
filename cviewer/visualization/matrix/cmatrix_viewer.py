@@ -13,16 +13,16 @@
 
 
 # Major library imports
-from enthought.enable.api import BaseTool
+from enable.api import BaseTool
 
 # Enthought library imports
-from enthought.enable.api import Component, ComponentEditor, Window
-from enthought.traits.api import HasTraits, Instance, Str, Enum, Float, Int, Any
-from enthought.traits.ui.api import Item, Group, View, HGroup, Handler
+from enable.api import Component, ComponentEditor, Window
+from traits.api import HasTraits, Instance, Str, Enum, Float, Int, Any
+from traitsui.api import Item, Group, View, HGroup, Handler
 
 # Chaco imports
-from enthought.chaco.api import ArrayPlotData, ColorBar, HPlotContainer, jet, LinearMapper, Plot
-from enthought.chaco.tools.api import PanTool, RangeSelection, RangeSelectionOverlay, ZoomTool
+from chaco.api import ArrayPlotData, ColorBar, HPlotContainer, jet, LinearMapper, Plot
+from chaco.tools.api import PanTool, RangeSelection, RangeSelectionOverlay, ZoomTool
 
 # ConnectomeViewer imports
 from cviewer.plugins.cff.ui.edge_parameters_view import EdgeParameters

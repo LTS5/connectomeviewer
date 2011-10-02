@@ -7,9 +7,9 @@
 # Standard library imports
 
 # Enthought library imports
-from enthought.traits.api import HasTraits, Str, Bool, CBool, Any, Dict, implements, \
+from traits.api import HasTraits, Str, Bool, CBool, Any, Dict, implements, \
       List, Instance, DelegatesTo, Property
-from enthought.traits.ui.api import View, Item, auto_close_message, message
+from traitsui.api import View, Item, auto_close_message, message
 
 import cfflib
 
@@ -33,7 +33,7 @@ class CBase(HasTraits):
 #    data = Property(Any, depends_on = ['obj'] )
     
     # active window
-    window = Instance('enthought.pyface.workbench.api.WorkbenchWindow')
+    window = Instance('pyface.workbench.api.WorkbenchWindow')
     
     # private traits
     ###########
@@ -76,8 +76,8 @@ class CBase(HasTraits):
                 self.dname = "%s [Loaded]" % n
                 
             if not self.window is None:
-                #from enthought.pyface.timer.api import do_later
-                from enthought.pyface.api import GUI
+                #from pyface.timer.api import do_later
+                from pyface.api import GUI
                 GUI.invoke_later(self.window.status_bar_manager.set, message = '')
             
         else:

@@ -14,16 +14,16 @@
 
 
 # Major library imports
-from enthought.enable.api import BaseTool
+from enable.api import BaseTool
 
 # Enthought library imports
-from enthought.enable.api import Component, ComponentEditor, Window
-from enthought.traits.api import HasTraits, Instance, Str, Enum, Float, Int, Property, Any
-from enthought.traits.ui.api import Item, Group, View, HGroup, Handler
+from enable.api import Component, ComponentEditor, Window
+from traits.api import HasTraits, Instance, Str, Enum, Float, Int, Property, Any
+from traitsui.api import Item, Group, View, HGroup, Handler
 
 # Chaco imports
-from enthought.chaco.api import ArrayPlotData, ColorBar, HPlotContainer, jet, LinearMapper, Plot
-from enthought.chaco.tools.api import PanTool, RangeSelection, RangeSelectionOverlay, ZoomTool
+from chaco.api import ArrayPlotData, ColorBar, HPlotContainer, jet, LinearMapper, Plot
+from chaco.tools.api import PanTool, RangeSelection, RangeSelectionOverlay, ZoomTool
 
 class CustomHandler(Handler):
     """ Handler used to set NetworkName in TraitsTitle """

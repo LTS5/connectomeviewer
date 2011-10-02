@@ -5,9 +5,9 @@
 # Modified BSD License
 
 # Enthought library imports
-from enthought.preferences.api import PreferencesHelper
-from enthought.traits.api import Bool, Directory
-from enthought.traits.ui.api import View, Group, Item
+from apptools.preferences.api import PreferencesHelper
+from traits.api import Bool, Directory
+from traitsui.api import View, Group, Item
 
 class CViewerUIPreferencesHelper(PreferencesHelper):
     """ Helper for the Connectome Viewer UI preferences """

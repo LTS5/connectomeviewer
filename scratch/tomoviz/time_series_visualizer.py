@@ -8,16 +8,16 @@
 import numpy as np
 from glob import glob
 from threading import Thread
-from enthought.mayavi import mlab
-from enthought.traits.api import HasTraits, Instance, Array, \
+from mayavi import mlab
+from traits.api import HasTraits, Instance, Array, \
     File, Bool, Int, Range, Enum, Button, Tuple, List, on_trait_change
-from enthought.traits.ui.api import View, Item, HGroup, Group, RangeEditor
-from enthought.tvtk.pyface.scene_model import SceneModel
-from enthought.tvtk.pyface.scene_editor import SceneEditor
-from enthought.traits.ui.api import TupleEditor, Include
-from enthought.mayavi.core.ui.mayavi_scene import MayaviScene
-from enthought.mayavi.tools.mlab_scene_model import MlabSceneModel
-from enthought.pyface.api import GUI
+from traitsui.api import View, Item, HGroup, Group, RangeEditor
+from tvtk.pyface.scene_model import SceneModel
+from tvtk.pyface.scene_editor import SceneEditor
+from traitsui.api import TupleEditor, Include
+from mayavi.core.ui.mayavi_scene import MayaviScene
+from mayavi.tools.mlab_scene_model import MlabSceneModel
+from pyface.api import GUI
 
 class ThreadedAction(Thread):
     def __init__(self, dataset, scalar_field):
