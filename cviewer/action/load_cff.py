@@ -24,7 +24,112 @@ import cfflib
 import logging
 logger = logging.getLogger('root.'+__name__)
 
-        
+
+class OpenFile(Action):
+    name        = "Open file"
+    description = "Open the File Dialog where you can select a neuroimaging file"
+    tooltip     = "Open file"
+    path        = Str("MenuBar/File/LoadDataMenu")
+    image       = ImageResource("cff-open.png", search_path=[IMAGE_PATH])
+
+    # Is the action enabled?
+    enabled = Bool(True)
+
+    # Is the action visible?
+    visible = Bool(True)
+
+    ###########################################################################
+    # 'Action' interface.
+    ###########################################################################
+    def perform(self, event, cfile=None):
+        """ Performs the action. """
+
+        logger.info('Performing open connectome file action')
+
+        # helper variable to use this function not only in the menubar
+        exec_as_funct = True
+
+        if cfile is None:
+            # get the instance of the current CFile
+            # with the help of the Service Registry
+            cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
+            exec_as_funct = False
+
+        wildcard = "Nifti-1 (*.nii.gz)|*.nii.gz|" \
+                   "Gifti (*.gii)|*.gii|" \
+                   "TrackVis tracks (*.trk)|*.trk|" \
+                   "Network Pickle (*.gpickle)|*.gpickle|" \
+                   "Network GraphML (*.graphml)|*.graphml|" \
+                   "Numpy Data (*.npy)|*.npy|" \
+                   "Pickle Data (*.pkl)|*.pkl|" \
+                   "Text Data (*.txt)|*.txt|" \
+                   "CSV Data (*.csv)|*.csv|" \
+                   "All files (*.*)|*.*"
+        dlg = FileDialog(wildcard=wildcard,title="Choose a file",\
+                         resizeable=False, \
+                         default_directory=preference_manager.cviewerui.cffpath,)
+
+        if dlg.open() == OK:
+
+            if not os.path.isfile(dlg.path):
+                logger.error("File '%s' does not exist!"%dlg.path)
+                return
+
+            logger.info('Read file: %s'%dlg.path)
+            fname = os.path.split(dlg.paths[0])[-1]
+
+            if os.path.exists(dlg.paths[0]) and (fname.endswith('.nii.gz') or
+                fname.endswith('.nii')):
+                cvol = cfflib.CVolume.create_from_nifti(
+                            name = fname,nii_filename = dlg.paths[0])
+                cfile.obj.add_connectome_volume(cvol)
+
+            elif os.path.exists(dlg.paths[0]) and fname.endswith('.gii'):
+                csurf = cfflib.CSurface.create_from_gifti(
+                            name = fname, gii_filename = dlg.paths[0])
+                cfile.obj.add_connectome_surface(csurf)
+
+            # these assume internal knowledge of how cfflib works
+            elif os.path.exists(dlg.paths[0]) and fname.endswith('.trk'):
+                    ctrk = cfflib.CTrack(
+                                name = fname, src = dlg.paths[0])
+                    cfile.obj.add_connectome_track(ctrk)
+
+            elif os.path.exists(dlg.paths[0]) and fname.endswith('.gpickle'):
+                    ctrk = cfflib.CNetwork(name = fname, src = dlg.paths[0],
+                                fileformat="NXGPickle")
+                    cfile.obj.add_connectome_network(ctrk)
+
+            elif os.path.exists(dlg.paths[0]) and fname.endswith('.graphml'):
+                    ctrk = cfflib.CNetwork.create_from_graphml(name = fname,
+                                ml_filename = dlg.paths[0])
+                    cfile.obj.add_connectome_network(ctrk)
+
+            elif os.path.exists(dlg.paths[0]) and fname.endswith('.npy'):
+                    cdat = cfflib.CData(name = fname, src = dlg.paths[0],
+                                        fileformat = 'NumPy')
+                    cfile.obj.add_connectome_data(cdat)
+
+            elif os.path.exists(dlg.paths[0]) and fname.endswith('.csv'):
+                    cdat = cfflib.CData(name = fname, src = dlg.paths[0],
+                                        fileformat = 'CSV')
+                    cfile.obj.add_connectome_data(cdat)
+
+            elif os.path.exists(dlg.paths[0]) and fname.endswith('.txt'):
+                    cdat = cfflib.CData(name = fname, src = dlg.paths[0],
+                                        fileformat = 'TXT')
+                    cfile.obj.add_connectome_data(cdat)
+
+            elif os.path.exists(dlg.paths[0]) and fname.endswith('.pkl'):
+                    cdat = cfflib.CData(name = fname, src = dlg.paths[0],
+                                        fileformat = 'Pickle')
+                    cfile.obj.add_connectome_data(cdat)
+
+            else:
+                logger.info('Could not load file: '+ dlg.paths)
+
+            cfile.update_children()
+
 ######################################################################
 # `OpenCFFFile` class.
 ######################################################################
@@ -50,56 +155,49 @@ class OpenCFile(Action):
 
     def perform(self, event, cfile=None):
         """ Performs the action. """
-        
+
         logger.info('Performing open connectome file action')
-        
+
         # helper variable to use this function not only in the menubar
         exec_as_funct = True
-        
+
         if cfile is None:
             # get the instance of the current CFile
             # with the help of the Service Registry
             cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
             exec_as_funct = False
-    
+
         wildcard = "Connectome Markup File v2.0 (meta.cml)|meta.cml|" \
                     "Connectome File Format v2.0 (*.cff)|*.cff|" \
-                    "Nifti-1 (*.nii.gz)|*.nii.gz|" \
                     "All files (*.*)|*.*"
         dlg = FileDialog(wildcard=wildcard,title="Choose a Connectome File",\
                          resizeable=False, \
                          default_directory=preference_manager.cviewerui.cffpath,)
-        
+
         if dlg.open() == OK:
-            
+
             if not os.path.isfile(dlg.path):
                 logger.error("File '%s' does not exist!"%dlg.path)
                 return
-            
+
             # if file exists and has .cff ending
             if os.path.exists(dlg.paths[0]) and (dlg.paths[0]).endswith('.cff'):
-                
+
                 # close the cfile if one is currently loaded
                 cfile.close_cfile()
-                
+
                 # load cfile data
                 cfile.load_cfile(dlg.paths[0])
-                
+
                 self.window.status_bar_manager.message=''
             elif os.path.exists(dlg.paths[0]) and (dlg.paths[0]).endswith('meta.cml'):
                 cfile.close_cfile()
                 cfile.load_cfile(dlg.paths[0], ismetacml = True)
 
-            elif os.path.exists(dlg.paths[0]) and (dlg.paths[0]).endswith('.nii.gz'):
-                cvol = cfflib.CVolume(name="xxx",
-                               src=os.path.join('QBALL.nii.gz'),
-                               fileformat='Nifti1GZ')
-                cfile.obj.add_connectome_volume(cvol)
-
             else:
                 logger.info('Could not load file: '+ dlg.paths)
-                
-                
+
+
 class SaveCFile(Action):
     """ An action that save aconnectome file """
 
