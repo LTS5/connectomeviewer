@@ -1,3 +1,10 @@
+connectomeviewer (2.1.0-1) unstable; urgency=low
+
+  * Namespace transition for Enthought Packages
+  * Flexible direct data loading for various neuroimaging data types
+
+ -- Stephan Gerhard <debian@unidesign.ch>  Thu, 2 Oct 2011 21:30:57 +0200
+
 connectomeviewer (2.0.0-1) unstable; urgency=low
 
   * Initial release (Closes: #565431).
