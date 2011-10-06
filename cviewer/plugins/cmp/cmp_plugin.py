@@ -7,9 +7,9 @@
 # Modified BSD License
 
 # Enthought library imports
-from enthought.envisage.api import Plugin
-from enthought.traits.api import List
-from enthought.envisage.api import Service
+from envisage.api import Plugin
+from traits.api import List
+from envisage.api import Service
 
 # Logging imports
 import logging
@@ -20,7 +20,7 @@ CMPVIEW = 'cviewer.plugins.cmp.cmpview'
 class CMPPlugin(Plugin):
     """ The plugin integrates the Connectome Mapper as a View """
 
-    VIEWS = "enthought.envisage.ui.workbench.views"
+    VIEWS = "envisage.ui.workbench.views"
 
     # The plugin's unique identifier.
     id = 'connectome.mapper'
@@ -39,7 +39,7 @@ class CMPPlugin(Plugin):
     def _cmp_factory(self, window, **traits):
         """ Factory method for the mapper """
 
-        from enthought.pyface.workbench.traits_ui_view import TraitsUIView
+        from pyface.workbench.traits_ui_view import TraitsUIView
 
         try:
             from cmp.gui import CMPGUI

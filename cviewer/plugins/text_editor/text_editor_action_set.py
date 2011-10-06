@@ -1,4 +1,4 @@
-from enthought.envisage.ui.action.api import Action, ActionSet, Group
+from envisage.ui.action.api import Action, ActionSet, Group
 
 class TextEditorActionSet(ActionSet):
     """ The default action set for the Text Editor plugin.

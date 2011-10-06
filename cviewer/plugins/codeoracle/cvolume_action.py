@@ -1,6 +1,6 @@
 
-from enthought.traits.api import Code, Button, Int, on_trait_change, Any, HasTraits,List, Str, Enum, Instance, Bool
-from enthought.traits.ui.api import (View, Item, Group, HGroup, CodeEditor,
+from traits.api import Code, Button, Int, on_trait_change, Any, HasTraits,List, Str, Enum, Instance, Bool
+from traitsui.api import (View, Item, Group, HGroup, CodeEditor,
                                      spring, Handler, EnumEditor)
 
 from cviewer.plugins.cff2.cvolume import CVolume

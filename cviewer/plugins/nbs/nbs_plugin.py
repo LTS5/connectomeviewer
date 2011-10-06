@@ -9,9 +9,9 @@ Original code author:  Andrew Zalesky, azalesky@unimelb.edu.au
 # Modified BSD License
 
 # Enthought library imports
-from enthought.envisage.api import Plugin
-from enthought.traits.api import List
-from enthought.envisage.api import Service
+from envisage.api import Plugin
+from traits.api import List
+from envisage.api import Service
 
 # Logging imports
 import logging
@@ -20,7 +20,7 @@ logger = logging.getLogger('root.'+__name__)
 class NBSPlugin(Plugin):
     """ The plugin exposes a GUI for the NBS in Python Connectome Toolbox """
     
-    COMMANDS            = 'enthought.plugins.python_shell.commands'
+    COMMANDS            = 'envisage.plugins.python_shell.commands'
 
     commands = List(contributes_to=COMMANDS)
     

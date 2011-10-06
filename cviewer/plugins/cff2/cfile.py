@@ -12,7 +12,7 @@ import tempfile
 from threading import Thread
 
 # Enthought library imports
-from enthought.traits.api import HasTraits, Instance, Any, Str, File, List, Bool, Property, cached_property
+from traits.api import HasTraits, Instance, Any, Str, File, List, Bool, Property, cached_property
 
 # ConnectomeViewer imports
 from cmetadata import CMetadata
@@ -60,7 +60,7 @@ class CFile(HasTraits):
     
     # reference to the current window for statusbar updates
     # not nice MVC-style
-    _workbenchwin = Instance('enthought.pyface.workbench.api.WorkbenchWindow')
+    _workbenchwin = Instance('pyface.workbench.api.WorkbenchWindow')
     
     connectome_meta = Property(Any)
     connectome_network = Property(List)
@@ -195,6 +195,8 @@ class CFile(HasTraits):
         self._connectome_data = None
         self._connectome_script = None
         self._connectome_imagestack = None
+
+        self.obj = cfflib.connectome()
     
     
     def load_cfile(self, filepath, ismetacml = False):

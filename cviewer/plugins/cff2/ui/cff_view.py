@@ -8,12 +8,12 @@
 import os, os.path
 
 # Enthought library imports
-from enthought.traits.api import Instance, HasTraits, Any, Delegate, List, Either, Property
-from enthought.pyface.image_cache import ImageCache
-from enthought.traits.ui.api import (Item, TreeEditor, TreeNode, View, Handler, UIInfo)
-from enthought.pyface.image_resource import ImageResource
-from enthought.pyface.api import FileDialog, OK
-from enthought.pyface.action.api import Action
+from traits.api import Instance, HasTraits, Any, Delegate, List, Either, Property
+from pyface.image_cache import ImageCache
+from traitsui.api import (Item, TreeEditor, TreeNode, View, Handler, UIInfo)
+from pyface.image_resource import ImageResource
+from pyface.api import FileDialog, OK
+from pyface.action.api import Action
 
 # ConnectomeViewer imports
 from cviewer.plugins.cff2.cnetwork import CNetwork
@@ -96,6 +96,7 @@ class CFFView(HasTraits):
     ###########################################################################
     def __init__(self, **traits):
         super(CFFView, self).__init__(**traits)
+
 
     ###########################################################################
     # `HasTraits` interface.

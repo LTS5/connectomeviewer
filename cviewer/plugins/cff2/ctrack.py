@@ -9,9 +9,9 @@ import os
 import subprocess
 
 # Enthought library imports
-from enthought.traits.api import HasTraits, Str, Bool, CBool, Any, Dict, implements, \
+from traits.api import HasTraits, Str, Bool, CBool, Any, Dict, implements, \
       List, Instance, DelegatesTo, Property
-from enthought.traits.ui.api import View, Item, auto_close_message, message
+from traitsui.api import View, Item, auto_close_message, message
 
 import cfflib
 from cviewer.plugins.ui.preference_manager import preference_manager

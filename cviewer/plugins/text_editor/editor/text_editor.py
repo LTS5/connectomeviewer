@@ -5,12 +5,12 @@
 from os.path import basename
 
 # Enthought library imports.
-from enthought.pyface.workbench.api import TraitsUIEditor
-from enthought.pyface.api import FileDialog, CANCEL
-from enthought.traits.api import Code, Instance
-from enthought.traits.ui.api import CodeEditor, Group, Item, View
-from enthought.traits.ui.key_bindings import KeyBinding, KeyBindings
-from enthought.traits.ui.menu import NoButtons,ApplyButton, OKCancelButtons
+from pyface.workbench.api import TraitsUIEditor
+from pyface.api import FileDialog, CANCEL
+from traits.api import Code, Instance
+from traitsui.api import CodeEditor, Group, Item, View
+from traitsui.key_bindings import KeyBinding, KeyBindings
+from traitsui.menu import NoButtons,ApplyButton, OKCancelButtons
 
 # Local imports.
 from text_editor_handler import TextEditorHandler
@@ -28,7 +28,7 @@ def _id_generator():
 
 _id_generator = _id_generator()
 
-from enthought.traits.api import Button
+from traits.api import Button
 
 class TextEditor(TraitsUIEditor):
     """ A text editor. """
@@ -116,7 +116,7 @@ class TextEditor(TraitsUIEditor):
         # Execute the code.
         if len(self.obj.path) > 0:
             view = self.window.get_view_by_id(
-                'enthought.plugins.python_shell_view'
+                'envisage.plugins.python_shell_view'
             )
 
             if view is not None:
@@ -219,7 +219,7 @@ class TextEditor(TraitsUIEditor):
                 show_labels = False
             ),
         
-            id        = 'enthought.envisage.editor.text_editor',
+            id        = 'envisage.editor.text_editor',
             handler   = TextEditorHandler(),
             kind      = 'live',
             resizable = True,

@@ -15,10 +15,10 @@ import os.path
 import os
 
 # Enthought library imports
-from enthought.traits.api import (HasTraits, Instance, Int, on_trait_change)
-from enthought.etsconfig.api import ETSConfig
+from traits.api import (HasTraits, Instance, Int, on_trait_change)
+from traits.etsconfig.api import ETSConfig
 
-from enthought.logger.api import LogFileHandler, FORMATTER
+from apptools.logger.api import LogFileHandler, FORMATTER
 
 # ConnectomeViewer imports
 from cviewer.cviewer_workbench_application import CViewerWorkbenchApplication
@@ -28,10 +28,10 @@ from cviewer.info import version as ver
 # Logger imports
 import logging, logging.handlers
 logger = logging.getLogger('root')
-logger_envisage = logging.getLogger('enthought.envisage.plugin')
-logger_ipython = logging.getLogger('enthought.plugins.ipython_shell.view.ipython_shell_view')
-logger_pyface = logging.getLogger('enthought.pyface.ui.wx.workbench.editor_set_structure_handler')
-logger_pyfaceview = logging.getLogger('enthought.pyface.workbench.i_view')
+logger_envisage = logging.getLogger('envisage.plugin')
+logger_ipython = logging.getLogger('envisage.plugins.ipython_shell.view.ipython_shell_view')
+logger_pyface = logging.getLogger('pyface.ui.wx.workbench.editor_set_structure_handler')
+logger_pyfaceview = logging.getLogger('pyface.workbench.i_view')
 
 def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
     """Setup a log file and the logger.
@@ -105,7 +105,7 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
         logger_envisage.addHandler(filehandler)
 
         # does this fix the  
-        # no handlers could be found for logger "enthought.envisage.plugin"
+        # no handlers could be found for logger "envisage.plugin"
     
         logger_ipython.addHandler(filehandler)
         logger_pyface.addHandler(filehandler)
@@ -131,10 +131,10 @@ def setup_logger(logger, fname, stream=True, mode=logging.ERROR):
 def get_non_gui_plugin_classes():
     """Get list of basic mayavi plugin classes that do not add any views or
     actions."""
-    from enthought.envisage.core_plugin import CorePlugin
-    from enthought.envisage.ui.workbench.workbench_plugin import WorkbenchPlugin
-    from enthought.tvtk.plugins.scene.scene_plugin import ScenePlugin
-    from enthought.mayavi.plugins.mayavi_plugin import MayaviPlugin
+    from envisage.core_plugin import CorePlugin
+    from envisage.ui.workbench.workbench_plugin import WorkbenchPlugin
+    from tvtk.plugins.scene.scene_plugin import ScenePlugin
+    from mayavi.plugins.mayavi_plugin import MayaviPlugin
     
     plugins = [CorePlugin,
                WorkbenchPlugin,
@@ -152,9 +152,9 @@ def get_plugin_classes():
     """Get list of default plugin classes to use for Connectome Viewer."""
 
     # Force the selection of a toolkit:
-    from enthought.traits.ui.api import toolkit
+    from traitsui.api import toolkit
     toolkit()
-    from enthought.etsconfig.api import ETSConfig
+    from traits.etsconfig.api import ETSConfig
     try_use_ipython = preference_manager.cviewerui.useipython
 
     use_ipython = False
@@ -162,19 +162,19 @@ def get_plugin_classes():
         try:
             # If the right versions of IPython, EnvisagePlugins and
             # Pyface are not installed, this import will fail.
-            from enthought.plugins.ipython_shell.view.ipython_shell_view \
+            from envisage.plugins.ipython_shell.view.ipython_shell_view \
                     import IPythonShellView
             use_ipython = True
         except: pass
 
     if use_ipython:
-        from enthought.plugins.ipython_shell.ipython_shell_plugin import \
+        from envisage.plugins.ipython_shell.ipython_shell_plugin import \
                 IPythonShellPlugin
         PythonShellPlugin = IPythonShellPlugin
     else:
-        from enthought.plugins.python_shell.python_shell_plugin import PythonShellPlugin
+        from envisage.plugins.python_shell.python_shell_plugin import PythonShellPlugin
         
-    from enthought.tvtk.plugins.scene.ui.scene_ui_plugin import SceneUIPlugin
+    from tvtk.plugins.scene.ui.scene_ui_plugin import SceneUIPlugin
     from cviewer.plugins.text_editor.text_editor_plugin import TextEditorPlugin
     
     plugins = get_non_gui_plugin_classes()
@@ -252,10 +252,10 @@ class CViewer(HasTraits):
     """The Connectome Viewer application class. """
 
     # The main envisage application.
-    application = Instance('enthought.envisage.ui.workbench.api.WorkbenchApplication')
+    application = Instance('envisage.ui.workbench.api.WorkbenchApplication')
 
     # The MayaVi Script instance.
-    script = Instance('enthought.mayavi.plugins.script.Script')
+    script = Instance('mayavi.plugins.script.Script')
 
     # The logging mode.
     log_mode = Int(logging.ERROR, desc='the logging mode to use')
@@ -302,7 +302,7 @@ class CViewer(HasTraits):
         
     def setup_logger(self):
         """ Setting up the root logger """
-        from enthought.etsconfig.api import ETSConfig
+        from traits.etsconfig.api import ETSConfig
         
         path = os.path.join(ETSConfig.application_data,
                             'ch.connectome.viewer', 'cviewer.log')
