@@ -1,6 +1,8 @@
 connectomeviewer (2.1.0-1) unstable; urgency=low
 
   * Namespace transition for Enthought Packages
+    - added python-traits (>= 4) into Build-Depends to not build
+      for older platforms
   * Flexible direct data loading for various neuroimaging data types
 
  -- Stephan Gerhard <debian@unidesign.ch>  Thu, 2 Oct 2011 21:30:57 +0200
