@@ -1,4 +1,4 @@
-Format-Specification: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=173
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: connectomeviewer
 Upstream-Contact: Stephan Gerhard <debian@unidesign.ch>
 Source: http://github.com/LTS5/connectomeviewer
@@ -7,6 +7,12 @@ Source: http://github.com/LTS5/connectomeviewer
 Files: *
 Copyright: 2009-2011, Ecole Polytechnique Fédérale de Lausanne (EPFL) and
                       Hospital Center and University of Lausanne (UNIL-CHUV), Switzerland
+License: BSD-3
+
+Files: ./cviewer/visualization/volume/volume_slicer.py
+Copyright: 2009, Enthought, Inc.
+License: BSD-3
+
 License: BSD-3
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
@@ -33,7 +39,3 @@ License: BSD-3
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-Files: ./cviewer/visualization/volume/volume_slicer.py
-Copyright: 2009, Enthought, Inc.
-License: BSD-3

@@ -4,6 +4,7 @@ connectomeviewer (2.1.0-1) unstable; urgency=low
     - added python-traits (>= 4) into Build-Depends to not build
       for older platforms
   * Flexible direct data loading for various neuroimaging data types
+  * Adjusted debian/copyright to match DEP-5 1.0
 
  -- Stephan Gerhard <debian@unidesign.ch>  Thu, 2 Oct 2011 21:30:57 +0200
 
