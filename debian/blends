@@ -1,0 +1,8 @@
+Source: connectomeviewer
+Tasks: debian-med/imaging,
+       debian-science/neuroscience-cognitive
+Published-Title: The Connectome Viewer Toolkit: An open source framework to manage, analyze, and visualize connectomes
+Published-Authors: Gerhard S, Daducci A, Lemkaddem A, Meuli R, Thiran J-P and Hagmann P
+Published-In: Front. Neuroinform. 5:3
+Published-Year: 2011
+Published-DOI: 10.3389/fninf.2011.00003
