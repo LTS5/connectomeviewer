@@ -483,6 +483,9 @@ else:
 
 # Create triangular surface mesh
 x, y, z = vertices[:,0], vertices[:,1], vertices[:,2]
+x = x + 128
+y = y + 128
+z = z - 128
 mlab.triangular_mesh(x, y, z, faces, scalars = labels)
 
 """
@@ -658,15 +661,13 @@ node_label_key = "%s"
 create_label = []
 
 # Assume node id's are integers
-nr_nodes = len(g.nodes())
+nr_nodes = np.max(g.nodes())
 position_array = np.zeros( (nr_nodes, 3) )
 for i,nodeid in enumerate(g.nodes()):
     pos = g.node[nodeid][position_key]
     # apply a conversion procedure if the position
     # is a tuple store as string
     # we need a numpy array in the end
-    if type(pos) is str or unicode:
-        pos = tuple(float(s) for s in pos[1:-1].split(','))
     pos = np.array(pos)
     position_array[i,:] = pos
 

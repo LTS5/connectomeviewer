@@ -96,7 +96,6 @@ cortico_cortico = Action(
     path          = "MenuBar/Code Oracle/Connectome/CTrack/Analysis"
 )
 
-
 nipype_bet = Action(
     id            = "OracleNipypeBet",
     class_name    = "cviewer.plugins.codeoracle.actions.NipypeBet",
@@ -104,6 +103,103 @@ nipype_bet = Action(
     path          = "MenuBar/Code Oracle/Other/Nipype"
 )
 
+nipype_PlotNodes = Action(
+    id            = "NipypePlotNodes",
+    class_name    = "cviewer.plugins.codeoracle.actions.PlotNodes",
+    name          = "Plot Nodes",
+    path          = "MenuBar/Plotting"
+)
+
+nipype_PlotEdges = Action(
+    id            = "NipypePlotEdges",
+    class_name    = "cviewer.plugins.codeoracle.actions.PlotEdges",
+    name          = "Plot Edges",
+    path          = "MenuBar/Plotting"
+)
+
+nipype_PlotLabelsByPhrase = Action(
+    id            = "NipypePlotLabelsByPhrase",
+    class_name    = "cviewer.plugins.codeoracle.actions.PlotLabelsByPhrase",
+    name          = "Plot Labels By Phrase",
+    path          = "MenuBar/Plotting"
+)
+
+nipype_PlotLabelsByDegree = Action(
+    id            = "NipypePlotLabelsByDegree",
+    class_name    = "cviewer.plugins.codeoracle.actions.PlotLabelsByDegree",
+    name          = "Plot Labels By Degree",
+    path          = "MenuBar/Plotting"
+)
+
+nipype_PlotNetwork = Action(
+    id            = "NipypePlotNetwork",
+    class_name    = "cviewer.plugins.codeoracle.actions.PlotNetwork",
+    name          = "Plot Network",
+    path          = "MenuBar/Plotting"
+)
+
+nipype_RecordVideo = Action(
+    id            = "NipypeRecordVideo",
+    class_name    = "cviewer.plugins.codeoracle.actions.RecordVideo",
+    name          = "Record Video",
+    path          = "MenuBar/Plotting"
+)
+
+nipype_PlotSurface = Action(
+    id            = "NipypePlotSurface",
+    class_name    = "cviewer.plugins.codeoracle.actions.PlotSurface",
+    name          = "Plot Surface",
+    path          = "MenuBar/Plotting"
+)
+
+ClearFigure = Action(
+    id            = "ClearFigure",
+    class_name    = "cviewer.plugins.codeoracle.actions.ClearFigure",
+    name          = "Clear Figure",
+    path          = "MenuBar/Plotting"
+)
+
+NewFigure = Action(
+    id            = "NewFigure",
+    class_name    = "cviewer.plugins.codeoracle.actions.NewFigure",
+    name          = "New Figure",
+    path          = "MenuBar/Plotting"
+)
+
+ShowHideEdgeLegend = Action(
+    id            = "ShowHideEdgeLegend",
+    class_name    = "cviewer.plugins.codeoracle.actions.ShowHideEdgeLegend",
+    name          = "Show/Hide Edge Legend",
+    path          = "MenuBar/Plotting"
+)
+
+ShowHideNodeLegend = Action(
+    id            = "ShowHideNodeLegend",
+    class_name    = "cviewer.plugins.codeoracle.actions.ShowHideNodeLegend",
+    name          = "Show/Hide Node Legend",
+    path          = "MenuBar/Plotting"
+)
+
+ShowHideNetworkName = Action(
+    id            = "ShowHideNetworkName",
+    class_name    = "cviewer.plugins.codeoracle.actions.ShowHideNetworkName",
+    name          = "Show/Hide Network Name",
+    path          = "MenuBar/Plotting"
+)
+
+nipype_PlotVolume = Action(
+    id            = "PlotVolume",
+    class_name    = "cviewer.plugins.codeoracle.actions.PlotVolume",
+    name          = "Plot Volume",
+    path          = "MenuBar/Plotting"
+)
+
+PlotTracks = Action(
+    id            = "PlotTracks",
+    class_name    = "cviewer.plugins.codeoracle.actions.PlotTracks",
+    name          = "Plot Tracks",
+    path          = "MenuBar/Plotting"
+)
 
 class OracleActionSet(WorkbenchActionSet):
     """ The actionset for the Oracle plugin """
@@ -123,5 +219,19 @@ class OracleActionSet(WorkbenchActionSet):
         xnat_pushpull,
         nipype_bet,
         networkrepo,
-        writegexf
+        writegexf,
+        nipype_PlotNodes,
+        nipype_PlotLabelsByPhrase,
+        nipype_PlotLabelsByDegree,
+        nipype_PlotEdges,
+        nipype_PlotSurface,
+        nipype_PlotNetwork,
+        nipype_PlotVolume,
+        NewFigure,
+        ClearFigure,
+        ShowHideEdgeLegend,
+        ShowHideNodeLegend,
+        ShowHideNetworkName,
+        PlotTracks,
+        #nipype_RecordVideo,
     ]

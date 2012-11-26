@@ -6,12 +6,9 @@ from traitsui.api import (View, Item, Group, HGroup, CodeEditor,
 from cviewer.plugins.cff2.cvolume import CVolume
 
 class VolumeParameter(HasTraits):
-    
-    engine = Enum("Mayavi", ["Mayavi"])
-    
+       
     view = View(
-             Item('engine', label = "Use Engine"),
-             Item('myvolume', label = "Volume"),
+             Item('volume', label = "Volume"),
              id='cviewer.plugins.codeoracle.volumeparameter',
              buttons=['OK'], 
              resizable=True,
@@ -31,5 +28,5 @@ class VolumeParameter(HasTraits):
         if len(self.volumes) == 0:
             self.volumes["None"] = {'name' : "None"}
             
-        self.add_trait('myvolume',  Enum(self.volumes.keys()) )
+        self.add_trait('volume',  Enum(self.volumes.keys()) )
         

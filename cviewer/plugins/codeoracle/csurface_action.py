@@ -7,11 +7,8 @@ from cviewer.plugins.cff2.csurface_darray import CSurfaceDarray
 
 
 class SurfaceParameter(HasTraits):
-    
-    engine = Enum("Mayavi", ["Mayavi"])
-    
+       
     view = View(
-             Item('engine', label = "Use Engine"),
              Item('pointset', label = "Pointset"),
              Item('faces', label = "Faces"),
              Item('labels', label="labels"),
@@ -59,6 +56,42 @@ class SurfaceParameter(HasTraits):
         self.add_trait('pointset',  Enum(self.pointset_da.keys()) )
         self.add_trait('faces', Enum(self.faces_da.keys()) )
         self.add_trait('labels', Enum(self.labels_da.keys()) )
+
+class SurfaceFileParameter(HasTraits):
+       
+    view = View(
+             Item('surface', label = "Surface"),
+             Item('labels', label="labels"),
+             id='cviewer.plugins.codeoracle.surfacefileparameter',
+             buttons=['OK'], 
+             resizable=True,
+             title = "Create surface ..."
+             )
+    
+    def __init__(self, cfile, **traits):
+        super(SurfaceFileParameter, self).__init__(**traits)
         
+        self.surface_da = {}
+        self.labels_da = {}
+        
+        for cobj in cfile.connectome_surface:
+            if cobj.loaded:
+                for i, cdobj in enumerate(cobj.darrays):
+                     if cdobj.data.intent == 1008:
+                        self.surface_da[cobj.name + ' / ' + cdobj.dname + ' (%s)' % str(i)] = {'name' : cobj.obj.name,
+                                                                             'da_idx' : i}
+
+                     if cdobj.data.intent == 1002:
+                        self.labels_da[cobj.name + ' / ' + cdobj.dname + ' (%s)' % str(i)] = {'name' : cobj.obj.name,
+                                                                             'da_idx' : i}
+                        
+        if len(self.surface_da) == 0:
+            self.surface_da["None"] = {'name' : "None"}
+
+        if len(self.labels_da) == 0:
+            self.labels_da["None"] = {'name' : "None"}
+
+        self.add_trait('surface',  Enum(self.surface_da.keys()) )
+        self.add_trait('labels', Enum(self.labels_da.keys()) )        
 
         

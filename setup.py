@@ -45,7 +45,6 @@ if len(set(('develop', 'bdist_egg', 'bdist_rpm', 'bdist', 'bdist_dumb',
     from setup_egg import extra_setuptools_args
     package_check('networkx', INFO_VARS['networkx_min_version'])
     package_check('mayavi', INFO_VARS['mayavi_min_version'],version_getter=_mayavi_version)
-    package_check('traits', INFO_VARS['traits_min_version'],version_getter=_traits_version)
 
 # extra_setuptools_args can be defined from the line above, but it can
 # also be defined here because setup.py has been exec'ed from
