@@ -90,7 +90,7 @@ open_file = Action(
 
 open_file2 = Action(
     id            = "ConnectomeFile",
-    name          = "&Open data file ...",
+    name          = "&Add data ...",
     class_name    = "cviewer.action.load_cff:"
                     "OpenFile",
     path          = "MenuBar/File",
