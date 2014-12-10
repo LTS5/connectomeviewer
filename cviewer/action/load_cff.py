@@ -55,7 +55,7 @@ class OpenFile(Action):
             cfile = self.window.application.get_service('cviewer.plugins.cff2.cfile.CFile')
             exec_as_funct = False
 
-        wildcard = "All files (*.*)|*.*" \
+        wildcard = "All files (*.*)|*.*|" \
                    "Nifti-1 (*.nii.gz)|*.nii.gz|" \
                    "Gifti (*.gii)|*.gii|" \
                    "TrackVis tracks (*.trk)|*.trk|" \
