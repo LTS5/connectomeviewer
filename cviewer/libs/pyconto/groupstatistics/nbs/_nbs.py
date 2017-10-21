@@ -167,7 +167,7 @@ def compute_nbs(X, Y, THRESH, K = 1000, TAIL = 'both'):
     # Find network components
     G = netwx.from_numpy_matrix(ADJ)
     # Return connected components as subgraphs.
-    comp_list = netwx.connected_component_subgraphs(G)
+    comp_list = list(netwx.connected_component_subgraphs(G))
 
     # store the number of edges for each subgraph component 
     nr_edges_per_component = np.zeros( len(comp_list) )
@@ -253,7 +253,7 @@ def compute_nbs(X, Y, THRESH, K = 1000, TAIL = 'both'):
         # Find network components
         G = netwx.from_numpy_matrix(adj_perm)
         # Return connected components as subgraphs.
-        comp_list = netwx.connected_component_subgraphs(G)
+        comp_list = list(netwx.connected_component_subgraphs(G))
         
         # store the number of edges for each subgraph component 
         nr_edges_per_component = np.zeros( len(comp_list) )
